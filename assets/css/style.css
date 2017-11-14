@@ -36,6 +36,10 @@ span.required {
   padding: 10px 0px;
 }
 
-.date .form-control {
-  width: auto;
+select.day, select.year {
+  width: 25%;
+}
+
+select.month {
+  width: 50%;
 }

@@ -1,6 +1,35 @@
 import React, { Component } from 'react'
 
 export default class SingleMultipleInput extends Component {
+
+  constructor(props) {
+    super(props)
+    const { model, name, options } = this.props
+    var state = { values : [] }
+
+    this.state = state
+    this.handleCheck = this.handleCheck.bind(this)
+  }
+
+  handleCheck(e) {
+    const { options, name, model } = this.props
+    var { values } = this.state
+    if(values == null) {
+      values = []
+    }
+    if(e.target.checked) {
+      values.push(e.target.value)
+    } else {
+      values = values.filter((v) => v != e.target.value )
+    }
+    
+    this.setState({ values })
+    if(model) {
+      model[name] = this.state.values.join(',')
+    }
+  }
+
+
   render() {
     const { label, name, options, multiple, required, inline } = this.props
     var type = multiple? "checkbox" : "radio";
@@ -9,25 +38,28 @@ export default class SingleMultipleInput extends Component {
     var optionList = null
     if(options != null) {
       optionList = options.map((option, index) => {
-        var label, value;
+        var label, value, key;
+
         if(typeof option == "string") {
           label = option;
           value = option;
+          key = index
         } else {
           label = option.name;
-          value = option.value;
+          value = option.id;
+          key = value
         }
         if(inline) {
           return (
             <label className={ inlineClass } key={ index }>
-              <input type={ type } value={ value } name={ name }/> { label }
+              <input type={ type } value={ value } name={ name } checked={ this.state.values.indexOf(value) != -1 } onChange={ this.handleCheck }/> { label }
             </label>
           )
         }
         return (
           <div className={ type } key={ index }>
             <label className={ inlineClass }>
-              <input type={ type } value={ value } name={ name }/> { label }
+              <input type={ type } value={ value } name={ name } checked={ this.state.values.indexOf(value) != -1 } onChange={ this.handleCheck }/> { label }
             </label>
           </div>
         )
@@ -39,6 +71,7 @@ export default class SingleMultipleInput extends Component {
         <span className="required">*</span>
       )
     }
+    //if()
 
     return (
       <div className="form-group">

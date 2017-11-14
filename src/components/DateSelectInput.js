@@ -1,6 +1,31 @@
 import React, { Component } from 'react'
 
 export default class DateSelectInput extends Component {
+  constructor(props) {
+    super(props)
+    const { model, name } = this.props
+
+    var value = {}
+    if(model && model[name]) {
+      value.day = model[name][day]
+      value.month = model[name][month]
+      value.year = model[name][year]
+    }
+    this.state = {
+      value
+    }
+  }
+
+  handleChange(e) {
+    var { value } = this.state
+    const { model, name } = this.props
+    value[e.target.name] = e.target.value
+    model[name] = value
+    this.setState({
+      value: value
+    });
+  }
+
   render() {
     const { label, name, required } = this.props
     var input = null
@@ -15,13 +40,13 @@ export default class DateSelectInput extends Component {
       <div className="form-group">
         <label className="col-md-4 control-label form-input-label">{ label  } { reqSpan }</label>
         <div className="col-md-6 date">
-          <select className="col-md-3 form-control">
+          <select name="day" className="col-md-3 form-control day" value={ this.state.value.day } onChange={ this.handleChange }>
             <option></option>
           </select>
-          <select className="col-md-6 form-control">
+          <select name="month" className="col-md-6 form-control month" value={ this.state.value.month } onChange={ this.handleChange }>
             <option></option>
           </select>
-          <select className="col-md-3 form-control">
+          <select name="year" className="col-md-3 form-control year" value={ this.state.value.year } onChange={ this.handleChange }>
             <option></option>
           </select>
         </div>
