@@ -1,0 +1,41 @@
+html {
+    overflow-y: scroll;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-size: 12px !important;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #555;
+    margin: 0;
+    padding: 0;
+    min-width: 1100px;
+    min-height: 500px;
+    height: 100%;
+    width: 100%;
+}
+
+.content {
+  height: calc(100% - 10px);
+}
+
+.content > div {
+  height: calc(100% - 10px)
+}
+
+.form-input-label {
+  text-align: right;
+}
+
+span.required {
+  color: red;
+}
+
+.footer {
+  padding: 10px 0px;
+}
+
+.date .form-control {
+  width: auto;
+}
