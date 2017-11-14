@@ -14,6 +14,7 @@ export default class DateSelectInput extends Component {
     this.state = {
       value
     }
+    this.handleChange = this.handleChange.bind(this)
   }
 
   handleChange(e) {
@@ -36,18 +37,26 @@ export default class DateSelectInput extends Component {
         <span className="required">*</span>
       )
     }
+    const monthLabels = ["January", 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    const months = [<option value="" key={ Math.floor(Math.random() * 100000)}></option>].concat(monthLabels.map((month, index) => (
+      <option value={ index } key={ Math.floor(Math.random() * 100000)}>{ month }</option>
+    )))
+
+    const year = new Date().getFullYear() + 1;
+    const days = [<option value="" key={ Math.floor(Math.random() * 100000)}></option>].concat(Array(31).fill("").map((value, index) => (<option value={ index } key={ Math.floor(Math.random() * 100000 * (index + 1))}>{ (index + 1) }</option>)))
+    const years = [<option value="" key={ Math.floor(Math.random() * 100000)}></option>].concat(Array(100).fill("").map((val, index) => (<option value={ ((year - 100) + index) } key={ Math.floor(Math.random() * 100000 * (index + 1))}>{ ((year - 100) + index) }</option>)))
     return (
       <div className="form-group">
         <label className="col-md-4 control-label form-input-label">{ label  } { reqSpan }</label>
         <div className="col-md-6 date">
           <select name="day" className="col-md-3 form-control day" value={ this.state.value.day } onChange={ this.handleChange }>
-            <option></option>
+            { days }
           </select>
           <select name="month" className="col-md-6 form-control month" value={ this.state.value.month } onChange={ this.handleChange }>
-            <option></option>
+            { months }
           </select>
           <select name="year" className="col-md-3 form-control year" value={ this.state.value.year } onChange={ this.handleChange }>
-            <option></option>
+            { years }
           </select>
         </div>
       </div>

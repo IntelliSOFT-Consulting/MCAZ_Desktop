@@ -13,7 +13,7 @@ export default class MedicationTableComponent extends Component {
     const { model, name } = this.props
     var rows = []
     if(model[name]) {
-      data = model[name]
+      var data = model[name]
       for(let i = 0; i < data.length; i++) {
         rows[i] = this.getRow(i)
       }

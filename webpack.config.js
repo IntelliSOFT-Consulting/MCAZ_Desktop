@@ -14,10 +14,24 @@ module.exports = {
       { test: /\.css$/, loader: "style-loader!css-loader" }
     ]
   },
-  externals: [
+  externals: {
+    'electron': 'require("electron")',
+    'net': 'require("net")',
+    'remote': 'require("remote")',
+    'shell': 'require("shell")',
+    'app': 'require("app")',
+    'ipc': 'require("ipc")',
+    'fs': 'require("fs")',
+    'buffer': 'require("buffer")',
+    'system': '{}',
+    'file': '{}',
+    'electron-store': 'require("electron-store")',
+    //'conf' : 'require("conf")',
+    'electron-config': 'require("electron-config")'
+    /*
     (function () {
       var IGNORES = [
-       'electron'
+       'electron', 'electron-config', 'fs'
       ];
       return function (context, request, callback) {
         if (IGNORES.indexOf(request) >= 0) {
@@ -25,7 +39,7 @@ module.exports = {
         }
         return callback();
       };
-    })()
-  ],
+    })()*/
+  },
   watch: true
 };

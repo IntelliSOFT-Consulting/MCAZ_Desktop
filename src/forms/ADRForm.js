@@ -4,18 +4,23 @@ import DateSelectInput from '../components/DateSelectInput'
 import SingleMultipleInput from '../components/SingleMultipleInput'
 import MedicationTableComponent from '../components/MedicationTableComponent'
 
+import { REPORT_TYPE_ADR } from '../utils/Constants'
+
 export default class ADRForm extends Component {
 
   constructor(props) {
     super(props)
-    const { model } = this.props
-
+    var { model } = this.props
+    if(model == null) {
+      model = { rid : Date.now(), type : REPORT_TYPE_ADR, "name_of_institution" : "Nairobi Hosp", "sadr_list_of_drugs" : [ { "brand_name" : "dawa", "dose_id" : "1" }], user: {} }
+    }
+    this.state = { model }
     this.saveAndContinue = this.saveAndContinue.bind(this)
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.cancel = this.cancel.bind(this)
   }
   render() {
-    const { model } = this.props
+    var { model } = this.state
     return (
       <div>
         <h3 className="text-center">Adverse Drug Reaction (ADR) Report Form</h3>
@@ -25,34 +30,34 @@ export default class ADRForm extends Component {
           <h5 className="text-center">Patient Details</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Clinic/Hospital Name" model={ model } name=""/>
+              <TextInput label="Clinic/Hospital Name" model={ model } name="name_of_institution"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Clinic/Hospital Number" model={ model } name=""/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Patient Initials" required={ true } model={ model } name=""/>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="VCT/OI/TB Number" model={ model } name=""/>
+              <TextInput label="Clinic/Hospital Number" model={ model } name="institution_code"/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of Birth:" required={ true } model={ model } name=""/>
+              <TextInput label="Patient Initials" required={ true } model={ model } name="patient_name"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Weight (Kg)" model={ model } name=""/>
+              <TextInput label="VCT/OI/TB Number" model={ model } name="ip_no"/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Age" model={ model } name=""/>
+              <DateSelectInput label="Date of Birth:" required={ true } model={ model } name="date_of_birth"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Height (meters)" model={ model } name=""/>
+              <TextInput label="Weight (Kg)" model={ model } name="weight"/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="Age group" model={ model } name="age_group"/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="Height (meters)" model={ model } name="height"/>
             </div>
           </div>
           <div className="container">
@@ -63,15 +68,15 @@ export default class ADRForm extends Component {
           <h5 className="text-center">Adverse Reaction</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of onset" model={ model } name=""/>
+              <DateSelectInput label="Date of onset" model={ model } name="date_of_onset_of_reaction"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of end of reaction (if it ended)" model={ model } name=""/>
+              <DateSelectInput label="Date of end of reaction (if it ended)" model={ model } name="date_of_end_of_reaction"/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <TextInput label="Description of ADR" multiLine={ true } model={ model } name=""/>
+              <TextInput label="Description of ADR" multiLine={ true } model={ model } name="description_of_reaction"/>
             </div>
           </div>
           <div className="container">
@@ -79,32 +84,32 @@ export default class ADRForm extends Component {
               <SingleMultipleInput label="Serious" model={ model } name="severity" required={ true } options={["Yes", "No"]}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Reason for Seriousness" model={ model } name="" required={ true } options={["Death", "Hospitalization/prolonged", "Congenital-anomaly", "Life-threateing", "Disabling", "Other medically important condition"]}/>
+              <SingleMultipleInput label="Reason for Seriousness" model={ model } name="severity_reason" required={ true } options={["Death", "Hospitalization/prolonged", "Congenital-anomaly", "Life-threateing", "Disabling", "Other medically important condition"]}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Relevant Medical History" multiLine={ true } model={ model } name=""/>
+              <TextInput label="Relevant Medical History" multiLine={ true } model={ model } name="medical_history"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Relevant Past Drug Therapy" multiLine={ true } model={ model } name=""/>
+              <TextInput label="Relevant Past Drug Therapy" multiLine={ true } model={ model } name="past_drug_therapy"/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <TextInput label="Laboratory tests results:" multiLine={ true } model={ model } name=""/>
+              <TextInput label="Laboratory tests results:" multiLine={ true } model={ model } name="lab_test_results"/>
             </div>
           </div>
 
           <div className="container">
-            <MedicationTableComponent label="Current Medication (including OTC and herbals) " name="sadr_list_of_drugs" model={ {} }/>
+            <MedicationTableComponent label="Current Medication (including OTC and herbals) " name="sadr_list_of_drugs" model={ model }/>
           </div>
           <div className="container">
             <div className="col-md-4 col-sm-12">
               <SingleMultipleInput label="Action taken:" model={ model } name="" required={ true } options={["Yes", "No"]}/>
             </div>
             <div className="col-md-4 col-sm-12">
-              <SingleMultipleInput label="Outcome of ADR:" model={ model } name="" required={ true } options={["Yes", "No"]}/>
+              <SingleMultipleInput label="Outcome of ADR:" model={ model } name="outcome" required={ true } options={["Yes", "No"]}/>
             </div>
             <div className="col-md-4 col-sm-12">
               <SingleMultipleInput label="Relatedness of suspected medicine(s) to ADR:" model={ model } name="" options={["Yes", "No"]}/>
@@ -113,18 +118,18 @@ export default class ADRForm extends Component {
           <h5 className="text-center">Reported By</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Forenames & Surname" model={ model } name="" />
+              <TextInput label="Forenames & Surname" model={ model } name="reporter_name" />
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Designation" model={ model } name="" />
+              <TextInput label="Designation" model={ model } name="designation_id" />
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Email address" model={ model } name=""/>
+              <TextInput label="Email address" model={ model } name="reporter_email"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Phone number" model={ model } name=""/>
+              <TextInput label="Phone number" model={ model } name="reporter_phone"/>
             </div>
           </div>
           <div className="container">
