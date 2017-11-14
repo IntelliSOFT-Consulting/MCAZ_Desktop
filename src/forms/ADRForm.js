@@ -6,7 +6,10 @@ import MedicationTableComponent from '../components/MedicationTableComponent'
 
 import { REPORT_TYPE_ADR } from '../utils/Constants'
 
-export default class ADRForm extends Component {
+import { connect } from 'react-redux'
+import { saveDraft, uploadData, saveCompleted, removeDraft } from '../actions'
+
+class ADRForm extends Component {
 
   constructor(props) {
     super(props)
@@ -153,7 +156,8 @@ export default class ADRForm extends Component {
     )
   }
 
-  saveAndContinue() {
+  saveAndContinue(e) {
+    e.preventDefault()
     const { saveDraft } = this.props
     const { model } = this.state
     saveDraft(model)
@@ -162,7 +166,8 @@ export default class ADRForm extends Component {
   /**
     When saved, check connection status.
   */
-  saveAndSubmit() {
+  saveAndSubmit(e) {
+    e.preventDefault()
     const { model } = this.state
     const { uploadData, saveCompleted, connection } = this.props
     if(connection.isConnected) {
@@ -174,10 +179,35 @@ export default class ADRForm extends Component {
     this.goBack()
   }
 
-  cancel() {
+  cancel(e) {
+    e.preventDefault()
     Alert.alert("Confirm", "Stop data entry?", [
       {text: 'Yes', onPress: () => this.goBack() },
       {text: 'No' }
     ])
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    connection: state.appState.connection,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    saveDraft: (data) => {
+      dispatch(saveDraft(data))
+    },
+    uploadData: (data) => { // Upload the data.
+      dispatch(uploadData(data))
+    },
+    saveCompleted: (data) => { // save the completed data and remove any draft.
+      dispatch(saveCompleted(data))
+      dispatch(removeDraft(data))
+    },
+    dispatch: dispatch
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ADRForm)
