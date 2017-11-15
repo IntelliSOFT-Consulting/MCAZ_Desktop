@@ -1,26 +1,27 @@
 import React, { Component } from 'react'
 import TextInput from '../inputs/TextInput'
 import FileInputComponent from '../inputs/FileInputComponent'
+import TableComponent from './TableComponent'
 
-export default class FileAttachmentComponent extends Component {
+export default class FileAttachmentComponent extends TableComponent {
 
   constructor(props) {
     super(props)
 
     this.getRow = this.getRow.bind(this)
-    this.addFile = this.addFile.bind(this)
-    this.removeFileRow = this.removeFileRow.bind(this)
+    //this.addFile = this.addFile.bind(this)
+    //this.removeFileRow = this.removeFileRow.bind(this)
     this.initializeRows = this.initializeRows.bind(this)
 
     const { model } = this.props
-    var files = []
-    if(model && model.files) {
-      files = model.files
-    }
-    this.state = { files }
+    //var files = []
+    //if(model && model.files) {
+    //  files = model.files
+    //}
+    //this.state = { files }
   }
 
-  addFile(e) {
+  /*addFile(e) {
     e.preventDefault()
     const { model, name } = this.props
     var { files } = this.state
@@ -37,10 +38,10 @@ export default class FileAttachmentComponent extends Component {
     const { model, name } = this.props
     model[name] = files
     this.setState({ files : files })
-  }
+  }*/
 
   getRow(index) {
-    const { files } = this.state
+    const { rows } = this.state
     const { model, name } = this.props
     if(!model[name]) {
       model[name] = []
@@ -54,7 +55,7 @@ export default class FileAttachmentComponent extends Component {
         <td><FileInputComponent hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
         <td><TextInput hideLabel={ true } multiLine={ true } name="description"/></td>
         <td>
-          <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeFileRow(index, e) }>
+          <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
             <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
           </button>
         </td>
@@ -63,10 +64,10 @@ export default class FileAttachmentComponent extends Component {
   }
 
   initializeRows() {
-    const { files } = this.state
+    const { rows } = this.state
     var dataRows = []
     //this.setState({ rows : rows })
-    for(let i = 0; i < files.length; i++) {
+    for(let i = 0; i < rows.length; i++) {
       dataRows[i] = this.getRow(i)
     }
     return dataRows
@@ -79,7 +80,7 @@ export default class FileAttachmentComponent extends Component {
     return (
       <div className="container">
         <h5 className="text-center"> { label }
-          <button className="btn btn-sm btn-primary" onClick={ this.addFile }>
+          <button className="btn btn-sm btn-primary" onClick={ this.addRow }>
             <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
           </button>
         </h5>
