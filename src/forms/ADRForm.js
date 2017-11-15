@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import TextInput from '../components/TextInput'
-import DateSelectInput from '../components/DateSelectInput'
-import SingleMultipleInput from '../components/SingleMultipleInput'
+import TextInput from '../inputs/TextInput'
+import DateSelectInput from '../inputs/DateSelectInput'
+import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import MedicationTableComponent from '../components/MedicationTableComponent'
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
 

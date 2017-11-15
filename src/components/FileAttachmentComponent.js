@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import TextInput from './TextInput'
-import FileInputComponent from './FileInputComponent'
+import TextInput from '../inputs/TextInput'
+import FileInputComponent from '../inputs/FileInputComponent'
 
 export default class FileAttachmentComponent extends Component {
 

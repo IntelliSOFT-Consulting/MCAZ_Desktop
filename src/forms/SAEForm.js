@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TextInput from '../components/TextInput'
+import TextInput from '../inputs/TextInput'
 
 export default class AdrForm extends Component {
 

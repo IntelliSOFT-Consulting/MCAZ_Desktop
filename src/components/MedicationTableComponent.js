@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import TextInput from './TextInput'
-import DatePickerInput from './DatePickerInput'
+import TextInput from '../inputs/TextInput'
+import DatePickerInput from '../inputs/DatePickerInput'
 
 export default class MedicationTableComponent extends Component {
 
