@@ -3,6 +3,7 @@ import TextInput from '../components/TextInput'
 import DateSelectInput from '../components/DateSelectInput'
 import SingleMultipleInput from '../components/SingleMultipleInput'
 import MedicationTableComponent from '../components/MedicationTableComponent'
+import FileAttachmentComponent from '../components/FileAttachmentComponent'
 
 import { REPORT_TYPE_ADR } from '../utils/Constants'
 
@@ -120,6 +121,7 @@ class ADRForm extends Component {
           <div className="container">
             <MedicationTableComponent label="Current Medication (including OTC and herbals) "  validate={ this.state.validate } name="sadr_list_of_drugs" model={ model }/>
           </div>
+          <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them:" validate={ this.state.validate } name="files" model={ model }/>
           <div className="container">
             <div className="col-md-4 col-sm-12">
               <SingleMultipleInput label="Action taken:" model={ model } name="" required={ true } validate={ this.state.validate } options={["Yes", "No"]}/>

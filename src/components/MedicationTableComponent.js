@@ -125,7 +125,6 @@ export default class MedicationTableComponent extends Component {
     for(let i = 0; i < rows.length; i++) {
       dataRows[i] = this.getRow(i)
     }
-
     return dataRows
   }
 
