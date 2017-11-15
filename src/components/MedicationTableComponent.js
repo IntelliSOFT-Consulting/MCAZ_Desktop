@@ -10,23 +10,22 @@ export default class MedicationTableComponent extends Component {
     this.addRow = this.addRow.bind(this)
     this.removeRow = this.removeRow.bind(this)
 
-    const { model, name } = this.props
+    const { model, name, validate } = this.props
+    this.initializeRows = this.initializeRows.bind(this)
     var rows = []
-    if(model[name]) {
-      var data = model[name]
-      for(let i = 0; i < data.length; i++) {
-        rows[i] = this.getRow(i)
-      }
+    if(model && model[name]) {
+      rows = model[name]
     }
-    this.state = { rows : rows }
+    this.state = { rows, validate }
   }
 
   addRow(e) {
     e.preventDefault()
-    var rows = this.state.rows
-    const index = rows.length
-
-    rows.push(this.getRow(index))
+    const { model, name } = this.props
+    var { rows } = this.state
+    //const index = rows.length
+    rows.push({})
+    model[name] = rows
     this.setState({ rows : rows })
   }
 
@@ -41,16 +40,16 @@ export default class MedicationTableComponent extends Component {
     }
     return (
       <tr key={ Math.floor(Math.random() * 10000) }>
-        <td><TextInput hideLabel={ true } name="drug_name"/></td>
+        <td><TextInput hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true }/></td>
         <td><TextInput hideLabel={ true } name="brand_name"/></td>
         <td><TextInput hideLabel={ true } name="batch_number"/></td>
-        <td><TextInput hideLabel={ true } name="dose"/></td>
-        <td><TextInput hideLabel={ true } name="dose_id"/></td>
-        <td><TextInput hideLabel={ true } name="route_id"/></td>
-        <td><TextInput hideLabel={ true } name="frequency_id"/></td>
+        <td><TextInput hideLabel={ true } name="dose" validate={ this.state.validate } required={ true }/></td>
+        <td><TextInput hideLabel={ true } name="dose_id" validate={ this.state.validate } required={ true }/></td>
+        <td><TextInput hideLabel={ true } name="route_id" validate={ this.state.validate } required={ true }/></td>
+        <td><TextInput hideLabel={ true } name="frequency_id" validate={ this.state.validate } required={ true }/></td>
         <td><TextInput hideLabel={ true } name="indication"/></td>
-        <td><DatePickerInput hideLabel={ true } name="start_date"/></td>
-        <td><DatePickerInput hideLabel={ true } name="stop_date"/></td>
+        <td><DatePickerInput hideLabel={ true } name="start_date" validate={ this.state.validate } required={ true }/></td>
+        <td><DatePickerInput hideLabel={ true } name="stop_date" /></td>
         <td><TextInput hideLabel={ true } name="suspected_drug"/></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
@@ -71,21 +70,15 @@ export default class MedicationTableComponent extends Component {
     var rows = this.state.rows
     rows.splice(index, 1)
     const { model, name } = this.props
-    model[name].splice(index, 1)
-    const length = rows.length
-    var newRows = []
-    var i = 0
-    while(i < length) {
-      newRows.push(this.getRow(i))
-      i++
-    }
-    this.setState({ rows : newRows })
+    model[name] = rows
+    this.setState({ rows : rows })
   }
 
   render() {
     const { label, name, multiLine, required } = this.props
     var input = null
 
+    const rows = this.initializeRows() //.rows
     return (
       <div className="container">
         <h5 className="text-center"> { label }
@@ -109,10 +102,34 @@ export default class MedicationTableComponent extends Component {
             </tr>
           </thead>
           <tbody>
-            { this.state.rows }
+            { rows }
           </tbody>
         </table>
       </div>
     )
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { validate } = this.state
+    const newValidate = nextProps.validate
+    if(newValidate != validate) {
+      this.setState({ validate: newValidate })
+      //this.initializeData()
+    }
+  }
+
+  initializeRows() {
+    const { rows } = this.state
+    var dataRows = []
+    //this.setState({ rows : rows })
+    for(let i = 0; i < rows.length; i++) {
+      dataRows[i] = this.getRow(i)
+    }
+
+    return dataRows
+  }
+
+  componentDidMount() {
+    //this.initializeData()
   }
 }

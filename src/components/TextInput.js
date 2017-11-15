@@ -4,12 +4,12 @@ export default class TextInput extends Component {
 
   constructor(props) {
     super(props)
-    const { model, name } = this.props
+    const { model, name, validate } = this.props
     var value = ""
     if(model && model[name]) {
       value = model[name]
     }
-    this.state = { value : value }
+    this.state = { value : value, validate }
     this.handleChange = this.handleChange.bind(this)
   }
 
@@ -39,20 +39,31 @@ export default class TextInput extends Component {
         <span className="required">*</span>
       )
     }
+    const hasError = (this.state.validate && required)? " has-error " : ""
+    const className = "form-group" + hasError
     if(hideLabel) {
       return (
-        <div>
+        <div className={ hasError }>
           { input }
         </div>
       )
     }
+
     return (
-      <div className="form-group">
+      <div className={ className }>
         <label className="col-md-4 control-label form-input-label">{ label  } { reqSpan }</label>
         <div className="col-md-6">
           { input }
         </div>
       </div>
     )
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { validate } = this.state
+    const newValidate = nextProps.validate
+    if(newValidate != validate) {
+      this.setState({ validate: newValidate })
+    }
   }
 }

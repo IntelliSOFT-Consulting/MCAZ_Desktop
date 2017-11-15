@@ -4,8 +4,13 @@ export default class SingleMultipleInput extends Component {
 
   constructor(props) {
     super(props)
-    const { model, name, options } = this.props
-    var state = { values : [] }
+    const { model, name, options, validate } = this.props
+
+    var values = []
+    if(model && model[name]) {
+      values = model[name].split(',')
+    }
+    var state = { values : values, validate }
 
     this.state = state
     this.handleCheck = this.handleCheck.bind(this)
@@ -22,7 +27,7 @@ export default class SingleMultipleInput extends Component {
     } else {
       values = values.filter((v) => v != e.target.value )
     }
-    
+
     this.setState({ values })
     if(model) {
       model[name] = this.state.values.join(',')
@@ -71,15 +76,24 @@ export default class SingleMultipleInput extends Component {
         <span className="required">*</span>
       )
     }
-    //if()
+    const hasError = (this.state.validate && required)? " has-error " : ""
+    const className = "form-group" + hasError
 
     return (
-      <div className="form-group">
+      <div className={ className }>
         <label className="col-md-4 control-label form-input-label">{ label } { reqSpan }</label>
         <div className="col-md-6">
           { optionList }
         </div>
       </div>
     )
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { validate } = this.state
+    const newValidate = nextProps.validate
+    if(newValidate != validate) {
+      this.setState({ validate: newValidate })
+    }
   }
 }
