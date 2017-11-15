@@ -8,3 +8,5 @@ export const REMOVE_UPLOADED_REPORT = 'REMOVE_UPLOADED_REPORT' // Save an upload
 export const CHANGE_CONNECTION_STATUS = 'CHANGE_CONNECTION_STATUS' // Change connection status
 
 export const SET_REPORT_FILTER = 'SET_REPORT_FILTER' // Sets the report type that should be displayed
+
+export const SHOW_PAGE = 'SHOW_PAGE'

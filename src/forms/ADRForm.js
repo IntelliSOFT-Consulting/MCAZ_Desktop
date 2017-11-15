@@ -5,10 +5,10 @@ import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import MedicationTableComponent from '../components/MedicationTableComponent'
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
 
-import { REPORT_TYPE_ADR } from '../utils/Constants'
+import { MAIN_PAGE, REPORT_TYPE_ADR } from '../utils/Constants'
 
 import { connect } from 'react-redux'
-import { saveDraft, uploadData, saveCompleted, removeDraft, validate } from '../actions'
+import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
 
 class ADRForm extends Component {
 
@@ -243,10 +243,8 @@ class ADRForm extends Component {
 
   cancel(e) {
     e.preventDefault()
-    Alert.alert("Confirm", "Stop data entry?", [
-      {text: 'Yes', onPress: () => this.goBack() },
-      {text: 'No' }
-    ])
+    const { showPage } = this.props
+    showPage(MAIN_PAGE)
   }
 }
 
@@ -270,6 +268,9 @@ const mapDispatchToProps = dispatch => {
     saveCompleted: (data) => { // save the completed data and remove any draft.
       dispatch(saveCompleted(data))
       dispatch(removeDraft(data))
+    },
+    showPage: (page) => {
+      dispatch(showPage(page))
     },
     dispatch: dispatch
   }

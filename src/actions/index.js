@@ -1,5 +1,5 @@
 import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, SAVE_COMPLETED_REPORT, REMOVE_COMPLETED_REPORT,
- SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SET_REPORT_FILTER, CHANGE_CONNECTION_STATUS }  from './actionTypes'
+ SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SET_REPORT_FILTER, CHANGE_CONNECTION_STATUS, SHOW_PAGE }  from './actionTypes'
 
 import { MAIN_URL } from '../utils/Constants'
 
@@ -61,4 +61,8 @@ export const uploadData = (data) => {
 
 export const uploadCompletedReports = (data) => (
   { type : "" }
+)
+
+export const showPage = (page) => (
+  { type : SHOW_PAGE, page }
 )

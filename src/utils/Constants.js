@@ -15,3 +15,9 @@ export const STATUS_COMPLETED = 'STATUS_COMPLETED'
 export const STATUS_UPLOADED = 'STATUS_UPLOADED'
 
 export const MAIN_URL = 'http://45.79.130.91/api/sadrs'
+
+export const MAIN_PAGE = 'MAIN_PAGE' // The main page
+export const ADR_FORM_PAGE = 'ADR_FORM_PAGE'
+export const SAE_FORM_PAGE = 'SAE_FORM_PAGE'
+export const AEFI_REPORT_PAGE = 'AEFI_REPORT_PAGE'
+export const REPORTS_LIST_PAGE = 'REPORTS_LIST_PAGE'

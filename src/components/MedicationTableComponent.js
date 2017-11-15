@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import TextInput from '../inputs/TextInput'
 import DatePickerInput from '../inputs/DatePickerInput'
+import TableComponent from './TableComponent'
+import CheckboxInput from '../inputs/CheckboxInput'
 
-export default class MedicationTableComponent extends Component {
+export default class MedicationTableComponent extends TableComponent {
 
   constructor(props) {
     super(props)
     this.getRow = this.getRow.bind(this)
-    this.addRow = this.addRow.bind(this)
-    this.removeRow = this.removeRow.bind(this)
+
 
     const { model, name, validate } = this.props
     this.initializeRows = this.initializeRows.bind(this)
@@ -19,7 +20,7 @@ export default class MedicationTableComponent extends Component {
     this.state = { rows, validate }
   }
 
-  addRow(e) {
+  /*addRow(e) {
     e.preventDefault()
     const { model, name } = this.props
     var { rows } = this.state
@@ -27,7 +28,7 @@ export default class MedicationTableComponent extends Component {
     rows.push({})
     model[name] = rows
     this.setState({ rows : rows })
-  }
+  }*/
 
   getRow(index) {
     const rowData = {}
@@ -40,17 +41,17 @@ export default class MedicationTableComponent extends Component {
     }
     return (
       <tr key={ Math.floor(Math.random() * 10000) }>
-        <td><TextInput hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true }/></td>
-        <td><TextInput hideLabel={ true } name="brand_name"/></td>
-        <td><TextInput hideLabel={ true } name="batch_number"/></td>
-        <td><TextInput hideLabel={ true } name="dose" validate={ this.state.validate } required={ true }/></td>
-        <td><TextInput hideLabel={ true } name="dose_id" validate={ this.state.validate } required={ true }/></td>
-        <td><TextInput hideLabel={ true } name="route_id" validate={ this.state.validate } required={ true }/></td>
-        <td><TextInput hideLabel={ true } name="frequency_id" validate={ this.state.validate } required={ true }/></td>
-        <td><TextInput hideLabel={ true } name="indication"/></td>
-        <td><DatePickerInput hideLabel={ true } name="start_date" validate={ this.state.validate } required={ true }/></td>
-        <td><DatePickerInput hideLabel={ true } name="stop_date" /></td>
-        <td><TextInput hideLabel={ true } name="suspected_drug"/></td>
+        <td><TextInput hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
+        <td><TextInput hideLabel={ true } name="brand_name" model={ model[name][index] }/></td>
+        <td><TextInput hideLabel={ true } name="batch_number" model={ model[name][index] }/></td>
+        <td><TextInput hideLabel={ true } name="dose" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><TextInput hideLabel={ true } name="dose_id" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><TextInput hideLabel={ true } name="route_id" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><TextInput hideLabel={ true } name="frequency_id" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><TextInput hideLabel={ true } name="indication" model={ model[name][index] }/></td>
+        <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><DatePickerInput hideLabel={ true } name="stop_date" model={ model[name][index] } /></td>
+        <td><CheckboxInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ ['1'] }/></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
             <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
@@ -64,7 +65,7 @@ export default class MedicationTableComponent extends Component {
     Removes a row from the table.
     This function then recreates all the rows.
     This ensures that the delete button gets the new correct index.
-  */
+  *
   removeRow(index, e) {
     e.preventDefault()
     var rows = this.state.rows
@@ -72,7 +73,7 @@ export default class MedicationTableComponent extends Component {
     const { model, name } = this.props
     model[name] = rows
     this.setState({ rows : rows })
-  }
+  }*/
 
   render() {
     const { label, name, multiLine, required } = this.props
