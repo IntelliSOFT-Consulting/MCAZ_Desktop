@@ -58,3 +58,35 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+
+
+const { ipcMain } = require('electron')
+
+ipcMain.on('upload-data', (event, arg) => {
+  const {net} = require('electron')
+
+  const reqObj = JSON.parse(arg)
+  const options = {
+    url: reqObj.url,
+    method: "POST",
+  }
+  const request = net.request(options)
+  request.setHeader('Content-Type', 'application/json')
+  request.write(JSON.stringify(reqObj.body))
+  request.on('response', (response) => {
+    console.log(`STATUS: ${response.statusCode}`)
+    console.log(`HEADERS: ${JSON.stringify(response.headers)}`)
+    response.on('data', (chunk) => {
+      console.log(`BODY: ${chunk}`)
+    })
+    response.on('end', () => {
+      event.sender.send('upload-reply', 'uploaded')
+      console.log('No more data in response.')
+    })
+  })
+  request.end()
+  console.log(arg)  // prints "ping"
+
+  event.sender.send('asynchronous-reply', 'pong')
+})

@@ -4,6 +4,7 @@ import DateSelectInput from '../inputs/DateSelectInput'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import MedicationTableComponent from '../components/MedicationTableComponent'
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
+import ConcomitantTableComponent from '../components/ConcomitantTableComponent'
 import SelectInput from '../inputs/SelectInput'
 
 import { MAIN_PAGE, REPORT_TYPE_ADR } from '../utils/Constants'
@@ -25,6 +26,7 @@ class ADRForm extends Component {
     this.saveAndContinue = this.saveAndContinue.bind(this)
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.cancel = this.cancel.bind(this)
+    this.goBack = this.goBack.bind(this)
 
     this.mandatory = [
       { name : "patient_name", text : "Patient Initials", page : 1 },
@@ -43,7 +45,12 @@ class ADRForm extends Component {
     var { model } = this.state
     return (
       <div className='adr-form'>
-        <h3 className="text-center">Adverse Drug Reaction (ADR) Report Form</h3>
+        <h3 className="text-center">
+          <span className="text-center">
+            <img src="assets/images/mcaz_3.png" className="logo"></img>
+          </span><br/>
+          Adverse Drug Reaction (ADR) Report Form
+        </h3>
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
 
         <form className="form-horizontal">
@@ -124,6 +131,7 @@ class ADRForm extends Component {
           <div className="container">
             <MedicationTableComponent label="Current Medication (including OTC and herbals) "  validate={ this.state.validate } name="sadr_list_of_drugs" model={ model }/>
           </div>
+          <ConcomitantTableComponent label="Concomitant (Other) drugs taken, including herbal medicines & Dates/period taken: " name="sadr_other_drugs" model={ model }/>
           <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them:" validate={ this.state.validate } name="files" model={ model }/>
           <div className="container">
             <div className="col-md-4 col-sm-12">
@@ -158,7 +166,7 @@ class ADRForm extends Component {
               <TextInput label="Name and address of institution" required={ true } model={ model } name=""/>
             </div>
           </div>
-          <div className="container">
+          <div className="container well">
             <div className="col-md-3 col-md-offset-1">
               <button className="btn btn-sm btn-primary" onClick={ this.saveAndContinue }>Save Changes</button>
             </div>
@@ -188,7 +196,7 @@ class ADRForm extends Component {
     e.preventDefault()
     const { model } = this.state
     const { uploadData, saveCompleted, connection } = this.props
-
+    uploadData(model)
     var valid = true
     var names = ""
     var page = 0
@@ -249,11 +257,17 @@ class ADRForm extends Component {
     const { showPage } = this.props
     showPage(MAIN_PAGE)
   }
+
+  goBack() {
+    const { showPage } = this.props
+    showPage(MAIN_PAGE)
+  }
 }
 
 const mapStateToProps = state => {
   return {
     connection: state.appState.connection,
+    model: state.appState.currentReport
   }
 }
 

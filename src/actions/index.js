@@ -1,8 +1,10 @@
 import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, SAVE_COMPLETED_REPORT, REMOVE_COMPLETED_REPORT,
- SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SET_REPORT_FILTER, CHANGE_CONNECTION_STATUS, SHOW_PAGE }  from './actionTypes'
+ SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SET_REPORT_FILTER, CHANGE_CONNECTION_STATUS, SHOW_PAGE,
+ SET_REPORT }  from './actionTypes'
 
 import { MAIN_URL } from '../utils/Constants'
 
+const { ipcRenderer } = require('electron')
 /**
   Saves a draft report
 */
@@ -38,30 +40,31 @@ export const changeConnection = (status) => (
   { type : CHANGE_CONNECTION_STATUS,  status }
 )
 
+export const setReport = (model) => (
+  { type : SET_REPORT, model }
+)
+/**
+  The upload action.
+  Here we send a message to the main process and wait for the response.
+*/
 export const uploadData = (data) => {
+
   return dispatch => {
-    dispatch(saveCompleted(data))
-    return fetch(MAIN_URL, {
-      method : "POST",
-      headers: {
-        "Accept" : "application/json",
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then(response => response.json()).then((json) => {
-      if(json.sadr) {
-        dispatch(saveUploaded(json.sadr))
-        dispatch(removeDraft(json.sadr))
-        dispatch(removeCompleted(json.sadr))
-      }
-      console.log(json)
+    var req = {}
+    req.body = data
+    req.url = MAIN_URL
+    ipcRenderer.send('upload-data', JSON.stringify(req))
+
+    ipcRenderer.on('upload-reply', (event, arg) => {
+      //dispatch(showPage('MAIN_PAGE'))
+      console.log(arg) // prints "pong"
     })
   }
 }
 
-export const uploadCompletedReports = (data) => (
-  { type : "" }
-)
+export const uploadCompletedReports = (data) => {
+  ipcRenderer.send('upload-data', 'ping')
+}
 
 export const showPage = (page) => (
   { type : SHOW_PAGE, page }

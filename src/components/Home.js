@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 
 import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, REPORTS_LIST_PAGE } from '../utils/Constants'
 
-import { showPage } from '../actions'
+import { showPage, setReport } from '../actions'
 
 class Home extends Component {
 
@@ -60,7 +60,10 @@ class Home extends Component {
 const mapStateToProps = state => {
   return {
     connection: state.appState.connection,
-    page : state.appState.page
+    page : state.appState.page,
+    drafts: state.appState.drafts,
+    completed: state.appState.completed,
+    uploaded: state.appState.uploaded,
   }
 }
 
@@ -68,6 +71,9 @@ const mapDispatchToProps = dispatch => {
   return {
     showPage: (page) => {
       dispatch(showPage(page))
+    },
+    setReport: (model) => {
+      dispatch(setReport(model))
     },
     dispatch: dispatch
   }

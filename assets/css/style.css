@@ -48,3 +48,11 @@ select.month {
   background-color: #faf369;
   padding: 20px 0px;
 }
+
+.logo {
+  width: 70%;
+}
+
+.pointer {
+  cursor: pointer;
+}

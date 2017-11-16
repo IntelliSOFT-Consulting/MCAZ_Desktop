@@ -6,7 +6,8 @@ import uploaded from './uploaded'
 import reportFilter from './reportFilter'
 import connection from './connection'
 import page from './page'
+import currentReport from './currentReport'
 
-const pvApp = combineReducers({ drafts, completed, uploaded, reportFilter, connection, page })
+const pvApp = combineReducers({ drafts, completed, uploaded, reportFilter, connection, page, currentReport })
 
 export default pvApp

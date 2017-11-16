@@ -10,3 +10,5 @@ export const CHANGE_CONNECTION_STATUS = 'CHANGE_CONNECTION_STATUS' // Change con
 export const SET_REPORT_FILTER = 'SET_REPORT_FILTER' // Sets the report type that should be displayed
 
 export const SHOW_PAGE = 'SHOW_PAGE'
+
+export const SET_REPORT = 'SET_REPORT'
