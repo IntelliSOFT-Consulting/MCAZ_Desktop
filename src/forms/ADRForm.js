@@ -42,7 +42,7 @@ class ADRForm extends Component {
   render() {
     var { model } = this.state
     return (
-      <div>
+      <div className='adr-form'>
         <h3 className="text-center">Adverse Drug Reaction (ADR) Report Form</h3>
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
 
