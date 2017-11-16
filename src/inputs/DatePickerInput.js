@@ -9,8 +9,12 @@ export default class DatePickerInput extends Component {
   constructor (props) {
     super(props)
     const { model, name } = this.props
+    var value = null
+    if(model && model[name]) {
+      value = model[name]
+    }
     this.state = {
-      value: null
+      value: value
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -20,7 +24,7 @@ export default class DatePickerInput extends Component {
       value: date
     });
     const { model, name } = this.props
-    if(model && model[name]) {
+    if(model) {
       model[name] = date
     }
   }
@@ -37,7 +41,7 @@ export default class DatePickerInput extends Component {
     }
     if(hideLabel) {
       return <DatePicker
-          selected={this.state.startDate}
+          selected={this.state.value}
           onChange={this.handleChange}
           className="form-control input-sm"
       />

@@ -3,6 +3,9 @@ import TextInput from '../inputs/TextInput'
 import DatePickerInput from '../inputs/DatePickerInput'
 import TableComponent from './TableComponent'
 import CheckboxInput from '../inputs/CheckboxInput'
+import SelectInput from '../inputs/SelectInput'
+
+import { FREQUENCY, ROUTE, DOSE } from '../utils/FieldOptions'
 
 export default class MedicationTableComponent extends TableComponent {
 
@@ -45,9 +48,9 @@ export default class MedicationTableComponent extends TableComponent {
         <td><TextInput hideLabel={ true } name="brand_name" model={ model[name][index] }/></td>
         <td><TextInput hideLabel={ true } name="batch_number" model={ model[name][index] }/></td>
         <td><TextInput hideLabel={ true } name="dose" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><TextInput hideLabel={ true } name="dose_id" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><TextInput hideLabel={ true } name="route_id" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><TextInput hideLabel={ true } name="frequency_id" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><SelectInput hideLabel={ true } name="dose_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ DOSE }/></td>
+        <td><SelectInput hideLabel={ true } name="route_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ ROUTE }/></td>
+        <td><SelectInput hideLabel={ true } name="frequency_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ FREQUENCY }/></td>
         <td><TextInput hideLabel={ true } name="indication" model={ model[name][index] }/></td>
         <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
         <td><DatePickerInput hideLabel={ true } name="stop_date" model={ model[name][index] } /></td>
@@ -94,10 +97,10 @@ export default class MedicationTableComponent extends TableComponent {
               <td>Brand name<span className="required">*</span></td>
               <td>Batch No.</td>
               <td colSpan="2">Dose<span className="required">*</span></td>
-              <td colSpan="2">Frequency<span className="required">*</span></td>
+              <td colSpan="2">Route & Frequency<span className="required">*</span></td>
+              <td>Indication</td>
               <td>Date started<span className="required">*</span></td>
               <td>Date stopped</td>
-              <td>Indication</td>
               <td>Tick suspected medicine(s)<span className="required">*</span></td>
               <td></td>
             </tr>

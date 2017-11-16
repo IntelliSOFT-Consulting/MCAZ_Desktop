@@ -50,8 +50,8 @@ export default class SingleMultipleInput extends Component {
           value = option;
           key = index
         } else {
-          label = option.name;
-          value = option.id;
+          label = option.value;
+          value = option.key;
           key = value
         }
         if(inline) {

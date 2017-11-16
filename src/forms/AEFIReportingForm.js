@@ -1,7 +1,27 @@
 import React, { Component } from 'react'
 import TextInput from '../inputs/TextInput'
 
-export default class AEFIReportingForm extends Component {
+import { MAIN_PAGE, REPORT_TYPE_AEFI } from '../utils/Constants'
+
+import { connect } from 'react-redux'
+import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
+
+class AEFIReportingForm extends Component {
+
+  constructor(props) {
+    super(props)
+
+    var { model } = this.props
+    if(model == null) {
+      model = { rid : Date.now(), type : REPORT_TYPE_AEFI }
+    }
+
+    this.saveAndContinue = this.saveAndContinue.bind(this)
+    this.saveAndSubmit = this.saveAndSubmit.bind(this)
+    this.cancel = this.cancel.bind(this)
+
+    this.state = { model }
+  }
 
   render() {
     return (
@@ -162,17 +182,82 @@ export default class AEFIReportingForm extends Component {
           </div>
           <div className="container">
             <div className="col-md-3 col-md-offset-1">
-              <button className="btn btn-sm btn-primary">Save Changes</button>
+              <button className="btn btn-sm btn-primary" onClick={ this.saveAndContinue }>Save Changes</button>
             </div>
             <div className="col-md-3 col-md-offset-1">
-              <button className="btn btn-sm btn-primary">Save and submit</button>
+              <button className="btn btn-sm btn-primary" onClick={ this.saveAndSubmit }>Save and submit</button>
             </div>
             <div className="col-md-3 col-md-offset-1">
-              <button className="btn btn-sm btn-default">Cancel</button>
+              <button className="btn btn-sm btn-default" onClick={ this.cancel }>Cancel</button>
             </div>
           </div>
         </form>
       </div>
     )
   }
+
+  saveAndContinue(e) {
+    e.preventDefault()
+    const { saveDraft } = this.props
+    const { model } = this.state
+    saveDraft(model)
+  }
+
+  /**
+    When saved, check connection status.
+  */
+  saveAndSubmit(e) {
+    e.preventDefault()
+    const { model } = this.state
+    const { uploadData, saveCompleted, connection } = this.props
+    var valid = false;
+    if(!valid) {
+      this.setState({ validate : true })
+      return
+    }
+
+    if(connection.isConnected) {
+      uploadData(model)
+    } else {
+      Alert.alert("Offline", "data has been saved to memory and will be uploaded when online.")
+      saveCompleted(data)
+    }
+    this.goBack()
+  }
+
+  cancel(e) {
+    e.preventDefault()
+    const { showPage } = this.props
+    showPage(MAIN_PAGE)
+  }
 }
+
+const mapStateToProps = state => {
+  return {
+    connection: state.appState.connection,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    saveDraft: (data) => {
+      dispatch(saveDraft(data))
+    },
+    uploadData: (data) => { // Upload the data.
+      dispatch(uploadData(data))
+    },
+    validate: (valid) => { // Validate the form
+      dispatch(validate(valid))
+    },
+    saveCompleted: (data) => { // save the completed data and remove any draft.
+      dispatch(saveCompleted(data))
+      dispatch(removeDraft(data))
+    },
+    showPage: (page) => {
+      dispatch(showPage(page))
+    },
+    dispatch: dispatch
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AEFIReportingForm)

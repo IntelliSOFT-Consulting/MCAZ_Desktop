@@ -15,33 +15,48 @@ export default class SelectInput extends Component {
 
   handleChange(e) {
     const { model, name } = this.props
-    if(model && model[name]) {
+    if(model) {
       model[name] = e.target.value
     }
     this.setState({ value : e.target.value })
   }
-  
+
   render() {
-    const { label, name, options } = this.props
+    const { label, name, options, hideLabel } = this.props
     const optionList = options.map((option) => {
       var label, value;
       if(typeof option == "string") {
         label = option;
         value = option;
       } else {
-        label = option.name;
-        value = option.value;
+        label = option.value;
+        value = option.key;
       }
       return (
-        <option value={ value }> { label }</option>
+        <option value={ value } key={ value }> { label }</option>
       )
     })
+
+    const hasError = (this.state.validate && required)? " has-error " : ""
+    const className = "form-group" + hasError
+
+    if(hideLabel) {
+      return (
+        <div className={ hasError }>
+          <select name={ name } className="form-control input-sm" value={ this.state.value } onChange={ this.handleChange }>
+            { optionList }
+          </select>
+        </div>
+      )
+    }
     return (
       <div className="form-group">
-        <label>{ label }</label>
-        <select name={ name } className="form-control input-sm" value={ this.state.value } onChange={ this.handleChange }>
-          { optionList }
-        </select>
+        <label className="col-md-4 control-label form-input-label">{ label }</label>
+        <div className="col-md-6">
+          <select name={ name } className="form-control input-sm" value={ this.state.value } onChange={ this.handleChange }>
+            { optionList }
+          </select>
+        </div>
       </div>
     )
   }

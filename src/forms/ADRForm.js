@@ -4,8 +4,11 @@ import DateSelectInput from '../inputs/DateSelectInput'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import MedicationTableComponent from '../components/MedicationTableComponent'
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
+import SelectInput from '../inputs/SelectInput'
 
 import { MAIN_PAGE, REPORT_TYPE_ADR } from '../utils/Constants'
+
+import { SEVERITY_REASON, OUTCOME, DESIGNATION} from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
@@ -98,10 +101,10 @@ class ADRForm extends Component {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Serious" model={ model } name="severity" required={ true } validate={ this.state.validate } options={["Yes", "No"]}/>
+              <SingleMultipleInput label="Serious" model={ model } name="severity" required={ true } validate={ this.state.validate } options={ ["Yes", "No"] }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Reason for Seriousness" model={ model } name="severity_reason" required={ true } validate={ this.state.validate } options={["Death", "Hospitalization/prolonged", "Congenital-anomaly", "Life-threateing", "Disabling", "Other medically important condition"]}/>
+              <SelectInput label="Reason for Seriousness" model={ model } name="severity_reason" required={ true } validate={ this.state.validate } options={ SEVERITY_REASON }/>
             </div>
           </div>
           <div className="container">
@@ -127,7 +130,7 @@ class ADRForm extends Component {
               <SingleMultipleInput label="Action taken:" model={ model } name="" required={ true } validate={ this.state.validate } options={["Yes", "No"]}/>
             </div>
             <div className="col-md-4 col-sm-12">
-              <SingleMultipleInput label="Outcome of ADR:" model={ model } name="outcome" required={ true } validate={ this.state.validate } options={["Yes", "No"]}/>
+              <SelectInput label="Outcome of ADR:" model={ model } name="outcome" required={ true } validate={ this.state.validate } options={ OUTCOME }/>
             </div>
             <div className="col-md-4 col-sm-12">
               <SingleMultipleInput label="Relatedness of suspected medicine(s) to ADR:" model={ model } name="" options={["Yes", "No"]}/>
@@ -139,7 +142,7 @@ class ADRForm extends Component {
               <TextInput label="Forenames & Surname" model={ model } name="reporter_name" />
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Designation" model={ model } name="designation_id" />
+              <SelectInput label="Designation" model={ model } name="designation_id" options={ DESIGNATION }/>
             </div>
           </div>
           <div className="container">
