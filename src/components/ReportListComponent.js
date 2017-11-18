@@ -51,8 +51,14 @@ export default class ReportListComponent extends Component {
   }
 
   openReport(report) {
-    const { showPage, type } = this.props
-    showPage(type, report)
+    const { drafts, showPage, type } = this.props
+
+    var found = drafts.find((i) => i.rid == report.rid)
+    if(found) {
+      showPage(type, report)
+    } else {
+      showPage('READ_ONLY_PAGE', report)
+    }
   }
 
   render() {

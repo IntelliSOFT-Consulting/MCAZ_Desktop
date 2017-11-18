@@ -6,10 +6,11 @@ import ADRForm from '../forms/ADRForm'
 import SAEForm from '../forms/SAEForm'
 import AEFIReportingForm from '../forms/AEFIReportingForm'
 import AEFIInvForm from '../forms/AEFIInvForm'
+import ReadOnlyReportComponent from './ReadOnlyReportComponent'
 
 import { connect } from 'react-redux'
 
-import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, REPORTS_LIST_PAGE } from '../utils/Constants'
+import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, REPORTS_LIST_PAGE, READ_ONLY_PAGE } from '../utils/Constants'
 
 import { showPage, setReport } from '../actions'
 
@@ -38,8 +39,8 @@ class Home extends Component {
         return <SAEForm />
       case AEFI_REPORT_PAGE:
         return <AEFIReportingForm />
-      case REPORTS_LIST_PAGE:
-        return <ADRForm />
+      case READ_ONLY_PAGE:
+        return <ReadOnlyReportComponent />
       default:
         return <IntroPage {...this.props} />
     }
