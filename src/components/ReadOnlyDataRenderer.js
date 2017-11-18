@@ -60,9 +60,9 @@ export default class ReadOnlyDataRenderer extends Component {
       <div className="form-group">
         <label className="col-md-4 control-label form-input-label">{ label  } { reqSpan }</label>
         <div className="col-md-6">
-          <div className="form-control-static">
+          <p className="form-control-static">
             { this.getFieldValue(name) }
-          </div>
+          </p>
         </div>
       </div>
     )

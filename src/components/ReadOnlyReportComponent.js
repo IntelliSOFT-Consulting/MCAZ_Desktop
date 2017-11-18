@@ -31,7 +31,7 @@ class ReadOnlyReportComponent extends Component {
     var page = null
     switch(model.type) {
       case REPORT_TYPE_ADR :
-        page = <ADRReadOnlyReportComponent model={ model }/>
+        page = <ADRReadOnlyReportComponent model={ model } goBack={ this.goBack }/>
         break
       default:
         page = null

@@ -27,7 +27,8 @@ export default class ADRReadOnlyReportComponent extends Component {
 
   }
   render() {
-    var { model } = this.state
+    //var { model } = this.state
+    const { goBack, model } = this.props
     return (
       <div className='adr-form'>
         <h3 className="text-center">
@@ -114,10 +115,10 @@ export default class ADRReadOnlyReportComponent extends Component {
           </div>
 
           <div className="container">
-            <MedicationTableComponent label="Current Medication (including OTC and herbals) "  validate={ this.state.validate } name="sadr_list_of_drugs" model={ model }/>
+            <MedicationTableComponent label="Current Medication (including OTC and herbals) "  readonly={ true } name="sadr_list_of_drugs" model={ model }/>
           </div>
-          <ConcomitantTableComponent label="Concomitant (Other) drugs taken, including herbal medicines & Dates/period taken: " name="sadr_other_drugs" model={ model }/>
-          <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them:" validate={ this.state.validate } name="files" model={ model }/>
+          <ConcomitantTableComponent label="Concomitant (Other) drugs taken, including herbal medicines & Dates/period taken: " readonly={ true }  name="sadr_other_drugs" model={ model }/>
+          <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them:" readonly={ true }  name="files" model={ model }/>
           <div className="container">
             <div className="col-md-4 col-sm-12">
               <ReadOnlyDataRenderer label="Action taken:" model={ model } name="action_taken" type="option" validate={ this.state.validate } options={ ACTION_TAKEN }/>
@@ -151,20 +152,13 @@ export default class ADRReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Name and address of institution" model={ model } name=""/>
             </div>
           </div>
-
+          <div className="container">
+            <div className="col-md-3 col-md-offset-1">
+              <button className="btn btn-sm btn-primary" onClick={ (e) => { e.preventDefault(); goBack(e) } }>Close</button>
+            </div>
+          </div>
         </form>
       </div>
     )
-  }
-
-  cancel(e) {
-    e.preventDefault()
-    const { showPage } = this.props
-    showPage(MAIN_PAGE)
-  }
-
-  goBack() {
-    const { showPage } = this.props
-    showPage(MAIN_PAGE)
   }
 }

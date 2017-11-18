@@ -35,11 +35,11 @@ export default class TableComponent extends Component {
     this.setState({ rows : rows })
   }
 
-  initializeRows() {
+  initializeRows(readonly) {
     const { rows } = this.state
     var dataRows = []
     for(let i = 0; i < rows.length; i++) {
-      dataRows[i] = this.getRow(i)
+      dataRows[i] = readonly? this.getReadOnlyRow(i) : this.getRow(i)
     }
     return dataRows
   }

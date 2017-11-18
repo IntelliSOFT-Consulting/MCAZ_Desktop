@@ -5,6 +5,8 @@ import TableComponent from './TableComponent'
 import CheckboxInput from '../inputs/CheckboxInput'
 import SelectInput from '../inputs/SelectInput'
 
+import ReadOnlyDataRenderer from './ReadOnlyDataRenderer'
+
 import { FREQUENCY, ROUTE, DOSE } from '../utils/FieldOptions'
 
 export default class ConcomitantTableComponent extends TableComponent {
@@ -22,16 +24,6 @@ export default class ConcomitantTableComponent extends TableComponent {
     }
     this.state = { rows, validate }
   }
-
-  /*addRow(e) {
-    e.preventDefault()
-    const { model, name } = this.props
-    var { rows } = this.state
-    //const index = rows.length
-    rows.push({})
-    model[name] = rows
-    this.setState({ rows : rows })
-  }*/
 
   getRow(index) {
     const rowData = {}
@@ -58,31 +50,45 @@ export default class ConcomitantTableComponent extends TableComponent {
     )
   }
 
-  /**
-    Removes a row from the table.
-    This function then recreates all the rows.
-    This ensures that the delete button gets the new correct index.
-  *
-  removeRow(index, e) {
-    e.preventDefault()
-    var rows = this.state.rows
-    rows.splice(index, 1)
+  getReadOnlyRow(index) {
+    const rowData = {}
     const { model, name } = this.props
-    model[name] = rows
-    this.setState({ rows : rows })
-  }*/
+    if(!model[name]) {
+      model[name] = []
+    }
+    if(!model[name][index]) {
+      model[name][index] = rowData
+    }
+    return (
+      <tr key={ Math.floor(Math.random() * 10000) }>
+        <td>{ index + 1 }</td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="start_date" model={ model[name][index] } type="date" required={ true }/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="stop_date" model={ model[name][index] } type="date"/></td>
+        <td><CheckboxInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ ['1'] }/></td>
+      </tr>
+    )
+  }
 
   render() {
-    const { label, name, multiLine, required } = this.props
+    const { label, name, multiLine, required, readonly } = this.props
     var input = null
 
-    const rows = this.initializeRows() //.rows
+    const rows = this.initializeRows(readonly) //.rows
+    var lastCol = null
+    var addRowBtn = null
+    if(!readonly) {
+      lastCol = ( <td></td>)
+      addRowBtn = (
+        <button className="btn btn-sm btn-primary" onClick={ this.addRow }>
+          <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+      )
+    }
     return (
       <div className="container">
         <h5 className="text-center"> { label }
-          <button className="btn btn-sm btn-primary" onClick={ this.addRow }>
-            <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
-          </button>
+          { addRowBtn }
         </h5>
         <table className="table table-condensed table-bordered">
           <thead>
@@ -91,7 +97,7 @@ export default class ConcomitantTableComponent extends TableComponent {
               <td>Date started<span className="required">*</span></td>
               <td>Date stopped</td>
               <td>Tick suspected medicine(s)<span className="required">*</span></td>
-              <td></td>
+              { lastCol }
             </tr>
           </thead>
           <tbody>

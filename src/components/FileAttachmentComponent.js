@@ -3,6 +3,8 @@ import TextInput from '../inputs/TextInput'
 import FileInputComponent from '../inputs/FileInputComponent'
 import TableComponent from './TableComponent'
 
+import ReadOnlyDataRenderer from './ReadOnlyDataRenderer'
+
 export default class FileAttachmentComponent extends TableComponent {
 
   constructor(props) {
@@ -14,31 +16,8 @@ export default class FileAttachmentComponent extends TableComponent {
     this.initializeRows = this.initializeRows.bind(this)
 
     const { model } = this.props
-    //var files = []
-    //if(model && model.files) {
-    //  files = model.files
-    //}
-    //this.state = { files }
-  }
 
-  /*addFile(e) {
-    e.preventDefault()
-    const { model, name } = this.props
-    var { files } = this.state
-    //const index = rows.length
-    files.push({})
-    model[name] = files
-    this.setState({ files : files })
   }
-
-  removeFileRow(index, e) {
-    e.preventDefault()
-    var { files } = this.state
-    files.splice(index, 1)
-    const { model, name } = this.props
-    model[name] = files
-    this.setState({ files : files })
-  }*/
 
   getRow(index) {
     const { rows } = this.state
@@ -63,26 +42,42 @@ export default class FileAttachmentComponent extends TableComponent {
     )
   }
 
-  initializeRows() {
+  getReadOnlyRow(index) {
     const { rows } = this.state
-    var dataRows = []
-    //this.setState({ rows : rows })
-    for(let i = 0; i < rows.length; i++) {
-      dataRows[i] = this.getRow(i)
+    const { model, name } = this.props
+    if(!model[name]) {
+      model[name] = []
     }
-    return dataRows
+    if(!model[name][index]) {
+      model[name][index] = rowData
+    }
+    return (
+      <tr key={ Math.floor(Math.random() * 10000) }>
+        <td>{ index + 1 }</td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } multiLine={ true } name="description"/></td>
+      </tr>
+    )
   }
 
   render() {
-    const { label, name, required } = this.props
+    const { label, name, required, readonly } = this.props
 
-    const rows = this.initializeRows()
+    const rows = this.initializeRows(readonly) //.rows
+    var lastCol = null
+    var addRowBtn = null
+    if(!readonly) {
+      lastCol = ( <td></td>)
+      addRowBtn = (
+        <button className="btn btn-sm btn-primary" onClick={ this.addRow }>
+          <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+      )
+    }
     return (
       <div className="container">
         <h5 className="text-center"> { label }
-          <button className="btn btn-sm btn-primary" onClick={ this.addRow }>
-            <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
-          </button>
+          { addRowBtn }
         </h5>
         <table className="table table-condensed table-bordered">
           <thead>
@@ -90,7 +85,7 @@ export default class FileAttachmentComponent extends TableComponent {
               <td>#</td>
               <td>File<span className="required">*</span></td>
               <td>Description of contents</td>
-              <td></td>
+              { lastCol }
             </tr>
           </thead>
           <tbody>
