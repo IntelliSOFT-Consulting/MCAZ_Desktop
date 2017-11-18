@@ -33,6 +33,13 @@ export default class ReportListComponent extends Component {
         viewing = uploaded
       }
     }
+    if(viewing.length == 0) {
+      return (
+        <tr>
+          <td colSpan='3'><label className="text-warning">No reports</label></td>
+        </tr>
+      )
+    }
     const rows = viewing.map((report, index) => {
       return (
         <tr key={ index }>
@@ -49,14 +56,14 @@ export default class ReportListComponent extends Component {
   }
 
   render() {
-
+    const { drafts, completed, uploaded } = this.props
     return (
       <div>
         <select className="input-sm form-control" value={ this.state.current } onChange={ this.changeType }>
-          <option value="">All</option>
-          <option value="drafts">Draft</option>
-          <option value="completed">Completed</option>
-          <option value="uploaded">Uploaded</option>
+          <option value="">All ({ drafts.length + completed.length + uploaded.length })</option>
+          <option value="drafts">Draft ({ drafts.length })</option>
+          <option value="completed">Completed ({ completed.length })</option>
+          <option value="uploaded">Uploaded ({ uploaded.length })</option>
         </select>
         <table className="table table-bordered table-condensed">
           <thead>

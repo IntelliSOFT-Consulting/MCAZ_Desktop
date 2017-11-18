@@ -9,7 +9,7 @@ import SelectInput from '../inputs/SelectInput'
 
 import { MAIN_PAGE, REPORT_TYPE_ADR } from '../utils/Constants'
 
-import { SEVERITY_REASON, OUTCOME, DESIGNATION} from '../utils/FieldOptions'
+import { SEVERITY_REASON, OUTCOME, DESIGNATION, ACTION_TAKEN, RELATEDNESS_TO_ADR} from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
@@ -20,7 +20,7 @@ class ADRForm extends Component {
     super(props)
     var { model } = this.props
     if(model == null) {
-      model = { rid : Date.now(), type : REPORT_TYPE_ADR, "name_of_institution" : "Nairobi Hosp", "sadr_list_of_drugs" : [ { "brand_name" : "dawa", "dose_id" : "1" }], user: {} }
+      model = {"rid":1510991587333,"type":"REPORT_TYPE_ADR","name_of_institution":"Nairobi Hosp","sadr_list_of_drugs":[{"brand_name":"dawa","dose_id":"3","drug_name":"c","dose":"1","route_id":"3","frequency_id":"2","start_date":[],"stop_date":[],"suspected_drug":""}],"user":{},"patient_name":"JM","date_of_birth":[],"gender":"Male","date_of_onset_of_reaction":[],"description_of_reaction":"ds","severity":"Yes","severity_reason":"Death","action_taken":"Drug withdrawn","outcome":"Recovered","":"Certain","designation_id":"1","reporter_name":"John","reporter_email":"john@h.com","date_of_end_of_reaction":[]}
     }
     this.state = { model : model, validate : null }
     this.saveAndContinue = this.saveAndContinue.bind(this)
@@ -36,7 +36,7 @@ class ADRForm extends Component {
       { name : 'description_of_reaction', text : "Description of ADR", page : 2},
       { name : "severity", text : "Serious", page : 2 }, { name : "outcome", text : "Outcome", page : 3 },
       { name : "sadr_list_of_drugs", fields: [{ name : "brand_name", text : "Generic/Brand name" }, { name : "dose_id", text : "Dose" },
-        { name : "frequency_id", text : "Frequency" }, { name : "start_date", text : "Start date" }, { name : "suspected_drug", text : "Tick suspected medicine" }]},
+        { name : "frequency_id", text : "Frequency" }, { name : "start_date", text : "Start date" }]}, // , { name : "suspected_drug", text : "Tick suspected medicine" }
       { name : 'action_taken', text : "Action taken", page : 3 },
       { name : "reporter_name", text : "Forename & Surname", page : 4 },
       { name : "designation_id", text : "Designation", page : 4 }, { name : "reporter_email", text : "Email Address", page : 4 }]
@@ -95,7 +95,7 @@ class ADRForm extends Component {
           <h5 className="text-center">Adverse Reaction</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of onset" model={ model } name="date_of_onset_of_reaction"/>
+              <DateSelectInput label="Date of onset" model={ model } validate={ this.state.validate } required={ true } name="date_of_onset_of_reaction"/>
             </div>
             <div className="col-md-6 col-sm-12">
               <DateSelectInput label="Date of end of reaction (if it ended)" model={ model } name="date_of_end_of_reaction"/>
@@ -135,27 +135,27 @@ class ADRForm extends Component {
           <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them:" validate={ this.state.validate } name="files" model={ model }/>
           <div className="container">
             <div className="col-md-4 col-sm-12">
-              <SingleMultipleInput label="Action taken:" model={ model } name="" required={ true } validate={ this.state.validate } options={["Yes", "No"]}/>
+              <SelectInput label="Action taken:" model={ model } name="action_taken" required={ true } validate={ this.state.validate } options={ ACTION_TAKEN }/>
             </div>
             <div className="col-md-4 col-sm-12">
               <SelectInput label="Outcome of ADR:" model={ model } name="outcome" required={ true } validate={ this.state.validate } options={ OUTCOME }/>
             </div>
             <div className="col-md-4 col-sm-12">
-              <SingleMultipleInput label="Relatedness of suspected medicine(s) to ADR:" model={ model } name="" options={["Yes", "No"]}/>
+              <SelectInput label="Relatedness of suspected medicine(s) to ADR:" model={ model } name="" options={ RELATEDNESS_TO_ADR }/>
             </div>
           </div>
           <h5 className="text-center">Reported By</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Forenames & Surname" model={ model } name="reporter_name" />
+              <TextInput label="Forenames & Surname" required={ true }  model={ model } name="reporter_name" />
             </div>
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="Designation" model={ model } name="designation_id" options={ DESIGNATION }/>
+              <SelectInput label="Designation" model={ model } required={ true } name="designation_id" options={ DESIGNATION }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Email address" model={ model } name="reporter_email"/>
+              <TextInput label="Email address" model={ model } required={ true }  name="reporter_email"/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Phone number" model={ model } name="reporter_phone"/>
@@ -163,7 +163,7 @@ class ADRForm extends Component {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Name and address of institution" required={ true } model={ model } name=""/>
+              <TextInput label="Name and address of institution" model={ model } name=""/>
             </div>
           </div>
           <div className="container well">
@@ -209,7 +209,7 @@ class ADRForm extends Component {
           for(let i = 0; i < values.length; i++) {
             const val = values[i]
             fields.forEach((f) => {
-              if(val[f.name] == null || val[f.name] == "") {
+              if(val[f.name] == null || val[f.name] === "") {
                 valid = false
                 if(page == 0) {
                   page = field.page
@@ -226,7 +226,7 @@ class ADRForm extends Component {
         }
         names += arrayNames.join(',\n')
       } else {
-        if(model[field.name] == null || model[field.name] == "") {
+        if(model[field.name] == null || model[field.name] === "") {
           valid = false
           if(names != "") {
             names += ",\n "
@@ -246,8 +246,8 @@ class ADRForm extends Component {
     if(connection.isConnected) {
       uploadData(model)
     } else {
-      Alert.alert("Offline", "data has been saved to memory and will be uploaded when online.")
-      saveCompleted(data)
+      //Alert.alert("Offline", "data has been saved to memory and will be uploaded when online.")
+      saveCompleted(model)
     }
     this.goBack()
   }

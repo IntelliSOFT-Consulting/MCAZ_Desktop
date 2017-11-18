@@ -15,7 +15,7 @@ export default class TextInput extends Component {
 
   handleChange(e) {
     const { model, name } = this.props
-    if(model && model[name]) {
+    if(model) {
       model[name] = e.target.value
     }
     this.setState({ value : e.target.value })
@@ -39,7 +39,7 @@ export default class TextInput extends Component {
         <span className="required">*</span>
       )
     }
-    const hasError = (this.state.validate && required)? " has-error " : ""
+    const hasError = (this.state.validate && required && this.state.value == '')? " has-error " : ""
     const className = "form-group" + hasError
     if(hideLabel) {
       return (

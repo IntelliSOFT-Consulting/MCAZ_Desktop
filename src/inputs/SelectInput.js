@@ -22,7 +22,7 @@ export default class SelectInput extends Component {
   }
 
   render() {
-    const { label, name, options, hideLabel } = this.props
+    const { label, name, options, hideLabel, required } = this.props
     const optionList = options.map((option) => {
       var label, value;
       if(typeof option == "string") {
@@ -49,9 +49,15 @@ export default class SelectInput extends Component {
         </div>
       )
     }
+    var reqSpan = null
+    if(required) {
+      reqSpan = (
+        <span className="required">*</span>
+      )
+    }
     return (
-      <div className="form-group">
-        <label className="col-md-4 control-label form-input-label">{ label }</label>
+      <div className={ className }>
+        <label className="col-md-4 control-label form-input-label">{ label } { reqSpan }</label>
         <div className="col-md-6">
           <select name={ name } className="form-control input-sm" value={ this.state.value } onChange={ this.handleChange }>
             { optionList }

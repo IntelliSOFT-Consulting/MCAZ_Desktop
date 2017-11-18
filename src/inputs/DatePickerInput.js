@@ -10,8 +10,10 @@ export default class DatePickerInput extends Component {
     super(props)
     const { model, name } = this.props
     var value = null
-    if(model && model[name]) {
-      value = model[name]
+    if(model && model[name] && Object.keys(model[name]).length == 3) {
+
+      const date = moment().year(model[name]['year']).month(model[name]['month']).date(model[name]['day']) //new Date(model[name]['month'] + '/' + model[name]['day'] + '/' + model[name]['year'])
+      value = date
     }
     this.state = {
       value: value
@@ -25,7 +27,10 @@ export default class DatePickerInput extends Component {
     });
     const { model, name } = this.props
     if(model) {
-      model[name] = date
+      model[name] = []
+      model[name]['day'] = date.date()
+      model[name]['month'] = date.month()
+      model[name]['year'] = date.year()
     }
   }
 

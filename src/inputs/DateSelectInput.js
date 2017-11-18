@@ -7,9 +7,15 @@ export default class DateSelectInput extends Component {
 
     var value = {}
     if(model && model[name]) {
-      value.day = model[name][day]
-      value.month = model[name][month]
-      value.year = model[name][year]
+      //if(model[name][day]) {
+        value['day'] = model[name]['day']
+
+      //if(model[name][month]) {
+        value['month'] = model[name]['month']
+
+      //if(model[name][year]) {
+        value['year'] = model[name]['year']
+
     }
     this.state = {
       value, validate
@@ -43,10 +49,10 @@ export default class DateSelectInput extends Component {
     )))
 
     const year = new Date().getFullYear() + 1;
-    const days = [<option value="" key={ Math.floor(Math.random() * 100000)}></option>].concat(Array(31).fill("").map((value, index) => (<option value={ index } key={ Math.floor(Math.random() * 100000 * (index + 1))}>{ (index + 1) }</option>)))
-    const years = [<option value="" key={ Math.floor(Math.random() * 100000)}></option>].concat(Array(100).fill("").map((val, index) => (<option value={ ((year - 100) + index) } key={ Math.floor(Math.random() * 100000 * (index + 1))}>{ ((year - 100) + index) }</option>)))
+    const days = [<option value="" key={ Math.floor(Math.random() * 100000)}></option>].concat(Array(31).fill("").map((value, index) => (<option value={ (index + 1)} key={ Math.floor(Math.random() * 100000 * (index + 1))}>{ (index + 1) }</option>)))
+    const years = [<option value="" key={ Math.floor(Math.random() * 100000)}></option>].concat(Array(100).fill("").map((val, index) => (<option value={ ((year - 100) + index) } key={ Math.floor(Math.random() * 100000 * (index + 1))}>{ ((year - 100) + index) }</option>)).reverse())
 
-    const hasError = (this.state.validate && required)? " has-error " : ""
+    const hasError = (this.state.validate && required && Object.keys(this.state.value).length == 0)? " has-error " : ""
     const className = "form-group" + hasError
 
     return (

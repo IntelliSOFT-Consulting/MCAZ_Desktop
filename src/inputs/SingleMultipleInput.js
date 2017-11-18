@@ -17,20 +17,24 @@ export default class SingleMultipleInput extends Component {
   }
 
   handleCheck(e) {
-    const { options, name, model } = this.props
+    const { options, name, model, multiple } = this.props
     var { values } = this.state
     if(values == null) {
       values = []
     }
-    if(e.target.checked) {
-      values.push(e.target.value)
+    if(!multiple) {
+      values = [e.target.value]
     } else {
-      values = values.filter((v) => v != e.target.value )
+      if(e.target.checked) {
+        values.push(e.target.value)
+      } else {
+        values = values.filter((v) => v != e.target.value )
+      }
     }
 
     this.setState({ values })
     if(model) {
-      model[name] = this.state.values.join(',')
+      model[name] = values.join(',')
     }
   }
 
@@ -76,7 +80,7 @@ export default class SingleMultipleInput extends Component {
         <span className="required">*</span>
       )
     }
-    const hasError = (this.state.validate && required)? " has-error " : ""
+    const hasError = (this.state.validate && required && this.state.values.length == 0)? " has-error " : ""
     const className = "form-group" + hasError
 
     return (

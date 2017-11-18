@@ -73,12 +73,13 @@ ipcMain.on('upload-data', (event, arg) => {
   }
   const request = net.request(options)
   request.setHeader('Content-Type', 'application/json')
+  console.log(JSON.stringify(reqObj.body))
   request.write(JSON.stringify(reqObj.body))
   request.on('response', (response) => {
     console.log(`STATUS: ${response.statusCode}`)
-    console.log(`HEADERS: ${JSON.stringify(response.headers)}`)
+    //console.log(`HEADERS: ${JSON.stringify(response.headers)}`)
     response.on('data', (chunk) => {
-      console.log(`BODY: ${chunk}`)
+      //console.log(`BODY: ${chunk}`)
     })
     response.on('end', () => {
       event.sender.send('upload-reply', 'uploaded')
@@ -86,7 +87,7 @@ ipcMain.on('upload-data', (event, arg) => {
     })
   })
   request.end()
-  console.log(arg)  // prints "ping"
+  //console.log(arg)  // prints "ping"
 
   event.sender.send('asynchronous-reply', 'pong')
 })
