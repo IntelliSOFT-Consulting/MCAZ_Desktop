@@ -9,7 +9,7 @@ import ReadOnlyDataRenderer from './ReadOnlyDataRenderer'
 
 import { FREQUENCY, ROUTE, DOSE, RELATIONSHIP_SAE } from '../utils/FieldOptions'
 
-export default class SAEDrugsTableComponent extends TableComponent {
+export default class SAELabTestsTableComponent extends TableComponent {
 
   constructor(props) {
     super(props)
@@ -37,12 +37,10 @@ export default class SAEDrugsTableComponent extends TableComponent {
       <tr key={ Math.floor(Math.random() * 10000) }>
         <td><TextInput hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
         <td><TextInput hideLabel={ true } name="dosage" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><SelectInput hideLabel={ true } name="dose_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ DOSE }/></td>
-        <td><SelectInput hideLabel={ true } name="route_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ ROUTE }/></td>
-        <td><SelectInput hideLabel={ true } name="frequency_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ FREQUENCY }/></td>
+        <td><TextInput hideLabel={ true } name="dose_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ DOSE }/></td>
         <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><SingleMultipleInput inline={ true } hideLabel={ true } name="taking_drug" options={['Yes', 'No']} model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><SelectInput hideLabel={ true } name="relationship_to_sae" model={ model[name][index] } options={ RELATIONSHIP_SAE }/></td>
+        <td><TextInput inline={ true } hideLabel={ true } name="taking_drug" options={['Yes', 'No']} model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><DatePickerInput hideLabel={ true } name="relationship_to_sae" model={ model[name][index] } options={ RELATIONSHIP_SAE }/></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
             <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
@@ -103,12 +101,12 @@ export default class SAEDrugsTableComponent extends TableComponent {
         <table className="table table-condensed table-bordered">
           <thead>
             <tr>
-              <td>Drug/Device/Vaccine</td>
-              <td colSpan="2">Dose<span className="required">*</span></td>
-              <td colSpan="2">Route & Frequency<span className="required">*</span></td>
-              <td>Date commenced</td>
-              <td>Taking drug at onset of SAE?<span className="required">*</span></td>
-              <td>Relationship of SAE to drug</td>
+              <td>Lab test</td>
+              <td>Abnormal Result</td>
+              <td>Site Normal Range<span className="required">*</span></td>
+              <td>Collection date</td>
+              <td>Lab value previous or subsequent to this event<span className="required">*</span></td>
+              <td>Collection date</td>
               { lastCol }
             </tr>
           </thead>
@@ -125,19 +123,8 @@ export default class SAEDrugsTableComponent extends TableComponent {
     const newValidate = nextProps.validate
     if(newValidate != validate) {
       this.setState({ validate: newValidate })
-      //this.initializeData()
     }
   }
-
-  /*initializeRows() {
-    const { rows } = this.state
-    var dataRows = []
-    //this.setState({ rows : rows })
-    for(let i = 0; i < rows.length; i++) {
-      dataRows[i] = this.getRow(i)
-    }
-    return dataRows
-  }*/
 
   componentDidMount() {
     //this.initializeData()

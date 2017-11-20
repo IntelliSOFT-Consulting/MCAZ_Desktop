@@ -40,7 +40,7 @@ export default class SingleMultipleInput extends Component {
 
 
   render() {
-    const { label, name, options, multiple, required, inline } = this.props
+    const { label, name, options, multiple, required, inline, hideLabel } = this.props
     var type = multiple? "checkbox" : "radio";
 
     const inlineClass = inline? type + '-inline' : ''
@@ -82,7 +82,13 @@ export default class SingleMultipleInput extends Component {
     }
     const hasError = (this.state.validate && required && this.state.values.length == 0)? " has-error " : ""
     const className = "form-group" + hasError
-
+    if(hideLabel) {
+      return (
+        <div className={ hasError }>
+          { optionList }
+        </div>
+      )
+    }
     return (
       <div className={ className }>
         <label className="col-md-4 control-label form-input-label">{ label } { reqSpan }</label>

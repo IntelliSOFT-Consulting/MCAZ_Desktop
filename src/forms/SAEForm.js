@@ -5,12 +5,13 @@ import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import DatePickerInput from '../inputs/DatePickerInput'
 import DateSelectInput from '../inputs/DateSelectInput'
 import SAEDrugsTableComponent from '../components/SAEDrugsTableComponent'
-import ConcomitantTableComponent from '../components/ConcomitantTableComponent'
+import SAEConcomitantTableComponent from '../components/SAEConcomitantTableComponent'
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
+import SAELabTestsTableComponent from '../components/SAELabTestsTableComponent'
 
 import { MAIN_PAGE, REPORT_TYPE_SAE } from '../utils/Constants'
 
-import { DESIGNATION } from '../utils/FieldOptions'
+import { DESIGNATION, SAE_REPORT_TYPE, EVENT_TYPE, SAE_EVENT_TYPE, SAE_TOXICITY_GRADE, RESEARCH_INVOLVES, LOCATION_ADVERSE_EVENT } from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
@@ -25,11 +26,11 @@ class SAEForm extends Component {
       model = { rid : Date.now(), type : REPORT_TYPE_SAE }
     }
 
+    this.state = { model : model, validate : null }
+
     this.saveAndContinue = this.saveAndContinue.bind(this)
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.cancel = this.cancel.bind(this)
-
-    this.state = { model }
   }
   render() {
     const { model } = this.state
@@ -101,7 +102,7 @@ class SAEForm extends Component {
               <TextInput label="Hosp. Num.:" name="institution_code" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Type of Report:" name="report_type" inline={ true } model={ model } options={ [] } validate={ this.state.validate }/>
+              <SingleMultipleInput label="Type of Report:" name="report_type" inline={ true } model={ model } options={ SAE_REPORT_TYPE } validate={ this.state.validate }/>
             </div>
           </div>
           <div className="container">
@@ -128,15 +129,20 @@ class SAEForm extends Component {
 
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="1. What type of adverse event is this?" name="adverse_event_type" model={ model } inline={ true } options={["AE", "SAE", "Death"]}/>
+              <SingleMultipleInput label="1. What type of adverse event is this?" name="adverse_event_type" model={ model } inline={ true } options={ EVENT_TYPE }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="2a. If SAE, is it:" name="sae_type" model={ model } options={[]}/>
+              <SelectInput label="2a. If SAE, is it:" name="sae_type" model={ model } options={ SAE_EVENT_TYPE }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="2b. Toxicity Grade:" name="toxicity_grade" model={ model } options={["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5"]}/>
+              <TextInput label="If Other, specify" name="sae_description" model={ model } />
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-12 col-sm-12">
+              <SingleMultipleInput label="2b. Toxicity Grade:" name="toxicity_grade" model={ model } inline={ true } options={ SAE_TOXICITY_GRADE }/>
             </div>
           </div>
           <div className="container">
@@ -154,10 +160,18 @@ class SAEForm extends Component {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput options={[""]} inline={ true } label="4. Location of the current Adverse Event:" required={ true } name="location_event" model={ model }/>
+              <SelectInput options={ LOCATION_ADVERSE_EVENT } inline={ true } label="4. Location of the current Adverse Event:" required={ true } name="location_event" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="5. Research involves a:" required={ true } name="research_involves" model={ model } options={[]}/>
+              <TextInput label="If other, specify:" name="location_event_specify" model={ model }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <SelectInput label="5. Research involves a:" required={ true } name="research_involves" model={ model } options={ RESEARCH_INVOLVES }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="If other, specify: " required={ true } name="research_involves_specify" model={ model } />
             </div>
           </div>
           <div className="container">
@@ -169,18 +183,16 @@ class SAEForm extends Component {
             </div>
           </div>
           <div className="container">
-            <h5>8a. List all study / intervention drugs being taken at the time of onset of the SAE, or within 30 days prior to onset, and describe
-their relationship to the SAE:</h5>
-            <SAEDrugsTableComponent name="adr_list_of_drugs" model={ model }/>
+            <SAEDrugsTableComponent name="adr_list_of_drugs" model={ model } label="8a. List all study / intervention drugs being taken at the time of onset of the SAE, or within 30 days prior to onset, and describe
+their relationship to the SAE: "/>
           </div>
           <div className="container">
-            <div className="col-md-6 col-sm-12">
+            <div className="col-md-12 col-sm-12">
               <SingleMultipleInput label="9. Was the patient taking any other drug at the time of onset of the AE?" required={ true } name="patient_other_drug" model={ model } options={["Yes", "No"]} inline={ true }/>
             </div>
           </div>
           <div className="container">
-            <h5>10. If yes, then list all concomitant medication being taken at least one month before the onset of the SAE and describe the relationship to the SAE:</h5>
-            <ConcomitantTableComponent name="adr_other_drugs" model={ model }/>
+            <SAEConcomitantTableComponent name="adr_other_drugs" model={ model } label="10. If yes, then list all concomitant medication being taken at least one month before the onset of the SAE and describe the relationship to the SAE:  "/>
           </div>
           <div className="container">
             <h4>11. Has the Adverse Event been reported to:</h4>
@@ -201,32 +213,34 @@ their relationship to the SAE:</h5>
               <DatePickerInput label="Date" required={ true } name="report_to_irb_date" model={ model }/>
             </div>
           </div>
-          <h5>12. Describe the SAE with diagnosis, immediate cause or precipitating events, symptoms, any investigations, management,
-results and outcome (with dates where possible). Include relevant medical history. Additional narrative, photocopies of
-results of abnormal investigations and a hospital discharge letter may be attached:</h5>
           <div className="container">
-            <div className="col-md-6 col-sm-12">
+          <h5>12. Describe the SAE with diagnosis, immediate cause or precipitating events, symptoms, any investigations, management,
+            results and outcome (with dates where possible). Include relevant medical history. Additional narrative, photocopies of
+            results of abnormal investigations and a hospital discharge letter may be attached:</h5>
+          </div>
+          <div className="container">
+            <div className="col-md-12 col-sm-12">
               <TextInput label="Summary of relevant past medical history of participant" required={ true } name="medical_history" model={ model } multiLine={ true }/>
             </div>
+          </div>
+          <div className="container">
             <div className="col-md-6 col-sm-12">
               <TextInput label="(a) Diagnosis :" required={ true } name="diagnosis" model={ model } multiLine={ true }/>
             </div>
-          </div>
-          <div className="container">
             <div className="col-md-6 col-sm-12">
               <TextInput label="(b) Immediate Cause:" required={ true } name="immediate_cause" model={ model } multiLine={ true }/>
             </div>
+          </div>
+          <div className="container">
             <div className="col-md-6 col-sm-12">
               <TextInput label="(c) Symptoms:" required={ true } name="symptoms" model={ model } multiLine={ true }/>
             </div>
-          </div>
-          <div className="container">
             <div className="col-md-6 col-sm-12">
               <TextInput label="(d) Investigations-Laboratory and any other significant investigations conducted:" required={ true } name="investigations" model={ model } multiLine={ true }/>
             </div>
           </div>
           <div className="container">
-            Labs
+            <SAELabTestsTableComponent model={ model } name="" label="Add Lab test: "/>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
@@ -242,7 +256,9 @@ results of abnormal investigations and a hospital discharge letter may be attach
               <TextInput label="(g) Outcome:" required={ true } name="outcome" model={ model } multiLine={ true }/>
             </div>
           </div>
-          <h6>NB If the outcome is death, please complete &amp; attach the death form.</h6>
+          <div className="container">
+            <h6>NB If the outcome is death, please complete &amp; attach the death form.</h6>
+          </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <SingleMultipleInput label="D1. Was this Adverse Event originally addressed in the protocol and consent form?" name="d1_consent_form" model={ model } options={["Yes", "No", "Unknown"]} inline={ true }/>
@@ -260,9 +276,11 @@ results of abnormal investigations and a hospital discharge letter may be attach
             </div>
           </div>
           <div className="container">
-            <FileAttachmentComponent model={ model } name="attachment"/>
+            <FileAttachmentComponent model={ model } name="attachment" label="Do you have files that you would like to attach? click on the button to add them:"/>
           </div>
-          <h6>If changes are required, please attach a copy of the revised protocol/consent form with changes highlighted with a bright coloured highlighter.</h6>
+          <div className="container">
+            <h6>If changes are required, please attach a copy of the revised protocol/consent form with changes highlighted with a bright coloured highlighter.</h6>
+          </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <TextInput label="If changes are not required, please explain as to why changes to the protocol /consent form are not necessary based on the event."
@@ -328,6 +346,7 @@ this research." name="assess_risk" model={ model } options={["Yes", "No"]} inlin
 const mapStateToProps = state => {
   return {
     connection: state.appState.connection,
+    model: state.appState.currentReport
   }
 }
 

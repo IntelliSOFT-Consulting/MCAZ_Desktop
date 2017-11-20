@@ -2,20 +2,21 @@ import React, { Component } from 'react'
 import TextInput from '../inputs/TextInput'
 import DatePickerInput from '../inputs/DatePickerInput'
 import TableComponent from './TableComponent'
-import SingleMultipleInput from '../inputs/SingleMultipleInput'
+import CheckboxInput from '../inputs/CheckboxInput'
 import SelectInput from '../inputs/SelectInput'
 
 import ReadOnlyDataRenderer from './ReadOnlyDataRenderer'
 
 import { FREQUENCY, ROUTE, DOSE, RELATIONSHIP_SAE } from '../utils/FieldOptions'
 
-export default class SAEDrugsTableComponent extends TableComponent {
+export default class SAEConcomitantTableComponent extends TableComponent {
 
   constructor(props) {
     super(props)
     const { model, name, validate } = this.props
 
     this.getRow = this.getRow.bind(this)
+    this.initializeRows = this.initializeRows.bind(this)
     this.getReadOnlyRow = this.getReadOnlyRow.bind(this)
     var rows = []
     if(model && model[name]) {
@@ -35,14 +36,11 @@ export default class SAEDrugsTableComponent extends TableComponent {
     }
     return (
       <tr key={ Math.floor(Math.random() * 10000) }>
+        <td>{ index + 1 }</td>
         <td><TextInput hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><TextInput hideLabel={ true } name="dosage" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><SelectInput hideLabel={ true } name="dose_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ DOSE }/></td>
-        <td><SelectInput hideLabel={ true } name="route_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ ROUTE }/></td>
-        <td><SelectInput hideLabel={ true } name="frequency_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ FREQUENCY }/></td>
         <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><SingleMultipleInput inline={ true } hideLabel={ true } name="taking_drug" options={['Yes', 'No']} model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><SelectInput hideLabel={ true } name="relationship_to_sae" model={ model[name][index] } options={ RELATIONSHIP_SAE }/></td>
+        <td><DatePickerInput hideLabel={ true } name="stop_date" model={ model[name][index] } /></td>
+        <td><SelectInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ RELATIONSHIP_SAE }/></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
             <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
@@ -63,16 +61,10 @@ export default class SAEDrugsTableComponent extends TableComponent {
     }
     return (
       <tr key={ Math.floor(Math.random() * 10000) }>
+        <td>{ index + 1 }</td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="brand_name" model={ model[name][index] }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="batch_number" model={ model[name][index] }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="dose" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="dose_id" model={ model[name][index] } type="option" required={ true } options={ DOSE }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="route_id" model={ model[name][index] } type="option" required={ true } options={ ROUTE }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="frequency_id" model={ model[name][index] } type="option" required={ true } options={ FREQUENCY }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="indication" model={ model[name][index] }/></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="start_date" model={ model[name][index] } type="date" required={ true }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="stop_date" model={ model[name][index] } type="date" /></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="stop_date" model={ model[name][index] } type="date"/></td>
         <td><CheckboxInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ ['1'] }/></td>
       </tr>
     )
@@ -93,8 +85,6 @@ export default class SAEDrugsTableComponent extends TableComponent {
         </button>
       )
     }
-
-
     return (
       <div className="container">
         <h5 className="text-center"> { label }
@@ -103,12 +93,10 @@ export default class SAEDrugsTableComponent extends TableComponent {
         <table className="table table-condensed table-bordered">
           <thead>
             <tr>
-              <td>Drug/Device/Vaccine</td>
-              <td colSpan="2">Dose<span className="required">*</span></td>
-              <td colSpan="2">Route & Frequency<span className="required">*</span></td>
-              <td>Date commenced</td>
-              <td>Taking drug at onset of SAE?<span className="required">*</span></td>
-              <td>Relationship of SAE to drug</td>
+              <td colSpan="2">Name of drug<span className="required">*</span></td>
+              <td>Date started<span className="required">*</span></td>
+              <td>Date stopped</td>
+              <td>Tick suspected medicine(s)<span className="required">*</span></td>
               { lastCol }
             </tr>
           </thead>
@@ -129,7 +117,7 @@ export default class SAEDrugsTableComponent extends TableComponent {
     }
   }
 
-  /*initializeRows() {
+  initializeRows() {
     const { rows } = this.state
     var dataRows = []
     //this.setState({ rows : rows })
@@ -137,7 +125,7 @@ export default class SAEDrugsTableComponent extends TableComponent {
       dataRows[i] = this.getRow(i)
     }
     return dataRows
-  }*/
+  }
 
   componentDidMount() {
     //this.initializeData()
