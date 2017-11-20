@@ -54,10 +54,12 @@ export default class DatePickerInput extends Component {
     return (
       <div className="form-group">
         <label className="col-md-4 control-label form-input-label">{ label  } { reqSpan }</label>
-        <DatePicker
-            selected={this.state.value}
-            onChange={this.handleChange}
-        />
+        <div className="col-md-6">
+          <DatePicker className="form-control input-sm"
+              selected={this.state.value}
+              onChange={this.handleChange}
+          />
+        </div>
       </div>
     )
   }

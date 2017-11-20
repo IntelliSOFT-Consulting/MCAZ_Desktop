@@ -13,11 +13,11 @@ export default class ConcomitantTableComponent extends TableComponent {
 
   constructor(props) {
     super(props)
-    this.getRow = this.getRow.bind(this)
-
-
     const { model, name, validate } = this.props
+    
+    this.getRow = this.getRow.bind(this)
     this.initializeRows = this.initializeRows.bind(this)
+    this.getReadOnlyRow = this.getReadOnlyRow.bind(this)
     var rows = []
     if(model && model[name]) {
       rows = model[name]

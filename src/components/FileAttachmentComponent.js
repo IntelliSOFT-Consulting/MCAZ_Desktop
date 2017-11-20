@@ -12,7 +12,7 @@ export default class FileAttachmentComponent extends TableComponent {
 
     this.getRow = this.getRow.bind(this)
     //this.addFile = this.addFile.bind(this)
-    //this.removeFileRow = this.removeFileRow.bind(this)
+    this.getReadOnlyRow = this.getReadOnlyRow.bind(this)
     this.initializeRows = this.initializeRows.bind(this)
 
     const { model } = this.props

@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import TextInput from '../inputs/TextInput'
 import DatePickerInput from '../inputs/DatePickerInput'
 import TableComponent from './TableComponent'
-import CheckboxInput from '../inputs/CheckboxInput'
+import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import SelectInput from '../inputs/SelectInput'
 
 import ReadOnlyDataRenderer from './ReadOnlyDataRenderer'
 
 import { FREQUENCY, ROUTE, DOSE } from '../utils/FieldOptions'
 
-export default class MedicationTableComponent extends TableComponent {
+export default class SAEDrugsTableComponent extends TableComponent {
 
   constructor(props) {
     super(props)
@@ -36,16 +36,13 @@ export default class MedicationTableComponent extends TableComponent {
     return (
       <tr key={ Math.floor(Math.random() * 10000) }>
         <td><TextInput hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><TextInput hideLabel={ true } name="brand_name" model={ model[name][index] }/></td>
-        <td><TextInput hideLabel={ true } name="batch_number" model={ model[name][index] }/></td>
-        <td><TextInput hideLabel={ true } name="dose" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><TextInput hideLabel={ true } name="dosage" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
         <td><SelectInput hideLabel={ true } name="dose_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ DOSE }/></td>
         <td><SelectInput hideLabel={ true } name="route_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ ROUTE }/></td>
         <td><SelectInput hideLabel={ true } name="frequency_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ FREQUENCY }/></td>
-        <td><TextInput hideLabel={ true } name="indication" model={ model[name][index] }/></td>
         <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><DatePickerInput hideLabel={ true } name="stop_date" model={ model[name][index] } /></td>
-        <td><CheckboxInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ ['1'] }/></td>
+        <td><SingleMultipleInput inline={ true } hideLabel={ true } name="taking_drug" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><SelectInput hideLabel={ true } name="relationship_to_sae" model={ model[name][index] } options={ [''] }/></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
             <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
@@ -106,15 +103,12 @@ export default class MedicationTableComponent extends TableComponent {
         <table className="table table-condensed table-bordered">
           <thead>
             <tr>
-              <td>Generic name<span className="required">*</span></td>
-              <td>Brand name<span className="required">*</span></td>
-              <td>Batch No.</td>
+              <td>Drug/Device/Vaccine</td>
               <td colSpan="2">Dose<span className="required">*</span></td>
               <td colSpan="2">Route & Frequency<span className="required">*</span></td>
-              <td>Indication</td>
-              <td>Date started<span className="required">*</span></td>
-              <td>Date stopped</td>
-              <td>Tick suspected medicine(s)<span className="required">*</span></td>
+              <td>Date commenced</td>
+              <td>Taking drug at onset of SAE?<span className="required">*</span></td>
+              <td>Relationship of SAE to drug</td>
               { lastCol }
             </tr>
           </thead>
