@@ -35,12 +35,12 @@ export default class SAELabTestsTableComponent extends TableComponent {
     }
     return (
       <tr key={ Math.floor(Math.random() * 10000) }>
-        <td><TextInput hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><TextInput hideLabel={ true } name="dosage" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><TextInput hideLabel={ true } name="dose_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ DOSE }/></td>
-        <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><TextInput inline={ true } hideLabel={ true } name="taking_drug" options={['Yes', 'No']} model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><DatePickerInput hideLabel={ true } name="relationship_to_sae" model={ model[name][index] } options={ RELATIONSHIP_SAE }/></td>
+        <td><TextInput hideLabel={ true } name="lab_test" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
+        <td><TextInput hideLabel={ true } name="abnormal_result" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><TextInput hideLabel={ true } name="site_normal_range" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ DOSE }/></td>
+        <td><DatePickerInput hideLabel={ true } name="collection_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><TextInput inline={ true } hideLabel={ true } name="lab_value" options={['Yes', 'No']} model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><DatePickerInput hideLabel={ true } name="lab_value_date" model={ model[name][index] } options={ RELATIONSHIP_SAE }/></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
             <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
