@@ -39,8 +39,8 @@ export default class SAEConcomitantTableComponent extends TableComponent {
         <td>{ index + 1 }</td>
         <td><TextInput hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
         <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><DatePickerInput hideLabel={ true } name="stop_date" model={ model[name][index] } /></td>
-        <td><SelectInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ RELATIONSHIP_SAE }/></td>
+        <td><DatePickerInput hideLabel={ true } name="stop_date" model={ model[name][index] } validate={ this.state.validate } required={ true } /></td>
+        <td><SelectInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ RELATIONSHIP_SAE } validate={ this.state.validate } required={ true }/></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
             <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
@@ -63,9 +63,9 @@ export default class SAEConcomitantTableComponent extends TableComponent {
       <tr key={ Math.floor(Math.random() * 10000) }>
         <td>{ index + 1 }</td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="start_date" model={ model[name][index] } type="date" required={ true }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="stop_date" model={ model[name][index] } type="date"/></td>
-        <td><CheckboxInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ ['1'] }/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="start_date" model={ model[name][index] } type="date" validate={ this.props.validate } required={ true }/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="stop_date" model={ model[name][index] } type="date" validate={ this.props.validate } required={ true }/></td>
+        <td><CheckboxInput hideLabel={ true } name="relationship_to_sae" model={ model[name][index] } options={ RELATIONSHIP_SAE } validate={ this.props.validate } required={ true }/></td>
       </tr>
     )
   }
@@ -96,7 +96,7 @@ export default class SAEConcomitantTableComponent extends TableComponent {
               <td colSpan="2">Name of drug<span className="required">*</span></td>
               <td>Date started<span className="required">*</span></td>
               <td>Date stopped</td>
-              <td>Tick suspected medicine(s)<span className="required">*</span></td>
+              <td>Relationship of SAE to medication<span className="required">*</span></td>
               { lastCol }
             </tr>
           </thead>

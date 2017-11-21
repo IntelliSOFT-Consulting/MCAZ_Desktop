@@ -4,12 +4,12 @@ export default class SelectInput extends Component {
 
   constructor(props) {
     super(props)
-    const { model, name } = this.props
+    const { model, name, validate } = this.props
     var value = ""
     if(model && model[name]) {
       value = model[name]
     }
-    this.state = { value : value }
+    this.state = { value : value, validate: validate }
     this.handleChange = this.handleChange.bind(this)
   }
 
@@ -65,5 +65,13 @@ export default class SelectInput extends Component {
         </div>
       </div>
     )
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { validate } = this.state
+    const newValidate = nextProps.validate
+    if(newValidate != validate) {
+      this.setState({ validate: newValidate })
+    }
   }
 }

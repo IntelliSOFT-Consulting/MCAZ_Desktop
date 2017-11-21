@@ -8,7 +8,7 @@ export default class DatePickerInput extends Component {
 
   constructor (props) {
     super(props)
-    const { model, name } = this.props
+    const { model, name, validate } = this.props
     var value = null
     if(model && model[name] && Object.keys(model[name]).length == 3) {
 
@@ -16,7 +16,7 @@ export default class DatePickerInput extends Component {
       value = date
     }
     this.state = {
-      value: value
+      value: value, validate: validate
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -44,15 +44,20 @@ export default class DatePickerInput extends Component {
         <span className="required">*</span>
       )
     }
+
+    const hasError = (this.state.validate && required)? " has-error " : ""
+    const className = "form-group" + hasError
+
     if(hideLabel) {
-      return <DatePicker
+      return <div className={ hasError }><DatePicker
           selected={this.state.value}
           onChange={this.handleChange}
           className="form-control input-sm"
-      />
+      /></div>
     }
+
     return (
-      <div className="form-group">
+      <div className={ className }>
         <label className="col-md-4 control-label form-input-label">{ label  } { reqSpan }</label>
         <div className="col-md-6">
           <DatePicker className="form-control input-sm"
@@ -62,5 +67,13 @@ export default class DatePickerInput extends Component {
         </div>
       </div>
     )
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    const { validate } = this.state
+    const newValidate = nextProps.validate
+    if(newValidate != validate) {
+      this.setState({ validate: newValidate })
+    }
   }
 }

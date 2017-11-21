@@ -42,7 +42,7 @@ export default class SAEDrugsTableComponent extends TableComponent {
         <td><SelectInput hideLabel={ true } name="frequency_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ FREQUENCY }/></td>
         <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
         <td><SingleMultipleInput inline={ true } hideLabel={ true } name="taking_drug" options={['Yes', 'No']} model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><SelectInput hideLabel={ true } name="relationship_to_sae" model={ model[name][index] } options={ RELATIONSHIP_SAE }/></td>
+        <td><SelectInput hideLabel={ true } name="relationship_to_sae" model={ model[name][index] } options={ RELATIONSHIP_SAE } validate={ this.state.validate } required={ true } /></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
             <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
@@ -64,8 +64,6 @@ export default class SAEDrugsTableComponent extends TableComponent {
     return (
       <tr key={ Math.floor(Math.random() * 10000) }>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="brand_name" model={ model[name][index] }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="batch_number" model={ model[name][index] }/></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="dose" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="dose_id" model={ model[name][index] } type="option" required={ true } options={ DOSE }/></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="route_id" model={ model[name][index] } type="option" required={ true } options={ ROUTE }/></td>

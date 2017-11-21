@@ -40,7 +40,7 @@ export default class SAELabTestsTableComponent extends TableComponent {
         <td><TextInput hideLabel={ true } name="site_normal_range" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ DOSE }/></td>
         <td><DatePickerInput hideLabel={ true } name="collection_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
         <td><TextInput inline={ true } hideLabel={ true } name="lab_value" options={['Yes', 'No']} model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><DatePickerInput hideLabel={ true } name="lab_value_date" model={ model[name][index] } options={ RELATIONSHIP_SAE }/></td>
+        <td><DatePickerInput hideLabel={ true } name="lab_value_date" model={ model[name][index] } required={ true } validate={ this.state.validate } options={ RELATIONSHIP_SAE }/></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
             <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
