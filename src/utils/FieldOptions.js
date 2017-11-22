@@ -185,7 +185,7 @@ export const SAE_TOXICITY_GRADE = [
 ]
 
 export const LOCATION_ADVERSE_EVENT = [
-  { key : "", value : "select one"}, { key : "Home", value : "Home"}, { key : "Clinic/Hospital", value : "2. Clinic/Hospital"}, { key : "Work", value : "3. Work"}, { key : "Study site", value : "4. Study site"} , { key : "Other,", value : "5. Other, Specify"}
+  { key : "", value : "select one"}, { key : "Home", value : "Home"}, { key : "Clinic/Hospital", value : "2. Clinic/Hospital"}, { key : "Work", value : "3. Work"}, { key : "Study site", value : "4. Study site"} , { key : "Other", value : "5. Other, Specify"}
 ]
 
 export const RESEARCH_INVOLVES = [

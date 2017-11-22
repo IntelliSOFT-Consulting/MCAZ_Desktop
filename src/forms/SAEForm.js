@@ -135,10 +135,10 @@ class SAEForm extends Component {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="2a. If SAE, is it:" name="sae_type" model={ model } validate={ this.state.validate } required={ true } options={ SAE_EVENT_TYPE }/>
+              <SelectInput label="2a. If SAE, is it:" name="sae_type" model={ model } validate={ this.state.validate } required={ true } options={ SAE_EVENT_TYPE } dependent={ { name: "adverse_event_type", value: "SAE" } }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If Other, specify" name="sae_description" model={ model } validate={ this.state.validate } required={ true } />
+              <TextInput label="If Other, specify" name="sae_description" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "sae_type", value: "Any other important medical event." } }/>
             </div>
           </div>
           <div className="container">
@@ -151,7 +151,7 @@ class SAEForm extends Component {
               <SingleMultipleInput label="3a. Any previous Adverse Event’s report on this participant?:" name="previous_events" model={ model } validate={ this.state.validate } required={ true } inline={ true } options={["Yes", "No"]}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If yes, how many?" name="previous_events_number" model={ model } validate={ this.state.validate } required={ true } />
+              <TextInput label="If yes, how many?" name="previous_events_number" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "previous_events", value: "Yes" } }/>
             </div>
           </div>
           <div className="container">
@@ -164,7 +164,7 @@ class SAEForm extends Component {
               <SelectInput options={ LOCATION_ADVERSE_EVENT } inline={ true } label="4. Location of the current Adverse Event:" required={ true } name="location_event" model={ model } validate={ this.state.validate } required={ true }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If other, specify:" name="location_event_specify" model={ model } validate={ this.state.validate } required={ true }/>
+              <TextInput label="If other, specify:" name="location_event_specify" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "location_event", value: "Other" } }/>
             </div>
           </div>
           <div className="container">
@@ -172,7 +172,7 @@ class SAEForm extends Component {
               <SelectInput label="5. Research involves a:" required={ true } name="research_involves" model={ model } validate={ this.state.validate } required={ true } options={ RESEARCH_INVOLVES }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If other, specify: " required={ true } name="research_involves_specify" model={ model } validate={ this.state.validate } required={ true } />
+              <TextInput label="If other, specify: " required={ true } name="research_involves_specify" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "research_involves", value: "Other" } }/>
             </div>
           </div>
           <div className="container">
@@ -193,25 +193,26 @@ their relationship to the SAE: "/>
             </div>
           </div>
           <div className="container">
-            <SAEConcomitantTableComponent name="adr_other_drugs" model={ model } validate={ this.state.validate } required={ true } label="10. If yes, then list all concomitant medication being taken at least one month before the onset of the SAE and describe the relationship to the SAE:  "/>
+            <SAEConcomitantTableComponent name="adr_other_drugs" model={ model } validate={ this.state.validate } required={ true } label="10. If yes, then list all concomitant medication being taken at least one month before the onset of the SAE and describe the relationship to the SAE:  "
+              dependent={ { name: "patient_other_drug", value: "Yes" } }/>
           </div>
           <div className="container">
             <h4>11. Has the Adverse Event been reported to:</h4>
             <div className="col-md-3 col-sm-12">
               <SingleMultipleInput label="MCAZ" options={["Yes", "No"]} required={ true } name="report_to_mcaz" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
-              <DatePickerInput label="Date" required={ true } name="report_to_mcaz_date" model={ model } validate={ this.state.validate } required={ true }/>
+              <DatePickerInput label="Date" required={ true } name="report_to_mcaz_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_mcaz", value: "Yes" } }/>
             </div>
             <div className="col-md-3 col-sm-12">
               <SingleMultipleInput label="MCRZ" options={["Yes", "No"]} required={ true } name="report_to_mrcz" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
-              <DatePickerInput label="Date" required={ true } name="report_to_mrcz_date" model={ model } validate={ this.state.validate } required={ true }/>
+              <DatePickerInput label="Date" required={ true } name="report_to_mrcz_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_mrcz", value: "Yes" } }/>
             </div>
             <div className="col-md-3 col-sm-12">
               <SingleMultipleInput label="Sponsor" options={["Yes", "No"]} required={ true } name="report_to_sponsor" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
-              <DatePickerInput label="Date" required={ true } name="report_to_sponsor_date" model={ model } validate={ this.state.validate } required={ true }/>
+              <DatePickerInput label="Date" required={ true } name="report_to_sponsor_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_sponsor", value: "Yes" } }/>
             </div>
             <div className="col-md-3 col-sm-12">
               <SingleMultipleInput label="IRB" options={["Yes", "No"]} required={ true } name="report_to_irb" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
-              <DatePickerInput label="Date" required={ true } name="report_to_irb_date" model={ model } validate={ this.state.validate } required={ true }/>
+              <DatePickerInput label="Date" required={ true } name="report_to_irb_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_irb", value: "Yes" } }/>
             </div>
           </div>
           <div className="container">
@@ -285,7 +286,7 @@ their relationship to the SAE: "/>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <TextInput label="If changes are not required, please explain as to why changes to the protocol /consent form are not necessary based on the event."
-                required={ true } name="changes_explain" model={ model } validate={ this.state.validate } required={ true } multiLine={ true }/>
+                required={ true } name="changes_explain" model={ model } validate={ this.state.validate } required={ true } multiLine={ true } dependent={ [{ name: "d3_changes_sae", value: "No" }, { name: "d4_consent_sae", value: "No" }] }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <SingleMultipleInput label="From the data obtained or from currently available information, do you see any need to reassess the risks and benefits to the subjects in

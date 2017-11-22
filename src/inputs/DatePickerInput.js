@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
+import { subQuestionsValidator } from '../utils/utils'
 
 import 'react-datepicker/dist/react-datepicker.css'
 
@@ -19,6 +20,7 @@ export default class DatePickerInput extends Component {
       value: value, validate: validate
     };
     this.handleChange = this.handleChange.bind(this);
+    this.validate = this.validate.bind(this)
   }
 
   handleChange(date) {
@@ -45,7 +47,7 @@ export default class DatePickerInput extends Component {
       )
     }
 
-    const hasError = (this.state.validate && required)? " has-error " : ""
+    const hasError = (this.state.validate && required)? this.validate()  : ""
     const className = "form-group" + hasError
 
     if(hideLabel) {
@@ -68,7 +70,21 @@ export default class DatePickerInput extends Component {
       </div>
     )
   }
-  
+
+  validate() {
+    const { required, dependent, model, name } = this.props
+    var valid = true
+    if(dependent) {
+      valid = subQuestionsValidator(name, dependent, model)
+    } else {
+      valid = this.state.value == null? false : true
+    }
+    if(valid) {
+      return ""
+    }
+    return " has-error "
+  }
+
   componentWillReceiveProps(nextProps) {
     const { validate } = this.state
     const newValidate = nextProps.validate

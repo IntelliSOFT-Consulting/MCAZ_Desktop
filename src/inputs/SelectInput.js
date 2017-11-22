@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { subQuestionsValidator } from '../utils/utils'
 
 export default class SelectInput extends Component {
 
@@ -11,6 +12,7 @@ export default class SelectInput extends Component {
     }
     this.state = { value : value, validate: validate }
     this.handleChange = this.handleChange.bind(this)
+    this.validate = this.validate.bind(this)
   }
 
   handleChange(e) {
@@ -37,7 +39,7 @@ export default class SelectInput extends Component {
       )
     })
 
-    const hasError = (this.state.validate && required)? " has-error " : ""
+    const hasError = (this.state.validate && required)? this.validate() : ""
     const className = "form-group" + hasError
 
     if(hideLabel) {
@@ -73,5 +75,19 @@ export default class SelectInput extends Component {
     if(newValidate != validate) {
       this.setState({ validate: newValidate })
     }
+  }
+
+  validate() {
+    const { required, dependent, model, name } = this.props
+    var valid = true
+    if(dependent) {
+      valid = subQuestionsValidator(name, dependent, model)
+    } else {
+      valid = this.state.value == ''? false : true
+    }
+    if(valid) {
+      return ""
+    }
+    return " has-error "
   }
 }
