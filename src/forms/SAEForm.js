@@ -9,7 +9,7 @@ import SAEConcomitantTableComponent from '../components/SAEConcomitantTableCompo
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import SAELabTestsTableComponent from '../components/SAELabTestsTableComponent'
 
-import { MAIN_PAGE, REPORT_TYPE_SAE } from '../utils/Constants'
+import { MAIN_PAGE, REPORT_TYPE_SAE, SAE_URL } from '../utils/Constants'
 import { SAE_MANDATORY_FIELS } from '../utils/FormFields'
 
 import { DESIGNATION, SAE_REPORT_TYPE, EVENT_TYPE, SAE_EVENT_TYPE, SAE_TOXICITY_GRADE, RESEARCH_INVOLVES, LOCATION_ADVERSE_EVENT } from '../utils/FieldOptions'
@@ -380,7 +380,7 @@ this research." name="assess_risk" model={ model } validate={ this.state.validat
     }
 
     if(connection.isConnected) {
-      uploadData(model)
+      uploadData(model, SAE_URL)
     } else {
       Alert.alert("Offline", "data has been saved to memory and will be uploaded when online.")
       saveCompleted(data)
@@ -407,8 +407,8 @@ const mapDispatchToProps = dispatch => {
     saveDraft: (data) => {
       dispatch(saveDraft(data))
     },
-    uploadData: (data) => { // Upload the data.
-      dispatch(uploadData(data))
+    uploadData: (data, url) => { // Upload the data.
+      dispatch(uploadData(data, url))
     },
     validate: (valid) => { // Validate the form
       dispatch(validate(valid))

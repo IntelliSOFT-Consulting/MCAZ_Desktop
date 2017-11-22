@@ -7,7 +7,7 @@ import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import ConcomitantTableComponent from '../components/ConcomitantTableComponent'
 import SelectInput from '../inputs/SelectInput'
 
-import { MAIN_PAGE, REPORT_TYPE_ADR } from '../utils/Constants'
+import { MAIN_PAGE, REPORT_TYPE_ADR, ADR_URL } from '../utils/Constants'
 
 import { SEVERITY_REASON, OUTCOME, DESIGNATION, ACTION_TAKEN, RELATEDNESS_TO_ADR} from '../utils/FieldOptions'
 
@@ -244,7 +244,7 @@ class ADRForm extends Component {
     }
 
     if(connection.isConnected) {
-      uploadData(model)
+      uploadData(model, ADR_URL)
     } else {
       //Alert.alert("Offline", "data has been saved to memory and will be uploaded when online.")
       saveCompleted(model)
@@ -276,8 +276,8 @@ const mapDispatchToProps = dispatch => {
     saveDraft: (data) => {
       dispatch(saveDraft(data))
     },
-    uploadData: (data) => { // Upload the data.
-      dispatch(uploadData(data))
+    uploadData: (data, url) => { // Upload the data.
+      dispatch(uploadData(data, url))
     },
     validate: (valid) => { // Validate the form
       dispatch(validate(valid))

@@ -22,3 +22,6 @@ export const SAE_FORM_PAGE = 'SAE_FORM_PAGE'
 export const AEFI_REPORT_PAGE = 'AEFI_REPORT_PAGE'
 export const REPORTS_LIST_PAGE = 'REPORTS_LIST_PAGE'
 export const READ_ONLY_PAGE = 'READ_ONLY_PAGE'
+
+export const ADR_URL = 'http://45.79.130.91/api/sadrs' // Url for ADR
+export const SAE_URL = 'http://45.79.130.91/api/adrs' // Url for SAE

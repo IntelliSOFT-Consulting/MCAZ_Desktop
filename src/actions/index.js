@@ -47,12 +47,12 @@ export const setReport = (model) => (
   The upload action.
   Here we send a message to the main process and wait for the response.
 */
-export const uploadData = (data) => {
+export const uploadData = (data, url) => {
 
   return dispatch => {
     var req = {}
     req.body = data
-    req.url = MAIN_URL
+    req.url = url
     ipcRenderer.send('upload-data', JSON.stringify(req))
 
     ipcRenderer.on('upload-reply', (event, arg) => {
