@@ -53,10 +53,14 @@ export const uploadData = (data, url) => {
     var req = {}
     req.body = data
     req.url = url
+    dispatch(saveCompleted(data))
     ipcRenderer.send('upload-data', JSON.stringify(req))
 
     ipcRenderer.on('upload-reply', (event, arg) => {
       //dispatch(showPage('MAIN_PAGE'))
+      //dispatch(saveUploaded(data))
+      //dispatch(removeDraft(data))
+      //dispatch(removeCompleted(data))
       console.log(arg) // prints "pong"
     })
   }
