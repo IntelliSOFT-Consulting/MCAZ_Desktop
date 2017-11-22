@@ -23,10 +23,11 @@ class SAEForm extends Component {
     super(props)
 
     var { model } = this.props
-    if(model == null) {
+    //if(model == null) {
       model = {"rid":1511180361456,"type":"REPORT_TYPE_SAE","mrcz_protocol_number":"nn","mcaz_protocol_number":"sds","name_of_institution":"sdsd","reporter_phone":"09023","principal_investigator":"x","reporter_name":"s","designation_id":"1","study_title":"s","date_of_adverse_event":[],"institution_code":"s","reporter_email":"s","":"d","study_sponsor":"d","participant_number":"d","report_type":"Initial","date_of_birth":{"day":"2","month":"1","year":"2013"},"gender":"Male","date_of_site_awareness":[],"study_week":"1","adverse_event_type":"AE","visit_number":"2","toxicity_grade":"Grade 1","previous_events":"No","total_saes":"2","location_event":"Home","research_involves":"Drug","name_of_drug":"s","drug_investigational":"Yes","adr_list_of_drugs":[{"drug_name":"s","dosage":"s","dose_id":"4","route_id":"2","frequency_id":"3","start_date":[],"taking_drug":"No","relationship_to_sae":"Definitely related"}],"adr_other_drugs":[{"drug_name":"s","start_date":[],"stop_date":[],"suspected_drug":"Definitely related"}],"report_to_mcaz":"No","report_to_mrcz":"No","report_to_sponsor":"No","report_to_irb":"No","medical_history":"s","diagnosis":"s","immediate_cause":"s","symptoms":"s","investigations":"s","adr_lab_tests":[{"lab_test":"s","abnormal_result":"s","site_normal_range":"s","collection_date":[],"lab_value":"s","lab_value_date":[]}],"results":"s","management":"s","outcome":"s","d1_consent_form":"Unknown","d3_changes_sae":"Unknown","d2_brochure":"Unknown","d4_consent_sae":"Unknown","changes_explain":"s","assess_risk":"No"}
+
       //model = { rid : Date.now(), type : REPORT_TYPE_SAE }
-    }
+    //}
 
     this.state = { model : model, validate : null }
 
@@ -384,8 +385,8 @@ this research." name="assess_risk" model={ model } validate={ this.state.validat
     if(connection.isConnected) {
       uploadData(model, SAE_URL)
     } else {
-      Alert.alert("Offline", "data has been saved to memory and will be uploaded when online.")
-      saveCompleted(data)
+      //Alert.alert("Offline", "data has been saved to memory and will be uploaded when online.")
+      saveCompleted(model)
     }
     this.goBack()
   }

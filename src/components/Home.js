@@ -12,7 +12,7 @@ import { connect } from 'react-redux'
 
 import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, REPORTS_LIST_PAGE, READ_ONLY_PAGE } from '../utils/Constants'
 
-import { showPage, setReport } from '../actions'
+import { showPage, setReport, changeConnection } from '../actions'
 
 class Home extends Component {
 
@@ -20,6 +20,7 @@ class Home extends Component {
     super(props)
     this.handleClick = this.handleClick.bind(this)
     this.getPage = this.getPage.bind(this)
+    this.updateConnectionStatus = this.updateConnectionStatus.bind(this)
   }
 
   handleClick() {
@@ -56,6 +57,18 @@ class Home extends Component {
       </div>
     )
   }
+
+  updateConnectionStatus() {
+    const { changeConnection } = this.props
+    changeConnection(navigator.onLine)
+  }
+
+  componentDidMount() {
+    window.addEventListener('online',  this.updateConnectionStatus)
+    window.addEventListener('offline',  this.updateConnectionStatus)
+    this.updateConnectionStatus()
+
+  }
 }
 
 const mapStateToProps = state => {
@@ -75,6 +88,9 @@ const mapDispatchToProps = dispatch => {
     },
     setReport: (model) => {
       dispatch(setReport(model))
+    },
+    changeConnection: (status) => {
+      dispatch(changeConnection(status))
     },
     dispatch: dispatch
   }

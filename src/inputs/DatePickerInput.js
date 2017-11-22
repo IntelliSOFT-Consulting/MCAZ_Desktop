@@ -29,7 +29,7 @@ export default class DatePickerInput extends Component {
     });
     const { model, name } = this.props
     if(model) {
-      model[name] = []
+      model[name] = {}
       model[name]['day'] = date.date()
       model[name]['month'] = date.month()
       model[name]['year'] = date.year()
