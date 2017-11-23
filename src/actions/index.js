@@ -54,6 +54,7 @@ export const uploadData = (data, url) => {
     req.body = data
     req.url = url
     dispatch(saveCompleted(data))
+    dispatch(removeDraft(data))
     ipcRenderer.send('upload-data', JSON.stringify(req))
 
     ipcRenderer.on('upload-reply', (event, arg) => {
