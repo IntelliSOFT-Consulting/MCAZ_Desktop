@@ -5,7 +5,7 @@ import TableComponent from './TableComponent'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import SelectInput from '../inputs/SelectInput'
 
-import ReadOnlyDataRenderer from './ReadOnlyDataRenderer'
+import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
 
 import { FREQUENCY, ROUTE, DOSE, RELATIONSHIP_SAE } from '../utils/FieldOptions'
 
@@ -39,7 +39,7 @@ export default class SAELabTestsTableComponent extends TableComponent {
         <td><TextInput hideLabel={ true } name="abnormal_result" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
         <td><TextInput hideLabel={ true } name="site_normal_range" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ DOSE }/></td>
         <td><DatePickerInput hideLabel={ true } name="collection_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><TextInput inline={ true } hideLabel={ true } name="lab_value" options={['Yes', 'No']} model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><TextInput inline={ true } hideLabel={ true } name="lab_value" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
         <td><DatePickerInput hideLabel={ true } name="lab_value_date" model={ model[name][index] } required={ true } validate={ this.state.validate } options={ RELATIONSHIP_SAE }/></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
@@ -61,17 +61,12 @@ export default class SAELabTestsTableComponent extends TableComponent {
     }
     return (
       <tr key={ Math.floor(Math.random() * 10000) }>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="brand_name" model={ model[name][index] }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="batch_number" model={ model[name][index] }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="dose" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="dose_id" model={ model[name][index] } type="option" required={ true } options={ DOSE }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="route_id" model={ model[name][index] } type="option" required={ true } options={ ROUTE }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="frequency_id" model={ model[name][index] } type="option" required={ true } options={ FREQUENCY }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="indication" model={ model[name][index] }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="start_date" model={ model[name][index] } type="date" required={ true }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="stop_date" model={ model[name][index] } type="date" /></td>
-        <td><CheckboxInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ ['1'] }/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="lab_test" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="abnormal_result" model={ model[name][index] }/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="site_normal_range" model={ model[name][index] }/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="collection_date" model={ model[name][index] } type="date"/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="lab_value" model={ model[name][index] } /></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="lab_value_date" model={ model[name][index] } type="date" required={ true } /></td>
       </tr>
     )
   }

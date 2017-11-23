@@ -5,7 +5,7 @@ import TableComponent from './TableComponent'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import SelectInput from '../inputs/SelectInput'
 
-import ReadOnlyDataRenderer from './ReadOnlyDataRenderer'
+import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
 
 import { FREQUENCY, ROUTE, DOSE, RELATIONSHIP_SAE } from '../utils/FieldOptions'
 
@@ -64,14 +64,13 @@ export default class SAEDrugsTableComponent extends TableComponent {
     return (
       <tr key={ Math.floor(Math.random() * 10000) }>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="dose" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="dosage" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="dose_id" model={ model[name][index] } type="option" required={ true } options={ DOSE }/></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="route_id" model={ model[name][index] } type="option" required={ true } options={ ROUTE }/></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="frequency_id" model={ model[name][index] } type="option" required={ true } options={ FREQUENCY }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="indication" model={ model[name][index] }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="start_date" model={ model[name][index] } type="date" required={ true }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="stop_date" model={ model[name][index] } type="date" /></td>
-        <td><CheckboxInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ ['1'] } readonly={ true }/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="start_date" model={ model[name][index] } type="date"/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="taking_drug" options={['Yes', 'No']} model={ model[name][index] }  required={ true }/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="relationship_to_sae" model={ model[name][index] } options={ RELATIONSHIP_SAE } readonly={ true }/></td>
       </tr>
     )
   }

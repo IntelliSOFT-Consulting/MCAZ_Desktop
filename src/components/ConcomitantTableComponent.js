@@ -5,7 +5,7 @@ import TableComponent from './TableComponent'
 import CheckboxInput from '../inputs/CheckboxInput'
 import SelectInput from '../inputs/SelectInput'
 
-import ReadOnlyDataRenderer from './ReadOnlyDataRenderer'
+import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
 
 import { FREQUENCY, ROUTE, DOSE } from '../utils/FieldOptions'
 
@@ -14,7 +14,7 @@ export default class ConcomitantTableComponent extends TableComponent {
   constructor(props) {
     super(props)
     const { model, name, validate } = this.props
-    
+
     this.getRow = this.getRow.bind(this)
     this.initializeRows = this.initializeRows.bind(this)
     this.getReadOnlyRow = this.getReadOnlyRow.bind(this)

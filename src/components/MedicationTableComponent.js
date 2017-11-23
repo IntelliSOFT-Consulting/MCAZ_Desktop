@@ -5,7 +5,7 @@ import TableComponent from './TableComponent'
 import CheckboxInput from '../inputs/CheckboxInput'
 import SelectInput from '../inputs/SelectInput'
 
-import ReadOnlyDataRenderer from './ReadOnlyDataRenderer'
+import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
 
 import { FREQUENCY, ROUTE, DOSE } from '../utils/FieldOptions'
 

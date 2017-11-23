@@ -5,7 +5,7 @@ import TableComponent from './TableComponent'
 import CheckboxInput from '../inputs/CheckboxInput'
 import SelectInput from '../inputs/SelectInput'
 
-import ReadOnlyDataRenderer from './ReadOnlyDataRenderer'
+import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
 
 import { FREQUENCY, ROUTE, DOSE, RELATIONSHIP_SAE } from '../utils/FieldOptions'
 
@@ -65,7 +65,7 @@ export default class SAEConcomitantTableComponent extends TableComponent {
         <td><ReadOnlyDataRenderer hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="start_date" model={ model[name][index] } type="date" validate={ this.props.validate } required={ true }/></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="stop_date" model={ model[name][index] } type="date" validate={ this.props.validate } required={ true }/></td>
-        <td><CheckboxInput hideLabel={ true } name="relationship_to_sae" model={ model[name][index] } options={ RELATIONSHIP_SAE } validate={ this.props.validate } required={ true }/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="relationship_to_sae" model={ model[name][index] } options={ RELATIONSHIP_SAE } validate={ this.props.validate } required={ true }/></td>
       </tr>
     )
   }
@@ -115,16 +115,6 @@ export default class SAEConcomitantTableComponent extends TableComponent {
       this.setState({ validate: newValidate })
       //this.initializeData()
     }
-  }
-
-  initializeRows() {
-    const { rows } = this.state
-    var dataRows = []
-    //this.setState({ rows : rows })
-    for(let i = 0; i < rows.length; i++) {
-      dataRows[i] = this.getRow(i)
-    }
-    return dataRows
   }
 
   componentDidMount() {

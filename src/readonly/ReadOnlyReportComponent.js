@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ADRReadOnlyReportComponent from './ADRReadOnlyReportComponent'
 import AEFIReadOnlyReportComponent from './AEFIReadOnlyReportComponent'
+import SAEReadOnlyComponent from './SAEReadOnlyComponent'
 import DateSelectInput from '../inputs/DateSelectInput'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import MedicationTableComponent from '../components/MedicationTableComponent'
@@ -35,7 +36,7 @@ class ReadOnlyReportComponent extends Component {
         page = <ADRReadOnlyReportComponent model={ model } goBack={ this.goBack }/>
         break
       case REPORT_TYPE_SAE:
-        page = <AEFIReadOnlyReportComponent model={ model } goBack={ this.goBack }/>
+        page = <SAEReadOnlyComponent model={ model } goBack={ this.goBack }/>
         break
       case REPORT_TYPE_AEFI :
         page = <AEFIReadOnlyReportComponent model={ model } goBack={ this.goBack }/>

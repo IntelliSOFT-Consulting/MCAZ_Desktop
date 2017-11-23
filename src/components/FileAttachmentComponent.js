@@ -3,7 +3,7 @@ import TextInput from '../inputs/TextInput'
 import FileInputComponent from '../inputs/FileInputComponent'
 import TableComponent from './TableComponent'
 
-import ReadOnlyDataRenderer from './ReadOnlyDataRenderer'
+import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
 
 export default class FileAttachmentComponent extends TableComponent {
 

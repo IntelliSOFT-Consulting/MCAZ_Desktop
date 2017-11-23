@@ -6,7 +6,7 @@ import ADRForm from '../forms/ADRForm'
 import SAEForm from '../forms/SAEForm'
 import AEFIReportingForm from '../forms/AEFIReportingForm'
 import AEFIInvForm from '../forms/AEFIInvForm'
-import ReadOnlyReportComponent from './ReadOnlyReportComponent'
+import ReadOnlyReportComponent from '../readonly/ReadOnlyReportComponent'
 
 import { connect } from 'react-redux'
 
