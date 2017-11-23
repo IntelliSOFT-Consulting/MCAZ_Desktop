@@ -34,14 +34,15 @@ export default class CheckboxInput extends Component {
 
 
   render() {
-    const { label, name, options, required, hideLabel } = this.props
+    const { label, name, options, required, hideLabel, readonly } = this.props
     var optionList = null
+    const disabled = readonly? " disabled " : ""
     if(options != null) {
       optionList = options.map((option, index) => {
         return (
           <div className="checkbox" key={ Math.floor(Math.random() * 100000 )}>
             <label>
-              <input name={ name } type="checkbox" onChange={ this.handleCheck } checked={ this.state.value === option } value={ option } aria-label="..." />
+              <input name={ name } disabled={ disabled } type="checkbox" onChange={ this.handleCheck } checked={ this.state.value === option } value={ option } aria-label="..." />
             </label>
           </div>
         )

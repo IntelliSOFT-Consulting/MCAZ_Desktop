@@ -196,3 +196,21 @@ export const RELATIONSHIP_SAE = [
   { key : "", value : "select one"}, { key : "Definitely related", value : "Definitely related"}, { key : "Probably related", value : "Probably related"}, { key : "Possibly related", value : "Possibly related"}, { key : "Probably not related", value : "Probably not related"},
   { key : "Not related", value : "Not related"},{ key : "Pending", value : "Pending"}
 ]
+
+export const BOOLEAN_OPTIONS = [
+  { key : "Yes", value : "Yes"}, { key : "No", value : "No"}
+]
+
+export const BOOLEAN_UNKNOWN_OPTIONS = [
+  { key : "Yes", value : "Yes"}, { key : "No", value : "No"}, { key : "Unknown", value : "Unknown"}
+]
+
+export const GENDER = [
+  { key : "Male", value : "Male"}, { key : "Female", value : "Female"} //, { key : "Unknown", value : "Unknown"}
+]
+
+export const AEFI_SEVERITY_REASON = [ { key: "", value: "select one" },
+  { key : 'Death', value : 'Death'}, { key : 'Life-threatening', value : 'Life-threatening'},
+  { key : 'Hospitalizaion/Prolonged', value : 'Hospitalizaion/Prolonged'},
+  { key : 'Disabling', value : 'Disabling'}, { key : 'Congenital-anomaly', value : 'Congenital-anomaly' }
+]

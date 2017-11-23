@@ -36,7 +36,7 @@ export default class IntroPage extends Component {
           <h3>AEFI</h3>
           <p>Adverse Event Following Immunization.</p>
           <button className="btn btn-sm btn-default" onClick={ () => this.showPage(AEFI_REPORT_PAGE) }>Report</button>
-          <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_AEFI) } completed={  this.getReport(this.props.completed, REPORT_TYPE_AEFI) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_AEFI) }/>
+          <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_AEFI) } completed={  this.getReport(this.props.completed, REPORT_TYPE_AEFI) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_AEFI) } showPage={ this.showPage } type={ AEFI_REPORT_PAGE }/>
         </div>
         <div className="col-md-4 col-sm-4">
           <h3>SAE</h3>

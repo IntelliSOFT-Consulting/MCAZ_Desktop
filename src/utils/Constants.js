@@ -25,3 +25,4 @@ export const READ_ONLY_PAGE = 'READ_ONLY_PAGE'
 
 export const ADR_URL = 'http://45.79.130.91/api/sadrs' // Url for ADR
 export const SAE_URL = 'http://45.79.130.91/api/adrs' // Url for SAE
+export const AEFI_URL = 'http://45.79.130.91/api/aefis' // Url for SAE

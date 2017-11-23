@@ -71,7 +71,7 @@ export default class SAEDrugsTableComponent extends TableComponent {
         <td><ReadOnlyDataRenderer hideLabel={ true } name="indication" model={ model[name][index] }/></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="start_date" model={ model[name][index] } type="date" required={ true }/></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="stop_date" model={ model[name][index] } type="date" /></td>
-        <td><CheckboxInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ ['1'] }/></td>
+        <td><CheckboxInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ ['1'] } readonly={ true }/></td>
       </tr>
     )
   }
