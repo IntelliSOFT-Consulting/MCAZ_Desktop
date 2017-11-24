@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+
+import FormComponent from './FormComponent'
+
 import TextInput from '../inputs/TextInput'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import SelectInput from '../inputs/SelectInput'
@@ -6,15 +9,17 @@ import DatePickerInput from '../inputs/DatePickerInput'
 import DateSelectInput from '../inputs/DateSelectInput'
 import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
 
+import messages from '../utils/messages.json'
+
 import { MAIN_PAGE, REPORT_TYPE_AEFI, AEFI_URL } from '../utils/Constants'
 
 import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, OUTCOME } from '../utils/FieldOptions'
 import { AEFI_MANDATORY_FIELS } from '../utils/FormFields'
 
 import { connect } from 'react-redux'
-import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
+import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setNotification } from '../actions'
 
-class AEFIReportingForm extends Component {
+class AEFIReportingForm extends FormComponent {
 
   constructor(props) {
     super(props)
@@ -24,11 +29,7 @@ class AEFIReportingForm extends Component {
       model = { rid : Date.now(), type : REPORT_TYPE_AEFI }
     }
 
-    this.saveAndContinue = this.saveAndContinue.bind(this)
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
-    this.cancel = this.cancel.bind(this)
-    this.goBack = this.goBack.bind(this)
-
     this.state = { model }
   }
 
@@ -211,20 +212,13 @@ class AEFIReportingForm extends Component {
     )
   }
 
-  saveAndContinue(e) {
-    e.preventDefault()
-    const { saveDraft } = this.props
-    const { model } = this.state
-    saveDraft(model)
-  }
-
   /**
     When saved, check connection status.
   */
   saveAndSubmit(e) {
     e.preventDefault()
     const { model } = this.state
-    const { uploadData, saveCompleted, connection } = this.props
+    const { uploadData, saveCompleted, connection, setNotification } = this.props
     var valid = true, names = "", page = 0;
 
     AEFI_MANDATORY_FIELS.forEach((field) => {
@@ -267,6 +261,7 @@ class AEFIReportingForm extends Component {
 
     if(!valid) {
       this.setState({ validate : true })
+      setNotification({ message : messages.validationErrors, level: "error", id: new Date().getTime() })
       return
     }
 
@@ -281,17 +276,6 @@ class AEFIReportingForm extends Component {
       saveCompleted(data)
     }
     this.goBack()
-  }
-
-  cancel(e) {
-    e.preventDefault()
-    const { showPage } = this.props
-    showPage(MAIN_PAGE)
-  }
-
-  goBack() {
-    const { showPage } = this.props
-    showPage(MAIN_PAGE)
   }
 }
 
@@ -319,6 +303,9 @@ const mapDispatchToProps = dispatch => {
     },
     showPage: (page) => {
       dispatch(showPage(page))
+    },
+    setNotification: (notification) => {
+      dispatch(setNotification(notification))
     },
     dispatch: dispatch
   }

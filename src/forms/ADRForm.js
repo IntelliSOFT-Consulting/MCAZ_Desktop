@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+
+import FormComponent from './FormComponent'
+
 import TextInput from '../inputs/TextInput'
 import DateSelectInput from '../inputs/DateSelectInput'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
@@ -7,14 +10,16 @@ import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import ConcomitantTableComponent from '../components/ConcomitantTableComponent'
 import SelectInput from '../inputs/SelectInput'
 
+import messages from '../utils/messages.json'
+
 import { MAIN_PAGE, REPORT_TYPE_ADR, ADR_URL } from '../utils/Constants'
 
 import { SEVERITY_REASON, OUTCOME, DESIGNATION, ACTION_TAKEN, RELATEDNESS_TO_ADR} from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
-import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
+import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setNotification } from '../actions'
 
-class ADRForm extends Component {
+class ADRForm extends FormComponent {
 
   constructor(props) {
     super(props)
@@ -23,10 +28,9 @@ class ADRForm extends Component {
       model = {"rid":1510991587333,"type":"REPORT_TYPE_ADR","name_of_institution":"Nairobi Hosp","sadr_list_of_drugs":[{"brand_name":"dawa","dose_id":"3","drug_name":"c","dose":"1","route_id":"3","frequency_id":"2","start_date":[],"stop_date":[],"suspected_drug":""}],"user":{},"patient_name":"JM","date_of_birth":[],"gender":"Male","date_of_onset_of_reaction":[],"description_of_reaction":"ds","severity":"Yes","severity_reason":"Death","action_taken":"Drug withdrawn","outcome":"Recovered","":"Certain","designation_id":"1","reporter_name":"John","reporter_email":"john@h.com","date_of_end_of_reaction":[]}
     }
     this.state = { model : model, validate : null }
-    this.saveAndContinue = this.saveAndContinue.bind(this)
+
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
-    this.cancel = this.cancel.bind(this)
-    this.goBack = this.goBack.bind(this)
+    
 
     this.mandatory = [
       { name : "patient_name", text : "Patient Initials", page : 1 },
@@ -41,8 +45,10 @@ class ADRForm extends Component {
       { name : "reporter_name", text : "Forename & Surname", page : 4 },
       { name : "designation_id", text : "Designation", page : 4 }, { name : "reporter_email", text : "Email Address", page : 4 }]
   }
+
   render() {
     var { model } = this.state
+
     return (
       <div className='adr-form'>
         <h3 className="text-center">
@@ -182,12 +188,7 @@ class ADRForm extends Component {
     )
   }
 
-  saveAndContinue(e) {
-    e.preventDefault()
-    const { saveDraft } = this.props
-    const { model } = this.state
-    saveDraft(model)
-  }
+
 
   /**
     When saved, check connection status.
@@ -195,8 +196,8 @@ class ADRForm extends Component {
   saveAndSubmit(e) {
     e.preventDefault()
     const { model } = this.state
-    const { uploadData, saveCompleted, connection } = this.props
-    uploadData(model)
+    const { uploadData, saveCompleted, connection, setNotification } = this.props
+
     var valid = true
     var names = ""
     var page = 0
@@ -240,6 +241,7 @@ class ADRForm extends Component {
 
     if(!valid) {
       this.setState({ validate : true })
+      setNotification({ message : messages.validationErrors, level: "error", id: new Date().getTime() })
       return
     }
 
@@ -252,16 +254,7 @@ class ADRForm extends Component {
     this.goBack()
   }
 
-  cancel(e) {
-    e.preventDefault()
-    const { showPage } = this.props
-    showPage(MAIN_PAGE)
-  }
 
-  goBack() {
-    const { showPage } = this.props
-    showPage(MAIN_PAGE)
-  }
 }
 
 const mapStateToProps = state => {
@@ -288,6 +281,9 @@ const mapDispatchToProps = dispatch => {
     },
     showPage: (page) => {
       dispatch(showPage(page))
+    },
+    setNotification: (notification) => {
+      dispatch(setNotification(notification))
     },
     dispatch: dispatch
   }

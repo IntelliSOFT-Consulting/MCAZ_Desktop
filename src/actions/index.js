@@ -1,6 +1,6 @@
 import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, SAVE_COMPLETED_REPORT, REMOVE_COMPLETED_REPORT,
  SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SET_REPORT_FILTER, CHANGE_CONNECTION_STATUS, SHOW_PAGE,
- SET_REPORT }  from './actionTypes'
+ SET_REPORT, SET_NOTIFICATION }  from './actionTypes'
 
 import { MAIN_URL } from '../utils/Constants'
 
@@ -73,4 +73,8 @@ export const uploadCompletedReports = (data) => {
 
 export const showPage = (page) => (
   { type : SHOW_PAGE, page }
+)
+
+export const setNotification = (notification) => (
+  { type : SET_NOTIFICATION, notification }
 )

@@ -12,3 +12,5 @@ export const SET_REPORT_FILTER = 'SET_REPORT_FILTER' // Sets the report type tha
 export const SHOW_PAGE = 'SHOW_PAGE'
 
 export const SET_REPORT = 'SET_REPORT'
+
+export const SET_NOTIFICATION = 'SET_NOTIFICATION'

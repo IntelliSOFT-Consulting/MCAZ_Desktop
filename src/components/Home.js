@@ -7,6 +7,7 @@ import SAEForm from '../forms/SAEForm'
 import AEFIReportingForm from '../forms/AEFIReportingForm'
 import AEFIInvForm from '../forms/AEFIInvForm'
 import ReadOnlyReportComponent from '../readonly/ReadOnlyReportComponent'
+var NotificationSystem = require('react-notification-system')
 
 import { connect } from 'react-redux'
 
@@ -15,12 +16,13 @@ import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, REPORTS_LIST
 import { showPage, setReport, changeConnection } from '../actions'
 
 class Home extends Component {
-
+  _notificationSystem: null
   constructor(props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)
     this.getPage = this.getPage.bind(this)
     this.updateConnectionStatus = this.updateConnectionStatus.bind(this)
+    this._addNotification = this._addNotification.bind(this)
   }
 
   handleClick() {
@@ -54,8 +56,17 @@ class Home extends Component {
         <Header />
         { this.getPage() }
         <Footer isConnected={ this.props.isConnected }/>
+        <NotificationSystem ref="notificationSystem" />
       </div>
     )
+  }
+
+  _addNotification(message) {
+    const level = message.level? message.level : "info"
+    this._notificationSystem.addNotification({
+      message: message.message,
+      level: level, position: 'tr'
+    });
   }
 
   updateConnectionStatus() {
@@ -67,7 +78,15 @@ class Home extends Component {
     window.addEventListener('online',  this.updateConnectionStatus)
     window.addEventListener('offline',  this.updateConnectionStatus)
     this.updateConnectionStatus()
+    this._notificationSystem = this.refs.notificationSystem
+  }
 
+  componentWillReceiveProps(nextProps) {
+    const { notification } = this.props
+    const nextNotification = nextProps.notification
+    if(nextNotification && ((notification && notification.id != nextNotification.id) || notification == null)) {
+      this._addNotification(nextNotification)
+    }
   }
 }
 
@@ -78,6 +97,7 @@ const mapStateToProps = state => {
     drafts: state.appState.drafts,
     completed: state.appState.completed,
     uploaded: state.appState.uploaded,
+    notification: state.appState.notification
   }
 }
 
