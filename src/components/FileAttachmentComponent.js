@@ -55,7 +55,7 @@ export default class FileAttachmentComponent extends TableComponent {
       <tr key={ Math.floor(Math.random() * 10000) }>
         <td>{ index + 1 }</td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } multiLine={ true } name="description"/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } multiLine={ true } name="description" model={ model[name][index] }/></td>
       </tr>
     )
   }

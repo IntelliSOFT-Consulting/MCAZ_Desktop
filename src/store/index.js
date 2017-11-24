@@ -11,7 +11,8 @@ import createElectronStorage from "redux-persist-electron-storage"
 const config = {
   key: 'root',
   storage: createElectronStorage(),
-  debug: true
+  debug: true,
+  blacklist: ['page']
 };
 
 const reducers = persistCombineReducers(config, {
