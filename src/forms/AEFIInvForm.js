@@ -1,9 +1,30 @@
 import React, { Component } from 'react'
 import TextInput from '../inputs/TextInput'
+import SingleMultipleInput from "../inputs/SingleMultipleInput"
+import DatePickerInput from "../inputs/DatePickerInput"
+import SelectInput from "../inputs/SelectInput"
+import FileAttachmentComponent from '../components/FileAttachmentComponent'
 
-export default class AEFIInvForm extends Component {
+import FormComponent from './FormComponent'
+
+import { MAIN_PAGE, REPORT_TYPE_AEFI_INV, SAEFI_URL } from '../utils/Constants'
+
+import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, STATUS_ON_DATE, DESIGNATION, INFANT_BIRTH_OPTS, MULTI_VIALS, DELIVERY_OPTS, SOURCE_INFO,
+  WHEN_VACCINATED, SYRINGES_USED, PLACE_VACCINATION, SITE_TYPE, VACCINATION_IN } from '../utils/FieldOptions'
+export default class AEFIInvForm extends FormComponent {
+
+  constructor(props) {
+    super(props)
+    var { model } = this.props
+    if(model == null) {
+      model = { rid : Date.now(), type : REPORT_TYPE_AEFI_INV }
+    }
+
+    this.state = { model : model, validate : null }
+  }
 
   render() {
+    const { model } = this.state
     return (
       <div>
         <h3 className="text-center">AEFI INVESTIGATION FORM</h3>
@@ -13,435 +34,507 @@ export default class AEFIInvForm extends Component {
           <h5 className="text-center">Basic Details</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Place of vaccination" required={ true }/>
+              <SelectInput label="Place of vaccination" name="place_vaccination" required={ true } options={ PLACE_VACCINATION }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Type of site" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Vaccination in"/>
+              <TextInput label="If other, specify:" required={ true } name="place_vaccination_other" model={ model }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Name of Investigating Health Worker:" required={ true }/>
+              <SelectInput label="Type of site" name="site_type" model={ model } options={ SITE_TYPE } />
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Designation / Position:" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Telephone # landline (with code):" required={ true } />
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Mobile" />
+              <TextInput label="If other, specify:" required={ true } name="site_type_other" model={ model }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Email" required={ true }/>
+              <SelectInput label="Vaccination in" name="vaccination_in" options={ VACCINATION_IN } model={ model }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="Specify:" required={ true } name="vaccination_in_other" model={ model }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Date AEFI reported:" required={ true }/>
+              <TextInput label="Name of Investigating Health Worker:" name="reporter_name" required={ true }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Date investigation started:" required={ true }/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Date investigation completed:" required={ true }/>
+              <SelectInput name="designation_id" label="Designation / Position:" options={ DESIGNATION }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Patient Name" />
+              <TextInput label="Telephone # landline (with code):" name="telephone" required={ true } />
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Gender" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Date of hospitalization (DD/MM/YYYY):" required={ true }/>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Status on the date of investigation" required={ true }/>
+              <TextInput label="Mobile" name="mobile" model={ model }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If died, date and time of death (DD/MM/YYYY):" required={ true }/>
+              <TextInput label="Email" required={ true } name="reporter_email" model={ model }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <DatePickerInput label="Date AEFI reported:" required={ true } name="report_date" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Autopsy done?" required={ true }/>
+              <DatePickerInput label="Date investigation started:" required={ true } name="start_date" model={ model }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <DatePickerInput label="Date investigation completed:" required={ true } name="complete_date" model={ model }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="Patient Name" name="patient_name" model={ model }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <SingleMultipleInput label="Gender" name="gender" options={ GENDER }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <DatePickerInput label="Date of hospitalization (DD/MM/YYYY):" required={ true } name="hospitalization_date" model={ model }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <SingleMultipleInput inline={ true } label="Status on the date of investigation" required={ true } name="status_on_date" model={ model }
+                options={ STATUS_ON_DATE }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <DatePickerInput label="If died, date and time of death (DD/MM/YYYY):" name="died_date" model={ model } required={ true }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <SingleMultipleInput inline={ true } label="Autopsy done?" required={ true } options={ BOOLEAN_OPTIONS } name="autopsy_done"/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <DatePickerInput label="If yes, date " name="autopsy_done_date" model={ model } required={ true }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <SingleMultipleInput inline={ true } label="Autopsy planned?" required={ true } options={ BOOLEAN_OPTIONS } name="autopsy_planned"/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <DatePickerInput label="If yes, date " name="autopsy_planned_date" model={ model } required={ true }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <TextInput inline={ true } label="Attach report" required={ true }/>
             </div>
           </div>
 
           <div className="container">
-            <h5>Relevant patient information prior to immunization</h5>
+            <h5>Section B: Relevant patient information prior to immunization</h5>
           </div>
+          <table className="table">
+            <thead>
+              <tr>
+                <td>Criteria</td>
+                <td>Findings</td>
+                <td>Remarks</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><label>Past history of similar event</label></td>
+                <td><SingleMultipleInput inline={ true } options={ BOOLEAN_UNKNOWN_OPTIONS } name="past_history" model={ model }/></td>
+                <td><TextInput name="past_history_remarks" model={ model }/></td>
+              </tr>
+              <tr>
+                <td><label>Adverse event after previous vaccination(s)</label></td>
+                <td><SingleMultipleInput inline={ true } options={ BOOLEAN_UNKNOWN_OPTIONS } name="adverse_event" model={ model }/></td>
+                <td><TextInput name="adverse_event_remarks" model={ model }/></td>
+              </tr>
+              <tr>
+                <td><label>History of allergy to vaccine, drug or food</label></td>
+                <td><SingleMultipleInput inline={ true } options={ BOOLEAN_UNKNOWN_OPTIONS } name="allergy_history" model={ model }/></td>
+                <td><TextInput name="allergy_history_remarks" model={ model }/></td>
+              </tr>
+              <tr>
+                <td><label>Pre-existing illness (30 days) / congenital disorder</label></td>
+                <td><SingleMultipleInput inline={ true } options={ BOOLEAN_UNKNOWN_OPTIONS } name="existing_illness" model={ model }/></td>
+                <td><TextInput name="existing_illness_remarks" model={ model }/></td>
+              </tr>
+              <tr>
+                <td><label>History of hospitalization in last 30 days, with cause</label></td>
+                <td><SingleMultipleInput inline={ true } options={ BOOLEAN_UNKNOWN_OPTIONS } name="hospitalization_history" model={ model }/></td>
+                <td><TextInput name="hospitalization_history_remarks" model={ model }/></td>
+              </tr>
+              <tr>
+                <td><label>Was patient on medication at time of vaccination? (If yes, name the drug, indication, doses &amp; treatment dates)</label></td>
+                <td><SingleMultipleInput inline={ true } options={ BOOLEAN_UNKNOWN_OPTIONS } name="medication_vaccination" model={ model }/></td>
+                <td><TextInput name="medication_vaccination_remarks" model={ model }/></td>
+              </tr>
+              <tr>
+                <td><label>Did patient consult faith healers before/after vaccination? *specify</label></td>
+                <td><SingleMultipleInput inline={ true } options={ BOOLEAN_UNKNOWN_OPTIONS } name="faith_healers" model={ model }/></td>
+                <td><TextInput name="faith_healers_remarks" model={ model }/></td>
+              </tr>
+              <tr>
+                <td><label>Family history of any disease (relevant to AEFI) or allergy</label></td>
+                <td><SingleMultipleInput inline={ true } options={ BOOLEAN_UNKNOWN_OPTIONS } name="family_history" model={ model }/></td>
+                <td><TextInput name="family_history_remarks" model={ model }/></td>
+              </tr>
+            </tbody>
+          </table>
+          <h5>For adult women</h5>
+
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Past history of similar event" />
+              <SingleMultipleInput label=" " name="autopsy_planned_date" model={ model } required={ true }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Remarks" />
+              <TextInput inline={ true } label="Attach report" required={ true }/>
             </div>
           </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Adverse event after previous vaccination(s)" />
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Remarks" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="History of allergy to vaccine, drug or food" />
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Remarks" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Pre-existing illness (30 days) / congenital disorder" />
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Remarks" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="History of hospitalization in last 30 days, with cause" />
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Remarks" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Was patient on medication at time of vaccination? (If yes, name the drug, indication, doses &amp; treatment dates)" />
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Remarks" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Did patient consult faith healers before/after vaccination? *specify" />
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Remarks" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Family history of any disease (relevant to AEFI) or allergy" />
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Remarks" />
-            </div>
-          </div>
+
+
+
           <h5>For adult women</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Currently pregnant?"/>
+              <SingleMultipleInput label="Currently pregnant?" name="pregnant" model={ model } options={ BOOLEAN_UNKNOWN_OPTIONS }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Currently breastfeeding?"/>
+              <TextInput label="Weeks" name="pregnant_weeks" model={ model }/>
             </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <SingleMultipleInput label="Currently breast feeding?" model={ model } name="breastfeeding" options={ BOOLEAN_UNKNOWN_OPTIONS }/>
+            </div>
+
           </div>
           <h5>For infants</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="The birth was" />
+              <SingleMultipleInput label="The birth was" inline={ true } name="infant" options={ INFANT_BIRTH_OPTS } />
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Birth weight:" />
+              <TextInput label="Birth weight:" name="birth_weight" model={ model }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Delivery procedure was" />
+              <SingleMultipleInput label="Delivery procedure was" name="delivery_procedure" model={ model } options={ DELIVERY_OPTS }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="If with complications, specify:" name="delivery_procedure_specify" model={ model }/>
             </div>
           </div>
 
           <div className="container">
-            <h5>Details of first examination** of serious AEFI case</h5>
+            <h5>Section C : Details of first examination** of serious AEFI case</h5>
+          </div>
+          <div className="container">
+            <div className="col-md-12 col-sm-12">
+              <SingleMultipleInput label="Source of information" options={ SOURCE_INFO } model={ model }/>
+            </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Source of information" />
+              <TextInput label="If from verbal autopsy, please mention source" name="verbal_source" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If from verbal autopsy, please mention source" />
+              <TextInput label="If other, specify" name="source_other_specify" model={ model }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Name of the person who first examined/treated the patient:" />
+              <TextInput label="Name of the person who first examined/treated the patient:" name="examiner_name" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Other sources who provided information (specify):" />
+              <TextInput label="Other sources who provided information (specify):" model={ model } name="other_sources"/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <TextInput label="Signs and symptoms in chronological order from the time of vaccination:" />
+              <TextInput label="Signs and symptoms in chronological order from the time of vaccination:" model={ model } name="signs_symptoms"/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <TextInput label="Name and contact information of person completing these clinical details:"
-                multiLine={ true } />
+                multiLine={ true } name="person_details" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Designation:" />
+              <TextInput label="Designation:" name="person_designation" model={ model } />
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Date/time" />
+              <TextInput label="Date/time" model={ model } name="person_date"/>
             </div>
           </div>
           <div className="container">
             <h5>If patient has received medical care  attach copies of all available documents (including case sheet, discharge
 summary, laboratory reports and autopsy reports, if available) and write only the information that is not available in the
 attached documents below</h5>
+            <TextInput multiLine={ true } name="medical_care" model={ model }/>
             <h5>If patient has not received medical care – obtain history, examine the patient and write down your findings below (add
 additional sheets if necessary)</h5>
             <div className="col-md-12 col-sm-12">
-              <TextInput label="" />
+              <TextInput label="" name="not_medical_care" model={ model }/>
             </div>
+          </div>
+          <div className="container">
+            <FileAttachmentComponent model={ model } name="attachments"/>
+          </div>
+          <div className="container">
+            <TextInput label="Provisional / Final diagnosis:" name="final_diagnosis" model={ model }/>
           </div>
 
           <div className="container">
-            <h5>Details of vaccines provided at the site linked to AEFI on the corresponding day</h5>
+            <h5>Section D: Details of vaccines provided at the site linked to AEFI on the corresponding day</h5>
           </div>
           <div className="container">
             <h5>Number vaccinated for each antigen at session site. Attach record if available.</h5>
           </div>
+
           <h5 className="text-center">National level to complete:</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="a. When was the patient vaccinated?" />
+              <SingleMultipleInput label="a. When was the patient vaccinated?" name="when_vaccinated" options={ WHEN_VACCINATED }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="In case of multidose vials, was the vaccine given" />
+              <SingleMultipleInput label="In case of multidose vials, was the vaccine given" name="when_vaccinated" options={ MULTI_VIALS }/>
+            </div>
+            <div>
+              <TextInput name="when_vaccinated_specify" model={ model } label="Specify" />
             </div>
           </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <TextInput label="b. Was there an error in prescribing or non-adherence to recommendations for use of this vaccine?" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <TextInput label="c. Based on your investigation, do you feel that the vaccine (ingredients) administered could have
-been unsterile?" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <TextInput label="d. Based on your investigation, do you feel that the vaccine&#39;s physical condition (e.g. colour, turbidity,
-foreign substances etc.) was abnormal at the time of administration?" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <TextInput label="e. Based on your investigation, do you feel that there was an error in vaccine
-reconstitution/preparation by the vaccinator (e.g. wrong product, wrong diluent, improper mixing,
-improper syringe filling etc.)?" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <TextInput label="f. Based on your investigation, do you feel that there was an error in vaccine handling (e.g. cold
-chain failure during transport, storage and/or immunization session etc.)?" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <TextInput label="g. Based on your investigation, do you feel that the vaccine was administered incorrectly (e.g. wrong
-dose, site or route of administration, wrong needle size, not following good injection practice etc.)?" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <TextInput label="h. Number vaccinated from the concerned vaccine vial/ampoule" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <TextInput label="i. Number vaccinated with the concerned vaccine in the same session" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <TextInput label="j. Number vaccinated with the concerned vaccine having the same batch number in other locations." />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <TextInput label="k. Is this case a part of a cluster?" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <TextInput label=" If yes, how many other cases have been detected in the cluster?" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <TextInput label="a. Did all the cases in the cluster receive vaccine from the same vial?" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <TextInput label="b. If no, number of vials used in the cluster (enter details separately)" />
-            </div>
-          </div>
+          <table className="table">
+            <thead>
+              <tr>
+                <td>Criteria</td>
+                <td>Findings</td>
+                <td>Remarks</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><label>b. Was there an error in prescribing or non-adherence to recommendations for use of this vaccine?</label></td>
+                <td><SingleMultipleInput inline={ true } options={ BOOLEAN_OPTIONS } name="prescribing_error" model={ model }/></td>
+                <td><TextInput name="prescribing_error_specify" model={ model }/></td>
+              </tr>
+              <tr>
+                <td><label>c. Based on your investigation, do you feel that the vaccine (ingredients) administered could have
+  been unsterile?</label></td>
+                <td><SingleMultipleInput inline={ true } options={ BOOLEAN_OPTIONS } name="vaccine_unsterile" model={ model }/></td>
+                <td><TextInput name="vaccine_unsterile_specify" model={ model }/></td>
+              </tr>
+              <tr>
+                <td><label>d. Based on your investigation, do you feel that the vaccine&#39;s physical condition (e.g. colour, turbidity,
+  foreign substances etc.) was abnormal at the time of administration?</label></td>
+                <td><SingleMultipleInput inline={ true } options={ BOOLEAN_OPTIONS } name="vaccine_condition" model={ model }/></td>
+                <td><TextInput name="vaccine_condition_specify" model={ model }/></td>
+              </tr>
+              <tr>
+                <td><label>e. Based on your investigation, do you feel that there was an error in vaccine
+  reconstitution/preparation by the vaccinator (e.g. wrong product, wrong diluent, improper mixing,
+  improper syringe filling etc.)?</label></td>
+                <td><SingleMultipleInput inline={ true } options={ BOOLEAN_OPTIONS } name="vaccine_reconstitution" model={ model }/></td>
+                <td><TextInput name="vaccine_reconstitution_specify" model={ model }/></td>
+              </tr>
+              <tr>
+                <td><label>f. Based on your investigation, do you feel that there was an error in vaccine handling (e.g. cold
+  chain failure during transport, storage and/or immunization session etc.)?</label></td>
+                <td><SingleMultipleInput inline={ true } options={ BOOLEAN_OPTIONS } name="vaccine_handling" model={ model }/></td>
+                <td><TextInput name="vaccine_handling_specify" model={ model }/></td>
+              </tr>
+              <tr>
+                <td><label>g. Based on your investigation, do you feel that the vaccine was administered incorrectly (e.g. wrong
+  dose, site or route of administration, wrong needle size, not following good injection practice etc.)?</label></td>
+                <td><SingleMultipleInput inline={ true } options={ BOOLEAN_OPTIONS } name="vaccine_administered" model={ model }/></td>
+                <td><TextInput name="vaccine_administered_specify" model={ model }/></td>
+              </tr>
+              <tr>
+                <td><label>h. Number vaccinated from the concerned vaccine vial/ampoule</label></td>
+                <td><TextInput inline={ true } name="vaccinated_vial" model={ model }/></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><label>i. Number vaccinated with the concerned vaccine in the same session</label></td>
+                <td><TextInput inline={ true } name="vaccinated_session" model={ model }/></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><label>j. Number vaccinated with the concerned vaccine having the same batch number in other locations.</label></td>
+                <td><TextInput inline={ true } name="vaccinated_locations" model={ model }/></td>
+                <td><TextInput inline={ true } name="vaccinated_locations_specify" model={ model }/></td>
+              </tr>
+              <tr>
+                <td><label>k. Is this case a part of a cluster?</label></td>
+                <td><SingleMultipleInput inline={ true } name="vaccinated_cluster" model={ model } options={ BOOLEAN_UNKNOWN_OPTIONS }/></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><label>If yes, how many other cases have been detected in the cluster?</label></td>
+                <td><TextInput inline={ true } name="vaccinated_cluster_number" model={ model }/></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><label>a. Did all the cases in the cluster receive vaccine from the same vial?</label></td>
+                <td><SingleMultipleInput inline={ true } name="vaccinated_cluster_vial" model={ model } options={ BOOLEAN_UNKNOWN_OPTIONS }/></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><label>b. If no, number of vials used in the cluster (enter details separately)</label></td>
+                <td><TextInput inline={ true } name="vaccinated_cluster_vial_number" model={ model }/></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
 
           <div className="container">
-            <h5>Details of vaccines provided at the site linked to AEFI on the corresponding day</h5>
+            <h5>SECTION E: Immunization practices at the place(s) where concerned vaccine was used</h5>
+            <h6>(Complete this section by asking and/or observing practice)</h6>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Are AD syringes used for immunization?" />
+              <SingleMultipleInput inline={ true } name="syringes_used" label="Are AD syringes used for immunization?" options={ BOOLEAN_UNKNOWN_OPTIONS } model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If no, specify the type of syringes used:" />
+              <SingleMultipleInput model={ model } name="syringes_used_specify" label="If no, specify the type of syringes used:" options={ SYRINGES_USED }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="If other, specify" name="syringes_used_other" model={ model }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <TextInput label="Specific key findings/additional observations and comments:" />
+              <TextInput name="syringes_used_findings" label="Specific key findings/additional observations and comments:" model={ model }/>
             </div>
           </div>
           <div className="container">
             <h5>Reconstitution: (complete only if applicable,  NA if not applicable)</h5>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Same reconstitution syringe used for multiple vials of same vaccine?" />
+              <SingleMultipleInput label="Same reconstitution syringe used for multiple vials of same vaccine?" options={ BOOLEAN_OPTIONS } name="reconstitution_multiple" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Same reconstitution syringe used for reconstituting different vaccines?" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Separate reconstitution syringe for each vaccine vial?" />
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Separate reconstitution syringe for each vaccination?" />
+              <TextInput label="Same reconstitution syringe used for reconstituting different vaccines?" model={ model } name="reconstitution_different" options={ BOOLEAN_OPTIONS } />
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Are the vaccines and diluents used the same as those recommended by the manufacturer?" />
+              <TextInput label="Separate reconstitution syringe for each vaccine vial?" name="reconstitution_vial" model={ model } options={ BOOLEAN_OPTIONS }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Specific key findings/additional observations and comments:" />
+              <TextInput label="Separate reconstitution syringe for each vaccination?" name="reconstitution_syringe" model={ model } options={ BOOLEAN_OPTIONS }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="Are the vaccines and diluents used the same as those recommended by the manufacturer?" name="reconstitution_vaccines" model={ model } options={ BOOLEAN_OPTIONS }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="Specific key findings/additional observations and comments:" name="reconstitution_observations" model={ model }/>
             </div>
           </div>
 
           <div className="container">
-            <h5>Cold chain and transport</h5>
+            <h5>SECTION F : Cold chain and transport</h5>
+            <h6>(Complete this section by asking and/or observing practice)</h6>
           </div>
           <div className="container">
             <h5>Last vaccine storage point:</h5>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Is the temperature of the vaccine storage refrigerator monitored?" />
+              <SingleMultipleInput inline={ true } label="Is the temperature of the vaccine storage refrigerator monitored?" name="cold_temperature" model={ model } />
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If “yes”, was there any deviation outside of 28 ° C after the vaccine was placed inside?" />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="If “yes”, provide details of monitoring separately." />
+              <SingleMultipleInput inline={ true } label="If “yes”, was there any deviation outside of 28 ° C after the vaccine was placed inside?" name="cold_temperature_deviation" model={ model }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Was the correct procedure for storing vaccines, diluents and syringes followed?" />
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Was any other item (other than EPI vaccines and diluents) in the refrigerator or freezer?" />
+              <TextInput name="cold_temperature_specify" multiLine={ true } model={ model } label="If “yes”, provide details of monitoring separately." />
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Were any partially used reconstituted vaccines in the refrigerator?" />
+              <SingleMultipleInput name="procedure_followed" options={ BOOLEAN_UNKNOWN_OPTIONS } label="Was the correct procedure for storing vaccines, diluents and syringes followed?" />
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Were any unusable vaccines (expired, no label, VVM at stages 3 or 4, frozen) in the refrigerator?" />
+              <SingleMultipleInput name="other_items" options={ BOOLEAN_UNKNOWN_OPTIONS } model={ model } label="Was any other item (other than EPI vaccines and diluents) in the refrigerator or freezer?" />
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Were any unusable diluents (expired, manufacturer not matched, cracked, dirty ampoule) in the store?" />
+              <SingleMultipleInput name="partial_vaccines" options={ BOOLEAN_UNKNOWN_OPTIONS } model={ model } label="Were any partially used reconstituted vaccines in the refrigerator?" />
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Specific key findings/additional observations and comments:" />
+              <SingleMultipleInput name="unusable_vaccines" options={ BOOLEAN_UNKNOWN_OPTIONS } model={ model } label="Were any unusable vaccines (expired, no label, VVM at stages 3 or 4, frozen) in the refrigerator?" />
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <SingleMultipleInput name="unusable_diluents" model={ model } options={ BOOLEAN_UNKNOWN_OPTIONS } label="Were any unusable diluents (expired, manufacturer not matched, cracked, dirty ampoule) in the store?" />
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="Specific key findings/additional observations and comments:" name="additional_observations" model={ model } multiLine={ true }/>
             </div>
           </div>
           <div className="container">
             <h5>Vaccine transportation from the refrigerator to the vaccination centre:</h5>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Was cold chain properly maintained during transportation?" />
+              <SingleMultipleInput name="cold_transportation" model={ model } options={ BOOLEAN_UNKNOWN_OPTIONS } label="Was cold chain properly maintained during transportation?" />
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Was the vaccine carrier sent to the site on the same day as vaccination?" />
+              <SingleMultipleInput name="vaccine_carrier" model={ model } options={ BOOLEAN_UNKNOWN_OPTIONS } label="Was the vaccine carrier sent to the site on the same day as vaccination?" />
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Were conditioned coolant-packs used?" />
+              <TextInput name="coolant_packs" model={ model} options={ BOOLEAN_UNKNOWN_OPTIONS } label="Were conditioned coolant-packs used?" />
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Specific key findings/additional observations and comments:" />
+              <TextInput name="transport_findings" multiLine={ true } model={ model } label="Specific key findings/additional observations and comments:" />
             </div>
           </div>
 
           <div className="container">
-            <h5>Community investigation (Please visit locality and interview parents/others)</h5>
+            <h5>SECTION G: Community investigation (Please visit locality and interview parents/others)</h5>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Were any similar events reported within a time period similar to when the adverse event occurred and in the same locality?" />
+              <TextInput model={ model } name="similar_events" options={ BOOLEAN_UNKNOWN_OPTIONS } label="Were any similar events reported within a time period similar to when the adverse event occurred and in the same locality?" />
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If yes, describe:" />
+              <TextInput label="If yes, describe:" name="similar_events_describe" model={ model } multiLine={ true }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If yes, how many events/episodes?" />
+              <TextInput label="If yes, how many events/episodes?" name="similar_events_episodes" model={ model }/>
             </div>
           </div>
           <div className="container">
             <h5>Of those affected, how many are</h5>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Vaccinated:" />
+              <TextInput label="Vaccinated:" name='affected_vaccinated' model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Not vaccinated::" />
+              <TextInput label="Not vaccinated::" name="affected_not_vaccinated" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Unknown:" />
+              <TextInput label="Unknown:" name="affected_unknown" model={ model }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <TextInput label="Other comments:" />
+              <TextInput label="Other comments:" name="community_comments" model={ model }/>
             </div>
           </div>
 
@@ -450,7 +543,7 @@ dose, site or route of administration, wrong needle size, not following good inj
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <TextInput label="" />
+              <TextInput label="" name="relevant_findings" model={ model }/>
             </div>
           </div>
 

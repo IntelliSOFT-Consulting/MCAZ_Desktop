@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, REPORTS_LIST_PAGE, REPORT_TYPE_ADR,
-  REPORT_TYPE_SAE, REPORT_TYPE_AEFI } from '../utils/Constants'
+  REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV, AEFI_INV_PAGE } from '../utils/Constants'
 
 import ReportListComponent from './ReportListComponent'
 
@@ -26,19 +26,25 @@ export default class IntroPage extends Component {
     return(
       <div className="container-fluid">
 
-        <div className="col-md-4 col-sm-4">
+        <div className="col-md-3 col-sm-4">
           <h3>ADR</h3>
           <p>Adverse drug reaction</p>
           <button className="btn btn-sm btn-default" onClick={ () => this.showPage(ADR_FORM_PAGE) }>Report</button>
           <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_ADR) } completed={ this.getReport(this.props.completed, REPORT_TYPE_ADR) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_ADR) } showPage={ this.showPage } type={ ADR_FORM_PAGE }/>
         </div>
-        <div className="col-md-4 col-sm-4">
+        <div className="col-md-3 col-sm-4">
           <h3>AEFI</h3>
           <p>Adverse Event Following Immunization.</p>
           <button className="btn btn-sm btn-default" onClick={ () => this.showPage(AEFI_REPORT_PAGE) }>Report</button>
           <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_AEFI) } completed={  this.getReport(this.props.completed, REPORT_TYPE_AEFI) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_AEFI) } showPage={ this.showPage } type={ AEFI_REPORT_PAGE }/>
         </div>
-        <div className="col-md-4 col-sm-4">
+        <div className="col-md-3 col-sm-4">
+          <h3>AEFI Inv.</h3>
+          <p>Serious Adverse Event Following Immunization.</p>
+          <button className="btn btn-sm btn-default" onClick={ () => this.showPage(AEFI_INV_PAGE) }>Report</button>
+          <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_AEFI_INV) } completed={  this.getReport(this.props.completed, REPORT_TYPE_AEFI_INV) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_AEFI_INV) } showPage={ this.showPage } type={ AEFI_INV_PAGE }/>
+        </div>
+        <div className="col-md-3 col-sm-4">
           <h3>SAE</h3>
           <p>Serious Adverse Event</p>
           <button className="btn btn-sm btn-primary" onClick={ () => this.showPage(SAE_FORM_PAGE) }>Report</button>
