@@ -214,3 +214,13 @@ export const AEFI_SEVERITY_REASON = [ { key: "", value: "select one" },
   { key : 'Hospitalizaion/Prolonged', value : 'Hospitalizaion/Prolonged'},
   { key : 'Disabling', value : 'Disabling'}, { key : 'Congenital-anomaly', value : 'Congenital-anomaly' }
 ]
+
+export const AEFI_ADVERSE_EVENTS = [
+  { key : "ae_severe_local_reaction", value: "Severe local reaction"}, { key : "ae_seizures", value: "Seizures"},
+  { key : "ae_abscess", value: "Abscess"}, { key : "ae_sepsis", value: "Sepsis"},
+  { key : "ae_encephalopathy", value: "Encephalopathy"}, { key : "ae_toxic_shock", value: "Toxic shock syndrome"},
+  { key : "ae-thrombocytopenia", value: "Thrombocytopenia"}, { key : "ae_anaphylaxis", value: "Anaphylaxis"},
+  { key : "ae-fever", value: "Fever≥38°C"}, { key : "ae-3days", value: ">3 days"},
+  { key : "ae-febrile", value: "febrile"}, { key : "ae-beyond-joint", value: "beyond nearest joint"},
+  { key : "ae_afebrile", value: "afebrile"}, { key: "ae-other", value: "Other (specify)"}
+]

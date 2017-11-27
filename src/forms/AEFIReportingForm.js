@@ -8,12 +8,13 @@ import SelectInput from '../inputs/SelectInput'
 import DatePickerInput from '../inputs/DatePickerInput'
 import DateSelectInput from '../inputs/DateSelectInput'
 import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
+import AEFIDilutentTableComponent from '../components/AEFIDilutentTableComponent'
 
 import messages from '../utils/messages.json'
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI, AEFI_URL } from '../utils/Constants'
 
-import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, OUTCOME } from '../utils/FieldOptions'
+import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, OUTCOME, AEFI_ADVERSE_EVENTS } from '../utils/FieldOptions'
 import { AEFI_MANDATORY_FIELS } from '../utils/FormFields'
 
 import { connect } from 'react-redux'
@@ -123,20 +124,28 @@ class AEFIReportingForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <AEFIVaccinationTableComponent name="vaccination" model={ model } validate={ this.state.validate } label="Vaccine/Dilutent   "/>
+              <AEFIVaccinationTableComponent name="aefi_list_of_vaccines" model={ model } validate={ this.state.validate } label="Vaccine/Dilutent   "/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <AEFIDilutentTableComponent name="aefi_list_of_diluents" model={ model } validate={ this.state.validate } label="Vaccine/Dilutent   "/>
             </div>
           </div>
           <h5 className="text-center">Adverse events</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Adverse events" required={ true } validate={ this.state.validate }  name="adverse_events" model={ model } options={ ["", "one"] }/>
+              <SingleMultipleInput label="Adverse events" required={ true } multiple={ true } validate={ this.state.validate }  name="adverse_events" model={ model } options={ AEFI_ADVERSE_EVENTS }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date and time AEFI started"  name="aefi_date" model={ model } showTime={ true }/>
+              <TextInput label="If other, specify"  name="adverse_events_specify" model={ model } showTime={ true }/>
             </div>
           </div>
           <div className="container">
-            <div className="col-md-12 col-sm-12">
+            <div className="col-md-6 col-sm-12">
+              <DatePickerInput label="Date and time AEFI started"  name="aefi_date" model={ model } showTime={ true }/>
+            </div>
+            <div className="col-md-6 col-sm-6">
               <DatePickerInput label="Date patient notified event to health system" name="notification_date" model={ model }/>
             </div>
           </div>
