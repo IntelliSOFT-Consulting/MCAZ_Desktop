@@ -81,7 +81,6 @@ ipcMain.on('upload-data', (event, arg) => {
     //console.log(`HEADERS: ${JSON.stringify(response.headers)}`)
     var data = ""
     response.on('data', (chunk) => {
-      console.log(`BODY: ${chunk}`)
       data += `${chunk}`
     })
     response.on('end', () => {
