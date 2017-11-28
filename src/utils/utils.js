@@ -1,4 +1,4 @@
-
+import { REPORT_TYPE_ADR, REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV } from './Constants'
 /**
   Validator for Date of Birth
   If the year only is selected, return true.
@@ -49,4 +49,16 @@ export const subQuestionsValidator = (name, dependent, model) => {
     }
   }
   return true
+}
+
+export const getRequestPayload  = (data) => {
+  if(data.type == REPORT_TYPE_ADR) {
+    var payload = {}
+    payload.sadr = data
+    return payload
+  } else if(data.type == REPORT_TYPE_SAE) {
+    var payload = {}
+    payload.adr = data
+    return payload
+  }
 }

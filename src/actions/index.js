@@ -2,6 +2,9 @@ import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, SAVE_COMPLETED_REPORT, REMOVE_C
  SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SET_REPORT_FILTER, CHANGE_CONNECTION_STATUS, SHOW_PAGE,
  SET_REPORT, SET_NOTIFICATION }  from './actionTypes'
 
+import { getRequestPayload } from '../utils/utils'
+import messages from '../utils/messages.json'
+
 import { MAIN_URL } from '../utils/Constants'
 
 const { ipcRenderer } = require('electron')
@@ -51,7 +54,7 @@ export const uploadData = (data, url) => {
 
   return dispatch => {
     var req = {}
-    req.body = data
+    req.body = getRequestPayload(data)
     req.url = url
     dispatch(saveCompleted(data))
     dispatch(removeDraft(data))
@@ -63,6 +66,17 @@ export const uploadData = (data, url) => {
       //dispatch(removeDraft(data))
       //dispatch(removeCompleted(data))
       console.log(arg) // prints "pong"
+      const response = JSON.parse(arg)
+      if(response.sadr) {
+        response.sadr.sadr.id = response.sadr.id
+        dispatch(saveUploaded(response.sadr.sadr))
+        dispatch(removeCompleted(response.sadr.sadr))
+        dispatch(setNotification({ message : messages.datauploaded, level: "info", id: new Date().getTime() }))
+      } else if(response.adr) {
+        response.adr.adr.id = response.adr.id
+        dispatch(saveUploaded(response.adr.adr))
+        dispatch(removeCompleted(response.adr.adr))
+      }
     })
   }
 }
