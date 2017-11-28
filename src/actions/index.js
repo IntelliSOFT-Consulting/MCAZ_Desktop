@@ -76,6 +76,17 @@ export const uploadData = (data, url) => {
         response.adr.adr.id = response.adr.id
         dispatch(saveUploaded(response.adr.adr))
         dispatch(removeCompleted(response.adr.adr))
+        dispatch(setNotification({ message : messages.datauploaded, level: "info", id: new Date().getTime() }))
+      } else if(response.aefi) {
+        response.aefi.aefi.id = response.aefi.id
+        dispatch(saveUploaded(response.aefi.aefi))
+        dispatch(removeCompleted(response.aefi.aefi))
+        dispatch(setNotification({ message : messages.datauploaded, level: "info", id: new Date().getTime() }))
+      } else if(response.saefi) {
+        response.saefi.saefi.id = response.saefi.id
+        dispatch(saveUploaded(response.saefi.saefi))
+        dispatch(removeCompleted(response.saefi.saefi))
+        dispatch(setNotification({ message : messages.datauploaded, level: "info", id: new Date().getTime() }))
       }
     })
   }
