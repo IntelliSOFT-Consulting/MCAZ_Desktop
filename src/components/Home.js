@@ -57,7 +57,7 @@ class Home extends Component {
       <div>
         <Header />
         { this.getPage() }
-        <Footer isConnected={ this.props.isConnected }/>
+        <Footer connection={ this.props.connection }/>
         <NotificationSystem ref="notificationSystem" />
       </div>
     )
