@@ -30,7 +30,7 @@ class ADRForm extends FormComponent {
     this.state = { model : model, validate : null }
 
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
-    
+
 
     this.mandatory = [
       { name : "patient_name", text : "Patient Initials", page : 1 },
@@ -87,7 +87,7 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Age group" model={ model } name="age_group"/>
+              <SelectInput label="Age group" model={ model } name="age_group" options={ [] }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Height (meters)" model={ model } name="height"/>

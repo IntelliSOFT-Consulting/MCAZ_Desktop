@@ -14,10 +14,7 @@ import { MAIN_PAGE, REPORT_TYPE_AEFI_INV, SAEFI_URL } from '../utils/Constants'
 import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, STATUS_ON_DATE, DESIGNATION, INFANT_BIRTH_OPTS, MULTI_VIALS, DELIVERY_OPTS, SOURCE_INFO,
   WHEN_VACCINATED, SYRINGES_USED, PLACE_VACCINATION, SITE_TYPE, VACCINATION_IN, BOOLEAN_UNABLE_OPTIONS } from '../utils/FieldOptions'
 
-import { connect } from 'react-redux'
-import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setNotification } from '../actions'
-
-class AEFIInvForm extends FormComponent {
+export default class AEFIInvForm extends FormComponent {
 
   constructor(props) {
     super(props)
@@ -26,7 +23,6 @@ class AEFIInvForm extends FormComponent {
       model = { rid : Date.now(), type : REPORT_TYPE_AEFI_INV }
     }
 
-    this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.state = { model : model, validate : null }
   }
 
@@ -576,111 +572,4 @@ additional sheets if necessary)</h5>
       </div>
     )
   }
-
-  /**
-    When saved, check connection status.
-  */
-  saveAndSubmit(e) {
-    e.preventDefault()
-    const { model } = this.state
-    const { uploadData, saveCompleted, connection, setNotification } = this.props
-    var valid = true;
-    var names = "";
-    var page = 0
-    /*SAE_MANDATORY_FIELS.forEach((field) => {
-      if(field.fields) {
-        const fields = field.fields
-        const values = model[field.name]
-        var arrayNames = []
-        if(Array.isArray(values)) {
-          for(let i = 0; i < values.length; i++) {
-            const val = values[i]
-            fields.forEach((f) => {
-              if(val[f.name] == null || val[f.name] === "") {
-                valid = false
-                if(page == 0) {
-                  page = field.page
-                }
-                if(arrayNames.indexOf(f.text) == -1) {
-                  arrayNames.push(f.text)
-                }
-              }
-            })
-          }
-        }
-        if(names != "") {
-          names += ",\n"
-        }
-        names += arrayNames.join(',\n')
-      } else {
-        if(field.dependent) {
-          if(model[field.dependent] == field.value && (model[field.name] == null || model[field.name] === "")) {
-            valid = false
-            if(names != "") {
-              names += ",\n "
-            } else {
-              page = field.page
-            }
-            names += field.text
-          }
-        } else if(model[field.name] == null || model[field.name] === "") {
-          valid = false
-          if(names != "") {
-            names += ",\n "
-          } else {
-            page = field.page
-          }
-          names += field.text
-        }
-      }
-    })*/
-
-    if(!valid) {
-      this.setState({ validate : true })
-      setNotification({ message : messages.validationErrors, level: "error", id: new Date().getTime() })
-      return
-    }
-
-    if(connection.isConnected) {
-      uploadData(model, SAE_URL)
-    } else {
-      //Alert.alert("Offline", "data has been saved to memory and will be uploaded when online.")
-      saveCompleted(model)
-    }
-    this.goBack()
-  }
 }
-
-const mapStateToProps = state => {
-  return {
-    connection: state.appState.connection,
-    model: state.appState.currentReport
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    saveDraft: (data) => {
-      dispatch(saveDraft(data))
-    },
-    uploadData: (data, url) => { // Upload the data.
-      dispatch(uploadData(data, url))
-    },
-    validate: (valid) => { // Validate the form
-      dispatch(validate(valid))
-    },
-    saveCompleted: (data) => { // save the completed data and remove any draft.
-      dispatch(saveCompleted(data))
-      dispatch(removeDraft(data))
-    },
-    showPage: (page) => {
-      dispatch(showPage(page))
-    },
-    setNotification: (notification) => {
-      dispatch(setNotification(notification))
-    },
-    dispatch: dispatch
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AEFIInvForm)

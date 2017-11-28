@@ -73,7 +73,7 @@ ipcMain.on('upload-data', (event, arg) => {
   }
   const request = net.request(options)
   request.setHeader('Content-Type', 'application/json')
-  console.log(JSON.stringify(reqObj.body))
+  
   request.write(JSON.stringify(reqObj.body))
   request.on('response', (response) => {
     console.log(`STATUS: ${response.statusCode}`)

@@ -280,3 +280,7 @@ export const VACCINATION_IN = [
   { key : "Campaign", value: "Campaign" }, { key : "Routine", value: "Routine" },
   { key : "Other", value: "Other" }
 ]
+
+export const BOOLEAN_UNABLE_OPTIONS = [
+  { key : "Yes", value : "Yes"}, { key : "No", value : "No"}, { key : "Unable to assess", value : "Unable to assess"}
+]

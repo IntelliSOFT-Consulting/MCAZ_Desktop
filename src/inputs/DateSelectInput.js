@@ -27,10 +27,14 @@ export default class DateSelectInput extends Component {
     var { value } = this.state
     const { model, name } = this.props
     value[e.target.name] = e.target.value
-    model[name] = value
+
+    var dateStr = "[ 'day' : " + value.day + ", 'month' : " + value.month + ", 'year' : " + value.year + "]"
+    model[name] = dateStr
+    //model[name] = value
     this.setState({
       value: value
     });
+
   }
 
   render() {
