@@ -75,7 +75,7 @@ export default class SAEReadOnlyComponent extends Component {
               <ReadOnlyDataRenderer type="option"  label="Designation in the study:" name="designation_id" model={ model } validate={ this.state.validate } required={ true } options={ DESIGNATION }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Date Form completed"  name="" model={ model } validate={ this.state.validate } required={ true }/>
+              <ReadOnlyDataRenderer label="Date Form completed"  name="" model={ model } validate={ this.state.validate } required={ true } type="date"/>
             </div>
           </div>
           <div className="container">

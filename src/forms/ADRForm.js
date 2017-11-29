@@ -25,12 +25,13 @@ class ADRForm extends FormComponent {
     super(props)
     var { model } = this.props
     if(model == null) {
-      model = {"rid":1510991587333,"type":"REPORT_TYPE_ADR","name_of_institution":"Nairobi Hosp","sadr_list_of_drugs":[{"brand_name":"dawa","dose_id":"3","drug_name":"c","dose":"1","route_id":"3","frequency_id":"2","start_date":[],"stop_date":[],"suspected_drug":""}],"user":{},"patient_name":"JM","date_of_birth":[],"gender":"Male","date_of_onset_of_reaction":[],"description_of_reaction":"ds","severity":"Yes","severity_reason":"Death","action_taken":"Drug withdrawn","outcome":"Recovered","":"Certain","designation_id":"1","reporter_name":"John","reporter_email":"john@h.com","date_of_end_of_reaction":[]}
+      model = {"rid":1510991587333,"type":"REPORT_TYPE_ADR"}
     }
+
     this.state = { model : model, validate : null }
 
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
-    
+
 
     this.mandatory = [
       { name : "patient_name", text : "Patient Initials", page : 1 },
@@ -87,7 +88,7 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Age group" model={ model } name="age_group"/>
+              <SelectInput label="Age group" model={ model } name="age_group" options={ [] }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Height (meters)" model={ model } name="height"/>

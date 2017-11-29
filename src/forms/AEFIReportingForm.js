@@ -8,12 +8,13 @@ import SelectInput from '../inputs/SelectInput'
 import DatePickerInput from '../inputs/DatePickerInput'
 import DateSelectInput from '../inputs/DateSelectInput'
 import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
+import AEFIDilutentTableComponent from '../components/AEFIDilutentTableComponent'
 
 import messages from '../utils/messages.json'
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI, AEFI_URL } from '../utils/Constants'
 
-import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, OUTCOME } from '../utils/FieldOptions'
+import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, OUTCOME, AEFI_ADVERSE_EVENTS } from '../utils/FieldOptions'
 import { AEFI_MANDATORY_FIELS } from '../utils/FormFields'
 
 import { connect } from 'react-redux'
@@ -28,6 +29,8 @@ class AEFIReportingForm extends FormComponent {
     if(model == null) {
       model = { rid : Date.now(), type : REPORT_TYPE_AEFI }
     }
+
+  //  model = {"aefi":{"rid":1511898412729,"type":"REPORT_TYPE_AEFI","patient_name":"JMM","patient_next_of_kin":"s","patient_surname":"s","patient_address":"s","gender":"Male","patient_telephone":"s","date_of_birth":"4-2-2016","age_at_onset":"s","reporter_name":"s","designation_id":"3","name_of_vaccination_center":"ss","aefi_list_of_vaccines":[{"vaccine_name":"ss","vaccination_date":"14-10-2017","dosage":"s","batch_number":"ss","expiry_date":"22-10-2017"}],"aefi_list_of_diluents":[{"diluent_name":"sss","diluent_date":"9-10-2017","batch_number":"ss","expiry_date":"15-10-2017"}],"adverse_events":"ae_seizures,ae-thrombocytopenia","aefi_date":"21-10-2017","notification_date":"21-10-2017","description_of_reaction":"ss","serious":"Yes","serious_yes":"Hospitalizaion/Prolonged","outcome":"Recovering","autopsy":"No","past_medical_history":"ss","district_receive_date":"1-10-2017","investigation_needed":"Yes","investigation_date":"13-10-2017","national_receive_date":"20-10-2017","comments":"sss"}}
 
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.state = { model }
@@ -123,20 +126,28 @@ class AEFIReportingForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <AEFIVaccinationTableComponent name="vaccination" model={ model } validate={ this.state.validate } label="Vaccine/Dilutent   "/>
+              <AEFIVaccinationTableComponent name="aefi_list_of_vaccines" model={ model } validate={ this.state.validate } label="Vaccine   "/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <AEFIDilutentTableComponent name="aefi_list_of_diluents" model={ model } validate={ this.state.validate } label="Dilutent   "/>
             </div>
           </div>
           <h5 className="text-center">Adverse events</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Adverse events" required={ true } validate={ this.state.validate }  name="adverse_events" model={ model } options={ ["", "one"] }/>
+              <SingleMultipleInput label="Adverse events" required={ true } multiple={ true } validate={ this.state.validate }  name="adverse_events" model={ model } options={ AEFI_ADVERSE_EVENTS }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date and time AEFI started"  name="aefi_date" model={ model } showTime={ true }/>
+              <TextInput label="If other, specify"  name="adverse_events_specify" model={ model } showTime={ true }/>
             </div>
           </div>
           <div className="container">
-            <div className="col-md-12 col-sm-12">
+            <div className="col-md-6 col-sm-12">
+              <DatePickerInput label="Date and time AEFI started"  name="aefi_date" model={ model } showTime={ true }/>
+            </div>
+            <div className="col-md-6 col-sm-6">
               <DatePickerInput label="Date patient notified event to health system" name="notification_date" model={ model }/>
             </div>
           </div>

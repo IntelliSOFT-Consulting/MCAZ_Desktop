@@ -11,10 +11,13 @@ export default class DatePickerInput extends Component {
     super(props)
     const { model, name, validate } = this.props
     var value = null
-    if(model && model[name] && Object.keys(model[name]).length == 3) {
+    if(model && model[name]) {
+      if(typeof model[name] == "string") {
+        const v = model[name].split("-")
 
-      const date = moment().year(model[name]['year']).month(model[name]['month']).date(model[name]['day']) //new Date(model[name]['month'] + '/' + model[name]['day'] + '/' + model[name]['year'])
-      value = date
+        const date = moment().year(v[2]).month(v[1]).date(v[0]) //new Date(model[name]['month'] + '/' + model[name]['day'] + '/' + model[name]['year'])
+        value = date
+      }
     }
     this.state = {
       value: value, validate: validate
@@ -29,10 +32,11 @@ export default class DatePickerInput extends Component {
     });
     const { model, name } = this.props
     if(model) {
-      model[name] = {}
-      model[name]['day'] = date.date()
-      model[name]['month'] = date.month()
-      model[name]['year'] = date.year()
+      model[name] = date.date() + "-" + date.month() + "-" + date.year()
+      //var dateStr = "[ 'day' : " + date.date() + ", 'month' : " + date.month() + ", 'year' : " + date.year() + "]"
+      //model[name]['day'] = date.date()
+      //model[name]['month'] = date.month()
+      //model[name]['year'] = date.year()
     }
   }
 

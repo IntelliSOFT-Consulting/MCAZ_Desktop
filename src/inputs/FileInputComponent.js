@@ -73,7 +73,7 @@ export default class FileInputComponent extends Component {
       <div className={ className }>
         <label className="col-md-4 control-label form-input-label">{ label  } { reqSpan }</label>
         <div className="col-md-6">
-          <button className="btn btn-sm btn-default">Select file</button>
+          <button className="btn btn-sm btn-default" onClick={ this.selectFile }>Select file</button>
           <label>{ this.state.fileName }</label>
           <input type='file' ref={ (input) => this.fileInput = input } className="hide" onChange={ this.onFileSelect }/>
         </div>

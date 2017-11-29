@@ -82,16 +82,18 @@ ipcMain.on('upload-data', (event, arg) => {
   }
   const request = net.request(options)
   request.setHeader('Content-Type', 'application/json')
+  request.setHeader('Accept', 'application/json')
   console.log(JSON.stringify(reqObj.body))
   request.write(JSON.stringify(reqObj.body))
   request.on('response', (response) => {
     console.log(`STATUS: ${response.statusCode}`)
     //console.log(`HEADERS: ${JSON.stringify(response.headers)}`)
+    var data = ""
     response.on('data', (chunk) => {
-      //console.log(`BODY: ${chunk}`)
+      data += `${chunk}`
     })
     response.on('end', () => {
-      event.sender.send('upload-reply', 'uploaded')
+      event.sender.send('upload-reply', data)
       console.log('No more data in response.')
     })
   })

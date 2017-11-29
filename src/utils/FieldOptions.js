@@ -214,3 +214,73 @@ export const AEFI_SEVERITY_REASON = [ { key: "", value: "select one" },
   { key : 'Hospitalizaion/Prolonged', value : 'Hospitalizaion/Prolonged'},
   { key : 'Disabling', value : 'Disabling'}, { key : 'Congenital-anomaly', value : 'Congenital-anomaly' }
 ]
+
+export const AEFI_ADVERSE_EVENTS = [
+  { key : "ae_severe_local_reaction", value: "Severe local reaction"}, { key : "ae_seizures", value: "Seizures"},
+  { key : "ae_abscess", value: "Abscess"}, { key : "ae_sepsis", value: "Sepsis"},
+  { key : "ae_encephalopathy", value: "Encephalopathy"}, { key : "ae_toxic_shock", value: "Toxic shock syndrome"},
+  { key : "ae-thrombocytopenia", value: "Thrombocytopenia"}, { key : "ae_anaphylaxis", value: "Anaphylaxis"},
+  { key : "ae-fever", value: "Fever≥38°C"}, { key : "ae-3days", value: ">3 days"},
+  { key : "ae-febrile", value: "febrile"}, { key : "ae-beyond-joint", value: "beyond nearest joint"},
+  { key : "ae_afebrile", value: "afebrile"}, { key: "ae-other", value: "Other (specify)"}
+]
+
+export const STATUS_ON_DATE = [
+  { key : "Died", value: "Died"}, { key : "Disabled", value: "Disabled"},
+  { key : "Recovering", value: "Recovering"}, { key : "Recovered completely", value: "Recovered completely"},
+  { key : "Unknown", value: "Unknown"}
+]
+
+export const INFANT_BIRTH_OPTS = [
+  { key : "full-term", value: "full-term"}, { key : "pre-term", value: "pre-term"},
+  { key : "post-term", value: "post-term"}
+]
+
+export const DELIVERY_OPTS = [
+  { key : "Normal", value: "Normal"}, { key : "Caesarean", value: "Caesarean"},
+  { key : "Assisted (forceps, vacuum etc.)", value: "Assisted (forceps, vacuum etc.)"},
+  { key : "with complication", value: "with complication"}
+]
+
+export const SOURCE_INFO = [
+  { key : "source_examination", value: "Examination by the investigator"}, { key : "source_verbal", value: "Verbal autopsy"},
+  { key : "source_documents", value: "Documents"},
+  { key : "source_other", value: "Other"}
+]
+
+export const WHEN_VACCINATED = [
+  { key : "Within the first vaccinations of the session", value: "Within the first vaccinations of the session" },
+  { key : "Within the last vaccinations of the session", value: "Within the last vaccinations of the session" },
+  { key : "Unknown", value: "Unknown" }
+]
+
+export const MULTI_VIALS = [
+  { key : "within the first few doses of the vial administered", value: "within the first few doses of the vial administered" },
+  { key : "within the last doses of the vial administered", value: "within the last doses of the vial administered" },
+  { key : "Unknown", value: "Unknown" }
+]
+
+export const SYRINGES_USED = [
+  { key : "Glass", value: "Glass" }, { key : "Disposable", value: "Disposable" }, { key : "Recycled disposable", value: "Recycled disposable" },
+  { key : "Other", value: "Other" }
+]
+
+export const PLACE_VACCINATION = [
+  { key : "Govt. health facility", value: "Govt. health facility" },
+  { key : "Private health facility", value: "Private health facility" },
+  { key : "Other", value: "Other" }
+]
+
+export const SITE_TYPE = [
+  { key : "Fixed", value: "Fixed" }, { key : "Mobile", value: 'Mobile' },
+  { key : "Outreach", value: "Outreach" }, { key : "Other", value: "Other" }
+]
+
+export const VACCINATION_IN = [
+  { key : "Campaign", value: "Campaign" }, { key : "Routine", value: "Routine" },
+  { key : "Other", value: "Other" }
+]
+
+export const BOOLEAN_UNABLE_OPTIONS = [
+  { key : "Yes", value : "Yes"}, { key : "No", value : "No"}, { key : "Unable to assess", value : "Unable to assess"}
+]

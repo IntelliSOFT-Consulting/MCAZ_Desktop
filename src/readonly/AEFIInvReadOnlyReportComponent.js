@@ -14,10 +14,7 @@ import { MAIN_PAGE, REPORT_TYPE_AEFI_INV, SAEFI_URL } from '../utils/Constants'
 import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, STATUS_ON_DATE, DESIGNATION, INFANT_BIRTH_OPTS, MULTI_VIALS, DELIVERY_OPTS, SOURCE_INFO,
   WHEN_VACCINATED, SYRINGES_USED, PLACE_VACCINATION, SITE_TYPE, VACCINATION_IN, BOOLEAN_UNABLE_OPTIONS } from '../utils/FieldOptions'
 
-import { connect } from 'react-redux'
-import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setNotification } from '../actions'
-
-class AEFIInvForm extends FormComponent {
+export default class AEFIInvForm extends FormComponent {
 
   constructor(props) {
     super(props)
@@ -26,9 +23,6 @@ class AEFIInvForm extends FormComponent {
       model = { rid : Date.now(), type : REPORT_TYPE_AEFI_INV }
     }
 
-    //model = {"rid":1511846288224,"type":"REPORT_TYPE_AEFI_INV","designation_id":"1","vaccination_in_other":"s","site_type_other":"s","place_vaccination_other":"s","reporter_name":"s","telephone":"s","reporter_email":"s","report_date":"8-10-2017","start_date":"14-10-2017","complete_date":"27-10-2017","patient_name":"sss","gender":"Male","hospitalization_date":"7-10-2017","status_on_date":"Died","died_date":"7-10-2017","autopsy_done":"No","autopsy_planned":"No","past_history":"Unknown","adverse_event":"Unknown","past_history_remarks":"s","adverse_event_remarks":"s","allergy_history_remarks":"s","allergy_history":"Unknown","existing_illness":"Unknown","existing_illness_remarks":"s","hospitalization_history":"No","hospitalization_history_remarks":"s","medication_vaccination":"Unknown","medication_vaccination_remarks":"s","faith_healers":"No","faith_healers_remarks":"s","family_history":"No","family_history_remarks":"ss","pregnant":"No","breastfeeding":"No","infant":"full-term","birth_weight":"12","delivery_procedure":"Caesarean","source_examination":"source_examination","verbal_source":"x","examiner_name":"x","signs_symptoms":"x","person_details":"x","person_date":"22-10-2017","person_designation":"x","medical_care":"x","not_medical_care":"x","final_diagnosis":"x","saefi_list_of_vaccines":[{"vaccine_name":"xx","vaccination_doses":"2"}],"when_vaccinated":"Within the last vaccinations of the session","when_vaccinated_specify":"xxx","prescribing_error":"No","vaccine_unsterile":"Unable to assess","vaccine_condition":"Unable to assess","vaccine_reconstitution":"Unable to assess","vaccine_handling":"Unable to assess","vaccine_administered":"Unable to assess","vaccinated_vial":"2","vaccinated_session":"3","vaccinated_locations":"1","vaccinated_locations_specify":"dsd","vaccinated_cluster":"Unknown","vaccinated_cluster_vial":"Unknown","vaccinated_cluster_number":"4","vaccinated_cluster_vial_number":"d","syringes_used":"Unknown","syringes_used_specify":"Recycled disposable","syringes_used_findings":"d","reconstitution_multiple":"Yes","reconstitution_different":"d","reconstitution_syringe":"d","reconstitution_observations":"d","reconstitution_vial":"d","reconstitution_vaccines":"d","cold_temperature":"No","cold_temperature_deviation":"No","cold_temperature_specify":"d","procedure_followed":"No","partial_vaccines":"No","other_items":"No","unusable_vaccines":"No","unusable_diluents":"No","cold_transportation":"No","additional_observations":"d","vaccine_carrier":"No","transport_findings":"d","similar_events":"No","coolant_packs":"d","similar_events_describe":"d","similar_events_episodes":"dd","affected_vaccinated":"d","affected_unknown":"d","community_comments":"d","affected_not_vaccinated":"dd","relevant_findings":"ddf"}
-
-    this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.state = { model : model, validate : null }
   }
 
@@ -578,111 +572,4 @@ additional sheets if necessary)</h5>
       </div>
     )
   }
-
-  /**
-    When saved, check connection status.
-  */
-  saveAndSubmit(e) {
-    e.preventDefault()
-    const { model } = this.state
-    const { uploadData, saveCompleted, connection, setNotification } = this.props
-    var valid = true;
-    var names = "";
-    var page = 0
-    /*SAE_MANDATORY_FIELS.forEach((field) => {
-      if(field.fields) {
-        const fields = field.fields
-        const values = model[field.name]
-        var arrayNames = []
-        if(Array.isArray(values)) {
-          for(let i = 0; i < values.length; i++) {
-            const val = values[i]
-            fields.forEach((f) => {
-              if(val[f.name] == null || val[f.name] === "") {
-                valid = false
-                if(page == 0) {
-                  page = field.page
-                }
-                if(arrayNames.indexOf(f.text) == -1) {
-                  arrayNames.push(f.text)
-                }
-              }
-            })
-          }
-        }
-        if(names != "") {
-          names += ",\n"
-        }
-        names += arrayNames.join(',\n')
-      } else {
-        if(field.dependent) {
-          if(model[field.dependent] == field.value && (model[field.name] == null || model[field.name] === "")) {
-            valid = false
-            if(names != "") {
-              names += ",\n "
-            } else {
-              page = field.page
-            }
-            names += field.text
-          }
-        } else if(model[field.name] == null || model[field.name] === "") {
-          valid = false
-          if(names != "") {
-            names += ",\n "
-          } else {
-            page = field.page
-          }
-          names += field.text
-        }
-      }
-    })*/
-
-    if(!valid) {
-      this.setState({ validate : true })
-      setNotification({ message : messages.validationErrors, level: "error", id: new Date().getTime() })
-      return
-    }
-
-    if(connection.isConnected) {
-      uploadData(model, SAEFI_URL)
-    } else {
-      //Alert.alert("Offline", "data has been saved to memory and will be uploaded when online.")
-      saveCompleted(model)
-    }
-    this.goBack()
-  }
 }
-
-const mapStateToProps = state => {
-  return {
-    connection: state.appState.connection,
-    model: state.appState.currentReport
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    saveDraft: (data) => {
-      dispatch(saveDraft(data))
-    },
-    uploadData: (data, url) => { // Upload the data.
-      dispatch(uploadData(data, url))
-    },
-    validate: (valid) => { // Validate the form
-      dispatch(validate(valid))
-    },
-    saveCompleted: (data) => { // save the completed data and remove any draft.
-      dispatch(saveCompleted(data))
-      dispatch(removeDraft(data))
-    },
-    showPage: (page) => {
-      dispatch(showPage(page))
-    },
-    setNotification: (notification) => {
-      dispatch(setNotification(notification))
-    },
-    dispatch: dispatch
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AEFIInvForm)

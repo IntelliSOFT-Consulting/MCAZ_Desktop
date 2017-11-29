@@ -86,7 +86,7 @@ class SAEForm extends FormComponent {
               <SelectInput label="Designation in the study:" name="designation_id" model={ model } validate={ this.state.validate } required={ true } options={ DESIGNATION }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Date Form completed"  name="" model={ model } validate={ this.state.validate } required={ true }/>
+              <DatePickerInput label="Date Form completed"  name="" model={ model } validate={ this.state.validate } required={ true }/>
             </div>
           </div>
           <div className="container">

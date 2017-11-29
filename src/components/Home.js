@@ -11,7 +11,7 @@ var NotificationSystem = require('react-notification-system')
 
 import { connect } from 'react-redux'
 
-import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, REPORTS_LIST_PAGE, READ_ONLY_PAGE } from '../utils/Constants'
+import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, REPORTS_LIST_PAGE, READ_ONLY_PAGE } from '../utils/Constants'
 
 import { showPage, setReport, changeConnection } from '../actions'
 
@@ -42,6 +42,8 @@ class Home extends Component {
         return <SAEForm />
       case AEFI_REPORT_PAGE:
         return <AEFIReportingForm />
+      case AEFI_INV_PAGE:
+        return <AEFIInvForm />
       case READ_ONLY_PAGE:
         return <ReadOnlyReportComponent />
       default:
@@ -55,7 +57,7 @@ class Home extends Component {
       <div>
         <Header />
         { this.getPage() }
-        <Footer isConnected={ this.props.isConnected }/>
+        <Footer connection={ this.props.connection }/>
         <NotificationSystem ref="notificationSystem" />
       </div>
     )

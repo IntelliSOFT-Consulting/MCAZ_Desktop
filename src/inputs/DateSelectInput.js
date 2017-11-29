@@ -7,14 +7,17 @@ export default class DateSelectInput extends Component {
 
     var value = {}
     if(model && model[name]) {
+      if(typeof model[name] == "string") {
+        const v = model[name].split("-")
       //if(model[name][day]) {
-        value['day'] = model[name]['day']
+        value['day'] = v[0] //model[name]['day']
 
       //if(model[name][month]) {
-        value['month'] = model[name]['month']
+        value['month'] = v[1] //model[name]['month']
 
       //if(model[name][year]) {
-        value['year'] = model[name]['year']
+        value['year'] = v[2] //model[name]['year']
+      }
 
     }
     this.state = {
@@ -27,10 +30,11 @@ export default class DateSelectInput extends Component {
     var { value } = this.state
     const { model, name } = this.props
     value[e.target.name] = e.target.value
-    model[name] = value
+    model[name] = value.day + "-" + value.month + "-" + value.year
     this.setState({
       value: value
     });
+
   }
 
   render() {
