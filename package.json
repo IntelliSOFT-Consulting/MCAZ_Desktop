@@ -8,7 +8,10 @@
     "build": "webpack",
     "pack": "electron-builder --dir",
     "dist": "electron-builder -mwl",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"MCAZ Desktop App\"",
+	"package-linux": "electron-packager . --overwrite --asar=true --platform=linux --arch=x64 --prune=true --out=release-builds",
+    "create-installer-win": "node installers/windows/createinstaller.js"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -19,7 +22,7 @@
     "SAE",
     "AEFI"
   ],
-  "author": "John Muiruri",
+  "author": "IntelliSOFT Kenya Limited",
   "license": "CC0-1.0",
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -31,6 +34,7 @@
     "devtron": "^1.4.0",
     "electron": "~1.7.8",
     "electron-builder": "^19.45.5",
+    "electron-winstaller": "^2.6.3",
     "eslint": "^4.11.0",
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1"
