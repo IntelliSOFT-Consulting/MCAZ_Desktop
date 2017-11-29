@@ -14,3 +14,6 @@ export const SHOW_PAGE = 'SHOW_PAGE'
 export const SET_REPORT = 'SET_REPORT'
 
 export const SET_NOTIFICATION = 'SET_NOTIFICATION'
+
+export const RESET_UPLOAD_STATUS = 'RESET_UPLOAD_STATUS' // reset upload status.
+export const UPDATE_UPLOAD_STATUS = 'UPDATE_UPLOAD_STATUS' // update upload status.

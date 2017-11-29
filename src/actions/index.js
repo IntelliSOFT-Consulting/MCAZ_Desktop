@@ -1,8 +1,8 @@
 import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, SAVE_COMPLETED_REPORT, REMOVE_COMPLETED_REPORT,
  SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SET_REPORT_FILTER, CHANGE_CONNECTION_STATUS, SHOW_PAGE,
- SET_REPORT, SET_NOTIFICATION }  from './actionTypes'
+ SET_REPORT, SET_NOTIFICATION, RESET_UPLOAD_STATUS, UPDATE_UPLOAD_STATUS }  from './actionTypes'
 
-import { getRequestPayload } from '../utils/utils'
+import { getRequestPayload, getURL } from '../utils/utils'
 import messages from '../utils/messages.json'
 
 import { MAIN_URL } from '../utils/Constants'
@@ -50,7 +50,7 @@ export const setReport = (model) => (
   The upload action.
   Here we send a message to the main process and wait for the response.
 */
-export const uploadData = (data, url) => {
+export const uploadData = (data, url, updateProgress) => {
 
   return dispatch => {
     var req = {}
@@ -60,40 +60,49 @@ export const uploadData = (data, url) => {
     dispatch(removeDraft(data))
     ipcRenderer.send('upload-data', JSON.stringify(req))
 
-    ipcRenderer.on('upload-reply', (event, arg) => {
+    ipcRenderer.on('upload-reply', (event, arg, updateProgress) => {
       //dispatch(showPage('MAIN_PAGE'))
       //dispatch(saveUploaded(data))
       //dispatch(removeDraft(data))
       //dispatch(removeCompleted(data))
       console.log(arg) // prints "pong"
-      const response = JSON.parse(arg)
-      if(response.sadr) {
-        response.sadr.sadr.id = response.sadr.id
-        dispatch(saveUploaded(response.sadr.sadr))
-        dispatch(removeCompleted(response.sadr.sadr))
-        dispatch(setNotification({ message : messages.datauploaded, level: "info", id: new Date().getTime() }))
-      } else if(response.adr) {
-        response.adr.adr.id = response.adr.id
-        dispatch(saveUploaded(response.adr.adr))
-        dispatch(removeCompleted(response.adr.adr))
-        dispatch(setNotification({ message : messages.datauploaded, level: "info", id: new Date().getTime() }))
-      } else if(response.aefi) {
-        response.aefi.aefi.id = response.aefi.id
-        dispatch(saveUploaded(response.aefi.aefi))
-        dispatch(removeCompleted(response.aefi.aefi))
-        dispatch(setNotification({ message : messages.datauploaded, level: "info", id: new Date().getTime() }))
-      } else if(response.saefi) {
-        response.saefi.saefi.id = response.saefi.id
-        dispatch(saveUploaded(response.saefi.saefi))
-        dispatch(removeCompleted(response.saefi.saefi))
-        dispatch(setNotification({ message : messages.datauploaded, level: "info", id: new Date().getTime() }))
+      try {
+        const response = JSON.parse(arg)
+        if(response.sadr) {
+          response.sadr.sadr.id = response.sadr.id
+          dispatch(saveUploaded(response.sadr.sadr))
+          dispatch(removeCompleted(response.sadr.sadr))
+
+        } else if(response.adr) {
+          response.adr.adr.id = response.adr.id
+          dispatch(saveUploaded(response.adr.adr))
+          dispatch(removeCompleted(response.adr.adr))
+
+        } else if(response.aefi) {
+          response.aefi.aefi.id = response.aefi.id
+          dispatch(saveUploaded(response.aefi.aefi))
+          dispatch(removeCompleted(response.aefi.aefi))
+
+        } else if(response.saefi) {
+          response.saefi.saefi.id = response.saefi.id
+          dispatch(saveUploaded(response.saefi.saefi))
+          dispatch(removeCompleted(response.saefi.saefi))
+
+        } else {
+          console.log(JSON.stringify(json))
+          return
+        }
+        dispatch(updateUploadStatus())
+        if(updateProgress) {
+          dispatch(updateUploadStatus())
+        } else {
+          dispatch(setNotification({ message : messages.datauploaded, level: "info", id: new Date().getTime() }))
+        }
+      } catch(e) {
+        dispatch(setNotification({ message : messages.uploaderror, level: "error", id: new Date().getTime() }))
       }
     })
   }
-}
-
-export const uploadCompletedReports = (data) => {
-  ipcRenderer.send('upload-data', 'ping')
 }
 
 export const showPage = (page) => (
@@ -103,3 +112,20 @@ export const showPage = (page) => (
 export const setNotification = (notification) => (
   { type : SET_NOTIFICATION, notification }
 )
+
+export const resetUploadStatus = (uploaded) => (
+  { type : RESET_UPLOAD_STATUS, uploaded }
+)
+
+export const updateUploadStatus = () => (
+  { type : UPDATE_UPLOAD_STATUS }
+)
+
+export const uploadCompletedReports = (completed) => {
+  return dispatch => {
+    dispatch(resetUploadStatus(completed.length))
+    completed.forEach((data) => {
+      dispatch(uploadData(data, getURL(data), true))
+    })
+  }
+}
