@@ -173,6 +173,10 @@ export const EVENT_TYPE = [
   { key : "AE", value : "AE"}, { key : "SAE", value : "SAE"}, { key : "Death", value : "Death"}
 ]
 
+export const AGE_GROUP = [ { key : "neonate", value : "neonate"}, { key : "infant", value : "infant"}, { key : "child", value : "child"},
+  { key : "adolescent", value : "adolescent"}, { key : "adult", value : "adult"}, { key : "elderly", value : "elderly"}
+]
+
 export const SAE_EVENT_TYPE = [
   { key : "", value : "select one"}, { key : "Fatal", value : "Fatal"}, { key : "Life-threatening (an actual risk of death at the time of the event).", value : "Life-threatening (an actual risk of death at the time of the event)."},
   { key : "Caused or prolonged hospitalization (non-elective).", value : "Caused or prolonged hospitalization (non-elective)."},

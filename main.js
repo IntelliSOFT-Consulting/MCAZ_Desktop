@@ -73,7 +73,7 @@ app.on('activate', function () {
 const { ipcMain } = require('electron')
 
 ipcMain.on('upload-data', (event, arg) => {
-  const {net} = require('electron')
+  const { net } = require('electron')
 
   const reqObj = JSON.parse(arg)
   const options = {

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import FormComponent from './FormComponent'
 
+import Confirm from '../dialogs/Confirm'
+
 import TextInput from '../inputs/TextInput'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import SelectInput from '../inputs/SelectInput'
@@ -33,13 +35,33 @@ class AEFIReportingForm extends FormComponent {
   //  model = {"aefi":{"rid":1511898412729,"type":"REPORT_TYPE_AEFI","patient_name":"JMM","patient_next_of_kin":"s","patient_surname":"s","patient_address":"s","gender":"Male","patient_telephone":"s","date_of_birth":"4-2-2016","age_at_onset":"s","reporter_name":"s","designation_id":"3","name_of_vaccination_center":"ss","aefi_list_of_vaccines":[{"vaccine_name":"ss","vaccination_date":"14-10-2017","dosage":"s","batch_number":"ss","expiry_date":"22-10-2017"}],"aefi_list_of_diluents":[{"diluent_name":"sss","diluent_date":"9-10-2017","batch_number":"ss","expiry_date":"15-10-2017"}],"adverse_events":"ae_seizures,ae-thrombocytopenia","aefi_date":"21-10-2017","notification_date":"21-10-2017","description_of_reaction":"ss","serious":"Yes","serious_yes":"Hospitalizaion/Prolonged","outcome":"Recovering","autopsy":"No","past_medical_history":"ss","district_receive_date":"1-10-2017","investigation_needed":"Yes","investigation_date":"13-10-2017","national_receive_date":"20-10-2017","comments":"sss"}}
 
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
-    this.state = { model }
+    this.upload = this.upload.bind(this)
+
+    this.state = { model , validate : null, confirmVisible : false}
   }
 
   render() {
     const { model } = this.state
+
+    var confirmVisible = null
+    if(this.state.confirmVisible) {
+      confirmVisible = (
+        <Confirm
+          visible={ this.state.confirmVisible }
+          title="Confirm"
+          cancel={ this.closeModal }
+          body={ "Submit the data to MCAZ?" }
+          confirmText={ "Upload" }
+          confirmBSStyle={ "success" }
+          onConfirm={ this.upload }
+          cancelText={ "Cancel" }
+          >
+        </Confirm>
+      )
+    }
     return (
       <div>
+        { confirmVisible }
         <h3 className="text-center">Adverse Drug Reaction (ADR) Report Form</h3>
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
 
@@ -275,12 +297,12 @@ class AEFIReportingForm extends FormComponent {
       setNotification({ message : messages.validationErrors, level: "error", id: new Date().getTime() })
       return
     }
+    this.setState({ confirmVisible : true })
+  }
 
-    if(!valid) {
-      this.setState({ validate : true })
-      return
-    }
-
+  upload() {
+    const { uploadData, saveCompleted, connection } = this.props
+    const { model } = this.state
     if(connection.isConnected) {
       uploadData(model, AEFI_URL)
     } else {

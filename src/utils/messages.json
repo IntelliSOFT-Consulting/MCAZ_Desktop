@@ -1,5 +1,7 @@
 {
-"validationErrors" : "Validation errors, fill in all the required fields",
-"changesSaved": "Changes saved",
-"datauploaded" : "Data uploaded"
+  "validationErrors" : "Validation errors, fill in all the required fields",
+  "changesSaved": "Changes saved",
+  "datauploaded" : "Data uploaded",
+  "uploaderror" : "Unexpected response from server.",
+  "offline" : "The application seems to be offline, try when connection is available"
 }

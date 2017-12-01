@@ -10,6 +10,7 @@ export default class FormComponent extends Component {
     this.saveAndContinue = this.saveAndContinue.bind(this)
     this.cancel = this.cancel.bind(this)
     this.goBack = this.goBack.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
   saveAndContinue(e) {
@@ -18,6 +19,10 @@ export default class FormComponent extends Component {
     const { model } = this.state
     saveDraft(model)
     setNotification({ message : messages.changesSaved, level: "info", id: new Date().getTime() })
+  }
+
+  closeModal() {
+    this.setState({ confirmVisible : false })
   }
 
   cancel(e) {

@@ -8,7 +8,8 @@ import connection from './connection'
 import page from './page'
 import currentReport from './currentReport'
 import notification from './notification'
+import uploadStatus from './uploadStatus'
 
-const pvApp = combineReducers({ drafts, completed, uploaded, reportFilter, connection, page, currentReport, notification })
+const pvApp = combineReducers({ drafts, completed, uploaded, reportFilter, connection, page, currentReport, notification, uploadStatus })
 
 export default pvApp

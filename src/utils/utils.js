@@ -1,4 +1,5 @@
 import { REPORT_TYPE_ADR, REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV } from './Constants'
+import { ADR_URL, SAE_URL, AEFI_URL, SAEFI_URL } from './Constants'
 /**
   Validator for Date of Birth
   If the year only is selected, return true.
@@ -68,5 +69,17 @@ export const getRequestPayload  = (data) => {
     var payload = {}
     payload.saefi = data
     return payload
+  }
+}
+
+export const getURL = (data) => {
+  if(data.type == REPORT_TYPE_ADR) {
+    return ADR_URL
+  } else if(data.type == REPORT_TYPE_SAE) {
+    return SAE_URL
+  } else if(data.type == REPORT_TYPE_AEFI) {
+    return AEFI_URL
+  } else if(data.type == REPORT_TYPE_AEFI_INV) {
+    return SAEFI_URL
   }
 }

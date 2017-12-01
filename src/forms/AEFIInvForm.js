@@ -1,4 +1,9 @@
 import React, { Component } from 'react'
+
+import FormComponent from './FormComponent'
+
+import Confirm from '../dialogs/Confirm'
+
 import TextInput from '../inputs/TextInput'
 import SingleMultipleInput from "../inputs/SingleMultipleInput"
 import DatePickerInput from "../inputs/DatePickerInput"
@@ -6,8 +11,6 @@ import SelectInput from "../inputs/SelectInput"
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import AEFIInvVaccinationTableComponent from '../components/AEFIInvVaccinationTableComponent'
 import FileInputComponent from '../inputs/FileInputComponent'
-
-import FormComponent from './FormComponent'
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI_INV, SAEFI_URL } from '../utils/Constants'
 
@@ -29,13 +32,34 @@ class AEFIInvForm extends FormComponent {
     //model = {"rid":1511846288224,"type":"REPORT_TYPE_AEFI_INV","designation_id":"1","vaccination_in_other":"s","site_type_other":"s","place_vaccination_other":"s","reporter_name":"s","telephone":"s","reporter_email":"s","report_date":"8-10-2017","start_date":"14-10-2017","complete_date":"27-10-2017","patient_name":"sss","gender":"Male","hospitalization_date":"7-10-2017","status_on_date":"Died","died_date":"7-10-2017","autopsy_done":"No","autopsy_planned":"No","past_history":"Unknown","adverse_event":"Unknown","past_history_remarks":"s","adverse_event_remarks":"s","allergy_history_remarks":"s","allergy_history":"Unknown","existing_illness":"Unknown","existing_illness_remarks":"s","hospitalization_history":"No","hospitalization_history_remarks":"s","medication_vaccination":"Unknown","medication_vaccination_remarks":"s","faith_healers":"No","faith_healers_remarks":"s","family_history":"No","family_history_remarks":"ss","pregnant":"No","breastfeeding":"No","infant":"full-term","birth_weight":"12","delivery_procedure":"Caesarean","source_examination":"source_examination","verbal_source":"x","examiner_name":"x","signs_symptoms":"x","person_details":"x","person_date":"22-10-2017","person_designation":"x","medical_care":"x","not_medical_care":"x","final_diagnosis":"x","saefi_list_of_vaccines":[{"vaccine_name":"xx","vaccination_doses":"2"}],"when_vaccinated":"Within the last vaccinations of the session","when_vaccinated_specify":"xxx","prescribing_error":"No","vaccine_unsterile":"Unable to assess","vaccine_condition":"Unable to assess","vaccine_reconstitution":"Unable to assess","vaccine_handling":"Unable to assess","vaccine_administered":"Unable to assess","vaccinated_vial":"2","vaccinated_session":"3","vaccinated_locations":"1","vaccinated_locations_specify":"dsd","vaccinated_cluster":"Unknown","vaccinated_cluster_vial":"Unknown","vaccinated_cluster_number":"4","vaccinated_cluster_vial_number":"d","syringes_used":"Unknown","syringes_used_specify":"Recycled disposable","syringes_used_findings":"d","reconstitution_multiple":"Yes","reconstitution_different":"d","reconstitution_syringe":"d","reconstitution_observations":"d","reconstitution_vial":"d","reconstitution_vaccines":"d","cold_temperature":"No","cold_temperature_deviation":"No","cold_temperature_specify":"d","procedure_followed":"No","partial_vaccines":"No","other_items":"No","unusable_vaccines":"No","unusable_diluents":"No","cold_transportation":"No","additional_observations":"d","vaccine_carrier":"No","transport_findings":"d","similar_events":"No","coolant_packs":"d","similar_events_describe":"d","similar_events_episodes":"dd","affected_vaccinated":"d","affected_unknown":"d","community_comments":"d","affected_not_vaccinated":"dd","relevant_findings":"ddf"}
 
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
-    this.state = { model : model, validate : null }
+    this.upload = this.upload.bind(this)
+
+    this.state = { model : model, validate : null, confirmVisible : false }
   }
 
   render() {
     const { model } = this.state
+
+    var confirmVisible = null
+    if(this.state.confirmVisible) {
+      confirmVisible = (
+        <Confirm
+          visible={ this.state.confirmVisible }
+          title="Confirm"
+          cancel={ this.closeModal }
+          body={ "Submit the data to MCAZ?" }
+          confirmText={ "Upload" }
+          confirmBSStyle={ "success" }
+          onConfirm={ this.upload }
+          cancelText={ "Cancel" }
+          >
+        </Confirm>
+      )
+    }
+
     return (
       <div className="saefi-form">
+        { confirmVisible }
         <h3 className="text-center">
           <span className="text-center">
             <img src="assets/images/mcaz_3.png" className="logo"></img>
@@ -642,7 +666,12 @@ additional sheets if necessary)</h5>
       setNotification({ message : messages.validationErrors, level: "error", id: new Date().getTime() })
       return
     }
+    this.setState({ confirmVisible : true })
+  }
 
+  upload() {
+    const { uploadData, saveCompleted, connection } = this.props
+    const { model } = this.state
     if(connection.isConnected) {
       uploadData(model, SAEFI_URL)
     } else {

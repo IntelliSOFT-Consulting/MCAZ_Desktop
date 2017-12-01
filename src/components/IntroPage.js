@@ -27,7 +27,12 @@ export default class IntroPage extends Component {
   }
 
   uploadData() {
-
+    const { uploadCompletedReports, completed, connection, setNotification } = this.props
+    if(connection.isConnected) {
+      uploadCompletedReports(completed)
+    } else {
+      setNotification({ message : messages.offline, level: "error", id: new Date().getTime() })
+    }
   }
 
   render() {
