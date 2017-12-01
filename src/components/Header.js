@@ -21,7 +21,7 @@ export default class Header extends Component {
           <h2>Medicines Control Authourity of Zimbabwe</h2>
           <p>SAE, ADR and AEFI electronic reportings.</p>
         </div>
-        <nav className="navbar navbar-inverse">
+        <nav className="navbar navbar-inverse navbar-fixed-top">
           <div className="container-fluid">
             <div className="navbar-header">
             </div>
