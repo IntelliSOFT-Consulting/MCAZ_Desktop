@@ -5,6 +5,8 @@ import TableComponent from './TableComponent'
 import CheckboxInput from '../inputs/CheckboxInput'
 import SelectInput from '../inputs/SelectInput'
 
+import moment from 'moment'
+
 import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
 
 import { FREQUENCY, ROUTE, DOSE } from '../utils/FieldOptions'
@@ -43,8 +45,8 @@ export default class MedicationTableComponent extends TableComponent {
         <td><SelectInput hideLabel={ true } name="route_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ ROUTE }/></td>
         <td><SelectInput hideLabel={ true } name="frequency_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ FREQUENCY }/></td>
         <td><TextInput hideLabel={ true } name="indication" model={ model[name][index] }/></td>
-        <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><DatePickerInput hideLabel={ true } name="stop_date" model={ model[name][index] } /></td>
+        <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true } maxDate={ moment() }/></td>
+        <td><DatePickerInput hideLabel={ true } name="stop_date" model={ model[name][index] } maxDate={ moment() } minDate={ model[name][index]['start_date'] }/></td>
         <td><CheckboxInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ ['1'] }/></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>

@@ -17,11 +17,11 @@ export default class DatePickerInput extends Component {
         const v = dateTime[0].split("-")
 
         const date = moment().year(v[2]).month(v[1]).date(v[0]) //new Date(model[name]['month'] + '/' + model[name]['day'] + '/' + model[name]['year'])
+        value = date
         if(showTime && dateTime.length == 2) {
           const t = dateTime[1].split(":")
           value.hour(t[0]).minute(v[1])
         }
-        value = date
       }
     }
     this.state = {
@@ -29,6 +29,7 @@ export default class DatePickerInput extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this)
+    this.getDateTimeFromString = this.getDateTimeFromString.bind(this)
   }
 
   handleChange(date) {
@@ -48,8 +49,21 @@ export default class DatePickerInput extends Component {
     }
   }
 
+  getDateTimeFromString(dateTime) {
+    const split = dateTime.split(" ")
+    const v = split[0].split("-")
+
+    var date = moment().year(v[2]).month(v[1]).date(v[0]) //new Date(model[name]['month'] + '/' + model[name]['day'] + '/' + model[name]['year'])
+
+    if(split.length == 2) {
+      const t = split[1].split(":")
+      date.hour(t[0]).minute(v[1])
+    }
+    return date
+  }
+
   render() {
-    const { label, name, required, hideLabel, showTime } = this.props
+    const { label, name, required, hideLabel, showTime, maxDate, minDate } = this.props
     var input = null
 
     var reqSpan = null
@@ -59,9 +73,9 @@ export default class DatePickerInput extends Component {
       )
     }
     const dateFormat = showTime? "MM-DD-YYYY HH:mm" : "MM-DD-YYYY"
-
     const hasError = (this.state.validate && required)? this.validate()  : ""
     const className = "form-group" + hasError
+    const minDateValue = (minDate && typeof minDate == 'string')? this.getDateTimeFromString(minDate) : minDate
 
     if(hideLabel) {
       return <div className={ hasError }><DatePicker
@@ -69,7 +83,7 @@ export default class DatePickerInput extends Component {
           onChange={this.handleChange}
           showTimeSelect={ showTime }
           timeFormat="HH:mm"
-          timeIntervals={ 1 }
+          timeIntervals={ 1 } maxDate={ maxDate } minDate={ minDateValue }
           className="form-control input-sm"
           dateFormat={ dateFormat }
       /></div>
@@ -83,7 +97,7 @@ export default class DatePickerInput extends Component {
               selected={ this.state.value }
               onChange={ this.handleChange } showTimeSelect={ showTime }
               timeFormat="HH:mm"
-              timeIntervals={ 1 }
+              timeIntervals={ 1 } maxDate={ maxDate } minDate={ minDateValue }
               dateFormat={ dateFormat }
           />
         </div>
