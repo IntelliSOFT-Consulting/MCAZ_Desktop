@@ -482,20 +482,20 @@ additional sheets if necessary)</h5>
               <SingleMultipleInput label="Same reconstitution syringe used for multiple vials of same vaccine?" options={ BOOLEAN_OPTIONS } name="reconstitution_multiple" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Same reconstitution syringe used for reconstituting different vaccines?" model={ model } name="reconstitution_different" options={ BOOLEAN_OPTIONS } />
+              <SingleMultipleInput label="Same reconstitution syringe used for reconstituting different vaccines?" model={ model } name="reconstitution_different" options={ BOOLEAN_OPTIONS } />
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Separate reconstitution syringe for each vaccine vial?" name="reconstitution_vial" model={ model } options={ BOOLEAN_OPTIONS }/>
+              <SingleMultipleInput label="Separate reconstitution syringe for each vaccine vial?" name="reconstitution_vial" model={ model } options={ BOOLEAN_OPTIONS }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Separate reconstitution syringe for each vaccination?" name="reconstitution_syringe" model={ model } options={ BOOLEAN_OPTIONS }/>
+              <SingleMultipleInput label="Separate reconstitution syringe for each vaccination?" name="reconstitution_syringe" model={ model } options={ BOOLEAN_OPTIONS }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Are the vaccines and diluents used the same as those recommended by the manufacturer?" name="reconstitution_vaccines" model={ model } options={ BOOLEAN_OPTIONS }/>
+              <SingleMultipleInput label="Are the vaccines and diluents used the same as those recommended by the manufacturer?" name="reconstitution_vaccines" model={ model } options={ BOOLEAN_OPTIONS }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Specific key findings/additional observations and comments:" name="reconstitution_observations" model={ model }/>

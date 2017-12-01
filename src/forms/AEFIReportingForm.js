@@ -80,7 +80,7 @@ class AEFIReportingForm extends FormComponent {
       <div>
         { confirmVisible }
         { confirmCancel }
-        <h3 className="text-center">Adverse Drug Reaction (ADR) Report Form</h3>
+        <h3 className="text-center">Adverse Event After Immunization (AEFI) Report Form</h3>
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
 
         <form className="form-horizontal">
@@ -156,7 +156,7 @@ class AEFIReportingForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Today's date" name="" model={ model }/>
+              <DatePickerInput label="Today's date" name="" model={ model } showTime={ true }/>
             </div>
           </div>
           <div className="container">

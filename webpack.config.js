@@ -11,7 +11,17 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
       },
-      { test: /\.css$/, loader: "style-loader!css-loader" }
+      { test: /\.css$/,
+        use: [{
+        loader: "style-loader",
+          options: {
+            insertAt: 'top'
+          }
+        }, {
+          loader: "css-loader"
+        }
+        ]
+      }
     ]
   },
   externals: {

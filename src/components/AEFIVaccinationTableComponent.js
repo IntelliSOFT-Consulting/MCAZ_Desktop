@@ -36,7 +36,7 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
     return (
       <tr key={ Math.floor(Math.random() * 10000) }>
         <td><TextInput hideLabel={ true } name="vaccine_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><DatePickerInput hideLabel={ true } name="vaccination_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><DatePickerInput hideLabel={ true } name="vaccination_date" model={ model[name][index] } validate={ this.state.validate } required={ true } showTime={ true }/></td>
         <td><TextInput hideLabel={ true } name="dosage" model={ model[name][index] } validate={ this.state.validate } required={ true } /></td>
         <td><TextInput hideLabel={ true } name="batch_number" model={ model[name][index] } /></td>
         <td><DatePickerInput hideLabel={ true } name="expiry_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>

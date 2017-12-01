@@ -9,13 +9,18 @@ export default class DatePickerInput extends Component {
 
   constructor (props) {
     super(props)
-    const { model, name, validate } = this.props
+    const { model, name, validate, showTime } = this.props
     var value = null
     if(model && model[name]) {
       if(typeof model[name] == "string") {
-        const v = model[name].split("-")
+        const dateTime = model.split(" ")
+        const v = dateTime[0].split("-")
 
         const date = moment().year(v[2]).month(v[1]).date(v[0]) //new Date(model[name]['month'] + '/' + model[name]['day'] + '/' + model[name]['year'])
+        if(showTime && dateTime.length == 2) {
+          const t = dateTime[1].split(":")
+          value.hour(t[0]).minute(v[1])
+        }
         value = date
       }
     }
@@ -30,9 +35,12 @@ export default class DatePickerInput extends Component {
     this.setState({
       value: date
     });
-    const { model, name } = this.props
+    const { model, name, showTime } = this.props
     if(model) {
       model[name] = date.date() + "-" + date.month() + "-" + date.year()
+      if(showTime) {
+        model[name] += " " + date.hour() + ":" + date.minute()
+      }
       //var dateStr = "[ 'day' : " + date.date() + ", 'month' : " + date.month() + ", 'year' : " + date.year() + "]"
       //model[name]['day'] = date.date()
       //model[name]['month'] = date.month()
@@ -41,7 +49,7 @@ export default class DatePickerInput extends Component {
   }
 
   render() {
-    const { label, name, required, hideLabel } = this.props
+    const { label, name, required, hideLabel, showTime } = this.props
     var input = null
 
     var reqSpan = null
@@ -50,15 +58,20 @@ export default class DatePickerInput extends Component {
         <span className="required">*</span>
       )
     }
+    const dateFormat = showTime? "MM-DD-YYYY HH:mm" : "MM-DD-YYYY"
 
     const hasError = (this.state.validate && required)? this.validate()  : ""
     const className = "form-group" + hasError
 
     if(hideLabel) {
       return <div className={ hasError }><DatePicker
-          selected={this.state.value}
+          selected={ this.state.value }
           onChange={this.handleChange}
+          showTimeSelect={ showTime }
+          timeFormat="HH:mm"
+          timeIntervals={ 1 }
           className="form-control input-sm"
+          dateFormat={ dateFormat }
       /></div>
     }
 
@@ -67,8 +80,11 @@ export default class DatePickerInput extends Component {
         <label className="col-md-4 control-label form-input-label">{ label  } { reqSpan }</label>
         <div className="col-md-6">
           <DatePicker className="form-control input-sm"
-              selected={this.state.value}
-              onChange={this.handleChange}
+              selected={ this.state.value }
+              onChange={ this.handleChange } showTimeSelect={ showTime }
+              timeFormat="HH:mm"
+              timeIntervals={ 1 }
+              dateFormat={ dateFormat }
           />
         </div>
       </div>
