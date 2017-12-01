@@ -37,7 +37,7 @@ class AEFIReportingForm extends FormComponent {
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.upload = this.upload.bind(this)
 
-    this.state = { model , validate : null, confirmVisible : false}
+    this.state = { model , validate : null, confirmVisible : false, confirmCancel : false }
   }
 
   render() {
@@ -59,9 +59,27 @@ class AEFIReportingForm extends FormComponent {
         </Confirm>
       )
     }
+
+    var confirmCancel = null
+    if(this.state.confirmCancel) {
+      confirmCancel = (
+        <Confirm
+          visible={ this.state.confirmCancel }
+          title="Confirm"
+          cancel={ this.closeModal }
+          body={ "Cancel filling form?" }
+          confirmText={ "Yes" }
+          confirmBSStyle={ "danger" }
+          onConfirm={ this.cancelConfirmed }
+          cancelText={ "No" }
+          >
+        </Confirm>
+      )
+    }
     return (
       <div>
         { confirmVisible }
+        { confirmCancel }
         <h3 className="text-center">Adverse Drug Reaction (ADR) Report Form</h3>
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
 

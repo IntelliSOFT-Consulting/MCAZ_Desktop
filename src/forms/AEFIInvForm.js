@@ -34,7 +34,7 @@ class AEFIInvForm extends FormComponent {
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.upload = this.upload.bind(this)
 
-    this.state = { model : model, validate : null, confirmVisible : false }
+    this.state = { model : model, validate : null, confirmVisible : false, confirmCancel : false }
   }
 
   render() {
@@ -57,9 +57,27 @@ class AEFIInvForm extends FormComponent {
       )
     }
 
+    var confirmCancel = null
+    if(this.state.confirmCancel) {
+      confirmCancel = (
+        <Confirm
+          visible={ this.state.confirmCancel }
+          title="Confirm"
+          cancel={ this.closeModal }
+          body={ "Cancel filling form?" }
+          confirmText={ "Yes" }
+          confirmBSStyle={ "danger" }
+          onConfirm={ this.cancelConfirmed }
+          cancelText={ "No" }
+          >
+        </Confirm>
+      )
+    }
+
     return (
       <div className="saefi-form">
         { confirmVisible }
+        { confirmCancel }
         <h3 className="text-center">
           <span className="text-center">
             <img src="assets/images/mcaz_3.png" className="logo"></img>
