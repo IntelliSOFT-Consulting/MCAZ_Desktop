@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 182);
+/******/ 	return __webpack_require__(__webpack_require__.s = 183);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1906,7 +1906,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(205)("./" + name);
+                __webpack_require__(206)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -4490,9 +4490,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(183);
-} else {
   module.exports = __webpack_require__(184);
+} else {
+  module.exports = __webpack_require__(185);
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -4706,7 +4706,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _utils = __webpack_require__(29);
+var _utils = __webpack_require__(25);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4849,79 +4849,6 @@ exports.default = TextInput;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-/**
-  Various constants
-*/
-
-// Report types
-var REPORT_TYPE_ADR = exports.REPORT_TYPE_ADR = 'REPORT_TYPE_ADR';
-var REPORT_TYPE_SAE = exports.REPORT_TYPE_SAE = 'REPORT_TYPE_SAE';
-var REPORT_TYPE_AEFI_INV = exports.REPORT_TYPE_AEFI_INV = 'REPORT_TYPE_AEFI_INV';
-var REPORT_TYPE_AEFI = exports.REPORT_TYPE_AEFI = 'REPORT_TYPE_AEFI';
-
-// Report status
-var STATUS_DRAFT = exports.STATUS_DRAFT = 'STATUS_DRAFT';
-var STATUS_COMPLETED = exports.STATUS_COMPLETED = 'STATUS_COMPLETED';
-var STATUS_UPLOADED = exports.STATUS_UPLOADED = 'STATUS_UPLOADED';
-
-var MAIN_URL = exports.MAIN_URL = 'http://45.79.130.91/api/sadrs';
-
-var MAIN_PAGE = exports.MAIN_PAGE = 'MAIN_PAGE'; // The main page
-var ADR_FORM_PAGE = exports.ADR_FORM_PAGE = 'ADR_FORM_PAGE';
-var SAE_FORM_PAGE = exports.SAE_FORM_PAGE = 'SAE_FORM_PAGE';
-var AEFI_REPORT_PAGE = exports.AEFI_REPORT_PAGE = 'AEFI_REPORT_PAGE';
-var REPORTS_LIST_PAGE = exports.REPORTS_LIST_PAGE = 'REPORTS_LIST_PAGE';
-var READ_ONLY_PAGE = exports.READ_ONLY_PAGE = 'READ_ONLY_PAGE';
-
-var ADR_URL = exports.ADR_URL = 'http://45.79.130.91/api/sadrs'; // Url for ADR
-var SAE_URL = exports.SAE_URL = 'http://45.79.130.91/api/adrs'; // Url for SAE
-var AEFI_URL = exports.AEFI_URL = 'http://45.79.130.91/api/aefis'; // Url for SAE
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-if (process.env.NODE_ENV !== 'production') {
-  var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol.for && Symbol.for('react.element') || 0xeac7;
-
-  var isValidElement = function isValidElement(object) {
-    return (typeof object === 'undefined' ? 'undefined' : _typeof(object)) === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-  };
-
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-  var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(199)(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(200)();
-}
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 var SEVERITY_REASON = exports.SEVERITY_REASON = [{ key: "", value: "" }, { key: 'Death', value: 'Death' }, { key: 'Life-threatening', value: 'Life-threatening' }, { key: 'Hospitalizaion/Prolonged', value: 'Hospitalizaion/Prolonged' }, { key: 'Disabling', value: 'Disabling' }, { key: 'Congenital-anomaly', value: 'Congenital-anomaly' }, { key: 'Other Medically Important Reason', value: 'Other Medically Important Reason' }];
 
 var OUTCOME = exports.OUTCOME = [{ key: "", value: "" }, { key: 'Recovered', value: 'Recovered' }, { key: 'Recovering', value: 'Recovering' }, { key: 'Not yet recovered', value: 'Not yet recovered' }, { key: 'Fatal', value: 'Fatal' }, { key: 'Unknown', value: 'Unknown' }];
@@ -5056,8 +4983,73 @@ var GENDER = exports.GENDER = [{ key: "Male", value: "Male" }, { key: "Female", 
 
 var AEFI_SEVERITY_REASON = exports.AEFI_SEVERITY_REASON = [{ key: "", value: "select one" }, { key: 'Death', value: 'Death' }, { key: 'Life-threatening', value: 'Life-threatening' }, { key: 'Hospitalizaion/Prolonged', value: 'Hospitalizaion/Prolonged' }, { key: 'Disabling', value: 'Disabling' }, { key: 'Congenital-anomaly', value: 'Congenital-anomaly' }];
 
+var AEFI_ADVERSE_EVENTS = exports.AEFI_ADVERSE_EVENTS = [{ key: "ae_severe_local_reaction", value: "Severe local reaction" }, { key: "ae_seizures", value: "Seizures" }, { key: "ae_abscess", value: "Abscess" }, { key: "ae_sepsis", value: "Sepsis" }, { key: "ae_encephalopathy", value: "Encephalopathy" }, { key: "ae_toxic_shock", value: "Toxic shock syndrome" }, { key: "ae-thrombocytopenia", value: "Thrombocytopenia" }, { key: "ae_anaphylaxis", value: "Anaphylaxis" }, { key: "ae-fever", value: "Fever≥38°C" }, { key: "ae-3days", value: ">3 days" }, { key: "ae-febrile", value: "febrile" }, { key: "ae-beyond-joint", value: "beyond nearest joint" }, { key: "ae_afebrile", value: "afebrile" }, { key: "ae-other", value: "Other (specify)" }];
+
+var STATUS_ON_DATE = exports.STATUS_ON_DATE = [{ key: "Died", value: "Died" }, { key: "Disabled", value: "Disabled" }, { key: "Recovering", value: "Recovering" }, { key: "Recovered completely", value: "Recovered completely" }, { key: "Unknown", value: "Unknown" }];
+
+var INFANT_BIRTH_OPTS = exports.INFANT_BIRTH_OPTS = [{ key: "full-term", value: "full-term" }, { key: "pre-term", value: "pre-term" }, { key: "post-term", value: "post-term" }];
+
+var DELIVERY_OPTS = exports.DELIVERY_OPTS = [{ key: "Normal", value: "Normal" }, { key: "Caesarean", value: "Caesarean" }, { key: "Assisted (forceps, vacuum etc.)", value: "Assisted (forceps, vacuum etc.)" }, { key: "with complication", value: "with complication" }];
+
+var SOURCE_INFO = exports.SOURCE_INFO = [{ key: "source_examination", value: "Examination by the investigator" }, { key: "source_verbal", value: "Verbal autopsy" }, { key: "source_documents", value: "Documents" }, { key: "source_other", value: "Other" }];
+
+var WHEN_VACCINATED = exports.WHEN_VACCINATED = [{ key: "Within the first vaccinations of the session", value: "Within the first vaccinations of the session" }, { key: "Within the last vaccinations of the session", value: "Within the last vaccinations of the session" }, { key: "Unknown", value: "Unknown" }];
+
+var MULTI_VIALS = exports.MULTI_VIALS = [{ key: "within the first few doses of the vial administered", value: "within the first few doses of the vial administered" }, { key: "within the last doses of the vial administered", value: "within the last doses of the vial administered" }, { key: "Unknown", value: "Unknown" }];
+
+var SYRINGES_USED = exports.SYRINGES_USED = [{ key: "Glass", value: "Glass" }, { key: "Disposable", value: "Disposable" }, { key: "Recycled disposable", value: "Recycled disposable" }, { key: "Other", value: "Other" }];
+
+var PLACE_VACCINATION = exports.PLACE_VACCINATION = [{ key: "Govt. health facility", value: "Govt. health facility" }, { key: "Private health facility", value: "Private health facility" }, { key: "Other", value: "Other" }];
+
+var SITE_TYPE = exports.SITE_TYPE = [{ key: "Fixed", value: "Fixed" }, { key: "Mobile", value: 'Mobile' }, { key: "Outreach", value: "Outreach" }, { key: "Other", value: "Other" }];
+
+var VACCINATION_IN = exports.VACCINATION_IN = [{ key: "Campaign", value: "Campaign" }, { key: "Routine", value: "Routine" }, { key: "Other", value: "Other" }];
+
+var BOOLEAN_UNABLE_OPTIONS = exports.BOOLEAN_UNABLE_OPTIONS = [{ key: "Yes", value: "Yes" }, { key: "No", value: "No" }, { key: "Unable to assess", value: "Unable to assess" }];
+
 /***/ }),
-/* 7 */
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+/**
+  Various constants
+*/
+
+// Report types
+var REPORT_TYPE_ADR = exports.REPORT_TYPE_ADR = 'REPORT_TYPE_ADR';
+var REPORT_TYPE_SAE = exports.REPORT_TYPE_SAE = 'REPORT_TYPE_SAE';
+var REPORT_TYPE_AEFI_INV = exports.REPORT_TYPE_AEFI_INV = 'REPORT_TYPE_AEFI_INV'; // REPORT_TYPE_AEFI_INV
+var REPORT_TYPE_AEFI = exports.REPORT_TYPE_AEFI = 'REPORT_TYPE_AEFI';
+
+// Report status
+var STATUS_DRAFT = exports.STATUS_DRAFT = 'STATUS_DRAFT';
+var STATUS_COMPLETED = exports.STATUS_COMPLETED = 'STATUS_COMPLETED';
+var STATUS_UPLOADED = exports.STATUS_UPLOADED = 'STATUS_UPLOADED';
+
+var MAIN_URL = exports.MAIN_URL = 'http://45.79.130.91/api/sadrs';
+
+var MAIN_PAGE = exports.MAIN_PAGE = 'MAIN_PAGE'; // The main page
+var ADR_FORM_PAGE = exports.ADR_FORM_PAGE = 'ADR_FORM_PAGE';
+var SAE_FORM_PAGE = exports.SAE_FORM_PAGE = 'SAE_FORM_PAGE';
+var AEFI_REPORT_PAGE = exports.AEFI_REPORT_PAGE = 'AEFI_REPORT_PAGE';
+var AEFI_INV_PAGE = exports.AEFI_INV_PAGE = 'AEFI_INV_PAGE';
+var REPORTS_LIST_PAGE = exports.REPORTS_LIST_PAGE = 'REPORTS_LIST_PAGE';
+var READ_ONLY_PAGE = exports.READ_ONLY_PAGE = 'READ_ONLY_PAGE';
+
+var ADR_URL = exports.ADR_URL = 'http://45.79.130.91/api/sadrs'; // Url for ADR
+var SAE_URL = exports.SAE_URL = 'http://45.79.130.91/api/adrs'; // Url for SAE
+var AEFI_URL = exports.AEFI_URL = 'http://45.79.130.91/api/aefis'; // Url for AEFI
+var SAEFI_URL = exports.SAEFI_URL = 'http://45.79.130.91/api/saefis'; // Url for SAEFI
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5073,7 +5065,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _utils = __webpack_require__(29);
+var _utils = __webpack_require__(25);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5226,6 +5218,40 @@ var SelectInput = function (_Component) {
 exports.default = SelectInput;
 
 /***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (process.env.NODE_ENV !== 'production') {
+  var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol.for && Symbol.for('react.element') || 0xeac7;
+
+  var isValidElement = function isValidElement(object) {
+    return (typeof object === 'undefined' ? 'undefined' : _typeof(object)) === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+  };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = __webpack_require__(200)(isValidElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(201)();
+}
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5358,201 +5384,6 @@ exports.default = ReadOnlyDataRenderer;
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.connect = exports.connectAdvanced = exports.createProvider = exports.Provider = undefined;
-
-var _Provider = __webpack_require__(218);
-
-var _Provider2 = _interopRequireDefault(_Provider);
-
-var _connectAdvanced = __webpack_require__(167);
-
-var _connectAdvanced2 = _interopRequireDefault(_connectAdvanced);
-
-var _connect = __webpack_require__(222);
-
-var _connect2 = _interopRequireDefault(_connect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.Provider = _Provider2.default;
-exports.createProvider = _Provider.createProvider;
-exports.connectAdvanced = _connectAdvanced2.default;
-exports.connect = _connect2.default;
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var SAVE_DRAFT_REPORT = exports.SAVE_DRAFT_REPORT = 'SAVE_DRAFT_REPORT'; // Save a draft Report
-var REMOVE_DRAFT_REPORT = exports.REMOVE_DRAFT_REPORT = 'REMOVE_DRAFT_REPORT'; // Save a draft Report
-var SAVE_COMPLETED_REPORT = exports.SAVE_COMPLETED_REPORT = 'SAVE_COMPLETED_REPORT'; // Save a completed report
-var REMOVE_COMPLETED_REPORT = exports.REMOVE_COMPLETED_REPORT = 'REMOVE_COMPLETED_REPORT'; // Save a completed report
-var SAVE_UPLOADED_REPORT = exports.SAVE_UPLOADED_REPORT = 'SAVE_UPLOADED_REPORT'; // Save an uploaded report
-var REMOVE_UPLOADED_REPORT = exports.REMOVE_UPLOADED_REPORT = 'REMOVE_UPLOADED_REPORT'; // Save an uploaded report
-var CHANGE_CONNECTION_STATUS = exports.CHANGE_CONNECTION_STATUS = 'CHANGE_CONNECTION_STATUS'; // Change connection status
-
-var SET_REPORT_FILTER = exports.SET_REPORT_FILTER = 'SET_REPORT_FILTER'; // Sets the report type that should be displayed
-
-var SHOW_PAGE = exports.SHOW_PAGE = 'SHOW_PAGE';
-
-var SET_REPORT = exports.SET_REPORT = 'SET_REPORT';
-
-var SET_NOTIFICATION = exports.SET_NOTIFICATION = 'SET_NOTIFICATION';
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-
-/* eslint-disable no-unused-vars */
-
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-function toObject(val) {
-	if (val === null || val === undefined) {
-		throw new TypeError('Object.assign cannot be called with null or undefined');
-	}
-
-	return Object(val);
-}
-
-function shouldUseNative() {
-	try {
-		if (!Object.assign) {
-			return false;
-		}
-
-		// Detect buggy property enumeration order in older V8 versions.
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc'); // eslint-disable-line no-new-wrappers
-		test1[5] = 'de';
-		if (Object.getOwnPropertyNames(test1)[0] === '5') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test2 = {};
-		for (var i = 0; i < 10; i++) {
-			test2['_' + String.fromCharCode(i)] = i;
-		}
-		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-			return test2[n];
-		});
-		if (order2.join('') !== '0123456789') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test3 = {};
-		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-			test3[letter] = letter;
-		});
-		if (Object.keys(Object.assign({}, test3)).join('') !== 'abcdefghijklmnopqrst') {
-			return false;
-		}
-
-		return true;
-	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
-		return false;
-	}
-}
-
-module.exports = shouldUseNative() ? Object.assign : function (target, source) {
-	var from;
-	var to = toObject(target);
-	var symbols;
-
-	for (var s = 1; s < arguments.length; s++) {
-		from = Object(arguments[s]);
-
-		for (var key in from) {
-			if (hasOwnProperty.call(from, key)) {
-				to[key] = from[key];
-			}
-		}
-
-		if (getOwnPropertySymbols) {
-			symbols = getOwnPropertySymbols(from);
-			for (var i = 0; i < symbols.length; i++) {
-				if (propIsEnumerable.call(from, symbols[i])) {
-					to[symbols[i]] = from[symbols[i]];
-				}
-			}
-		}
-	}
-
-	return to;
-};
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-function makeEmptyFunction(arg) {
-  return function () {
-    return arg;
-  };
-}
-
-/**
- * This function accepts and discards inputs; it has no side effects. This is
- * primarily useful idiomatically for overridable function endpoints which
- * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
- */
-var emptyFunction = function emptyFunction() {};
-
-emptyFunction.thatReturns = makeEmptyFunction;
-emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-emptyFunction.thatReturnsThis = function () {
-  return this;
-};
-emptyFunction.thatReturnsArgument = function (arg) {
-  return arg;
-};
-
-module.exports = emptyFunction;
-
-/***/ }),
-/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5737,7 +5568,7 @@ var SingleMultipleInput = function (_Component) {
 exports.default = SingleMultipleInput;
 
 /***/ }),
-/* 14 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5753,7 +5584,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDatepicker = __webpack_require__(202);
+var _reactDatepicker = __webpack_require__(203);
 
 var _reactDatepicker2 = _interopRequireDefault(_reactDatepicker);
 
@@ -5761,9 +5592,9 @@ var _moment = __webpack_require__(0);
 
 var _moment2 = _interopRequireDefault(_moment);
 
-var _utils = __webpack_require__(29);
+var _utils = __webpack_require__(25);
 
-__webpack_require__(212);
+__webpack_require__(213);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5787,10 +5618,13 @@ var DatePickerInput = function (_Component) {
         validate = _this$props.validate;
 
     var value = null;
-    if (model && model[name] && Object.keys(model[name]).length == 3) {
+    if (model && model[name]) {
+      if (typeof model[name] == "string") {
+        var v = model[name].split("-");
 
-      var date = (0, _moment2.default)().year(model[name]['year']).month(model[name]['month']).date(model[name]['day']); //new Date(model[name]['month'] + '/' + model[name]['day'] + '/' + model[name]['year'])
-      value = date;
+        var date = (0, _moment2.default)().year(v[2]).month(v[1]).date(v[0]); //new Date(model[name]['month'] + '/' + model[name]['day'] + '/' + model[name]['year'])
+        value = date;
+      }
     }
     _this.state = {
       value: value, validate: validate
@@ -5811,10 +5645,11 @@ var DatePickerInput = function (_Component) {
           name = _props.name;
 
       if (model) {
-        model[name] = {};
-        model[name]['day'] = date.date();
-        model[name]['month'] = date.month();
-        model[name]['year'] = date.year();
+        model[name] = date.date() + "-" + date.month() + "-" + date.year();
+        //var dateStr = "[ 'day' : " + date.date() + ", 'month' : " + date.month() + ", 'year' : " + date.year() + "]"
+        //model[name]['day'] = date.date()
+        //model[name]['month'] = date.month()
+        //model[name]['year'] = date.year()
       }
     }
   }, {
@@ -5910,7 +5745,7 @@ var DatePickerInput = function (_Component) {
 exports.default = DatePickerInput;
 
 /***/ }),
-/* 15 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5919,92 +5754,29 @@ exports.default = DatePickerInput;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setNotification = exports.showPage = exports.uploadCompletedReports = exports.uploadData = exports.setReport = exports.changeConnection = exports.setReportFilter = exports.removeUploaded = exports.saveUploaded = exports.removeCompleted = exports.saveCompleted = exports.removeDraft = exports.saveDraft = undefined;
+exports.connect = exports.connectAdvanced = exports.createProvider = exports.Provider = undefined;
 
-var _actionTypes = __webpack_require__(10);
+var _Provider = __webpack_require__(218);
 
-var _Constants = __webpack_require__(4);
+var _Provider2 = _interopRequireDefault(_Provider);
 
-var _require = __webpack_require__(174),
-    ipcRenderer = _require.ipcRenderer;
-/**
-  Saves a draft report
-*/
+var _connectAdvanced = __webpack_require__(168);
 
+var _connectAdvanced2 = _interopRequireDefault(_connectAdvanced);
 
-var saveDraft = exports.saveDraft = function saveDraft(data) {
-  return { type: _actionTypes.SAVE_DRAFT_REPORT, data: data };
-};
+var _connect = __webpack_require__(222);
 
-var removeDraft = exports.removeDraft = function removeDraft(data) {
-  return { type: _actionTypes.REMOVE_DRAFT_REPORT, data: data };
-};
+var _connect2 = _interopRequireDefault(_connect);
 
-var saveCompleted = exports.saveCompleted = function saveCompleted(data) {
-  return { type: _actionTypes.SAVE_COMPLETED_REPORT, data: data };
-};
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var removeCompleted = exports.removeCompleted = function removeCompleted(data) {
-  return { type: _actionTypes.REMOVE_COMPLETED_REPORT, data: data };
-};
-
-var saveUploaded = exports.saveUploaded = function saveUploaded(data) {
-  return { type: _actionTypes.SAVE_UPLOADED_REPORT, data: data };
-};
-
-var removeUploaded = exports.removeUploaded = function removeUploaded(data) {
-  return { type: _actionTypes.REMOVE_UPLOADED_REPORT, data: data };
-};
-
-var setReportFilter = exports.setReportFilter = function setReportFilter(filter) {
-  return { type: _actionTypes.SET_REPORT_FILTER, filter: filter };
-};
-
-var changeConnection = exports.changeConnection = function changeConnection(isConnected) {
-  return { type: _actionTypes.CHANGE_CONNECTION_STATUS, isConnected: isConnected };
-};
-
-var setReport = exports.setReport = function setReport(model) {
-  return { type: _actionTypes.SET_REPORT, model: model };
-};
-/**
-  The upload action.
-  Here we send a message to the main process and wait for the response.
-*/
-var uploadData = exports.uploadData = function uploadData(data, url) {
-
-  return function (dispatch) {
-    var req = {};
-    req.body = data;
-    req.url = url;
-    dispatch(saveCompleted(data));
-    dispatch(removeDraft(data));
-    ipcRenderer.send('upload-data', JSON.stringify(req));
-
-    ipcRenderer.on('upload-reply', function (event, arg) {
-      //dispatch(showPage('MAIN_PAGE'))
-      //dispatch(saveUploaded(data))
-      //dispatch(removeDraft(data))
-      //dispatch(removeCompleted(data))
-      console.log(arg); // prints "pong"
-    });
-  };
-};
-
-var uploadCompletedReports = exports.uploadCompletedReports = function uploadCompletedReports(data) {
-  ipcRenderer.send('upload-data', 'ping');
-};
-
-var showPage = exports.showPage = function showPage(page) {
-  return { type: _actionTypes.SHOW_PAGE, page: page };
-};
-
-var setNotification = exports.setNotification = function setNotification(notification) {
-  return { type: _actionTypes.SET_NOTIFICATION, notification: notification };
-};
+exports.Provider = _Provider2.default;
+exports.createProvider = _Provider.createProvider;
+exports.connectAdvanced = _connectAdvanced2.default;
+exports.connect = _connect2.default;
 
 /***/ }),
-/* 16 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6020,7 +5792,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(5);
+var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -6108,7 +5880,7 @@ TableComponent.propTypes = {
 };
 
 /***/ }),
-/* 17 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6117,77 +5889,286 @@ TableComponent.propTypes = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var KEY_PREFIX = exports.KEY_PREFIX = 'persist:';
-var FLUSH = exports.FLUSH = 'persist/FLUSH';
-var REHYDRATE = exports.REHYDRATE = 'persist/REHYDRATE';
-var PAUSE = exports.PAUSE = 'persist/PAUSE';
-var PERSIST = exports.PERSIST = 'persist/PERSIST';
-var PURGE = exports.PURGE = 'persist/PURGE';
-var REGISTER = exports.REGISTER = 'persist/REGISTER';
-var DEFAULT_VERSION = exports.DEFAULT_VERSION = -1;
+exports.setNotification = exports.showPage = exports.uploadCompletedReports = exports.uploadData = exports.setReport = exports.changeConnection = exports.setReportFilter = exports.removeUploaded = exports.saveUploaded = exports.removeCompleted = exports.saveCompleted = exports.removeDraft = exports.saveDraft = undefined;
+
+var _actionTypes = __webpack_require__(14);
+
+var _utils = __webpack_require__(25);
+
+var _messages = __webpack_require__(22);
+
+var _messages2 = _interopRequireDefault(_messages);
+
+var _Constants = __webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _require = __webpack_require__(175),
+    ipcRenderer = _require.ipcRenderer;
+/**
+  Saves a draft report
+*/
+
+
+var saveDraft = exports.saveDraft = function saveDraft(data) {
+  return { type: _actionTypes.SAVE_DRAFT_REPORT, data: data };
+};
+
+var removeDraft = exports.removeDraft = function removeDraft(data) {
+  return { type: _actionTypes.REMOVE_DRAFT_REPORT, data: data };
+};
+
+var saveCompleted = exports.saveCompleted = function saveCompleted(data) {
+  return { type: _actionTypes.SAVE_COMPLETED_REPORT, data: data };
+};
+
+var removeCompleted = exports.removeCompleted = function removeCompleted(data) {
+  return { type: _actionTypes.REMOVE_COMPLETED_REPORT, data: data };
+};
+
+var saveUploaded = exports.saveUploaded = function saveUploaded(data) {
+  return { type: _actionTypes.SAVE_UPLOADED_REPORT, data: data };
+};
+
+var removeUploaded = exports.removeUploaded = function removeUploaded(data) {
+  return { type: _actionTypes.REMOVE_UPLOADED_REPORT, data: data };
+};
+
+var setReportFilter = exports.setReportFilter = function setReportFilter(filter) {
+  return { type: _actionTypes.SET_REPORT_FILTER, filter: filter };
+};
+
+var changeConnection = exports.changeConnection = function changeConnection(isConnected) {
+  return { type: _actionTypes.CHANGE_CONNECTION_STATUS, isConnected: isConnected };
+};
+
+var setReport = exports.setReport = function setReport(model) {
+  return { type: _actionTypes.SET_REPORT, model: model };
+};
+/**
+  The upload action.
+  Here we send a message to the main process and wait for the response.
+*/
+var uploadData = exports.uploadData = function uploadData(data, url) {
+
+  return function (dispatch) {
+    var req = {};
+    req.body = (0, _utils.getRequestPayload)(data);
+    req.url = url;
+    dispatch(saveCompleted(data));
+    dispatch(removeDraft(data));
+    ipcRenderer.send('upload-data', JSON.stringify(req));
+
+    ipcRenderer.on('upload-reply', function (event, arg) {
+      //dispatch(showPage('MAIN_PAGE'))
+      //dispatch(saveUploaded(data))
+      //dispatch(removeDraft(data))
+      //dispatch(removeCompleted(data))
+      console.log(arg); // prints "pong"
+      var response = JSON.parse(arg);
+      if (response.sadr) {
+        response.sadr.sadr.id = response.sadr.id;
+        dispatch(saveUploaded(response.sadr.sadr));
+        dispatch(removeCompleted(response.sadr.sadr));
+        dispatch(setNotification({ message: _messages2.default.datauploaded, level: "info", id: new Date().getTime() }));
+      } else if (response.adr) {
+        response.adr.adr.id = response.adr.id;
+        dispatch(saveUploaded(response.adr.adr));
+        dispatch(removeCompleted(response.adr.adr));
+        dispatch(setNotification({ message: _messages2.default.datauploaded, level: "info", id: new Date().getTime() }));
+      } else if (response.aefi) {
+        response.aefi.aefi.id = response.aefi.id;
+        dispatch(saveUploaded(response.aefi.aefi));
+        dispatch(removeCompleted(response.aefi.aefi));
+        dispatch(setNotification({ message: _messages2.default.datauploaded, level: "info", id: new Date().getTime() }));
+      } else if (response.saefi) {
+        response.saefi.saefi.id = response.saefi.id;
+        dispatch(saveUploaded(response.saefi.saefi));
+        dispatch(removeCompleted(response.saefi.saefi));
+        dispatch(setNotification({ message: _messages2.default.datauploaded, level: "info", id: new Date().getTime() }));
+      }
+    });
+  };
+};
+
+var uploadCompletedReports = exports.uploadCompletedReports = function uploadCompletedReports(data) {
+  ipcRenderer.send('upload-data', 'ping');
+};
+
+var showPage = exports.showPage = function showPage(page) {
+  return { type: _actionTypes.SHOW_PAGE, page: page };
+};
+
+var setNotification = exports.setNotification = function setNotification(notification) {
+  return { type: _actionTypes.SET_NOTIFICATION, notification: notification };
+};
 
 /***/ }),
-/* 18 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var SAVE_DRAFT_REPORT = exports.SAVE_DRAFT_REPORT = 'SAVE_DRAFT_REPORT'; // Save a draft Report
+var REMOVE_DRAFT_REPORT = exports.REMOVE_DRAFT_REPORT = 'REMOVE_DRAFT_REPORT'; // Save a draft Report
+var SAVE_COMPLETED_REPORT = exports.SAVE_COMPLETED_REPORT = 'SAVE_COMPLETED_REPORT'; // Save a completed report
+var REMOVE_COMPLETED_REPORT = exports.REMOVE_COMPLETED_REPORT = 'REMOVE_COMPLETED_REPORT'; // Save a completed report
+var SAVE_UPLOADED_REPORT = exports.SAVE_UPLOADED_REPORT = 'SAVE_UPLOADED_REPORT'; // Save an uploaded report
+var REMOVE_UPLOADED_REPORT = exports.REMOVE_UPLOADED_REPORT = 'REMOVE_UPLOADED_REPORT'; // Save an uploaded report
+var CHANGE_CONNECTION_STATUS = exports.CHANGE_CONNECTION_STATUS = 'CHANGE_CONNECTION_STATUS'; // Change connection status
+
+var SET_REPORT_FILTER = exports.SET_REPORT_FILTER = 'SET_REPORT_FILTER'; // Sets the report type that should be displayed
+
+var SHOW_PAGE = exports.SHOW_PAGE = 'SHOW_PAGE';
+
+var SET_REPORT = exports.SET_REPORT = 'SET_REPORT';
+
+var SET_NOTIFICATION = exports.SET_NOTIFICATION = 'SET_NOTIFICATION';
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+
+/* eslint-disable no-unused-vars */
+
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+function toObject(val) {
+	if (val === null || val === undefined) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+function shouldUseNative() {
+	try {
+		if (!Object.assign) {
+			return false;
+		}
+
+		// Detect buggy property enumeration order in older V8 versions.
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc'); // eslint-disable-line no-new-wrappers
+		test1[5] = 'de';
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test2 = {};
+		for (var i = 0; i < 10; i++) {
+			test2['_' + String.fromCharCode(i)] = i;
+		}
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+			return test2[n];
+		});
+		if (order2.join('') !== '0123456789') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test3 = {};
+		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+			test3[letter] = letter;
+		});
+		if (Object.keys(Object.assign({}, test3)).join('') !== 'abcdefghijklmnopqrst') {
+			return false;
+		}
+
+		return true;
+	} catch (err) {
+		// We don't expect any of the above to throw, but better to be safe.
+		return false;
+	}
+}
+
+module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+	var from;
+	var to = toObject(target);
+	var symbols;
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = Object(arguments[s]);
+
+		for (var key in from) {
+			if (hasOwnProperty.call(from, key)) {
+				to[key] = from[key];
+			}
+		}
+
+		if (getOwnPropertySymbols) {
+			symbols = getOwnPropertySymbols(from);
+			for (var i = 0; i < symbols.length; i++) {
+				if (propIsEnumerable.call(from, symbols[i])) {
+					to[symbols[i]] = from[symbols[i]];
+				}
+			}
+		}
+	}
+
+	return to;
+};
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
+ * 
  */
 
-
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var validateFormat = function validateFormat(format) {};
-
-if (process.env.NODE_ENV !== 'production') {
-  validateFormat = function validateFormat(format) {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
+function makeEmptyFunction(arg) {
+  return function () {
+    return arg;
   };
 }
 
-function invariant(condition, format, a, b, c, d, e, f) {
-  validateFormat(format);
+/**
+ * This function accepts and discards inputs; it has no side effects. This is
+ * primarily useful idiomatically for overridable function endpoints which
+ * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+ */
+var emptyFunction = function emptyFunction() {};
 
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(format.replace(/%s/g, function () {
-        return args[argIndex++];
-      }));
-      error.name = 'Invariant Violation';
-    }
+emptyFunction.thatReturns = makeEmptyFunction;
+emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+emptyFunction.thatReturnsThis = function () {
+  return this;
+};
+emptyFunction.thatReturnsArgument = function (arg) {
+  return arg;
+};
 
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-}
-
-module.exports = invariant;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+module.exports = emptyFunction;
 
 /***/ }),
-/* 19 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6207,11 +6188,11 @@ var _TextInput = __webpack_require__(3);
 
 var _TextInput2 = _interopRequireDefault(_TextInput);
 
-var _FileInputComponent = __webpack_require__(217);
+var _FileInputComponent = __webpack_require__(166);
 
 var _FileInputComponent2 = _interopRequireDefault(_FileInputComponent);
 
-var _TableComponent2 = __webpack_require__(16);
+var _TableComponent2 = __webpack_require__(12);
 
 var _TableComponent3 = _interopRequireDefault(_TableComponent2);
 
@@ -6321,7 +6302,7 @@ var FileAttachmentComponent = function (_TableComponent) {
         _react2.default.createElement(
           'td',
           null,
-          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, multiLine: true, name: 'description', model: model[name][index] })
+          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'description', model: model[name][index] })
         )
       );
     }
@@ -6404,6 +6385,85 @@ var FileAttachmentComponent = function (_TableComponent) {
 exports.default = FileAttachmentComponent;
 
 /***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var KEY_PREFIX = exports.KEY_PREFIX = 'persist:';
+var FLUSH = exports.FLUSH = 'persist/FLUSH';
+var REHYDRATE = exports.REHYDRATE = 'persist/REHYDRATE';
+var PAUSE = exports.PAUSE = 'persist/PAUSE';
+var PERSIST = exports.PERSIST = 'persist/PERSIST';
+var PURGE = exports.PURGE = 'persist/PURGE';
+var REGISTER = exports.REGISTER = 'persist/REGISTER';
+var DEFAULT_VERSION = exports.DEFAULT_VERSION = -1;
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var validateFormat = function validateFormat(format) {};
+
+if (process.env.NODE_ENV !== 'production') {
+  validateFormat = function validateFormat(format) {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  };
+}
+
+function invariant(condition, format, a, b, c, d, e, f) {
+  validateFormat(format);
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(format.replace(/%s/g, function () {
+        return args[argIndex++];
+      }));
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+}
+
+module.exports = invariant;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6442,7 +6502,7 @@ module.exports = emptyObject;
 
 
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(16);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -6498,6 +6558,12 @@ module.exports = warning;
 
 /***/ }),
 /* 22 */
+/***/ (function(module, exports) {
+
+module.exports = {"validationErrors":"Validation errors, fill in all the required fields","changesSaved":"Changes saved","datauploaded":"Data uploaded"}
+
+/***/ }),
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6508,7 +6574,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.compose = exports.applyMiddleware = exports.bindActionCreators = exports.combineReducers = exports.createStore = undefined;
 
-var _createStore = __webpack_require__(168);
+var _createStore = __webpack_require__(169);
 
 var _createStore2 = _interopRequireDefault(_createStore);
 
@@ -6524,11 +6590,11 @@ var _applyMiddleware = __webpack_require__(238);
 
 var _applyMiddleware2 = _interopRequireDefault(_applyMiddleware);
 
-var _compose = __webpack_require__(171);
+var _compose = __webpack_require__(172);
 
 var _compose2 = _interopRequireDefault(_compose);
 
-var _warning = __webpack_require__(170);
+var _warning = __webpack_require__(171);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -6552,12 +6618,6 @@ exports.compose = _compose2.default;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 23 */
-/***/ (function(module, exports) {
-
-module.exports = {"validationErrors":"Validation errors, fill in all the required fields","changesSaved":"Changes saved"}
-
-/***/ }),
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6574,304 +6634,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var DateSelectInput = function (_Component) {
-  _inherits(DateSelectInput, _Component);
-
-  function DateSelectInput(props) {
-    _classCallCheck(this, DateSelectInput);
-
-    var _this = _possibleConstructorReturn(this, (DateSelectInput.__proto__ || Object.getPrototypeOf(DateSelectInput)).call(this, props));
-
-    var _this$props = _this.props,
-        model = _this$props.model,
-        name = _this$props.name,
-        validate = _this$props.validate;
-
-
-    var value = {};
-    if (model && model[name]) {
-      //if(model[name][day]) {
-      value['day'] = model[name]['day'];
-
-      //if(model[name][month]) {
-      value['month'] = model[name]['month'];
-
-      //if(model[name][year]) {
-      value['year'] = model[name]['year'];
-    }
-    _this.state = {
-      value: value, validate: validate
-    };
-    _this.handleChange = _this.handleChange.bind(_this);
-    return _this;
-  }
-
-  _createClass(DateSelectInput, [{
-    key: 'handleChange',
-    value: function handleChange(e) {
-      var value = this.state.value;
-      var _props = this.props,
-          model = _props.model,
-          name = _props.name;
-
-      value[e.target.name] = e.target.value;
-      model[name] = value;
-      this.setState({
-        value: value
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props2 = this.props,
-          label = _props2.label,
-          name = _props2.name,
-          required = _props2.required;
-
-      var input = null;
-
-      var reqSpan = null;
-      if (required) {
-        reqSpan = _react2.default.createElement(
-          'span',
-          { className: 'required' },
-          '*'
-        );
-      }
-      var monthLabels = ["January", 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-      var months = [_react2.default.createElement('option', { value: '', key: Math.floor(Math.random() * 100000) })].concat(monthLabels.map(function (month, index) {
-        return _react2.default.createElement(
-          'option',
-          { value: index, key: Math.floor(Math.random() * 100000) },
-          month
-        );
-      }));
-
-      var year = new Date().getFullYear() + 1;
-      var days = [_react2.default.createElement('option', { value: '', key: Math.floor(Math.random() * 100000) })].concat(Array(31).fill("").map(function (value, index) {
-        return _react2.default.createElement(
-          'option',
-          { value: index + 1, key: Math.floor(Math.random() * 100000 * (index + 1)) },
-          index + 1
-        );
-      }));
-      var years = [_react2.default.createElement('option', { value: '', key: Math.floor(Math.random() * 100000) })].concat(Array(100).fill("").map(function (val, index) {
-        return _react2.default.createElement(
-          'option',
-          { value: year - 100 + index, key: Math.floor(Math.random() * 100000 * (index + 1)) },
-          year - 100 + index
-        );
-      }).reverse());
-
-      var hasError = this.state.validate && required && Object.keys(this.state.value).length == 0 ? " has-error " : "";
-      var className = "form-group" + hasError;
-
-      return _react2.default.createElement(
-        'div',
-        { className: className },
-        _react2.default.createElement(
-          'label',
-          { className: 'col-md-4 control-label form-input-label' },
-          label,
-          ' ',
-          reqSpan
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'col-md-6 date' },
-          _react2.default.createElement(
-            'select',
-            { name: 'day', className: 'col-md-3 form-control day', value: this.state.value.day, onChange: this.handleChange },
-            days
-          ),
-          _react2.default.createElement(
-            'select',
-            { name: 'month', className: 'col-md-6 form-control month', value: this.state.value.month, onChange: this.handleChange },
-            months
-          ),
-          _react2.default.createElement(
-            'select',
-            { name: 'year', className: 'col-md-3 form-control year', value: this.state.value.year, onChange: this.handleChange },
-            years
-          )
-        )
-      );
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      var validate = this.state.validate;
-
-      var newValidate = nextProps.validate;
-      if (newValidate != validate) {
-        this.setState({ validate: newValidate });
-      }
-    }
-  }]);
-
-  return DateSelectInput;
-}(_react.Component);
-
-exports.default = DateSelectInput;
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-if (process.env.NODE_ENV !== 'production') {
-  var invariant = __webpack_require__(18);
-  var warning = __webpack_require__(21);
-  var ReactPropTypesSecret = __webpack_require__(26);
-  var loggedTypeFailures = {};
-}
-
-/**
- * Assert that the values match with the type specs.
- * Error messages are memorized and will only be shown once.
- *
- * @param {object} typeSpecs Map of name to a ReactPropType
- * @param {object} values Runtime values that need to be type-checked
- * @param {string} location e.g. "prop", "context", "child context"
- * @param {string} componentName Name of the component for error messages.
- * @param {?Function} getStack Returns the component stack.
- * @private
- */
-function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-  if (process.env.NODE_ENV !== 'production') {
-    for (var typeSpecName in typeSpecs) {
-      if (typeSpecs.hasOwnProperty(typeSpecName)) {
-        var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
-        try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
-          invariant(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, _typeof(typeSpecs[typeSpecName]));
-          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
-        } catch (ex) {
-          error = ex;
-        }
-        warning(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error === 'undefined' ? 'undefined' : _typeof(error));
-        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
-          loggedTypeFailures[error.message] = true;
-
-          var stack = getStack ? getStack() : '';
-
-          warning(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
-        }
-      }
-    }
-  }
-}
-
-module.exports = checkPropTypes;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-module.exports = ReactPropTypesSecret;
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-function checkDCE() {
-  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
-  if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' || typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function') {
-    return;
-  }
-  if (process.env.NODE_ENV !== 'production') {
-    // This branch is unreachable because this function is only called
-    // in production, but the condition is true only in development.
-    // Therefore if the branch is still here, dead code elimination wasn't
-    // properly applied.
-    // Don't change the message. React DevTools relies on it. Also make sure
-    // this message doesn't occur elsewhere in this function, or it will cause
-    // a false positive.
-    throw new Error('^_^');
-  }
-  try {
-    // Verify that the code above has been dead code eliminated (DCE'd).
-    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
-  } catch (err) {
-    // DevTools shouldn't crash React, no matter what.
-    // We should still report in case we break this code.
-    console.error(err);
-  }
-}
-
-if (process.env.NODE_ENV === 'production') {
-  // DCE check should happen before ReactDOM bundle executes so that
-  // DevTools can report bad minification during injection.
-  checkDCE();
-  module.exports = __webpack_require__(185);
-} else {
-  module.exports = __webpack_require__(188);
-}
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _messages = __webpack_require__(23);
+var _messages = __webpack_require__(22);
 
 var _messages2 = _interopRequireDefault(_messages);
 
-var _Constants = __webpack_require__(4);
+var _Constants = __webpack_require__(5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6930,7 +6697,7 @@ var FormComponent = function (_Component) {
 exports.default = FormComponent;
 
 /***/ }),
-/* 29 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6939,8 +6706,11 @@ exports.default = FormComponent;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.getRequestPayload = exports.subQuestionsValidator = exports.endOfOnsetValidator = exports.dateOfBirthValidator = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _Constants = __webpack_require__(5);
 
 /**
   Validator for Date of Birth
@@ -6992,6 +6762,322 @@ var subQuestionsValidator = exports.subQuestionsValidator = function subQuestion
   return true;
 };
 
+var getRequestPayload = exports.getRequestPayload = function getRequestPayload(data) {
+  if (data.type == _Constants.REPORT_TYPE_ADR) {
+    var payload = {};
+    payload.sadr = data;
+    return payload;
+  } else if (data.type == _Constants.REPORT_TYPE_SAE) {
+    var payload = {};
+    payload.adr = data;
+    return payload;
+  } else if (data.type == _Constants.REPORT_TYPE_AEFI) {
+    var payload = {};
+    payload.aefi = data;
+    return payload;
+  } else if (data.type == _Constants.REPORT_TYPE_AEFI_INV) {
+    var payload = {};
+    payload.saefi = data;
+    return payload;
+  }
+};
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DateSelectInput = function (_Component) {
+  _inherits(DateSelectInput, _Component);
+
+  function DateSelectInput(props) {
+    _classCallCheck(this, DateSelectInput);
+
+    var _this = _possibleConstructorReturn(this, (DateSelectInput.__proto__ || Object.getPrototypeOf(DateSelectInput)).call(this, props));
+
+    var _this$props = _this.props,
+        model = _this$props.model,
+        name = _this$props.name,
+        validate = _this$props.validate;
+
+
+    var value = {};
+    if (model && model[name]) {
+      if (typeof model[name] == "string") {
+        var v = model[name].split("-");
+        //if(model[name][day]) {
+        value['day'] = v[0]; //model[name]['day']
+
+        //if(model[name][month]) {
+        value['month'] = v[1]; //model[name]['month']
+
+        //if(model[name][year]) {
+        value['year'] = v[2]; //model[name]['year']
+      }
+    }
+    _this.state = {
+      value: value, validate: validate
+    };
+    _this.handleChange = _this.handleChange.bind(_this);
+    return _this;
+  }
+
+  _createClass(DateSelectInput, [{
+    key: "handleChange",
+    value: function handleChange(e) {
+      var value = this.state.value;
+      var _props = this.props,
+          model = _props.model,
+          name = _props.name;
+
+      value[e.target.name] = e.target.value;
+      model[name] = value.day + "-" + value.month + "-" + value.year;
+      this.setState({
+        value: value
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _props2 = this.props,
+          label = _props2.label,
+          name = _props2.name,
+          required = _props2.required;
+
+      var input = null;
+
+      var reqSpan = null;
+      if (required) {
+        reqSpan = _react2.default.createElement(
+          "span",
+          { className: "required" },
+          "*"
+        );
+      }
+      var monthLabels = ["January", 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      var months = [_react2.default.createElement("option", { value: "", key: Math.floor(Math.random() * 100000) })].concat(monthLabels.map(function (month, index) {
+        return _react2.default.createElement(
+          "option",
+          { value: index, key: Math.floor(Math.random() * 100000) },
+          month
+        );
+      }));
+
+      var year = new Date().getFullYear() + 1;
+      var days = [_react2.default.createElement("option", { value: "", key: Math.floor(Math.random() * 100000) })].concat(Array(31).fill("").map(function (value, index) {
+        return _react2.default.createElement(
+          "option",
+          { value: index + 1, key: Math.floor(Math.random() * 100000 * (index + 1)) },
+          index + 1
+        );
+      }));
+      var years = [_react2.default.createElement("option", { value: "", key: Math.floor(Math.random() * 100000) })].concat(Array(100).fill("").map(function (val, index) {
+        return _react2.default.createElement(
+          "option",
+          { value: year - 100 + index, key: Math.floor(Math.random() * 100000 * (index + 1)) },
+          year - 100 + index
+        );
+      }).reverse());
+
+      var hasError = this.state.validate && required && Object.keys(this.state.value).length == 0 ? " has-error " : "";
+      var className = "form-group" + hasError;
+
+      return _react2.default.createElement(
+        "div",
+        { className: className },
+        _react2.default.createElement(
+          "label",
+          { className: "col-md-4 control-label form-input-label" },
+          label,
+          " ",
+          reqSpan
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "col-md-6 date" },
+          _react2.default.createElement(
+            "select",
+            { name: "day", className: "col-md-3 form-control day", value: this.state.value.day, onChange: this.handleChange },
+            days
+          ),
+          _react2.default.createElement(
+            "select",
+            { name: "month", className: "col-md-6 form-control month", value: this.state.value.month, onChange: this.handleChange },
+            months
+          ),
+          _react2.default.createElement(
+            "select",
+            { name: "year", className: "col-md-3 form-control year", value: this.state.value.year, onChange: this.handleChange },
+            years
+          )
+        )
+      );
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      var validate = this.state.validate;
+
+      var newValidate = nextProps.validate;
+      if (newValidate != validate) {
+        this.setState({ validate: newValidate });
+      }
+    }
+  }]);
+
+  return DateSelectInput;
+}(_react.Component);
+
+exports.default = DateSelectInput;
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+if (process.env.NODE_ENV !== 'production') {
+  var invariant = __webpack_require__(19);
+  var warning = __webpack_require__(21);
+  var ReactPropTypesSecret = __webpack_require__(28);
+  var loggedTypeFailures = {};
+}
+
+/**
+ * Assert that the values match with the type specs.
+ * Error messages are memorized and will only be shown once.
+ *
+ * @param {object} typeSpecs Map of name to a ReactPropType
+ * @param {object} values Runtime values that need to be type-checked
+ * @param {string} location e.g. "prop", "context", "child context"
+ * @param {string} componentName Name of the component for error messages.
+ * @param {?Function} getStack Returns the component stack.
+ * @private
+ */
+function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+  if (process.env.NODE_ENV !== 'production') {
+    for (var typeSpecName in typeSpecs) {
+      if (typeSpecs.hasOwnProperty(typeSpecName)) {
+        var error;
+        // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          invariant(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, _typeof(typeSpecs[typeSpecName]));
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
+        } catch (ex) {
+          error = ex;
+        }
+        warning(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error === 'undefined' ? 'undefined' : _typeof(error));
+        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures[error.message] = true;
+
+          var stack = getStack ? getStack() : '';
+
+          warning(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
+        }
+      }
+    }
+  }
+}
+
+module.exports = checkPropTypes;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+function checkDCE() {
+  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
+  if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' || typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function') {
+    return;
+  }
+  if (process.env.NODE_ENV !== 'production') {
+    // This branch is unreachable because this function is only called
+    // in production, but the condition is true only in development.
+    // Therefore if the branch is still here, dead code elimination wasn't
+    // properly applied.
+    // Don't change the message. React DevTools relies on it. Also make sure
+    // this message doesn't occur elsewhere in this function, or it will cause
+    // a false positive.
+    throw new Error('^_^');
+  }
+  try {
+    // Verify that the code above has been dead code eliminated (DCE'd).
+    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
+  } catch (err) {
+    // DevTools shouldn't crash React, no matter what.
+    // We should still report in case we break this code.
+    console.error(err);
+  }
+}
+
+if (process.env.NODE_ENV === 'production') {
+  // DCE check should happen before ReactDOM bundle executes so that
+  // DevTools can report bad minification during injection.
+  checkDCE();
+  module.exports = __webpack_require__(186);
+} else {
+  module.exports = __webpack_require__(189);
+}
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
 /***/ }),
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -7013,11 +7099,11 @@ var _TextInput = __webpack_require__(3);
 
 var _TextInput2 = _interopRequireDefault(_TextInput);
 
-var _DatePickerInput = __webpack_require__(14);
+var _DatePickerInput = __webpack_require__(10);
 
 var _DatePickerInput2 = _interopRequireDefault(_DatePickerInput);
 
-var _TableComponent2 = __webpack_require__(16);
+var _TableComponent2 = __webpack_require__(12);
 
 var _TableComponent3 = _interopRequireDefault(_TableComponent2);
 
@@ -7025,7 +7111,7 @@ var _CheckboxInput = __webpack_require__(32);
 
 var _CheckboxInput2 = _interopRequireDefault(_CheckboxInput);
 
-var _SelectInput = __webpack_require__(7);
+var _SelectInput = __webpack_require__(6);
 
 var _SelectInput2 = _interopRequireDefault(_SelectInput);
 
@@ -7033,7 +7119,7 @@ var _ReadOnlyDataRenderer = __webpack_require__(8);
 
 var _ReadOnlyDataRenderer2 = _interopRequireDefault(_ReadOnlyDataRenderer);
 
-var _FieldOptions = __webpack_require__(6);
+var _FieldOptions = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7595,11 +7681,11 @@ var _TextInput = __webpack_require__(3);
 
 var _TextInput2 = _interopRequireDefault(_TextInput);
 
-var _DatePickerInput = __webpack_require__(14);
+var _DatePickerInput = __webpack_require__(10);
 
 var _DatePickerInput2 = _interopRequireDefault(_DatePickerInput);
 
-var _TableComponent2 = __webpack_require__(16);
+var _TableComponent2 = __webpack_require__(12);
 
 var _TableComponent3 = _interopRequireDefault(_TableComponent2);
 
@@ -7607,7 +7693,7 @@ var _CheckboxInput = __webpack_require__(32);
 
 var _CheckboxInput2 = _interopRequireDefault(_CheckboxInput);
 
-var _SelectInput = __webpack_require__(7);
+var _SelectInput = __webpack_require__(6);
 
 var _SelectInput2 = _interopRequireDefault(_SelectInput);
 
@@ -7615,7 +7701,7 @@ var _ReadOnlyDataRenderer = __webpack_require__(8);
 
 var _ReadOnlyDataRenderer2 = _interopRequireDefault(_ReadOnlyDataRenderer);
 
-var _FieldOptions = __webpack_require__(6);
+var _FieldOptions = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8011,19 +8097,19 @@ var _TextInput = __webpack_require__(3);
 
 var _TextInput2 = _interopRequireDefault(_TextInput);
 
-var _DatePickerInput = __webpack_require__(14);
+var _DatePickerInput = __webpack_require__(10);
 
 var _DatePickerInput2 = _interopRequireDefault(_DatePickerInput);
 
-var _TableComponent2 = __webpack_require__(16);
+var _TableComponent2 = __webpack_require__(12);
 
 var _TableComponent3 = _interopRequireDefault(_TableComponent2);
 
-var _SingleMultipleInput = __webpack_require__(13);
+var _SingleMultipleInput = __webpack_require__(9);
 
 var _SingleMultipleInput2 = _interopRequireDefault(_SingleMultipleInput);
 
-var _SelectInput = __webpack_require__(7);
+var _SelectInput = __webpack_require__(6);
 
 var _SelectInput2 = _interopRequireDefault(_SelectInput);
 
@@ -8031,7 +8117,7 @@ var _ReadOnlyDataRenderer = __webpack_require__(8);
 
 var _ReadOnlyDataRenderer2 = _interopRequireDefault(_ReadOnlyDataRenderer);
 
-var _FieldOptions = __webpack_require__(6);
+var _FieldOptions = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8087,47 +8173,27 @@ var AEFIVaccinationTableComponent = function (_TableComponent) {
         _react2.default.createElement(
           'td',
           null,
-          _react2.default.createElement(_TextInput2.default, { hideLabel: true, name: 'drug_name', validate: this.props.validate, required: true, model: model[name][index] })
+          _react2.default.createElement(_TextInput2.default, { hideLabel: true, name: 'vaccine_name', validate: this.props.validate, required: true, model: model[name][index] })
         ),
         _react2.default.createElement(
           'td',
           null,
-          _react2.default.createElement(_DatePickerInput2.default, { hideLabel: true, name: 'dosage', model: model[name][index], validate: this.state.validate, required: true })
+          _react2.default.createElement(_DatePickerInput2.default, { hideLabel: true, name: 'vaccination_date', model: model[name][index], validate: this.state.validate, required: true })
         ),
         _react2.default.createElement(
           'td',
           null,
-          _react2.default.createElement(_DatePickerInput2.default, { hideLabel: true, name: 'dose_id', model: model[name][index], validate: this.state.validate, required: true })
+          _react2.default.createElement(_TextInput2.default, { hideLabel: true, name: 'dosage', model: model[name][index], validate: this.state.validate, required: true })
         ),
         _react2.default.createElement(
           'td',
           null,
-          _react2.default.createElement(_TextInput2.default, { hideLabel: true, name: 'route_id', model: model[name][index] })
+          _react2.default.createElement(_TextInput2.default, { hideLabel: true, name: 'batch_number', model: model[name][index] })
         ),
         _react2.default.createElement(
           'td',
           null,
-          _react2.default.createElement(_TextInput2.default, { hideLabel: true, name: 'frequency_id', model: model[name][index], validate: this.state.validate, required: true })
-        ),
-        _react2.default.createElement(
-          'td',
-          null,
-          _react2.default.createElement(_DatePickerInput2.default, { hideLabel: true, name: 'start_date', model: model[name][index] })
-        ),
-        _react2.default.createElement(
-          'td',
-          null,
-          _react2.default.createElement(_TextInput2.default, { inline: true, hideLabel: true, name: 'taking_drug', model: model[name][index], validate: this.state.validate, required: true })
-        ),
-        _react2.default.createElement(
-          'td',
-          null,
-          _react2.default.createElement(_DatePickerInput2.default, { hideLabel: true, name: 'relationship_to_sae', model: model[name][index] })
-        ),
-        _react2.default.createElement(
-          'td',
-          null,
-          _react2.default.createElement(_DatePickerInput2.default, { hideLabel: true, name: 'relationship_to_sae', model: model[name][index] })
+          _react2.default.createElement(_DatePickerInput2.default, { hideLabel: true, name: 'expiry_date', model: model[name][index], validate: this.state.validate, required: true })
         ),
         _react2.default.createElement(
           'td',
@@ -8162,52 +8228,27 @@ var AEFIVaccinationTableComponent = function (_TableComponent) {
         _react2.default.createElement(
           'td',
           null,
-          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'drug_name', model: model[name][index] })
+          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'vaccine_name', model: model[name][index] })
         ),
         _react2.default.createElement(
           'td',
           null,
-          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'dose', model: model[name][index], type: 'date' })
+          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'vaccination_date', model: model[name][index], type: 'date' })
         ),
         _react2.default.createElement(
           'td',
           null,
-          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'dose_id', model: model[name][index], type: 'date' })
+          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'dosage', model: model[name][index], type: 'date' })
         ),
         _react2.default.createElement(
           'td',
           null,
-          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'route_id', model: model[name][index] })
+          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'batch_number', model: model[name][index] })
         ),
         _react2.default.createElement(
           'td',
           null,
-          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'frequency_id', model: model[name][index] })
-        ),
-        _react2.default.createElement(
-          'td',
-          null,
-          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'indication', model: model[name][index] })
-        ),
-        _react2.default.createElement(
-          'td',
-          null,
-          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'start_date', model: model[name][index], type: 'date' })
-        ),
-        _react2.default.createElement(
-          'td',
-          null,
-          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'stop_date', model: model[name][index] })
-        ),
-        _react2.default.createElement(
-          'td',
-          null,
-          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'suspected_drug', model: model[name][index], type: 'date' })
-        ),
-        _react2.default.createElement(
-          'td',
-          null,
-          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'stop_date', model: model[name][index], type: 'date' })
+          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'expiry_date', model: model[name][index] })
         )
       );
     }
@@ -8256,20 +8297,6 @@ var AEFIVaccinationTableComponent = function (_TableComponent) {
               null,
               _react2.default.createElement(
                 'td',
-                { colSpan: '6' },
-                'Vaccine'
-              ),
-              _react2.default.createElement(
-                'td',
-                { colSpan: '4' },
-                'Dilutent'
-              )
-            ),
-            _react2.default.createElement(
-              'tr',
-              null,
-              _react2.default.createElement(
-                'td',
                 null,
                 'Name',
                 _react2.default.createElement(
@@ -8282,16 +8309,6 @@ var AEFIVaccinationTableComponent = function (_TableComponent) {
                 'td',
                 null,
                 'Date of vaccination',
-                _react2.default.createElement(
-                  'span',
-                  { className: 'required' },
-                  '*'
-                )
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                'Time of vaccination',
                 _react2.default.createElement(
                   'span',
                   { className: 'required' },
@@ -8317,36 +8334,6 @@ var AEFIVaccinationTableComponent = function (_TableComponent) {
                 'td',
                 null,
                 'Expiry date'
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                'Batch/Lot no',
-                _react2.default.createElement(
-                  'span',
-                  { className: 'required' },
-                  '*'
-                )
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                'Expiry date',
-                _react2.default.createElement(
-                  'span',
-                  { className: 'required' },
-                  '*'
-                )
-              ),
-              _react2.default.createElement(
-                'td',
-                null,
-                'Time of reconstitution',
-                _react2.default.createElement(
-                  'span',
-                  { className: 'required' },
-                  '*'
-                )
               ),
               lastCol
             )
@@ -8409,7 +8396,7 @@ exports.default = AEFIVaccinationTableComponent;
 
 
 var React = __webpack_require__(1);
-var factory = __webpack_require__(251);
+var factory = __webpack_require__(253);
 
 if (typeof React === 'undefined') {
   throw Error('create-react-class could not find the React object. If you are using script tags, ' + 'make sure that React is being loaded before create-react-class.');
@@ -8473,21 +8460,21 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = persistReducer;
 
-var _constants = __webpack_require__(17);
+var _constants = __webpack_require__(18);
 
-var _autoMergeLevel = __webpack_require__(258);
+var _autoMergeLevel = __webpack_require__(260);
 
 var _autoMergeLevel2 = _interopRequireDefault(_autoMergeLevel);
 
-var _createPersistoid = __webpack_require__(179);
+var _createPersistoid = __webpack_require__(180);
 
 var _createPersistoid2 = _interopRequireDefault(_createPersistoid);
 
-var _getStoredState = __webpack_require__(180);
+var _getStoredState = __webpack_require__(181);
 
 var _getStoredState2 = _interopRequireDefault(_getStoredState);
 
-var _purgeStoredState = __webpack_require__(181);
+var _purgeStoredState = __webpack_require__(182);
 
 var _purgeStoredState2 = _interopRequireDefault(_purgeStoredState);
 
@@ -8665,7 +8652,7 @@ module.exports = ExecutionEnvironment;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(12);
+var emptyFunction = __webpack_require__(16);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -8862,7 +8849,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(186);
+var isTextNode = __webpack_require__(187);
 
 /*eslint-disable no-bitwise */
 
@@ -20732,9 +20719,190 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FileInputComponent = function (_Component) {
+  _inherits(FileInputComponent, _Component);
+
+  function FileInputComponent(props) {
+    _classCallCheck(this, FileInputComponent);
+
+    var _this = _possibleConstructorReturn(this, (FileInputComponent.__proto__ || Object.getPrototypeOf(FileInputComponent)).call(this, props));
+
+    var _this$props = _this.props,
+        model = _this$props.model,
+        name = _this$props.name,
+        validate = _this$props.validate;
+
+    var value = "",
+        fileName = "";
+    if (model) {
+      fileName = model['fileName'];
+    }
+    _this.state = { value: value, validate: validate, fileName: fileName };
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.selectFile = _this.selectFile.bind(_this);
+    _this.onFileSelect = _this.onFileSelect.bind(_this);
+    return _this;
+  }
+
+  _createClass(FileInputComponent, [{
+    key: "handleChange",
+    value: function handleChange(e) {
+      var _props = this.props,
+          model = _props.model,
+          name = _props.name;
+
+      if (model && model[name]) {
+        model[name] = e.target.value;
+      }
+      this.setState({ value: e.target.value });
+    }
+  }, {
+    key: "onFileSelect",
+    value: function onFileSelect(e) {
+      var _this2 = this;
+
+      var files = e.target.files;
+      var i = 0;
+      var f = null;
+      var model = this.props.model;
+
+      while (f = files[i]) {
+        var reader = new FileReader();
+        reader.onload = function (theFile) {
+          return function (e) {
+            model['fileData'] = e.target.result;
+            model['fileName'] = theFile.name;
+            _this2.setState({ fileName: theFile.name });
+          };
+        }(f);
+        reader.readAsDataURL(f);
+        i++;
+      }
+      e.target.files = null;
+    }
+  }, {
+    key: "selectFile",
+    value: function selectFile(e) {
+      e.preventDefault();
+      this.fileInput.click();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var _props2 = this.props,
+          label = _props2.label,
+          name = _props2.name,
+          multiLine = _props2.multiLine,
+          required = _props2.required,
+          hideLabel = _props2.hideLabel;
+
+
+      var reqSpan = null;
+      if (required) {
+        reqSpan = _react2.default.createElement(
+          "span",
+          { className: "required" },
+          "*"
+        );
+      }
+      var hasError = this.state.validate && required ? " has-error " : "";
+      var className = "form-group" + hasError;
+      if (hideLabel) {
+        return _react2.default.createElement(
+          "div",
+          { className: hasError },
+          _react2.default.createElement(
+            "button",
+            { className: "btn btn-sm btn-default", onClick: this.selectFile },
+            "Select file"
+          ),
+          _react2.default.createElement(
+            "label",
+            null,
+            this.state.fileName
+          ),
+          _react2.default.createElement("input", { className: "hide", ref: function ref(input) {
+              return _this3.fileInput = input;
+            }, type: "file", onChange: this.onFileSelect })
+        );
+      }
+
+      return _react2.default.createElement(
+        "div",
+        { className: className },
+        _react2.default.createElement(
+          "label",
+          { className: "col-md-4 control-label form-input-label" },
+          label,
+          " ",
+          reqSpan
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "col-md-6" },
+          _react2.default.createElement(
+            "button",
+            { className: "btn btn-sm btn-default", onClick: this.selectFile },
+            "Select file"
+          ),
+          _react2.default.createElement(
+            "label",
+            null,
+            this.state.fileName
+          ),
+          _react2.default.createElement("input", { type: "file", ref: function ref(input) {
+              return _this3.fileInput = input;
+            }, className: "hide", onChange: this.onFileSelect })
+        )
+      );
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      var validate = this.state.validate;
+
+      var newValidate = nextProps.validate;
+      if (newValidate != validate) {
+        this.setState({ validate: newValidate });
+      }
+    }
+  }]);
+
+  return FileInputComponent;
+}(_react.Component);
+
+exports.default = FileInputComponent;
+
+/***/ }),
+/* 167 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.storeShape = exports.subscriptionShape = undefined;
 
-var _propTypes = __webpack_require__(5);
+var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -20754,7 +20922,7 @@ var storeShape = exports.storeShape = _propTypes2.default.shape({
 });
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20782,7 +20950,7 @@ var _Subscription = __webpack_require__(221);
 
 var _Subscription2 = _interopRequireDefault(_Subscription);
 
-var _PropTypes = __webpack_require__(166);
+var _PropTypes = __webpack_require__(167);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21095,7 +21263,7 @@ selectorFactory) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21367,7 +21535,7 @@ var ActionTypes = exports.ActionTypes = {
 }
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21389,7 +21557,7 @@ var _Symbol = _root2.default.Symbol;
 exports.default = _Symbol;
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21422,7 +21590,7 @@ function warning(message) {
 }
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21466,7 +21634,7 @@ function compose() {
 }
 
 /***/ }),
-/* 172 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21479,7 +21647,7 @@ exports.wrapMapToPropsConstant = wrapMapToPropsConstant;
 exports.getDependsOnOwnProps = getDependsOnOwnProps;
 exports.wrapMapToPropsFunc = wrapMapToPropsFunc;
 
-var _verifyPlainObject = __webpack_require__(173);
+var _verifyPlainObject = __webpack_require__(174);
 
 var _verifyPlainObject2 = _interopRequireDefault(_verifyPlainObject);
 
@@ -21553,7 +21721,7 @@ function wrapMapToPropsFunc(mapToProps, methodName) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21581,13 +21749,13 @@ function verifyPlainObject(value, displayName, methodName) {
 }
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports) {
 
 module.exports = require("electron");
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21607,19 +21775,19 @@ var _TextInput = __webpack_require__(3);
 
 var _TextInput2 = _interopRequireDefault(_TextInput);
 
-var _DatePickerInput = __webpack_require__(14);
+var _DatePickerInput = __webpack_require__(10);
 
 var _DatePickerInput2 = _interopRequireDefault(_DatePickerInput);
 
-var _TableComponent2 = __webpack_require__(16);
+var _TableComponent2 = __webpack_require__(12);
 
 var _TableComponent3 = _interopRequireDefault(_TableComponent2);
 
-var _SingleMultipleInput = __webpack_require__(13);
+var _SingleMultipleInput = __webpack_require__(9);
 
 var _SingleMultipleInput2 = _interopRequireDefault(_SingleMultipleInput);
 
-var _SelectInput = __webpack_require__(7);
+var _SelectInput = __webpack_require__(6);
 
 var _SelectInput2 = _interopRequireDefault(_SelectInput);
 
@@ -21627,7 +21795,7 @@ var _ReadOnlyDataRenderer = __webpack_require__(8);
 
 var _ReadOnlyDataRenderer2 = _interopRequireDefault(_ReadOnlyDataRenderer);
 
-var _FieldOptions = __webpack_require__(6);
+var _FieldOptions = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21926,7 +22094,7 @@ var SAEDrugsTableComponent = function (_TableComponent) {
 exports.default = SAEDrugsTableComponent;
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21946,11 +22114,11 @@ var _TextInput = __webpack_require__(3);
 
 var _TextInput2 = _interopRequireDefault(_TextInput);
 
-var _DatePickerInput = __webpack_require__(14);
+var _DatePickerInput = __webpack_require__(10);
 
 var _DatePickerInput2 = _interopRequireDefault(_DatePickerInput);
 
-var _TableComponent2 = __webpack_require__(16);
+var _TableComponent2 = __webpack_require__(12);
 
 var _TableComponent3 = _interopRequireDefault(_TableComponent2);
 
@@ -21958,7 +22126,7 @@ var _CheckboxInput = __webpack_require__(32);
 
 var _CheckboxInput2 = _interopRequireDefault(_CheckboxInput);
 
-var _SelectInput = __webpack_require__(7);
+var _SelectInput = __webpack_require__(6);
 
 var _SelectInput2 = _interopRequireDefault(_SelectInput);
 
@@ -21966,7 +22134,7 @@ var _ReadOnlyDataRenderer = __webpack_require__(8);
 
 var _ReadOnlyDataRenderer2 = _interopRequireDefault(_ReadOnlyDataRenderer);
 
-var _FieldOptions = __webpack_require__(6);
+var _FieldOptions = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22214,7 +22382,7 @@ var SAEConcomitantTableComponent = function (_TableComponent) {
 exports.default = SAEConcomitantTableComponent;
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22234,19 +22402,19 @@ var _TextInput = __webpack_require__(3);
 
 var _TextInput2 = _interopRequireDefault(_TextInput);
 
-var _DatePickerInput = __webpack_require__(14);
+var _DatePickerInput = __webpack_require__(10);
 
 var _DatePickerInput2 = _interopRequireDefault(_DatePickerInput);
 
-var _TableComponent2 = __webpack_require__(16);
+var _TableComponent2 = __webpack_require__(12);
 
 var _TableComponent3 = _interopRequireDefault(_TableComponent2);
 
-var _SingleMultipleInput = __webpack_require__(13);
+var _SingleMultipleInput = __webpack_require__(9);
 
 var _SingleMultipleInput2 = _interopRequireDefault(_SingleMultipleInput);
 
-var _SelectInput = __webpack_require__(7);
+var _SelectInput = __webpack_require__(6);
 
 var _SelectInput2 = _interopRequireDefault(_SelectInput);
 
@@ -22254,7 +22422,7 @@ var _ReadOnlyDataRenderer = __webpack_require__(8);
 
 var _ReadOnlyDataRenderer2 = _interopRequireDefault(_ReadOnlyDataRenderer);
 
-var _FieldOptions = __webpack_require__(6);
+var _FieldOptions = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22516,7 +22684,7 @@ var SAELabTestsTableComponent = function (_TableComponent) {
 exports.default = SAELabTestsTableComponent;
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22532,7 +22700,7 @@ var SAE_MANDATORY_FIELS = exports.SAE_MANDATORY_FIELS = [{ name: "mrcz_protocol_
 var AEFI_MANDATORY_FIELS = exports.AEFI_MANDATORY_FIELS = [{ name: "patient_name", text: "Patient name", page: 1 }, { name: "patient_address", text: "Patient Address", page: 1 }, { name: "date_of_birth", text: "Date of birth", page: 1 }, { name: "reporter_name", text: "Reporter’s Name", page: 1 }, { name: 'adverse_events', text: "Adverse event", page: 2 }, { name: "serious", text: "Serious", page: 2 }, { name: "outcome", text: "Outcome", page: 3 }];
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22543,7 +22711,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createPersistoid;
 
-var _constants = __webpack_require__(17);
+var _constants = __webpack_require__(18);
 
 function createPersistoid(config) {
   // defaults
@@ -22648,7 +22816,7 @@ function defaultSerialize(data) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 180 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22659,7 +22827,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = getStoredState;
 
-var _constants = __webpack_require__(17);
+var _constants = __webpack_require__(18);
 
 function getStoredState(config) {
   var transforms = config.transforms || [];
@@ -22694,7 +22862,7 @@ function defaultDeserialize(serial) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22705,7 +22873,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = purgeStoredState;
 
-var _constants = __webpack_require__(17);
+var _constants = __webpack_require__(18);
 
 function purgeStoredState(config) {
   var storage = config.storage;
@@ -22721,7 +22889,7 @@ function warnIfRemoveError(err) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22731,11 +22899,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(27);
+var _reactDom = __webpack_require__(29);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _App = __webpack_require__(193);
+var _App = __webpack_require__(194);
 
 var _App2 = _interopRequireDefault(_App);
 
@@ -22744,7 +22912,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('home'));
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22760,9 +22928,9 @@ _reactDom2.default.render(_react2.default.createElement(_App2.default, null), do
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var m = __webpack_require__(11),
+var m = __webpack_require__(15),
     n = __webpack_require__(20),
-    p = __webpack_require__(12);
+    p = __webpack_require__(16);
 function q(a) {
   for (var b = arguments.length - 1, e = "Minified React error #" + a + "; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d" + a, d = 0; d < b; d++) {
     e += "\x26args[]\x3d" + encodeURIComponent(arguments[d + 1]);
@@ -22867,7 +23035,7 @@ var R = { Children: { map: function map(a, b, e) {
     T = S && R || S;module.exports = T["default"] ? T["default"] : T;
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22888,12 +23056,12 @@ if (process.env.NODE_ENV !== "production") {
   (function () {
     'use strict';
 
-    var _assign = __webpack_require__(11);
-    var invariant = __webpack_require__(18);
+    var _assign = __webpack_require__(15);
+    var invariant = __webpack_require__(19);
     var emptyObject = __webpack_require__(20);
     var warning = __webpack_require__(21);
-    var emptyFunction = __webpack_require__(12);
-    var checkPropTypes = __webpack_require__(25);
+    var emptyFunction = __webpack_require__(16);
+    var checkPropTypes = __webpack_require__(27);
 
     // TODO: this is special because it gets imported during build.
 
@@ -24214,7 +24382,7 @@ if (process.env.NODE_ENV !== "production") {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24235,8 +24403,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var aa = __webpack_require__(1),
     m = __webpack_require__(40),
-    A = __webpack_require__(11),
-    B = __webpack_require__(12),
+    A = __webpack_require__(15),
+    B = __webpack_require__(16),
     ca = __webpack_require__(41),
     da = __webpack_require__(42),
     ea = __webpack_require__(43),
@@ -26219,7 +26387,7 @@ Z.injectIntoDevTools({ findFiberByHostInstance: qb, bundleType: 0, version: "16.
     Qg = Pg && Og || Pg;module.exports = Qg["default"] ? Qg["default"] : Qg;
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26234,7 +26402,7 @@ Z.injectIntoDevTools({ findFiberByHostInstance: qb, bundleType: 0, version: "16.
  * @typechecks
  */
 
-var isNode = __webpack_require__(187);
+var isNode = __webpack_require__(188);
 
 /**
  * @param {*} object The object to check.
@@ -26247,7 +26415,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26278,7 +26446,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26289,7 +26457,7 @@ module.exports = isNode;
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};if(process.env.NODE_ENV!=="production"){(function(){'use strict';var React=__webpack_require__(1);var invariant=__webpack_require__(18);var warning=__webpack_require__(21);var ExecutionEnvironment=__webpack_require__(40);var _assign=__webpack_require__(11);var emptyFunction$1=__webpack_require__(12);var EventListener=__webpack_require__(41);var getActiveElement=__webpack_require__(42);var shallowEqual=__webpack_require__(43);var containsNode=__webpack_require__(44);var focusNode=__webpack_require__(45);var emptyObject=__webpack_require__(20);var checkPropTypes=__webpack_require__(25);var hyphenateStyleName=__webpack_require__(189);var camelizeStyleName=__webpack_require__(191);/**
+ */var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};if(process.env.NODE_ENV!=="production"){(function(){'use strict';var React=__webpack_require__(1);var invariant=__webpack_require__(19);var warning=__webpack_require__(21);var ExecutionEnvironment=__webpack_require__(40);var _assign=__webpack_require__(15);var emptyFunction$1=__webpack_require__(16);var EventListener=__webpack_require__(41);var getActiveElement=__webpack_require__(42);var shallowEqual=__webpack_require__(43);var containsNode=__webpack_require__(44);var focusNode=__webpack_require__(45);var emptyObject=__webpack_require__(20);var checkPropTypes=__webpack_require__(27);var hyphenateStyleName=__webpack_require__(190);var camelizeStyleName=__webpack_require__(192);/**
  * WARNING: DO NOT manually require this module.
  * This is a replacement for `invariant(...)` used by the error code system
  * and will _only_ be required by the corresponding babel pass.
@@ -29275,7 +29443,7 @@ var reactDom=ReactDOM$3['default']?ReactDOM$3['default']:ReactDOM$3;module.expor
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29290,7 +29458,7 @@ var reactDom=ReactDOM$3['default']?ReactDOM$3['default']:ReactDOM$3;module.expor
 
 
 
-var hyphenate = __webpack_require__(190);
+var hyphenate = __webpack_require__(191);
 
 var msPattern = /^ms-/;
 
@@ -29317,7 +29485,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29353,7 +29521,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29368,7 +29536,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(192);
+var camelize = __webpack_require__(193);
 
 var msPattern = /^-ms-/;
 
@@ -29396,7 +29564,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29431,7 +29599,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29447,17 +29615,17 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Home = __webpack_require__(194);
+var _Home = __webpack_require__(195);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _reactRedux = __webpack_require__(9);
+var _reactRedux = __webpack_require__(11);
 
-var _store = __webpack_require__(256);
+var _store = __webpack_require__(258);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _react3 = __webpack_require__(279);
+var _react3 = __webpack_require__(281);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29501,7 +29669,7 @@ var App = function (_Component) {
 exports.default = App;
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29517,19 +29685,19 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Header = __webpack_require__(195);
+var _Header = __webpack_require__(196);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _Footer = __webpack_require__(196);
+var _Footer = __webpack_require__(197);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
-var _IntroPage = __webpack_require__(197);
+var _IntroPage = __webpack_require__(198);
 
 var _IntroPage2 = _interopRequireDefault(_IntroPage);
 
-var _ADRForm = __webpack_require__(201);
+var _ADRForm = __webpack_require__(202);
 
 var _ADRForm2 = _interopRequireDefault(_ADRForm);
 
@@ -29541,19 +29709,19 @@ var _AEFIReportingForm = __webpack_require__(244);
 
 var _AEFIReportingForm2 = _interopRequireDefault(_AEFIReportingForm);
 
-var _AEFIInvForm = __webpack_require__(245);
+var _AEFIInvForm = __webpack_require__(246);
 
 var _AEFIInvForm2 = _interopRequireDefault(_AEFIInvForm);
 
-var _ReadOnlyReportComponent = __webpack_require__(246);
+var _ReadOnlyReportComponent = __webpack_require__(248);
 
 var _ReadOnlyReportComponent2 = _interopRequireDefault(_ReadOnlyReportComponent);
 
-var _reactRedux = __webpack_require__(9);
+var _reactRedux = __webpack_require__(11);
 
-var _Constants = __webpack_require__(4);
+var _Constants = __webpack_require__(5);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29563,7 +29731,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var NotificationSystem = __webpack_require__(250);
+var NotificationSystem = __webpack_require__(252);
 
 var Home = function (_Component) {
   _inherits(Home, _Component);
@@ -29583,7 +29751,7 @@ var Home = function (_Component) {
   _createClass(Home, [{
     key: 'handleClick',
     value: function handleClick() {
-      var BrowserWindow = __webpack_require__(174).remote.BrowserWindow;
+      var BrowserWindow = __webpack_require__(175).remote.BrowserWindow;
       var win = new BrowserWindow({ width: 400, height: 320 });
       win.on('close', function () {
         win = null;
@@ -29603,6 +29771,8 @@ var Home = function (_Component) {
           return _react2.default.createElement(_SAEForm2.default, null);
         case _Constants.AEFI_REPORT_PAGE:
           return _react2.default.createElement(_AEFIReportingForm2.default, null);
+        case _Constants.AEFI_INV_PAGE:
+          return _react2.default.createElement(_AEFIInvForm2.default, null);
         case _Constants.READ_ONLY_PAGE:
           return _react2.default.createElement(_ReadOnlyReportComponent2.default, null);
         default:
@@ -29618,7 +29788,7 @@ var Home = function (_Component) {
         null,
         _react2.default.createElement(_Header2.default, null),
         this.getPage(),
-        _react2.default.createElement(_Footer2.default, { isConnected: this.props.isConnected }),
+        _react2.default.createElement(_Footer2.default, { connection: this.props.connection }),
         _react2.default.createElement(NotificationSystem, { ref: 'notificationSystem' })
       );
     }
@@ -29690,7 +29860,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Home);
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29717,15 +29887,30 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Header = function (_Component) {
   _inherits(Header, _Component);
 
-  function Header() {
+  function Header(props) {
     _classCallCheck(this, Header);
 
-    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
+
+    _this.showPage = _this.showPage.bind(_this);
+    return _this;
   }
 
   _createClass(Header, [{
+    key: "showPage",
+    value: function showPage(page, report) {
+      var _props = this.props,
+          showPage = _props.showPage,
+          setReport = _props.setReport;
+
+      setReport(report);
+      showPage(page);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return _react2.default.createElement(
         "div",
         { className: "jumbotron" },
@@ -29740,7 +29925,73 @@ var Header = function (_Component) {
           _react2.default.createElement(
             "p",
             null,
-            "SAE, ADR and AEFI electronic reporting."
+            "SAE, ADR and AEFI electronic reportings."
+          )
+        ),
+        _react2.default.createElement(
+          "nav",
+          { className: "navbar navbar-inverse" },
+          _react2.default.createElement(
+            "div",
+            { className: "container-fluid" },
+            _react2.default.createElement("div", { className: "navbar-header" }),
+            _react2.default.createElement(
+              "ul",
+              { className: "nav navbar-nav" },
+              _react2.default.createElement(
+                "li",
+                { className: "active" },
+                _react2.default.createElement(
+                  "a",
+                  { href: "#" },
+                  "Home"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "#", onClick: function onClick() {
+                      return _this2.showPage(ADR_FORM_PAGE);
+                    } },
+                  "ADR"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "#", onClick: function onClick() {
+                      return _this2.showPage(SAE_FORM_PAGE);
+                    } },
+                  "SAE"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "#", onClick: function onClick() {
+                      return _this2.showPage(AEFI_REPORT_PAGE);
+                    } },
+                  "AEFI"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "#", onClick: function onClick() {
+                      return _this2.showPage(AEFI_INV_PAGE);
+                    } },
+                  "Serious AEFI"
+                )
+              )
+            )
           )
         )
       );
@@ -29753,7 +30004,7 @@ var Header = function (_Component) {
 exports.default = Header;
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29783,13 +30034,17 @@ var Footer = function (_Component) {
   function Footer(props) {
     _classCallCheck(this, Footer);
 
-    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, props));
+
+    var connection = _this.props.connection;
+
+    _this.state = { connection: connection };
+    return _this;
   }
 
   _createClass(Footer, [{
     key: "render",
     value: function render() {
-      var isConnected = this.props.isConnected;
 
       var status = _react2.default.createElement(
         "span",
@@ -29798,7 +30053,7 @@ var Footer = function (_Component) {
         _react2.default.createElement("img", { src: "assets/images/off.png" }),
         " Offline "
       );
-      if (isConnected) {
+      if (this.state.connection.isConnected) {
         status = _react2.default.createElement(
           "span",
           null,
@@ -29819,6 +30074,15 @@ var Footer = function (_Component) {
         )
       );
     }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      var currentConnection = this.props.connection;
+      var connection = nextProps.connection;
+      if (currentConnection.isConnected != connection.isConnected) {
+        this.setState({ connection: connection });
+      }
+    }
   }]);
 
   return Footer;
@@ -29827,7 +30091,7 @@ var Footer = function (_Component) {
 exports.default = Footer;
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29843,9 +30107,9 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Constants = __webpack_require__(4);
+var _Constants = __webpack_require__(5);
 
-var _ReportListComponent = __webpack_require__(198);
+var _ReportListComponent = __webpack_require__(199);
 
 var _ReportListComponent2 = _interopRequireDefault(_ReportListComponent);
 
@@ -29867,6 +30131,13 @@ var IntroPage = function (_Component) {
 
     _this.showPage = _this.showPage.bind(_this);
     _this.getReport = _this.getReport.bind(_this);
+    _this.uploadData = _this.uploadData.bind(_this);
+
+    var _this$props = _this.props,
+        completed = _this$props.completed,
+        connection = _this$props.connection;
+
+    _this.state = { completed: completed, connection: connection };
     return _this;
   }
 
@@ -29888,80 +30159,130 @@ var IntroPage = function (_Component) {
       });
     }
   }, {
+    key: 'uploadData',
+    value: function uploadData() {}
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
+      var disabled = this.state.connection.isConnected ? null : " disabled ";
       return _react2.default.createElement(
         'div',
-        { className: 'container-fluid' },
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'col-md-4 col-sm-4' },
+          { className: 'container-fluid' },
           _react2.default.createElement(
-            'h3',
-            null,
-            'ADR'
+            'div',
+            { className: 'col-md-3 col-sm-4' },
+            _react2.default.createElement(
+              'h3',
+              null,
+              'ADR'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Adverse drug reaction'
+            ),
+            _react2.default.createElement(
+              'button',
+              { className: 'btn btn-sm btn-default', onClick: function onClick() {
+                  return _this2.showPage(_Constants.ADR_FORM_PAGE);
+                } },
+              'Report'
+            ),
+            _react2.default.createElement(_ReportListComponent2.default, { drafts: this.getReport(this.props.drafts, _Constants.REPORT_TYPE_ADR), completed: this.getReport(this.props.completed, _Constants.REPORT_TYPE_ADR), uploaded: this.getReport(this.props.uploaded, _Constants.REPORT_TYPE_ADR), showPage: this.showPage, type: _Constants.ADR_FORM_PAGE })
           ),
           _react2.default.createElement(
-            'p',
-            null,
-            'Adverse drug reaction'
+            'div',
+            { className: 'col-md-3 col-sm-4' },
+            _react2.default.createElement(
+              'h3',
+              null,
+              'AEFI'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Adverse Event Following Immunization.'
+            ),
+            _react2.default.createElement(
+              'button',
+              { className: 'btn btn-sm btn-default', onClick: function onClick() {
+                  return _this2.showPage(_Constants.AEFI_REPORT_PAGE);
+                } },
+              'Report'
+            ),
+            _react2.default.createElement(_ReportListComponent2.default, { drafts: this.getReport(this.props.drafts, _Constants.REPORT_TYPE_AEFI), completed: this.getReport(this.props.completed, _Constants.REPORT_TYPE_AEFI), uploaded: this.getReport(this.props.uploaded, _Constants.REPORT_TYPE_AEFI), showPage: this.showPage, type: _Constants.AEFI_REPORT_PAGE })
           ),
           _react2.default.createElement(
-            'button',
-            { className: 'btn btn-sm btn-default', onClick: function onClick() {
-                return _this2.showPage(_Constants.ADR_FORM_PAGE);
-              } },
-            'Report'
+            'div',
+            { className: 'col-md-3 col-sm-4' },
+            _react2.default.createElement(
+              'h3',
+              null,
+              'AEFI Inv.'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Serious Adverse Event Following Immunization.'
+            ),
+            _react2.default.createElement(
+              'button',
+              { className: 'btn btn-sm btn-default', onClick: function onClick() {
+                  return _this2.showPage(_Constants.AEFI_INV_PAGE);
+                } },
+              'Report'
+            ),
+            _react2.default.createElement(_ReportListComponent2.default, { drafts: this.getReport(this.props.drafts, _Constants.REPORT_TYPE_AEFI_INV), completed: this.getReport(this.props.completed, _Constants.REPORT_TYPE_AEFI_INV), uploaded: this.getReport(this.props.uploaded, _Constants.REPORT_TYPE_AEFI_INV), showPage: this.showPage, type: _Constants.AEFI_INV_PAGE })
           ),
-          _react2.default.createElement(_ReportListComponent2.default, { drafts: this.getReport(this.props.drafts, _Constants.REPORT_TYPE_ADR), completed: this.getReport(this.props.completed, _Constants.REPORT_TYPE_ADR), uploaded: this.getReport(this.props.uploaded, _Constants.REPORT_TYPE_ADR), showPage: this.showPage, type: _Constants.ADR_FORM_PAGE })
+          _react2.default.createElement(
+            'div',
+            { className: 'col-md-3 col-sm-4' },
+            _react2.default.createElement(
+              'h3',
+              null,
+              'SAE'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Serious Adverse Event'
+            ),
+            _react2.default.createElement(
+              'button',
+              { className: 'btn btn-sm btn-primary', onClick: function onClick() {
+                  return _this2.showPage(_Constants.SAE_FORM_PAGE);
+                } },
+              'Report'
+            ),
+            _react2.default.createElement(_ReportListComponent2.default, { drafts: this.getReport(this.props.drafts, _Constants.REPORT_TYPE_SAE), completed: this.getReport(this.props.completed, _Constants.REPORT_TYPE_SAE), uploaded: this.getReport(this.props.uploaded, _Constants.REPORT_TYPE_SAE), showPage: this.showPage, type: _Constants.SAE_FORM_PAGE })
+          )
         ),
         _react2.default.createElement(
           'div',
-          { className: 'col-md-4 col-sm-4' },
-          _react2.default.createElement(
-            'h3',
-            null,
-            'AEFI'
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'Adverse Event Following Immunization.'
-          ),
+          { className: 'container' },
           _react2.default.createElement(
             'button',
-            { className: 'btn btn-sm btn-default', onClick: function onClick() {
-                return _this2.showPage(_Constants.AEFI_REPORT_PAGE);
-              } },
-            'Report'
-          ),
-          _react2.default.createElement(_ReportListComponent2.default, { drafts: this.getReport(this.props.drafts, _Constants.REPORT_TYPE_AEFI), completed: this.getReport(this.props.completed, _Constants.REPORT_TYPE_AEFI), uploaded: this.getReport(this.props.uploaded, _Constants.REPORT_TYPE_AEFI), showPage: this.showPage, type: _Constants.AEFI_REPORT_PAGE })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'col-md-4 col-sm-4' },
-          _react2.default.createElement(
-            'h3',
-            null,
-            'SAE'
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'Serious Adverse Event'
-          ),
-          _react2.default.createElement(
-            'button',
-            { className: 'btn btn-sm btn-primary', onClick: function onClick() {
-                return _this2.showPage(_Constants.SAE_FORM_PAGE);
-              } },
-            'Report'
-          ),
-          _react2.default.createElement(_ReportListComponent2.default, { drafts: this.getReport(this.props.drafts, _Constants.REPORT_TYPE_SAE), completed: this.getReport(this.props.completed, _Constants.REPORT_TYPE_SAE), uploaded: this.getReport(this.props.uploaded, _Constants.REPORT_TYPE_SAE), showPage: this.showPage, type: _Constants.SAE_FORM_PAGE })
+            { className: 'btn btn-sm btn-primary', disabled: disabled, onClick: this.uploadData },
+            'Upload data (',
+            this.state.completed.length,
+            ')'
+          )
         )
       );
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var currentConnection = this.props.connection;
+      var connection = nextProps.connection;
+      if (currentConnection.isConnected != connection.isConnected) {
+        this.setState({ connection: connection });
+      }
     }
   }]);
 
@@ -29971,7 +30292,7 @@ var IntroPage = function (_Component) {
 exports.default = IntroPage;
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29987,7 +30308,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(5);
+var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -30191,7 +30512,7 @@ var ReportListComponent = function (_Component) {
 exports.default = ReportListComponent;
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30206,13 +30527,13 @@ exports.default = ReportListComponent;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var emptyFunction = __webpack_require__(12);
-var invariant = __webpack_require__(18);
+var emptyFunction = __webpack_require__(16);
+var invariant = __webpack_require__(19);
 var warning = __webpack_require__(21);
-var assign = __webpack_require__(11);
+var assign = __webpack_require__(15);
 
-var ReactPropTypesSecret = __webpack_require__(26);
-var checkPropTypes = __webpack_require__(25);
+var ReactPropTypesSecret = __webpack_require__(28);
+var checkPropTypes = __webpack_require__(27);
 
 module.exports = function (isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -30716,7 +31037,7 @@ module.exports = function (isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30729,9 +31050,9 @@ module.exports = function (isValidElement, throwOnDirectAccess) {
 
 
 
-var emptyFunction = __webpack_require__(12);
-var invariant = __webpack_require__(18);
-var ReactPropTypesSecret = __webpack_require__(26);
+var emptyFunction = __webpack_require__(16);
+var invariant = __webpack_require__(19);
+var ReactPropTypesSecret = __webpack_require__(28);
 
 module.exports = function () {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -30775,7 +31096,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30791,7 +31112,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _FormComponent2 = __webpack_require__(28);
+var _FormComponent2 = __webpack_require__(24);
 
 var _FormComponent3 = _interopRequireDefault(_FormComponent2);
 
@@ -30799,11 +31120,11 @@ var _TextInput = __webpack_require__(3);
 
 var _TextInput2 = _interopRequireDefault(_TextInput);
 
-var _DateSelectInput = __webpack_require__(24);
+var _DateSelectInput = __webpack_require__(26);
 
 var _DateSelectInput2 = _interopRequireDefault(_DateSelectInput);
 
-var _SingleMultipleInput = __webpack_require__(13);
+var _SingleMultipleInput = __webpack_require__(9);
 
 var _SingleMultipleInput2 = _interopRequireDefault(_SingleMultipleInput);
 
@@ -30811,7 +31132,7 @@ var _MedicationTableComponent = __webpack_require__(30);
 
 var _MedicationTableComponent2 = _interopRequireDefault(_MedicationTableComponent);
 
-var _FileAttachmentComponent = __webpack_require__(19);
+var _FileAttachmentComponent = __webpack_require__(17);
 
 var _FileAttachmentComponent2 = _interopRequireDefault(_FileAttachmentComponent);
 
@@ -30819,21 +31140,21 @@ var _ConcomitantTableComponent = __webpack_require__(33);
 
 var _ConcomitantTableComponent2 = _interopRequireDefault(_ConcomitantTableComponent);
 
-var _SelectInput = __webpack_require__(7);
+var _SelectInput = __webpack_require__(6);
 
 var _SelectInput2 = _interopRequireDefault(_SelectInput);
 
-var _messages = __webpack_require__(23);
+var _messages = __webpack_require__(22);
 
 var _messages2 = _interopRequireDefault(_messages);
 
-var _Constants = __webpack_require__(4);
+var _Constants = __webpack_require__(5);
 
-var _FieldOptions = __webpack_require__(6);
+var _FieldOptions = __webpack_require__(4);
 
-var _reactRedux = __webpack_require__(9);
+var _reactRedux = __webpack_require__(11);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30854,8 +31175,9 @@ var ADRForm = function (_FormComponent) {
     var model = _this.props.model;
 
     if (model == null) {
-      model = { "rid": 1510991587333, "type": "REPORT_TYPE_ADR", "name_of_institution": "Nairobi Hosp", "sadr_list_of_drugs": [{ "brand_name": "dawa", "dose_id": "3", "drug_name": "c", "dose": "1", "route_id": "3", "frequency_id": "2", "start_date": [], "stop_date": [], "suspected_drug": "" }], "user": {}, "patient_name": "JM", "date_of_birth": [], "gender": "Male", "date_of_onset_of_reaction": [], "description_of_reaction": "ds", "severity": "Yes", "severity_reason": "Death", "action_taken": "Drug withdrawn", "outcome": "Recovered", "": "Certain", "designation_id": "1", "reporter_name": "John", "reporter_email": "john@h.com", "date_of_end_of_reaction": [] };
+      model = { "rid": 1510991587333, "type": "REPORT_TYPE_ADR" };
     }
+
     _this.state = { model: model, validate: null };
 
     _this.saveAndSubmit = _this.saveAndSubmit.bind(_this);
@@ -30946,7 +31268,7 @@ var ADRForm = function (_FormComponent) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Age group', model: model, name: 'age_group' })
+              _react2.default.createElement(_SelectInput2.default, { label: 'Age group', model: model, name: 'age_group', options: [] })
             ),
             _react2.default.createElement(
               'div',
@@ -31249,7 +31571,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ADRForm);
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31265,15 +31587,15 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(5);
+var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _classnames2 = __webpack_require__(203);
+var _classnames2 = __webpack_require__(204);
 
 var _classnames3 = _interopRequireDefault(_classnames2);
 
-var _reactOnclickoutside = __webpack_require__(204);
+var _reactOnclickoutside = __webpack_require__(205);
 
 var _reactOnclickoutside2 = _interopRequireDefault(_reactOnclickoutside);
 
@@ -31281,7 +31603,7 @@ var _moment = __webpack_require__(0);
 
 var _moment2 = _interopRequireDefault(_moment);
 
-var _reactPopper = __webpack_require__(206);
+var _reactPopper = __webpack_require__(207);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33510,7 +33832,7 @@ DatePicker.propTypes = {
 exports.default = DatePicker;
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33569,7 +33891,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })();
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33582,7 +33904,7 @@ exports.IGNORE_CLASS_NAME = undefined;
 
 var _react = __webpack_require__(1);
 
-var _reactDom = __webpack_require__(27);
+var _reactDom = __webpack_require__(29);
 
 function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
@@ -33919,7 +34241,7 @@ exports.IGNORE_CLASS_NAME = IGNORE_CLASS_NAME;
 exports.default = onClickOutsideHOC;
 
 /***/ }),
-/* 205 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -34174,10 +34496,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 205;
+webpackContext.id = 206;
 
 /***/ }),
-/* 206 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34188,19 +34510,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Arrow = exports.Popper = exports.Target = exports.Manager = undefined;
 
-var _Manager2 = __webpack_require__(207);
+var _Manager2 = __webpack_require__(208);
 
 var _Manager3 = _interopRequireDefault(_Manager2);
 
-var _Target2 = __webpack_require__(208);
+var _Target2 = __webpack_require__(209);
 
 var _Target3 = _interopRequireDefault(_Target2);
 
-var _Popper2 = __webpack_require__(209);
+var _Popper2 = __webpack_require__(210);
 
 var _Popper3 = _interopRequireDefault(_Popper2);
 
-var _Arrow2 = __webpack_require__(211);
+var _Arrow2 = __webpack_require__(212);
 
 var _Arrow3 = _interopRequireDefault(_Arrow2);
 
@@ -34214,7 +34536,7 @@ exports.Popper = _Popper3.default;
 exports.Arrow = _Arrow3.default;
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34240,7 +34562,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(5);
+var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -34334,7 +34656,7 @@ Manager.defaultProps = {
 exports.default = Manager;
 
 /***/ }),
-/* 208 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34358,7 +34680,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(5);
+var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -34417,7 +34739,7 @@ Target.propTypes = {
 exports.default = Target;
 
 /***/ }),
-/* 209 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34453,11 +34775,11 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(5);
+var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _popper = __webpack_require__(210);
+var _popper = __webpack_require__(211);
 
 var _popper2 = _interopRequireDefault(_popper);
 
@@ -34731,7 +35053,7 @@ Popper.defaultProps = {
 exports.default = Popper;
 
 /***/ }),
-/* 210 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37174,7 +37496,7 @@ exports.default = Popper;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(31)))
 
 /***/ }),
-/* 211 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37198,7 +37520,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(5);
+var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -37263,13 +37585,13 @@ Arrow.propTypes = {
 exports.default = Arrow;
 
 /***/ }),
-/* 212 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(213);
+var content = __webpack_require__(214);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -37277,7 +37599,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(215)(content, options);
+var update = __webpack_require__(216)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -37294,10 +37616,10 @@ if(false) {
 }
 
 /***/ }),
-/* 213 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(214)(undefined);
+exports = module.exports = __webpack_require__(215)(undefined);
 // imports
 
 
@@ -37308,7 +37630,7 @@ exports.push([module.i, ".react-datepicker-popper[data-placement^=\"bottom\"] .r
 
 
 /***/ }),
-/* 214 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37390,7 +37712,7 @@ function toComment(sourceMap) {
 }
 
 /***/ }),
-/* 215 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -37446,7 +37768,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(216);
+var	fixUrls = __webpack_require__(217);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -37762,7 +38084,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 216 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37857,187 +38179,6 @@ module.exports = function (css) {
 };
 
 /***/ }),
-/* 217 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FileInputComponent = function (_Component) {
-  _inherits(FileInputComponent, _Component);
-
-  function FileInputComponent(props) {
-    _classCallCheck(this, FileInputComponent);
-
-    var _this = _possibleConstructorReturn(this, (FileInputComponent.__proto__ || Object.getPrototypeOf(FileInputComponent)).call(this, props));
-
-    var _this$props = _this.props,
-        model = _this$props.model,
-        name = _this$props.name,
-        validate = _this$props.validate;
-
-    var value = "",
-        fileName = "";
-    if (model) {
-      fileName = model['fileName'];
-    }
-    _this.state = { value: value, validate: validate, fileName: fileName };
-    _this.handleChange = _this.handleChange.bind(_this);
-    _this.selectFile = _this.selectFile.bind(_this);
-    _this.onFileSelect = _this.onFileSelect.bind(_this);
-    return _this;
-  }
-
-  _createClass(FileInputComponent, [{
-    key: "handleChange",
-    value: function handleChange(e) {
-      var _props = this.props,
-          model = _props.model,
-          name = _props.name;
-
-      if (model && model[name]) {
-        model[name] = e.target.value;
-      }
-      this.setState({ value: e.target.value });
-    }
-  }, {
-    key: "onFileSelect",
-    value: function onFileSelect(e) {
-      var _this2 = this;
-
-      var files = e.target.files;
-      var i = 0;
-      var f = null;
-      var model = this.props.model;
-
-      while (f = files[i]) {
-        var reader = new FileReader();
-        reader.onload = function (theFile) {
-          return function (e) {
-            model['fileData'] = e.target.result;
-            model['fileName'] = theFile.name;
-            _this2.setState({ fileName: theFile.name });
-          };
-        }(f);
-        reader.readAsDataURL(f);
-        i++;
-      }
-      e.target.files = null;
-    }
-  }, {
-    key: "selectFile",
-    value: function selectFile(e) {
-      e.preventDefault();
-      this.fileInput.click();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this3 = this;
-
-      var _props2 = this.props,
-          label = _props2.label,
-          name = _props2.name,
-          multiLine = _props2.multiLine,
-          required = _props2.required,
-          hideLabel = _props2.hideLabel;
-
-
-      var reqSpan = null;
-      if (required) {
-        reqSpan = _react2.default.createElement(
-          "span",
-          { className: "required" },
-          "*"
-        );
-      }
-      var hasError = this.state.validate && required ? " has-error " : "";
-      var className = "form-group" + hasError;
-      if (hideLabel) {
-        return _react2.default.createElement(
-          "div",
-          { className: hasError },
-          _react2.default.createElement(
-            "button",
-            { className: "btn btn-sm btn-default", onClick: this.selectFile },
-            "Select file"
-          ),
-          _react2.default.createElement(
-            "label",
-            null,
-            this.state.fileName
-          ),
-          _react2.default.createElement("input", { className: "hide", ref: function ref(input) {
-              return _this3.fileInput = input;
-            }, type: "file", onChange: this.onFileSelect })
-        );
-      }
-
-      return _react2.default.createElement(
-        "div",
-        { className: className },
-        _react2.default.createElement(
-          "label",
-          { className: "col-md-4 control-label form-input-label" },
-          label,
-          " ",
-          reqSpan
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "col-md-6" },
-          _react2.default.createElement(
-            "button",
-            { className: "btn btn-sm btn-default" },
-            "Select file"
-          ),
-          _react2.default.createElement(
-            "label",
-            null,
-            this.state.fileName
-          ),
-          _react2.default.createElement("input", { type: "file", ref: function ref(input) {
-              return _this3.fileInput = input;
-            }, className: "hide", onChange: this.onFileSelect })
-        )
-      );
-    }
-  }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {
-      var validate = this.state.validate;
-
-      var newValidate = nextProps.validate;
-      if (newValidate != validate) {
-        this.setState({ validate: newValidate });
-      }
-    }
-  }]);
-
-  return FileInputComponent;
-}(_react.Component);
-
-exports.default = FileInputComponent;
-
-/***/ }),
 /* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38054,11 +38195,11 @@ exports.createProvider = createProvider;
 
 var _react = __webpack_require__(1);
 
-var _propTypes = __webpack_require__(5);
+var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _PropTypes = __webpack_require__(166);
+var _PropTypes = __webpack_require__(167);
 
 var _warning = __webpack_require__(34);
 
@@ -38397,7 +38538,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 exports.createConnect = createConnect;
 
-var _connectAdvanced = __webpack_require__(167);
+var _connectAdvanced = __webpack_require__(168);
 
 var _connectAdvanced2 = _interopRequireDefault(_connectAdvanced);
 
@@ -38594,9 +38735,9 @@ exports.whenMapDispatchToPropsIsFunction = whenMapDispatchToPropsIsFunction;
 exports.whenMapDispatchToPropsIsMissing = whenMapDispatchToPropsIsMissing;
 exports.whenMapDispatchToPropsIsObject = whenMapDispatchToPropsIsObject;
 
-var _redux = __webpack_require__(22);
+var _redux = __webpack_require__(23);
 
-var _wrapMapToProps = __webpack_require__(172);
+var _wrapMapToProps = __webpack_require__(173);
 
 function whenMapDispatchToPropsIsFunction(mapDispatchToProps) {
   return typeof mapDispatchToProps === 'function' ? (0, _wrapMapToProps.wrapMapToPropsFunc)(mapDispatchToProps, 'mapDispatchToProps') : undefined;
@@ -38627,7 +38768,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Symbol2 = __webpack_require__(169);
+var _Symbol2 = __webpack_require__(170);
 
 var _Symbol3 = _interopRequireDefault(_Symbol2);
 
@@ -38721,7 +38862,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Symbol2 = __webpack_require__(169);
+var _Symbol2 = __webpack_require__(170);
 
 var _Symbol3 = _interopRequireDefault(_Symbol2);
 
@@ -38983,13 +39124,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = combineReducers;
 
-var _createStore = __webpack_require__(168);
+var _createStore = __webpack_require__(169);
 
 var _isPlainObject = __webpack_require__(35);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-var _warning = __webpack_require__(170);
+var _warning = __webpack_require__(171);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -39197,7 +39338,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = applyMiddleware;
 
-var _compose = __webpack_require__(171);
+var _compose = __webpack_require__(172);
 
 var _compose2 = _interopRequireDefault(_compose);
 
@@ -39271,7 +39412,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.whenMapStateToPropsIsFunction = whenMapStateToPropsIsFunction;
 exports.whenMapStateToPropsIsMissing = whenMapStateToPropsIsMissing;
 
-var _wrapMapToProps = __webpack_require__(172);
+var _wrapMapToProps = __webpack_require__(173);
 
 function whenMapStateToPropsIsFunction(mapStateToProps) {
   return typeof mapStateToProps === 'function' ? (0, _wrapMapToProps.wrapMapToPropsFunc)(mapStateToProps, 'mapStateToProps') : undefined;
@@ -39300,7 +39441,7 @@ exports.wrapMergePropsFunc = wrapMergePropsFunc;
 exports.whenMergePropsIsFunction = whenMergePropsIsFunction;
 exports.whenMergePropsIsOmitted = whenMergePropsIsOmitted;
 
-var _verifyPlainObject = __webpack_require__(173);
+var _verifyPlainObject = __webpack_require__(174);
 
 var _verifyPlainObject2 = _interopRequireDefault(_verifyPlainObject);
 
@@ -39536,7 +39677,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _FormComponent2 = __webpack_require__(28);
+var _FormComponent2 = __webpack_require__(24);
 
 var _FormComponent3 = _interopRequireDefault(_FormComponent2);
 
@@ -39544,51 +39685,51 @@ var _TextInput = __webpack_require__(3);
 
 var _TextInput2 = _interopRequireDefault(_TextInput);
 
-var _SelectInput = __webpack_require__(7);
+var _SelectInput = __webpack_require__(6);
 
 var _SelectInput2 = _interopRequireDefault(_SelectInput);
 
-var _SingleMultipleInput = __webpack_require__(13);
+var _SingleMultipleInput = __webpack_require__(9);
 
 var _SingleMultipleInput2 = _interopRequireDefault(_SingleMultipleInput);
 
-var _DatePickerInput = __webpack_require__(14);
+var _DatePickerInput = __webpack_require__(10);
 
 var _DatePickerInput2 = _interopRequireDefault(_DatePickerInput);
 
-var _DateSelectInput = __webpack_require__(24);
+var _DateSelectInput = __webpack_require__(26);
 
 var _DateSelectInput2 = _interopRequireDefault(_DateSelectInput);
 
-var _SAEDrugsTableComponent = __webpack_require__(175);
+var _SAEDrugsTableComponent = __webpack_require__(176);
 
 var _SAEDrugsTableComponent2 = _interopRequireDefault(_SAEDrugsTableComponent);
 
-var _SAEConcomitantTableComponent = __webpack_require__(176);
+var _SAEConcomitantTableComponent = __webpack_require__(177);
 
 var _SAEConcomitantTableComponent2 = _interopRequireDefault(_SAEConcomitantTableComponent);
 
-var _FileAttachmentComponent = __webpack_require__(19);
+var _FileAttachmentComponent = __webpack_require__(17);
 
 var _FileAttachmentComponent2 = _interopRequireDefault(_FileAttachmentComponent);
 
-var _SAELabTestsTableComponent = __webpack_require__(177);
+var _SAELabTestsTableComponent = __webpack_require__(178);
 
 var _SAELabTestsTableComponent2 = _interopRequireDefault(_SAELabTestsTableComponent);
 
-var _messages = __webpack_require__(23);
+var _messages = __webpack_require__(22);
 
 var _messages2 = _interopRequireDefault(_messages);
 
-var _Constants = __webpack_require__(4);
+var _Constants = __webpack_require__(5);
 
-var _FormFields = __webpack_require__(178);
+var _FormFields = __webpack_require__(179);
 
-var _FieldOptions = __webpack_require__(6);
+var _FieldOptions = __webpack_require__(4);
 
-var _reactRedux = __webpack_require__(9);
+var _reactRedux = __webpack_require__(11);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -39719,7 +39860,7 @@ var SAEForm = function (_FormComponent) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Date Form completed', name: '', model: model, validate: this.state.validate, required: true })
+              _react2.default.createElement(_DatePickerInput2.default, { label: 'Date Form completed', name: '', model: model, validate: this.state.validate, required: true })
             )
           ),
           _react2.default.createElement(
@@ -40270,7 +40411,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _FormComponent2 = __webpack_require__(28);
+var _FormComponent2 = __webpack_require__(24);
 
 var _FormComponent3 = _interopRequireDefault(_FormComponent2);
 
@@ -40278,19 +40419,19 @@ var _TextInput = __webpack_require__(3);
 
 var _TextInput2 = _interopRequireDefault(_TextInput);
 
-var _SingleMultipleInput = __webpack_require__(13);
+var _SingleMultipleInput = __webpack_require__(9);
 
 var _SingleMultipleInput2 = _interopRequireDefault(_SingleMultipleInput);
 
-var _SelectInput = __webpack_require__(7);
+var _SelectInput = __webpack_require__(6);
 
 var _SelectInput2 = _interopRequireDefault(_SelectInput);
 
-var _DatePickerInput = __webpack_require__(14);
+var _DatePickerInput = __webpack_require__(10);
 
 var _DatePickerInput2 = _interopRequireDefault(_DatePickerInput);
 
-var _DateSelectInput = __webpack_require__(24);
+var _DateSelectInput = __webpack_require__(26);
 
 var _DateSelectInput2 = _interopRequireDefault(_DateSelectInput);
 
@@ -40298,19 +40439,23 @@ var _AEFIVaccinationTableComponent = __webpack_require__(36);
 
 var _AEFIVaccinationTableComponent2 = _interopRequireDefault(_AEFIVaccinationTableComponent);
 
-var _messages = __webpack_require__(23);
+var _AEFIDilutentTableComponent = __webpack_require__(245);
+
+var _AEFIDilutentTableComponent2 = _interopRequireDefault(_AEFIDilutentTableComponent);
+
+var _messages = __webpack_require__(22);
 
 var _messages2 = _interopRequireDefault(_messages);
 
-var _Constants = __webpack_require__(4);
+var _Constants = __webpack_require__(5);
 
-var _FieldOptions = __webpack_require__(6);
+var _FieldOptions = __webpack_require__(4);
 
-var _FormFields = __webpack_require__(178);
+var _FormFields = __webpack_require__(179);
 
-var _reactRedux = __webpack_require__(9);
+var _reactRedux = __webpack_require__(11);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -40333,6 +40478,8 @@ var AEFIReportingForm = function (_FormComponent) {
     if (model == null) {
       model = { rid: Date.now(), type: _Constants.REPORT_TYPE_AEFI };
     }
+
+    //  model = {"aefi":{"rid":1511898412729,"type":"REPORT_TYPE_AEFI","patient_name":"JMM","patient_next_of_kin":"s","patient_surname":"s","patient_address":"s","gender":"Male","patient_telephone":"s","date_of_birth":"4-2-2016","age_at_onset":"s","reporter_name":"s","designation_id":"3","name_of_vaccination_center":"ss","aefi_list_of_vaccines":[{"vaccine_name":"ss","vaccination_date":"14-10-2017","dosage":"s","batch_number":"ss","expiry_date":"22-10-2017"}],"aefi_list_of_diluents":[{"diluent_name":"sss","diluent_date":"9-10-2017","batch_number":"ss","expiry_date":"15-10-2017"}],"adverse_events":"ae_seizures,ae-thrombocytopenia","aefi_date":"21-10-2017","notification_date":"21-10-2017","description_of_reaction":"ss","serious":"Yes","serious_yes":"Hospitalizaion/Prolonged","outcome":"Recovering","autopsy":"No","past_medical_history":"ss","district_receive_date":"1-10-2017","investigation_needed":"Yes","investigation_date":"13-10-2017","national_receive_date":"20-10-2017","comments":"sss"}}
 
     _this.saveAndSubmit = _this.saveAndSubmit.bind(_this);
     _this.state = { model: model };
@@ -40510,7 +40657,16 @@ var AEFIReportingForm = function (_FormComponent) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_AEFIVaccinationTableComponent2.default, { name: 'vaccination', model: model, validate: this.state.validate, label: 'Vaccine/Dilutent   ' })
+              _react2.default.createElement(_AEFIVaccinationTableComponent2.default, { name: 'aefi_list_of_vaccines', model: model, validate: this.state.validate, label: 'Vaccine   ' })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_AEFIDilutentTableComponent2.default, { name: 'aefi_list_of_diluents', model: model, validate: this.state.validate, label: 'Dilutent   ' })
             )
           ),
           _react2.default.createElement(
@@ -40524,12 +40680,12 @@ var AEFIReportingForm = function (_FormComponent) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_SingleMultipleInput2.default, { label: 'Adverse events', required: true, validate: this.state.validate, name: 'adverse_events', model: model, options: ["", "one"] })
+              _react2.default.createElement(_SingleMultipleInput2.default, { label: 'Adverse events', required: true, multiple: true, validate: this.state.validate, name: 'adverse_events', model: model, options: _FieldOptions.AEFI_ADVERSE_EVENTS })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_DatePickerInput2.default, { label: 'Date and time AEFI started', name: 'aefi_date', model: model, showTime: true })
+              _react2.default.createElement(_TextInput2.default, { label: 'If other, specify', name: 'adverse_events_specify', model: model, showTime: true })
             )
           ),
           _react2.default.createElement(
@@ -40537,7 +40693,12 @@ var AEFIReportingForm = function (_FormComponent) {
             { className: 'container' },
             _react2.default.createElement(
               'div',
-              { className: 'col-md-12 col-sm-12' },
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_DatePickerInput2.default, { label: 'Date and time AEFI started', name: 'aefi_date', model: model, showTime: true })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-6' },
               _react2.default.createElement(_DatePickerInput2.default, { label: 'Date patient notified event to health system', name: 'notification_date', model: model })
             )
           ),
@@ -40822,6 +40983,28 @@ var _TextInput = __webpack_require__(3);
 
 var _TextInput2 = _interopRequireDefault(_TextInput);
 
+var _DatePickerInput = __webpack_require__(10);
+
+var _DatePickerInput2 = _interopRequireDefault(_DatePickerInput);
+
+var _TableComponent2 = __webpack_require__(12);
+
+var _TableComponent3 = _interopRequireDefault(_TableComponent2);
+
+var _SingleMultipleInput = __webpack_require__(9);
+
+var _SingleMultipleInput2 = _interopRequireDefault(_SingleMultipleInput);
+
+var _SelectInput = __webpack_require__(6);
+
+var _SelectInput2 = _interopRequireDefault(_SelectInput);
+
+var _ReadOnlyDataRenderer = __webpack_require__(8);
+
+var _ReadOnlyDataRenderer2 = _interopRequireDefault(_ReadOnlyDataRenderer);
+
+var _FieldOptions = __webpack_require__(4);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -40830,25 +41013,353 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var AEFIInvForm = function (_Component) {
-  _inherits(AEFIInvForm, _Component);
+var AEFIDilutentTableComponent = function (_TableComponent) {
+  _inherits(AEFIDilutentTableComponent, _TableComponent);
 
-  function AEFIInvForm() {
+  function AEFIDilutentTableComponent(props) {
+    _classCallCheck(this, AEFIDilutentTableComponent);
+
+    var _this = _possibleConstructorReturn(this, (AEFIDilutentTableComponent.__proto__ || Object.getPrototypeOf(AEFIDilutentTableComponent)).call(this, props));
+
+    var _this$props = _this.props,
+        model = _this$props.model,
+        name = _this$props.name,
+        validate = _this$props.validate;
+
+
+    _this.getRow = _this.getRow.bind(_this);
+    _this.getReadOnlyRow = _this.getReadOnlyRow.bind(_this);
+    var rows = [];
+    if (model && model[name]) {
+      rows = model[name];
+    }
+    _this.state = { rows: rows, validate: validate };
+    return _this;
+  }
+
+  _createClass(AEFIDilutentTableComponent, [{
+    key: 'getRow',
+    value: function getRow(index) {
+      var _this2 = this;
+
+      var rowData = {};
+      var _props = this.props,
+          model = _props.model,
+          name = _props.name;
+
+      if (!model[name]) {
+        model[name] = [];
+      }
+      if (!model[name][index]) {
+        model[name][index] = rowData;
+      }
+      return _react2.default.createElement(
+        'tr',
+        { key: Math.floor(Math.random() * 10000) },
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(_TextInput2.default, { inline: true, hideLabel: true, name: 'diluent_name', model: model[name][index], validate: this.state.validate, required: true })
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(_DatePickerInput2.default, { hideLabel: true, name: 'diluent_date', model: model[name][index] })
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(_TextInput2.default, { hideLabel: true, name: 'batch_number', model: model[name][index] })
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(_DatePickerInput2.default, { hideLabel: true, name: 'expiry_date', model: model[name][index] })
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(
+            'button',
+            { className: 'btn btn-sm btn-danger', onClick: function onClick(e) {
+                return _this2.removeRow(index, e);
+              } },
+            _react2.default.createElement('span', { className: 'glyphicon glyphicon-minus', 'aria-hidden': 'true' })
+          )
+        )
+      );
+    }
+  }, {
+    key: 'getReadOnlyRow',
+    value: function getReadOnlyRow(index) {
+      var rowData = {};
+      var _props2 = this.props,
+          model = _props2.model,
+          name = _props2.name;
+
+      if (!model[name]) {
+        model[name] = [];
+      }
+      if (!model[name][index]) {
+        model[name][index] = rowData;
+      }
+      return _react2.default.createElement(
+        'tr',
+        { key: Math.floor(Math.random() * 10000) },
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'diluent_name', model: model[name][index] })
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'diluent_date', model: model[name][index], type: 'date' })
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'batch_number', model: model[name][index], type: 'date' })
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'expiry_date', model: model[name][index] })
+        )
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props3 = this.props,
+          label = _props3.label,
+          name = _props3.name,
+          multiLine = _props3.multiLine,
+          required = _props3.required,
+          readonly = _props3.readonly;
+
+      var input = null;
+
+      var rows = this.initializeRows(readonly); //.rows
+      var lastCol = null;
+      var addRowBtn = null;
+      if (!readonly) {
+        lastCol = _react2.default.createElement('td', null);
+        addRowBtn = _react2.default.createElement(
+          'button',
+          { className: 'btn btn-sm btn-primary', onClick: this.addRow },
+          _react2.default.createElement('span', { className: 'glyphicon glyphicon-plus', 'aria-hidden': 'true' })
+        );
+      }
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(
+          'h5',
+          { className: 'text-center' },
+          ' ',
+          label,
+          addRowBtn
+        ),
+        _react2.default.createElement(
+          'table',
+          { className: 'table table-condensed table-bordered' },
+          _react2.default.createElement(
+            'thead',
+            null,
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement(
+                'td',
+                null,
+                'Name',
+                _react2.default.createElement(
+                  'span',
+                  { className: 'required' },
+                  '*'
+                )
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                'Time of reconstitution',
+                _react2.default.createElement(
+                  'span',
+                  { className: 'required' },
+                  '*'
+                )
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                'Batch/Lot no',
+                _react2.default.createElement(
+                  'span',
+                  { className: 'required' },
+                  '*'
+                )
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                'Expiry date',
+                _react2.default.createElement(
+                  'span',
+                  { className: 'required' },
+                  '*'
+                )
+              ),
+              lastCol
+            )
+          ),
+          _react2.default.createElement(
+            'tbody',
+            null,
+            rows
+          )
+        )
+      );
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var validate = this.state.validate;
+
+      var newValidate = nextProps.validate;
+      if (newValidate != validate) {
+        this.setState({ validate: newValidate });
+        //this.initializeData()
+      }
+    }
+
+    /*initializeRows() {
+      const { rows } = this.state
+      var dataRows = []
+      //this.setState({ rows : rows })
+      for(let i = 0; i < rows.length; i++) {
+        dataRows[i] = this.getRow(i)
+      }
+      return dataRows
+    }*/
+
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      //this.initializeData()
+    }
+  }]);
+
+  return AEFIDilutentTableComponent;
+}(_TableComponent3.default);
+
+exports.default = AEFIDilutentTableComponent;
+
+/***/ }),
+/* 246 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _TextInput = __webpack_require__(3);
+
+var _TextInput2 = _interopRequireDefault(_TextInput);
+
+var _SingleMultipleInput = __webpack_require__(9);
+
+var _SingleMultipleInput2 = _interopRequireDefault(_SingleMultipleInput);
+
+var _DatePickerInput = __webpack_require__(10);
+
+var _DatePickerInput2 = _interopRequireDefault(_DatePickerInput);
+
+var _SelectInput = __webpack_require__(6);
+
+var _SelectInput2 = _interopRequireDefault(_SelectInput);
+
+var _FileAttachmentComponent = __webpack_require__(17);
+
+var _FileAttachmentComponent2 = _interopRequireDefault(_FileAttachmentComponent);
+
+var _AEFIInvVaccinationTableComponent = __webpack_require__(247);
+
+var _AEFIInvVaccinationTableComponent2 = _interopRequireDefault(_AEFIInvVaccinationTableComponent);
+
+var _FileInputComponent = __webpack_require__(166);
+
+var _FileInputComponent2 = _interopRequireDefault(_FileInputComponent);
+
+var _FormComponent2 = __webpack_require__(24);
+
+var _FormComponent3 = _interopRequireDefault(_FormComponent2);
+
+var _Constants = __webpack_require__(5);
+
+var _FieldOptions = __webpack_require__(4);
+
+var _reactRedux = __webpack_require__(11);
+
+var _actions = __webpack_require__(13);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AEFIInvForm = function (_FormComponent) {
+  _inherits(AEFIInvForm, _FormComponent);
+
+  function AEFIInvForm(props) {
     _classCallCheck(this, AEFIInvForm);
 
-    return _possibleConstructorReturn(this, (AEFIInvForm.__proto__ || Object.getPrototypeOf(AEFIInvForm)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (AEFIInvForm.__proto__ || Object.getPrototypeOf(AEFIInvForm)).call(this, props));
+
+    var model = _this.props.model;
+
+    if (model == null) {
+      model = { rid: Date.now(), type: _Constants.REPORT_TYPE_AEFI_INV };
+    }
+
+    //model = {"rid":1511846288224,"type":"REPORT_TYPE_AEFI_INV","designation_id":"1","vaccination_in_other":"s","site_type_other":"s","place_vaccination_other":"s","reporter_name":"s","telephone":"s","reporter_email":"s","report_date":"8-10-2017","start_date":"14-10-2017","complete_date":"27-10-2017","patient_name":"sss","gender":"Male","hospitalization_date":"7-10-2017","status_on_date":"Died","died_date":"7-10-2017","autopsy_done":"No","autopsy_planned":"No","past_history":"Unknown","adverse_event":"Unknown","past_history_remarks":"s","adverse_event_remarks":"s","allergy_history_remarks":"s","allergy_history":"Unknown","existing_illness":"Unknown","existing_illness_remarks":"s","hospitalization_history":"No","hospitalization_history_remarks":"s","medication_vaccination":"Unknown","medication_vaccination_remarks":"s","faith_healers":"No","faith_healers_remarks":"s","family_history":"No","family_history_remarks":"ss","pregnant":"No","breastfeeding":"No","infant":"full-term","birth_weight":"12","delivery_procedure":"Caesarean","source_examination":"source_examination","verbal_source":"x","examiner_name":"x","signs_symptoms":"x","person_details":"x","person_date":"22-10-2017","person_designation":"x","medical_care":"x","not_medical_care":"x","final_diagnosis":"x","saefi_list_of_vaccines":[{"vaccine_name":"xx","vaccination_doses":"2"}],"when_vaccinated":"Within the last vaccinations of the session","when_vaccinated_specify":"xxx","prescribing_error":"No","vaccine_unsterile":"Unable to assess","vaccine_condition":"Unable to assess","vaccine_reconstitution":"Unable to assess","vaccine_handling":"Unable to assess","vaccine_administered":"Unable to assess","vaccinated_vial":"2","vaccinated_session":"3","vaccinated_locations":"1","vaccinated_locations_specify":"dsd","vaccinated_cluster":"Unknown","vaccinated_cluster_vial":"Unknown","vaccinated_cluster_number":"4","vaccinated_cluster_vial_number":"d","syringes_used":"Unknown","syringes_used_specify":"Recycled disposable","syringes_used_findings":"d","reconstitution_multiple":"Yes","reconstitution_different":"d","reconstitution_syringe":"d","reconstitution_observations":"d","reconstitution_vial":"d","reconstitution_vaccines":"d","cold_temperature":"No","cold_temperature_deviation":"No","cold_temperature_specify":"d","procedure_followed":"No","partial_vaccines":"No","other_items":"No","unusable_vaccines":"No","unusable_diluents":"No","cold_transportation":"No","additional_observations":"d","vaccine_carrier":"No","transport_findings":"d","similar_events":"No","coolant_packs":"d","similar_events_describe":"d","similar_events_episodes":"dd","affected_vaccinated":"d","affected_unknown":"d","community_comments":"d","affected_not_vaccinated":"dd","relevant_findings":"ddf"}
+
+    _this.saveAndSubmit = _this.saveAndSubmit.bind(_this);
+    _this.state = { model: model, validate: null };
+    return _this;
   }
 
   _createClass(AEFIInvForm, [{
     key: 'render',
     value: function render() {
+      var model = this.state.model;
+
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'saefi-form' },
         _react2.default.createElement(
           'h3',
           { className: 'text-center' },
-          'AEFI INVESTIGATION FORM'
+          _react2.default.createElement(
+            'span',
+            { className: 'text-center' },
+            _react2.default.createElement('img', { src: 'assets/images/mcaz_3.png', className: 'logo' })
+          ),
+          _react2.default.createElement('br', null),
+          'Serious Adverse Event After Immunization (AEFI) Investigation Form'
         ),
         _react2.default.createElement(
           'h5',
@@ -40869,12 +41380,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Place of vaccination', required: true })
+              _react2.default.createElement(_SelectInput2.default, { label: 'Place of vaccination', name: 'place_vaccination', model: model, required: true, options: _FieldOptions.PLACE_VACCINATION })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Type of site' })
+              _react2.default.createElement(_TextInput2.default, { label: 'If other, specify:', required: true, name: 'place_vaccination_other', model: model })
             )
           ),
           _react2.default.createElement(
@@ -40883,21 +41394,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Vaccination in' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Name of Investigating Health Worker:', required: true })
+              _react2.default.createElement(_SelectInput2.default, { label: 'Type of site', name: 'site_type', model: model, options: _FieldOptions.SITE_TYPE })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Designation / Position:' })
+              _react2.default.createElement(_TextInput2.default, { label: 'If other, specify:', required: true, name: 'site_type_other', model: model })
             )
           ),
           _react2.default.createElement(
@@ -40906,12 +41408,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Telephone # landline (with code):', required: true })
+              _react2.default.createElement(_SelectInput2.default, { label: 'Vaccination in', name: 'vaccination_in', options: _FieldOptions.VACCINATION_IN, model: model })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Mobile' })
+              _react2.default.createElement(_TextInput2.default, { label: 'Specify:', required: true, name: 'vaccination_in_other', model: model })
             )
           ),
           _react2.default.createElement(
@@ -40920,21 +41422,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Email', required: true })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Date AEFI reported:', required: true })
+              _react2.default.createElement(_TextInput2.default, { label: 'Name of Investigating Health Worker:', name: 'reporter_name', model: model, required: true })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Date investigation started:', required: true })
+              _react2.default.createElement(_SelectInput2.default, { name: 'designation_id', label: 'Designation / Position:', model: model, options: _FieldOptions.DESIGNATION })
             )
           ),
           _react2.default.createElement(
@@ -40943,21 +41436,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Date investigation completed:', required: true })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Patient Name' })
+              _react2.default.createElement(_TextInput2.default, { label: 'Telephone # landline (with code):', name: 'telephone', model: model, required: true })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Gender' })
+              _react2.default.createElement(_TextInput2.default, { label: 'Mobile', name: 'mobile', model: model })
             )
           ),
           _react2.default.createElement(
@@ -40966,12 +41450,21 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Date of hospitalization (DD/MM/YYYY):', required: true })
+              _react2.default.createElement(_TextInput2.default, { label: 'Email', required: true, name: 'reporter_email', model: model })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_DatePickerInput2.default, { label: 'Date AEFI reported:', required: true, name: 'report_date', model: model })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Status on the date of investigation', required: true })
+              _react2.default.createElement(_DatePickerInput2.default, { label: 'Date investigation started:', required: true, name: 'start_date', model: model })
             )
           ),
           _react2.default.createElement(
@@ -40980,21 +41473,21 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'If died, date and time of death (DD/MM/YYYY):', required: true })
+              _react2.default.createElement(_DatePickerInput2.default, { label: 'Date investigation completed:', required: true, name: 'complete_date', model: model })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_TextInput2.default, { label: 'Patient Name', name: 'patient_name', model: model })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Autopsy done?', required: true })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'h5',
-              null,
-              'Relevant patient information prior to immunization'
+              _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, label: 'Gender', model: model, name: 'gender', options: _FieldOptions.GENDER })
             )
           ),
           _react2.default.createElement(
@@ -41003,194 +41496,7 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Past history of similar event' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Remarks' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Adverse event after previous vaccination(s)' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Remarks' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'History of allergy to vaccine, drug or food' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Remarks' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Pre-existing illness (30 days) / congenital disorder' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Remarks' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'History of hospitalization in last 30 days, with cause' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Remarks' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Was patient on medication at time of vaccination? (If yes, name the drug, indication, doses & treatment dates)' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Remarks' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Did patient consult faith healers before/after vaccination? *specify' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Remarks' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Family history of any disease (relevant to AEFI) or allergy' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Remarks' })
-            )
-          ),
-          _react2.default.createElement(
-            'h5',
-            null,
-            'For adult women'
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Currently pregnant?' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Currently breastfeeding?' })
-            )
-          ),
-          _react2.default.createElement(
-            'h5',
-            null,
-            'For infants'
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'The birth was' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Birth weight:' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Delivery procedure was' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'h5',
-              null,
-              'Details of first examination** of serious AEFI case'
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Source of information' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'If from verbal autopsy, please mention source' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Name of the person who first examined/treated the patient:' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Other sources who provided information (specify):' })
+              _react2.default.createElement(_DatePickerInput2.default, { label: 'Date of hospitalization (DD/MM/YYYY):', required: true, name: 'hospitalization_date', model: model })
             )
           ),
           _react2.default.createElement(
@@ -41199,7 +41505,406 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Signs and symptoms in chronological order from the time of vaccination:' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, label: 'Status on the date of investigation', required: true, name: 'status_on_date', model: model,
+                options: _FieldOptions.STATUS_ON_DATE })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_DatePickerInput2.default, { label: 'If died, date and time of death (DD/MM/YYYY):', name: 'died_date', model: model, required: true })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, model: model, label: 'Autopsy done?', required: true, options: _FieldOptions.BOOLEAN_OPTIONS, name: 'autopsy_done' })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_DatePickerInput2.default, { label: 'If yes, date ', name: 'autopsy_done_date', model: model, required: true })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, model: model, label: 'Autopsy planned?', required: true, options: _FieldOptions.BOOLEAN_OPTIONS, name: 'autopsy_planned' })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_DatePickerInput2.default, { label: 'If yes, date ', name: 'autopsy_planned_date', model: model, required: true })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_FileInputComponent2.default, { name: 'reports', label: 'Attach report (if available)', required: true, model: model })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'h5',
+              null,
+              'Section B: Relevant patient information prior to immunization'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'table',
+              { className: 'table table-bordered' },
+              _react2.default.createElement(
+                'thead',
+                null,
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    'Criteria'
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    'Findings'
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    'Remarks'
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'tbody',
+                null,
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    { className: 'col-md-6' },
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'Past history of similar event'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    { className: 'col-md-3' },
+                    _react2.default.createElement(_SingleMultipleInput2.default, { hideLabel: true, inline: true, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, name: 'past_history', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    { className: 'col-md-3' },
+                    _react2.default.createElement(_TextInput2.default, { multiLine: true, hideLabel: true, name: 'past_history_remarks', model: model })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'Adverse event after previous vaccination(s)'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_SingleMultipleInput2.default, { hideLabel: true, inline: true, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, name: 'adverse_event', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { hideLabel: true, multiLine: true, name: 'adverse_event_remarks', model: model })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'History of allergy to vaccine, drug or food'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_SingleMultipleInput2.default, { hideLabel: true, inline: true, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, name: 'allergy_history', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { hideLabel: true, multiLine: true, name: 'allergy_history_remarks', model: model })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'Pre-existing illness (30 days) / congenital disorder'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_SingleMultipleInput2.default, { hideLabel: true, inline: true, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, name: 'existing_illness', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { hideLabel: true, multiLine: true, name: 'existing_illness_remarks', model: model })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'History of hospitalization in last 30 days, with cause'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_SingleMultipleInput2.default, { hideLabel: true, inline: true, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, name: 'hospitalization_history', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { hideLabel: true, multiLine: true, name: 'hospitalization_history_remarks', model: model })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'Was patient on medication at time of vaccination? (If yes, name the drug, indication, doses & treatment dates)'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_SingleMultipleInput2.default, { hideLabel: true, inline: true, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, name: 'medication_vaccination', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { hideLabel: true, multiLine: true, name: 'medication_vaccination_remarks', model: model })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'Did patient consult faith healers before/after vaccination? *specify'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_SingleMultipleInput2.default, { hideLabel: true, inline: true, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, name: 'faith_healers', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { hideLabel: true, multiLine: true, name: 'faith_healers_remarks', model: model })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'Family history of any disease (relevant to AEFI) or allergy'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_SingleMultipleInput2.default, { hideLabel: true, inline: true, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, name: 'family_history', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { hideLabel: true, multiLine: true, name: 'family_history_remarks', model: model })
+                  )
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'h5',
+              null,
+              'For adult women'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, label: 'Currently pregnant?', name: 'pregnant', model: model, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_TextInput2.default, { label: 'Weeks', name: 'pregnant_weeks', model: model })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, label: 'Currently breast feeding?', model: model, name: 'breastfeeding', options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'h5',
+              null,
+              'For infants'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_SingleMultipleInput2.default, { label: 'The birth was', inline: true, name: 'infant', model: model, options: _FieldOptions.INFANT_BIRTH_OPTS })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_TextInput2.default, { label: 'Birth weight:', name: 'birth_weight', model: model })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_SingleMultipleInput2.default, { label: 'Delivery procedure was', name: 'delivery_procedure', model: model, options: _FieldOptions.DELIVERY_OPTS })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_TextInput2.default, { label: 'If with complications, specify:', name: 'delivery_procedure_specify', model: model })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'h5',
+              null,
+              'Section C : Details of first examination** of serious AEFI case'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-12 col-sm-12' },
+              _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, label: 'Source of information', name: 'source_examination', options: _FieldOptions.SOURCE_INFO, model: model })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_TextInput2.default, { label: 'If from verbal autopsy, please mention source', name: 'verbal_source', model: model })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_TextInput2.default, { label: 'If other, specify', name: 'source_other_specify', model: model })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_TextInput2.default, { label: 'Name of the person who first examined/treated the patient:', name: 'examiner_name', model: model })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_TextInput2.default, { label: 'Other sources who provided information (specify):', model: model, name: 'other_sources' })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-12 col-sm-12' },
+              _react2.default.createElement(_TextInput2.default, { multiLine: true, label: 'Signs and symptoms in chronological order from the time of vaccination:', model: model, name: 'signs_symptoms' })
             )
           ),
           _react2.default.createElement(
@@ -41209,12 +41914,12 @@ var AEFIInvForm = function (_Component) {
               'div',
               { className: 'col-md-6 col-sm-12' },
               _react2.default.createElement(_TextInput2.default, { label: 'Name and contact information of person completing these clinical details:',
-                multiLine: true })
+                multiLine: true, name: 'person_details', model: model })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Designation:' })
+              _react2.default.createElement(_TextInput2.default, { label: 'Designation:', name: 'person_designation', model: model })
             )
           ),
           _react2.default.createElement(
@@ -41223,7 +41928,7 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Date/time' })
+              _react2.default.createElement(_DatePickerInput2.default, { label: 'Date/time', model: model, name: 'person_date' })
             )
           ),
           _react2.default.createElement(
@@ -41234,6 +41939,7 @@ var AEFIInvForm = function (_Component) {
               null,
               'If patient has received medical care \uF02D attach copies of all available documents (including case sheet, discharge summary, laboratory reports and autopsy reports, if available) and write only the information that is not available in the attached documents below'
             ),
+            _react2.default.createElement(_TextInput2.default, { multiLine: true, hideLabel: true, name: 'medical_care', model: model }),
             _react2.default.createElement(
               'h5',
               null,
@@ -41242,8 +41948,18 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: '' })
+              _react2.default.createElement(_TextInput2.default, { multiLine: true, hideLabel: true, label: '', name: 'not_medical_care', model: model })
             )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(_FileAttachmentComponent2.default, { model: model, name: 'attachments', label: 'Do you have files that you would like to attach? click on the button to add them:  ' })
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(_TextInput2.default, { label: 'Provisional / Final diagnosis:', multiLine: true, name: 'final_diagnosis', model: model })
           ),
           _react2.default.createElement(
             'div',
@@ -41251,22 +41967,13 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'h5',
               null,
-              'Details of vaccines provided at the site linked to AEFI on the corresponding day'
+              'Section D: Details of vaccines provided at the site linked to AEFI on the corresponding day'
             )
           ),
           _react2.default.createElement(
             'div',
             { className: 'container' },
-            _react2.default.createElement(
-              'h5',
-              null,
-              'Number vaccinated for each antigen at session site. Attach record if available.'
-            )
-          ),
-          _react2.default.createElement(
-            'h5',
-            { className: 'text-center' },
-            'National level to complete:'
+            _react2.default.createElement(_AEFIInvVaccinationTableComponent2.default, { model: model, name: 'saefi_list_of_vaccines', label: 'Number vaccinated for each antigen at session site. Attach record if available.  ' })
           ),
           _react2.default.createElement(
             'div',
@@ -41274,12 +41981,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'a. When was the patient vaccinated?' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { label: 'a. When was the patient vaccinated?', model: model, name: 'when_vaccinated', options: _FieldOptions.WHEN_VACCINATED })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'In case of multidose vials, was the vaccine given' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { label: 'In case of multidose vials, was the vaccine given', model: model, name: 'when_vaccinated', options: _FieldOptions.MULTI_VIALS })
             )
           ),
           _react2.default.createElement(
@@ -41287,116 +41994,318 @@ var AEFIInvForm = function (_Component) {
             { className: 'container' },
             _react2.default.createElement(
               'div',
-              { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'b. Was there an error in prescribing or non-adherence to recommendations for use of this vaccine?' })
+              { className: 'col-md-6 col-sm-12' },
+              _react2.default.createElement(_TextInput2.default, { name: 'when_vaccinated_specify', model: model, label: 'Specify' })
             )
           ),
           _react2.default.createElement(
             'div',
             { className: 'container' },
             _react2.default.createElement(
-              'div',
-              { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'c. Based on your investigation, do you feel that the vaccine (ingredients) administered could have\r\nbeen unsterile?' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'd. Based on your investigation, do you feel that the vaccine\'s physical condition (e.g. colour, turbidity,\r\nforeign substances etc.) was abnormal at the time of administration?' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'e. Based on your investigation, do you feel that there was an error in vaccine\r\nreconstitution/preparation by the vaccinator (e.g. wrong product, wrong diluent, improper mixing,\r\nimproper syringe filling etc.)?' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'f. Based on your investigation, do you feel that there was an error in vaccine handling (e.g. cold\r\nchain failure during transport, storage and/or immunization session etc.)?' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'g. Based on your investigation, do you feel that the vaccine was administered incorrectly (e.g. wrong\r\ndose, site or route of administration, wrong needle size, not following good injection practice etc.)?' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'h. Number vaccinated from the concerned vaccine vial/ampoule' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'i. Number vaccinated with the concerned vaccine in the same session' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'j. Number vaccinated with the concerned vaccine having the same batch number in other locations.' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'k. Is this case a part of a cluster?' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: ' If yes, how many other cases have been detected in the cluster?' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'a. Did all the cases in the cluster receive vaccine from the same vial?' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'b. If no, number of vials used in the cluster (enter details separately)' })
+              'table',
+              { className: 'table table-bordered' },
+              _react2.default.createElement(
+                'thead',
+                null,
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    { className: 'col-md-6' },
+                    'Criteria'
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    { className: 'col-md-3' },
+                    'Findings'
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    { className: 'col-md-3' },
+                    'Remarks'
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'tbody',
+                null,
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    { className: 'col-md-6' },
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'b. Was there an error in prescribing or non-adherence to recommendations for use of this vaccine?'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    { className: 'col-md-3' },
+                    _react2.default.createElement(_SingleMultipleInput2.default, { hideLabel: true, inline: true, options: _FieldOptions.BOOLEAN_OPTIONS, name: 'prescribing_error', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    { className: 'col-md-3' },
+                    _react2.default.createElement(_TextInput2.default, { multiLine: true, hideLabel: true, name: 'prescribing_error_specify', model: model })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'c. Based on your investigation, do you feel that the vaccine (ingredients) administered could have been unsterile?'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, hideLabel: true, options: _FieldOptions.BOOLEAN_UNABLE_OPTIONS, name: 'vaccine_unsterile', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { multiLine: true, hideLabel: true, name: 'vaccine_unsterile_specify', model: model })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'd. Based on your investigation, do you feel that the vaccine\'s physical condition (e.g. colour, turbidity, foreign substances etc.) was abnormal at the time of administration?'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, hideLabel: true, options: _FieldOptions.BOOLEAN_UNABLE_OPTIONS, name: 'vaccine_condition', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { multiLine: true, hideLabel: true, name: 'vaccine_condition_specify', model: model })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'e. Based on your investigation, do you feel that there was an error in vaccine reconstitution/preparation by the vaccinator (e.g. wrong product, wrong diluent, improper mixing, improper syringe filling etc.)?'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, hideLabel: true, options: _FieldOptions.BOOLEAN_UNABLE_OPTIONS, name: 'vaccine_reconstitution', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { multiLine: true, hideLabel: true, name: 'vaccine_reconstitution_specify', model: model })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'f. Based on your investigation, do you feel that there was an error in vaccine handling (e.g. cold chain failure during transport, storage and/or immunization session etc.)?'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, hideLabel: true, options: _FieldOptions.BOOLEAN_UNABLE_OPTIONS, name: 'vaccine_handling', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { multiLine: true, hideLabel: true, name: 'vaccine_handling_specify', model: model })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'g. Based on your investigation, do you feel that the vaccine was administered incorrectly (e.g. wrong dose, site or route of administration, wrong needle size, not following good injection practice etc.)?'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, hideLabel: true, options: _FieldOptions.BOOLEAN_UNABLE_OPTIONS, name: 'vaccine_administered', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { multiLine: true, hideLabel: true, name: 'vaccine_administered_specify', model: model })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'h. Number vaccinated from the concerned vaccine vial/ampoule'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { inline: true, hideLabel: true, name: 'vaccinated_vial', model: model })
+                  ),
+                  _react2.default.createElement('td', null)
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'i. Number vaccinated with the concerned vaccine in the same session'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { inline: true, hideLabel: true, name: 'vaccinated_session', model: model })
+                  ),
+                  _react2.default.createElement('td', null)
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'j. Number vaccinated with the concerned vaccine having the same batch number in other locations.'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { inline: true, hideLabel: true, name: 'vaccinated_locations', model: model })
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { multiLine: true, inline: true, hideLabel: true, name: 'vaccinated_locations_specify', model: model })
+                  )
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'k. Is this case a part of a cluster?'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, hideLabel: true, name: 'vaccinated_cluster', model: model, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS })
+                  ),
+                  _react2.default.createElement('td', null)
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'If yes, how many other cases have been detected in the cluster?'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { inline: true, hideLabel: true, name: 'vaccinated_cluster_number', model: model })
+                  ),
+                  _react2.default.createElement('td', null)
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'a. Did all the cases in the cluster receive vaccine from the same vial?'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, hideLabel: true, name: 'vaccinated_cluster_vial', model: model, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS })
+                  ),
+                  _react2.default.createElement('td', null)
+                ),
+                _react2.default.createElement(
+                  'tr',
+                  null,
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(
+                      'label',
+                      null,
+                      'b. If no, number of vials used in the cluster (enter details separately)'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'td',
+                    null,
+                    _react2.default.createElement(_TextInput2.default, { inline: true, hideLabel: true, name: 'vaccinated_cluster_vial_number', model: model })
+                  ),
+                  _react2.default.createElement('td', null)
+                )
+              )
             )
           ),
           _react2.default.createElement(
@@ -41405,7 +42314,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'h5',
               null,
-              'Details of vaccines provided at the site linked to AEFI on the corresponding day'
+              'SECTION E: Immunization practices at the place(s) where concerned vaccine was used'
+            ),
+            _react2.default.createElement(
+              'h6',
+              null,
+              '(Complete this section by asking and/or observing practice)'
             )
           ),
           _react2.default.createElement(
@@ -41414,12 +42328,21 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Are AD syringes used for immunization?' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, name: 'syringes_used', label: 'Are AD syringes used for immunization?', options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, model: model })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'If no, specify the type of syringes used:' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { model: model, name: 'syringes_used_specify', label: 'If no, specify the type of syringes used:', options: _FieldOptions.SYRINGES_USED })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-md-offset-6 col-sm-12' },
+              _react2.default.createElement(_TextInput2.default, { label: 'If other, specify', name: 'syringes_used_other', model: model })
             )
           ),
           _react2.default.createElement(
@@ -41428,7 +42351,7 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Specific key findings/additional observations and comments:' })
+              _react2.default.createElement(_TextInput2.default, { name: 'syringes_used_findings', label: 'Specific key findings/additional observations and comments:', model: model })
             )
           ),
           _react2.default.createElement(
@@ -41442,12 +42365,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Same reconstitution syringe used for multiple vials of same vaccine?' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { label: 'Same reconstitution syringe used for multiple vials of same vaccine?', options: _FieldOptions.BOOLEAN_OPTIONS, name: 'reconstitution_multiple', model: model })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Same reconstitution syringe used for reconstituting different vaccines?' })
+              _react2.default.createElement(_TextInput2.default, { label: 'Same reconstitution syringe used for reconstituting different vaccines?', model: model, name: 'reconstitution_different', options: _FieldOptions.BOOLEAN_OPTIONS })
             )
           ),
           _react2.default.createElement(
@@ -41456,12 +42379,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Separate reconstitution syringe for each vaccine vial?' })
+              _react2.default.createElement(_TextInput2.default, { label: 'Separate reconstitution syringe for each vaccine vial?', name: 'reconstitution_vial', model: model, options: _FieldOptions.BOOLEAN_OPTIONS })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Separate reconstitution syringe for each vaccination?' })
+              _react2.default.createElement(_TextInput2.default, { label: 'Separate reconstitution syringe for each vaccination?', name: 'reconstitution_syringe', model: model, options: _FieldOptions.BOOLEAN_OPTIONS })
             )
           ),
           _react2.default.createElement(
@@ -41470,12 +42393,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Are the vaccines and diluents used the same as those recommended by the manufacturer?' })
+              _react2.default.createElement(_TextInput2.default, { label: 'Are the vaccines and diluents used the same as those recommended by the manufacturer?', name: 'reconstitution_vaccines', model: model, options: _FieldOptions.BOOLEAN_OPTIONS })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Specific key findings/additional observations and comments:' })
+              _react2.default.createElement(_TextInput2.default, { label: 'Specific key findings/additional observations and comments:', name: 'reconstitution_observations', model: model })
             )
           ),
           _react2.default.createElement(
@@ -41484,7 +42407,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'h5',
               null,
-              'Cold chain and transport'
+              'SECTION F : Cold chain and transport'
+            ),
+            _react2.default.createElement(
+              'h6',
+              null,
+              '(Complete this section by asking and/or observing practice)'
             )
           ),
           _react2.default.createElement(
@@ -41498,12 +42426,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Is the temperature of the vaccine storage refrigerator monitored?' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, label: 'Is the temperature of the vaccine storage refrigerator monitored?', name: 'cold_temperature', model: model, options: _FieldOptions.BOOLEAN_OPTIONS })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'If \u201Cyes\u201D, was there any deviation outside of 2\uF02D8 \xB0 C after the vaccine was placed inside?' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { inline: true, label: 'If \u201Cyes\u201D, was there any deviation outside of 2-8 \xB0 C after the vaccine was placed inside?', name: 'cold_temperature_deviation', model: model, options: _FieldOptions.BOOLEAN_OPTIONS })
             )
           ),
           _react2.default.createElement(
@@ -41512,7 +42440,7 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'If \u201Cyes\u201D, provide details of monitoring separately.' })
+              _react2.default.createElement(_TextInput2.default, { name: 'cold_temperature_specify', multiLine: true, model: model, label: 'If \u201Cyes\u201D, provide details of monitoring separately.' })
             )
           ),
           _react2.default.createElement(
@@ -41521,12 +42449,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Was the correct procedure for storing vaccines, diluents and syringes followed?' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { name: 'procedure_followed', options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, model: model, label: 'Was the correct procedure for storing vaccines, diluents and syringes followed?' })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Was any other item (other than EPI vaccines and diluents) in the refrigerator or freezer?' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { name: 'other_items', options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, model: model, label: 'Was any other item (other than EPI vaccines and diluents) in the refrigerator or freezer?' })
             )
           ),
           _react2.default.createElement(
@@ -41535,12 +42463,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Were any partially used reconstituted vaccines in the refrigerator?' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { name: 'partial_vaccines', options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, model: model, label: 'Were any partially used reconstituted vaccines in the refrigerator?' })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Were any unusable vaccines (expired, no label, VVM at stages 3 or 4, frozen) in the refrigerator?' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { name: 'unusable_vaccines', options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, model: model, label: 'Were any unusable vaccines (expired, no label, VVM at stages 3 or 4, frozen) in the refrigerator?' })
             )
           ),
           _react2.default.createElement(
@@ -41549,12 +42477,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Were any unusable diluents (expired, manufacturer not matched, cracked, dirty ampoule) in the store?' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { name: 'unusable_diluents', model: model, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, label: 'Were any unusable diluents (expired, manufacturer not matched, cracked, dirty ampoule) in the store?' })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Specific key findings/additional observations and comments:' })
+              _react2.default.createElement(_TextInput2.default, { label: 'Specific key findings/additional observations and comments:', name: 'additional_observations', model: model, multiLine: true })
             )
           ),
           _react2.default.createElement(
@@ -41568,12 +42496,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Was cold chain properly maintained during transportation?' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { name: 'cold_transportation', model: model, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, label: 'Was cold chain properly maintained during transportation?' })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Was the vaccine carrier sent to the site on the same day as vaccination?' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { name: 'vaccine_carrier', model: model, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, label: 'Was the vaccine carrier sent to the site on the same day as vaccination?' })
             )
           ),
           _react2.default.createElement(
@@ -41582,12 +42510,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Were conditioned coolant-packs used?' })
+              _react2.default.createElement(_TextInput2.default, { name: 'coolant_packs', model: model, options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, label: 'Were conditioned coolant-packs used?' })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Specific key findings/additional observations and comments:' })
+              _react2.default.createElement(_TextInput2.default, { name: 'transport_findings', multiLine: true, model: model, label: 'Specific key findings/additional observations and comments:' })
             )
           ),
           _react2.default.createElement(
@@ -41596,7 +42524,7 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'h5',
               null,
-              'Community investigation (Please visit locality and interview parents/others)'
+              'SECTION G: Community investigation (Please visit locality and interview parents/others)'
             )
           ),
           _react2.default.createElement(
@@ -41605,12 +42533,12 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Were any similar events reported within a time period similar to when the adverse event occurred and in the same locality?' })
+              _react2.default.createElement(_SingleMultipleInput2.default, { model: model, name: 'similar_events', options: _FieldOptions.BOOLEAN_UNKNOWN_OPTIONS, label: 'Were any similar events reported within a time period similar to when the adverse event occurred and in the same locality?' })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'If yes, describe:' })
+              _react2.default.createElement(_TextInput2.default, { label: 'If yes, describe:', name: 'similar_events_describe', model: model, multiLine: true })
             )
           ),
           _react2.default.createElement(
@@ -41619,7 +42547,7 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'If yes, how many events/episodes?' })
+              _react2.default.createElement(_TextInput2.default, { label: 'If yes, how many events/episodes?', name: 'similar_events_episodes', model: model })
             )
           ),
           _react2.default.createElement(
@@ -41633,17 +42561,17 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Vaccinated:' })
+              _react2.default.createElement(_TextInput2.default, { label: 'Vaccinated:', name: 'affected_vaccinated', model: model })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Not vaccinated::' })
+              _react2.default.createElement(_TextInput2.default, { label: 'Not vaccinated::', name: 'affected_not_vaccinated', model: model })
             ),
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Unknown:' })
+              _react2.default.createElement(_TextInput2.default, { label: 'Unknown:', name: 'affected_unknown', model: model })
             )
           ),
           _react2.default.createElement(
@@ -41652,16 +42580,7 @@ var AEFIInvForm = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: 'Other comments:' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'container' },
-            _react2.default.createElement(
-              'h5',
-              null,
-              'Other relevant findings/observations/comments'
+              _react2.default.createElement(_TextInput2.default, { label: 'Other comments:', name: 'community_comments', model: model })
             )
           ),
           _react2.default.createElement(
@@ -41669,19 +42588,28 @@ var AEFIInvForm = function (_Component) {
             { className: 'container' },
             _react2.default.createElement(
               'div',
-              { className: 'col-md-12 col-sm-12' },
-              _react2.default.createElement(_TextInput2.default, { label: '' })
+              { className: 'form-group' },
+              _react2.default.createElement(
+                'h5',
+                null,
+                'Other relevant findings/observations/comments'
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'col-md-12 col-sm-12' },
+                _react2.default.createElement(_TextInput2.default, { label: '', hideLabel: true, multiLine: true, name: 'relevant_findings', model: model })
+              )
             )
           ),
           _react2.default.createElement(
             'div',
-            { className: 'container' },
+            { className: 'container well' },
             _react2.default.createElement(
               'div',
               { className: 'col-md-3 col-md-offset-1' },
               _react2.default.createElement(
                 'button',
-                { className: 'btn btn-sm btn-primary' },
+                { className: 'btn btn-sm btn-primary', onClick: this.saveAndContinue },
                 'Save Changes'
               )
             ),
@@ -41690,7 +42618,7 @@ var AEFIInvForm = function (_Component) {
               { className: 'col-md-3 col-md-offset-1' },
               _react2.default.createElement(
                 'button',
-                { className: 'btn btn-sm btn-primary' },
+                { className: 'btn btn-sm btn-primary', onClick: this.saveAndSubmit },
                 'Save and submit'
               )
             ),
@@ -41699,7 +42627,7 @@ var AEFIInvForm = function (_Component) {
               { className: 'col-md-3 col-md-offset-1' },
               _react2.default.createElement(
                 'button',
-                { className: 'btn btn-sm btn-default' },
+                { className: 'btn btn-sm btn-default', onClick: this.cancel },
                 'Cancel'
               )
             )
@@ -41707,15 +42635,131 @@ var AEFIInvForm = function (_Component) {
         )
       );
     }
+
+    /**
+      When saved, check connection status.
+    */
+
+  }, {
+    key: 'saveAndSubmit',
+    value: function saveAndSubmit(e) {
+      e.preventDefault();
+      var model = this.state.model;
+      var _props = this.props,
+          uploadData = _props.uploadData,
+          saveCompleted = _props.saveCompleted,
+          connection = _props.connection,
+          setNotification = _props.setNotification;
+
+      var valid = true;
+      var names = "";
+      var page = 0;
+      /*SAE_MANDATORY_FIELS.forEach((field) => {
+        if(field.fields) {
+          const fields = field.fields
+          const values = model[field.name]
+          var arrayNames = []
+          if(Array.isArray(values)) {
+            for(let i = 0; i < values.length; i++) {
+              const val = values[i]
+              fields.forEach((f) => {
+                if(val[f.name] == null || val[f.name] === "") {
+                  valid = false
+                  if(page == 0) {
+                    page = field.page
+                  }
+                  if(arrayNames.indexOf(f.text) == -1) {
+                    arrayNames.push(f.text)
+                  }
+                }
+              })
+            }
+          }
+          if(names != "") {
+            names += ",\n"
+          }
+          names += arrayNames.join(',\n')
+        } else {
+          if(field.dependent) {
+            if(model[field.dependent] == field.value && (model[field.name] == null || model[field.name] === "")) {
+              valid = false
+              if(names != "") {
+                names += ",\n "
+              } else {
+                page = field.page
+              }
+              names += field.text
+            }
+          } else if(model[field.name] == null || model[field.name] === "") {
+            valid = false
+            if(names != "") {
+              names += ",\n "
+            } else {
+              page = field.page
+            }
+            names += field.text
+          }
+        }
+      })*/
+
+      if (!valid) {
+        this.setState({ validate: true });
+        setNotification({ message: messages.validationErrors, level: "error", id: new Date().getTime() });
+        return;
+      }
+
+      if (connection.isConnected) {
+        uploadData(model, _Constants.SAEFI_URL);
+      } else {
+        //Alert.alert("Offline", "data has been saved to memory and will be uploaded when online.")
+        saveCompleted(model);
+      }
+      this.goBack();
+    }
   }]);
 
   return AEFIInvForm;
-}(_react.Component);
+}(_FormComponent3.default);
 
-exports.default = AEFIInvForm;
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    connection: state.appState.connection,
+    model: state.appState.currentReport
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    saveDraft: function saveDraft(data) {
+      dispatch((0, _actions.saveDraft)(data));
+    },
+    uploadData: function uploadData(data, url) {
+      // Upload the data.
+      dispatch((0, _actions.uploadData)(data, url));
+    },
+    validate: function validate(valid) {
+      // Validate the form
+      dispatch((0, _actions.validate)(valid));
+    },
+    saveCompleted: function saveCompleted(data) {
+      // save the completed data and remove any draft.
+      dispatch((0, _actions.saveCompleted)(data));
+      dispatch((0, _actions.removeDraft)(data));
+    },
+    showPage: function showPage(page) {
+      dispatch((0, _actions.showPage)(page));
+    },
+    setNotification: function setNotification(notification) {
+      dispatch((0, _actions.setNotification)(notification));
+    },
+    dispatch: dispatch
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(AEFIInvForm);
 
 /***/ }),
-/* 246 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41731,23 +42775,277 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ADRReadOnlyReportComponent = __webpack_require__(247);
+var _TextInput = __webpack_require__(3);
+
+var _TextInput2 = _interopRequireDefault(_TextInput);
+
+var _DatePickerInput = __webpack_require__(10);
+
+var _DatePickerInput2 = _interopRequireDefault(_DatePickerInput);
+
+var _TableComponent2 = __webpack_require__(12);
+
+var _TableComponent3 = _interopRequireDefault(_TableComponent2);
+
+var _SingleMultipleInput = __webpack_require__(9);
+
+var _SingleMultipleInput2 = _interopRequireDefault(_SingleMultipleInput);
+
+var _SelectInput = __webpack_require__(6);
+
+var _SelectInput2 = _interopRequireDefault(_SelectInput);
+
+var _ReadOnlyDataRenderer = __webpack_require__(8);
+
+var _ReadOnlyDataRenderer2 = _interopRequireDefault(_ReadOnlyDataRenderer);
+
+var _FieldOptions = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AEFIInvVaccinationTableComponent = function (_TableComponent) {
+  _inherits(AEFIInvVaccinationTableComponent, _TableComponent);
+
+  function AEFIInvVaccinationTableComponent(props) {
+    _classCallCheck(this, AEFIInvVaccinationTableComponent);
+
+    var _this = _possibleConstructorReturn(this, (AEFIInvVaccinationTableComponent.__proto__ || Object.getPrototypeOf(AEFIInvVaccinationTableComponent)).call(this, props));
+
+    var _this$props = _this.props,
+        model = _this$props.model,
+        name = _this$props.name,
+        validate = _this$props.validate;
+
+
+    _this.getRow = _this.getRow.bind(_this);
+    _this.getReadOnlyRow = _this.getReadOnlyRow.bind(_this);
+    var rows = [];
+    if (model && model[name]) {
+      rows = model[name];
+    }
+    _this.state = { rows: rows, validate: validate };
+    return _this;
+  }
+
+  _createClass(AEFIInvVaccinationTableComponent, [{
+    key: 'getRow',
+    value: function getRow(index) {
+      var _this2 = this;
+
+      var rowData = {};
+      var _props = this.props,
+          model = _props.model,
+          name = _props.name;
+
+      if (!model[name]) {
+        model[name] = [];
+      }
+      if (!model[name][index]) {
+        model[name][index] = rowData;
+      }
+      return _react2.default.createElement(
+        'tr',
+        { key: Math.floor(Math.random() * 10000) },
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(_TextInput2.default, { inline: true, hideLabel: true, name: 'vaccine_name', model: model[name][index], validate: this.state.validate, required: true })
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(_TextInput2.default, { hideLabel: true, name: 'vaccination_doses', model: model[name][index] })
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(
+            'button',
+            { className: 'btn btn-sm btn-danger', onClick: function onClick(e) {
+                return _this2.removeRow(index, e);
+              } },
+            _react2.default.createElement('span', { className: 'glyphicon glyphicon-minus', 'aria-hidden': 'true' })
+          )
+        )
+      );
+    }
+  }, {
+    key: 'getReadOnlyRow',
+    value: function getReadOnlyRow(index) {
+      var rowData = {};
+      var _props2 = this.props,
+          model = _props2.model,
+          name = _props2.name;
+
+      if (!model[name]) {
+        model[name] = [];
+      }
+      if (!model[name][index]) {
+        model[name][index] = rowData;
+      }
+      return _react2.default.createElement(
+        'tr',
+        { key: Math.floor(Math.random() * 10000) },
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'vaccine_name', model: model[name][index] })
+        ),
+        _react2.default.createElement(
+          'td',
+          null,
+          _react2.default.createElement(_ReadOnlyDataRenderer2.default, { hideLabel: true, name: 'vaccination_doses', model: model[name][index] })
+        )
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props3 = this.props,
+          label = _props3.label,
+          name = _props3.name,
+          multiLine = _props3.multiLine,
+          required = _props3.required,
+          readonly = _props3.readonly;
+
+      var input = null;
+
+      var rows = this.initializeRows(readonly); //.rows
+      var lastCol = null;
+      var addRowBtn = null;
+      if (!readonly) {
+        lastCol = _react2.default.createElement('td', null);
+        addRowBtn = _react2.default.createElement(
+          'button',
+          { className: 'btn btn-sm btn-primary', onClick: this.addRow },
+          _react2.default.createElement('span', { className: 'glyphicon glyphicon-plus', 'aria-hidden': 'true' })
+        );
+      }
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(
+          'h5',
+          { className: 'text-center' },
+          ' ',
+          label,
+          addRowBtn
+        ),
+        _react2.default.createElement(
+          'table',
+          { className: 'table table-condensed table-bordered' },
+          _react2.default.createElement(
+            'thead',
+            null,
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement(
+                'td',
+                null,
+                'Vaccine name',
+                _react2.default.createElement(
+                  'span',
+                  { className: 'required' },
+                  '*'
+                )
+              ),
+              _react2.default.createElement(
+                'td',
+                null,
+                'Number of doses',
+                _react2.default.createElement(
+                  'span',
+                  { className: 'required' },
+                  '*'
+                )
+              ),
+              lastCol
+            )
+          ),
+          _react2.default.createElement(
+            'tbody',
+            null,
+            rows
+          )
+        )
+      );
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var validate = this.state.validate;
+
+      var newValidate = nextProps.validate;
+      if (newValidate != validate) {
+        this.setState({ validate: newValidate });
+        //this.initializeData()
+      }
+    }
+
+    /*initializeRows() {
+      const { rows } = this.state
+      var dataRows = []
+      //this.setState({ rows : rows })
+      for(let i = 0; i < rows.length; i++) {
+        dataRows[i] = this.getRow(i)
+      }
+      return dataRows
+    }*/
+
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      //this.initializeData()
+    }
+  }]);
+
+  return AEFIInvVaccinationTableComponent;
+}(_TableComponent3.default);
+
+exports.default = AEFIInvVaccinationTableComponent;
+
+/***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ADRReadOnlyReportComponent = __webpack_require__(249);
 
 var _ADRReadOnlyReportComponent2 = _interopRequireDefault(_ADRReadOnlyReportComponent);
 
-var _AEFIReadOnlyReportComponent = __webpack_require__(248);
+var _AEFIReadOnlyReportComponent = __webpack_require__(250);
 
 var _AEFIReadOnlyReportComponent2 = _interopRequireDefault(_AEFIReadOnlyReportComponent);
 
-var _SAEReadOnlyComponent = __webpack_require__(249);
+var _SAEReadOnlyComponent = __webpack_require__(251);
 
 var _SAEReadOnlyComponent2 = _interopRequireDefault(_SAEReadOnlyComponent);
 
-var _DateSelectInput = __webpack_require__(24);
+var _DateSelectInput = __webpack_require__(26);
 
 var _DateSelectInput2 = _interopRequireDefault(_DateSelectInput);
 
-var _SingleMultipleInput = __webpack_require__(13);
+var _SingleMultipleInput = __webpack_require__(9);
 
 var _SingleMultipleInput2 = _interopRequireDefault(_SingleMultipleInput);
 
@@ -41755,7 +43053,7 @@ var _MedicationTableComponent = __webpack_require__(30);
 
 var _MedicationTableComponent2 = _interopRequireDefault(_MedicationTableComponent);
 
-var _FileAttachmentComponent = __webpack_require__(19);
+var _FileAttachmentComponent = __webpack_require__(17);
 
 var _FileAttachmentComponent2 = _interopRequireDefault(_FileAttachmentComponent);
 
@@ -41763,15 +43061,15 @@ var _ConcomitantTableComponent = __webpack_require__(33);
 
 var _ConcomitantTableComponent2 = _interopRequireDefault(_ConcomitantTableComponent);
 
-var _SelectInput = __webpack_require__(7);
+var _SelectInput = __webpack_require__(6);
 
 var _SelectInput2 = _interopRequireDefault(_SelectInput);
 
-var _Constants = __webpack_require__(4);
+var _Constants = __webpack_require__(5);
 
-var _reactRedux = __webpack_require__(9);
+var _reactRedux = __webpack_require__(11);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41861,7 +43159,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ReadOnlyReportComponent);
 
 /***/ }),
-/* 247 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41885,7 +43183,7 @@ var _ReadOnlyDataRenderer = __webpack_require__(8);
 
 var _ReadOnlyDataRenderer2 = _interopRequireDefault(_ReadOnlyDataRenderer);
 
-var _SingleMultipleInput = __webpack_require__(13);
+var _SingleMultipleInput = __webpack_require__(9);
 
 var _SingleMultipleInput2 = _interopRequireDefault(_SingleMultipleInput);
 
@@ -41893,7 +43191,7 @@ var _MedicationTableComponent = __webpack_require__(30);
 
 var _MedicationTableComponent2 = _interopRequireDefault(_MedicationTableComponent);
 
-var _FileAttachmentComponent = __webpack_require__(19);
+var _FileAttachmentComponent = __webpack_require__(17);
 
 var _FileAttachmentComponent2 = _interopRequireDefault(_FileAttachmentComponent);
 
@@ -41901,17 +43199,17 @@ var _ConcomitantTableComponent = __webpack_require__(33);
 
 var _ConcomitantTableComponent2 = _interopRequireDefault(_ConcomitantTableComponent);
 
-var _SelectInput = __webpack_require__(7);
+var _SelectInput = __webpack_require__(6);
 
 var _SelectInput2 = _interopRequireDefault(_SelectInput);
 
-var _Constants = __webpack_require__(4);
+var _Constants = __webpack_require__(5);
 
-var _FieldOptions = __webpack_require__(6);
+var _FieldOptions = __webpack_require__(4);
 
-var _reactRedux = __webpack_require__(9);
+var _reactRedux = __webpack_require__(11);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42199,7 +43497,7 @@ var ADRReadOnlyReportComponent = function (_Component) {
 exports.default = ADRReadOnlyReportComponent;
 
 /***/ }),
-/* 248 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42223,7 +43521,7 @@ var _ReadOnlyDataRenderer = __webpack_require__(8);
 
 var _ReadOnlyDataRenderer2 = _interopRequireDefault(_ReadOnlyDataRenderer);
 
-var _FileAttachmentComponent = __webpack_require__(19);
+var _FileAttachmentComponent = __webpack_require__(17);
 
 var _FileAttachmentComponent2 = _interopRequireDefault(_FileAttachmentComponent);
 
@@ -42231,13 +43529,13 @@ var _AEFIVaccinationTableComponent = __webpack_require__(36);
 
 var _AEFIVaccinationTableComponent2 = _interopRequireDefault(_AEFIVaccinationTableComponent);
 
-var _Constants = __webpack_require__(4);
+var _Constants = __webpack_require__(5);
 
-var _FieldOptions = __webpack_require__(6);
+var _FieldOptions = __webpack_require__(4);
 
-var _reactRedux = __webpack_require__(9);
+var _reactRedux = __webpack_require__(11);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42600,7 +43898,7 @@ var AEFIReadOnlyReportComponent = function (_Component) {
 exports.default = AEFIReadOnlyReportComponent;
 
 /***/ }),
-/* 249 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42620,19 +43918,19 @@ var _ReadOnlyDataRenderer = __webpack_require__(8);
 
 var _ReadOnlyDataRenderer2 = _interopRequireDefault(_ReadOnlyDataRenderer);
 
-var _SAEDrugsTableComponent = __webpack_require__(175);
+var _SAEDrugsTableComponent = __webpack_require__(176);
 
 var _SAEDrugsTableComponent2 = _interopRequireDefault(_SAEDrugsTableComponent);
 
-var _SAEConcomitantTableComponent = __webpack_require__(176);
+var _SAEConcomitantTableComponent = __webpack_require__(177);
 
 var _SAEConcomitantTableComponent2 = _interopRequireDefault(_SAEConcomitantTableComponent);
 
-var _FileAttachmentComponent = __webpack_require__(19);
+var _FileAttachmentComponent = __webpack_require__(17);
 
 var _FileAttachmentComponent2 = _interopRequireDefault(_FileAttachmentComponent);
 
-var _SAELabTestsTableComponent = __webpack_require__(177);
+var _SAELabTestsTableComponent = __webpack_require__(178);
 
 var _SAELabTestsTableComponent2 = _interopRequireDefault(_SAELabTestsTableComponent);
 
@@ -42640,13 +43938,13 @@ var _AEFIVaccinationTableComponent = __webpack_require__(36);
 
 var _AEFIVaccinationTableComponent2 = _interopRequireDefault(_AEFIVaccinationTableComponent);
 
-var _Constants = __webpack_require__(4);
+var _Constants = __webpack_require__(5);
 
-var _FieldOptions = __webpack_require__(6);
+var _FieldOptions = __webpack_require__(4);
 
-var _reactRedux = __webpack_require__(9);
+var _reactRedux = __webpack_require__(11);
 
-var _actions = __webpack_require__(15);
+var _actions = __webpack_require__(13);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42775,7 +44073,7 @@ var SAEReadOnlyComponent = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'col-md-6 col-sm-12' },
-              _react2.default.createElement(_ReadOnlyDataRenderer2.default, { label: 'Date Form completed', name: '', model: model, validate: this.state.validate, required: true })
+              _react2.default.createElement(_ReadOnlyDataRenderer2.default, { label: 'Date Form completed', name: '', model: model, validate: this.state.validate, required: true, type: 'date' })
             )
           ),
           _react2.default.createElement(
@@ -43174,7 +44472,7 @@ var SAEReadOnlyComponent = function (_Component) {
 exports.default = SAEReadOnlyComponent;
 
 /***/ }),
-/* 250 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43182,11 +44480,11 @@ exports.default = SAEReadOnlyComponent;
 
 var React = __webpack_require__(1);
 var createReactClass = __webpack_require__(37);
-var PropTypes = __webpack_require__(5);
-var merge = __webpack_require__(11);
-var NotificationContainer = __webpack_require__(252);
+var PropTypes = __webpack_require__(7);
+var merge = __webpack_require__(15);
+var NotificationContainer = __webpack_require__(254);
 var Constants = __webpack_require__(38);
-var Styles = __webpack_require__(255);
+var Styles = __webpack_require__(257);
 
 var NotificationSystem = createReactClass({
   displayName: 'NotificationSystem',
@@ -43442,7 +44740,7 @@ var NotificationSystem = createReactClass({
 module.exports = NotificationSystem;
 
 /***/ }),
-/* 251 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43458,10 +44756,10 @@ module.exports = NotificationSystem;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _assign = __webpack_require__(11);
+var _assign = __webpack_require__(15);
 
 var emptyObject = __webpack_require__(20);
-var _invariant = __webpack_require__(18);
+var _invariant = __webpack_require__(19);
 
 if (process.env.NODE_ENV !== 'production') {
   var warning = __webpack_require__(21);
@@ -44181,7 +45479,7 @@ module.exports = factory;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 252 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44189,8 +45487,8 @@ module.exports = factory;
 
 var React = __webpack_require__(1);
 var createReactClass = __webpack_require__(37);
-var PropTypes = __webpack_require__(5);
-var NotificationItem = __webpack_require__(253);
+var PropTypes = __webpack_require__(7);
+var NotificationItem = __webpack_require__(255);
 var Constants = __webpack_require__(38);
 
 var NotificationContainer = createReactClass({
@@ -44241,7 +45539,7 @@ var NotificationContainer = createReactClass({
 module.exports = NotificationContainer;
 
 /***/ }),
-/* 253 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44249,11 +45547,11 @@ module.exports = NotificationContainer;
 
 var React = __webpack_require__(1);
 var createReactClass = __webpack_require__(37);
-var PropTypes = __webpack_require__(5);
-var ReactDOM = __webpack_require__(27);
+var PropTypes = __webpack_require__(7);
+var ReactDOM = __webpack_require__(29);
 var Constants = __webpack_require__(38);
-var Helpers = __webpack_require__(254);
-var merge = __webpack_require__(11);
+var Helpers = __webpack_require__(256);
+var merge = __webpack_require__(15);
 
 /* From Modernizr */
 var whichTransitionEvent = function whichTransitionEvent() {
@@ -44561,7 +45859,7 @@ var NotificationItem = createReactClass({
 module.exports = NotificationItem;
 
 /***/ }),
-/* 254 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44595,7 +45893,7 @@ var Helpers = {
 module.exports = Helpers;
 
 /***/ }),
-/* 255 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44863,7 +46161,7 @@ var STYLES = {
 module.exports = STYLES;
 
 /***/ }),
-/* 256 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44873,23 +46171,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _redux = __webpack_require__(22);
+var _redux = __webpack_require__(23);
 
-var _reduxPersist = __webpack_require__(257);
+var _reduxPersist = __webpack_require__(259);
 
-var _storage = __webpack_require__(264);
+var _storage = __webpack_require__(266);
 
 var _storage2 = _interopRequireDefault(_storage);
 
-var _reducers = __webpack_require__(267);
+var _reducers = __webpack_require__(269);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
-var _reduxThunk = __webpack_require__(276);
+var _reduxThunk = __webpack_require__(278);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-var _reduxPersistElectronStorage = __webpack_require__(277);
+var _reduxPersistElectronStorage = __webpack_require__(279);
 
 var _reduxPersistElectronStorage2 = _interopRequireDefault(_reduxPersistElectronStorage);
 
@@ -44916,7 +46214,7 @@ var pvStore = function pvStore(state) {
 exports.default = pvStore;
 
 /***/ }),
-/* 257 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44935,7 +46233,7 @@ Object.defineProperty(exports, 'persistReducer', {
   }
 });
 
-var _persistCombineReducers = __webpack_require__(259);
+var _persistCombineReducers = __webpack_require__(261);
 
 Object.defineProperty(exports, 'persistCombineReducers', {
   enumerable: true,
@@ -44944,7 +46242,7 @@ Object.defineProperty(exports, 'persistCombineReducers', {
   }
 });
 
-var _persistStore = __webpack_require__(261);
+var _persistStore = __webpack_require__(263);
 
 Object.defineProperty(exports, 'persistStore', {
   enumerable: true,
@@ -44953,7 +46251,7 @@ Object.defineProperty(exports, 'persistStore', {
   }
 });
 
-var _createMigrate = __webpack_require__(262);
+var _createMigrate = __webpack_require__(264);
 
 Object.defineProperty(exports, 'createMigrate', {
   enumerable: true,
@@ -44962,7 +46260,7 @@ Object.defineProperty(exports, 'createMigrate', {
   }
 });
 
-var _createTransform = __webpack_require__(263);
+var _createTransform = __webpack_require__(265);
 
 Object.defineProperty(exports, 'createTransform', {
   enumerable: true,
@@ -44971,7 +46269,7 @@ Object.defineProperty(exports, 'createTransform', {
   }
 });
 
-var _getStoredState = __webpack_require__(180);
+var _getStoredState = __webpack_require__(181);
 
 Object.defineProperty(exports, 'getStoredState', {
   enumerable: true,
@@ -44980,7 +46278,7 @@ Object.defineProperty(exports, 'getStoredState', {
   }
 });
 
-var _createPersistoid = __webpack_require__(179);
+var _createPersistoid = __webpack_require__(180);
 
 Object.defineProperty(exports, 'createPersistoid', {
   enumerable: true,
@@ -44989,7 +46287,7 @@ Object.defineProperty(exports, 'createPersistoid', {
   }
 });
 
-var _purgeStoredState = __webpack_require__(181);
+var _purgeStoredState = __webpack_require__(182);
 
 Object.defineProperty(exports, 'purgeStoredState', {
   enumerable: true,
@@ -44998,7 +46296,7 @@ Object.defineProperty(exports, 'purgeStoredState', {
   }
 });
 
-var _constants = __webpack_require__(17);
+var _constants = __webpack_require__(18);
 
 Object.keys(_constants).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -45013,7 +46311,7 @@ Object.keys(_constants).forEach(function (key) {
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 258 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45074,7 +46372,7 @@ function autoMergeLevel1(inboundState, originalState, reducedState, _ref) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 259 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45085,13 +46383,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = persistCombineReducers;
 
-var _redux = __webpack_require__(22);
+var _redux = __webpack_require__(23);
 
 var _persistReducer = __webpack_require__(39);
 
 var _persistReducer2 = _interopRequireDefault(_persistReducer);
 
-var _autoMergeLevel = __webpack_require__(260);
+var _autoMergeLevel = __webpack_require__(262);
 
 var _autoMergeLevel2 = _interopRequireDefault(_autoMergeLevel);
 
@@ -45104,7 +46402,7 @@ function persistCombineReducers(config, reducers) {
 }
 
 /***/ }),
-/* 260 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45175,7 +46473,7 @@ function isPlainEnoughObject(o) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 261 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45186,13 +46484,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = persistStore;
 
-var _redux = __webpack_require__(22);
+var _redux = __webpack_require__(23);
 
 var _persistReducer = __webpack_require__(39);
 
 var _persistReducer2 = _interopRequireDefault(_persistReducer);
 
-var _constants = __webpack_require__(17);
+var _constants = __webpack_require__(18);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45312,7 +46610,7 @@ function persistStore(store, persistorOptions, cb) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 262 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45323,7 +46621,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createMigrate;
 
-var _constants = __webpack_require__(17);
+var _constants = __webpack_require__(18);
 
 function createMigrate(migrations, config) {
   var _ref = config || {},
@@ -45368,7 +46666,7 @@ function createMigrate(migrations, config) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 263 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45405,7 +46703,7 @@ outbound) {
 }
 
 /***/ }),
-/* 264 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45415,7 +46713,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createWebStorage = __webpack_require__(265);
+var _createWebStorage = __webpack_require__(267);
 
 var _createWebStorage2 = _interopRequireDefault(_createWebStorage);
 
@@ -45424,7 +46722,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = (0, _createWebStorage2.default)('local');
 
 /***/ }),
-/* 265 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45435,7 +46733,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = createWebStorage;
 
-var _getStorage = __webpack_require__(266);
+var _getStorage = __webpack_require__(268);
 
 var _getStorage2 = _interopRequireDefault(_getStorage);
 
@@ -45463,7 +46761,7 @@ function createWebStorage(type) {
 }
 
 /***/ }),
-/* 266 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45520,7 +46818,7 @@ function getStorage(type) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 267 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45530,37 +46828,37 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _redux = __webpack_require__(22);
+var _redux = __webpack_require__(23);
 
-var _drafts = __webpack_require__(268);
+var _drafts = __webpack_require__(270);
 
 var _drafts2 = _interopRequireDefault(_drafts);
 
-var _completed = __webpack_require__(269);
+var _completed = __webpack_require__(271);
 
 var _completed2 = _interopRequireDefault(_completed);
 
-var _uploaded = __webpack_require__(270);
+var _uploaded = __webpack_require__(272);
 
 var _uploaded2 = _interopRequireDefault(_uploaded);
 
-var _reportFilter = __webpack_require__(271);
+var _reportFilter = __webpack_require__(273);
 
 var _reportFilter2 = _interopRequireDefault(_reportFilter);
 
-var _connection = __webpack_require__(272);
+var _connection = __webpack_require__(274);
 
 var _connection2 = _interopRequireDefault(_connection);
 
-var _page = __webpack_require__(273);
+var _page = __webpack_require__(275);
 
 var _page2 = _interopRequireDefault(_page);
 
-var _currentReport = __webpack_require__(274);
+var _currentReport = __webpack_require__(276);
 
 var _currentReport2 = _interopRequireDefault(_currentReport);
 
-var _notification = __webpack_require__(275);
+var _notification = __webpack_require__(277);
 
 var _notification2 = _interopRequireDefault(_notification);
 
@@ -45570,7 +46868,7 @@ var pvApp = (0, _redux.combineReducers)({ drafts: _drafts2.default, completed: _
 exports.default = pvApp;
 
 /***/ }),
-/* 268 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45580,7 +46878,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__(10);
+var _actionTypes = __webpack_require__(14);
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -45620,7 +46918,7 @@ var drafts = function drafts() {
 exports.default = drafts;
 
 /***/ }),
-/* 269 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45630,7 +46928,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__(10);
+var _actionTypes = __webpack_require__(14);
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -45671,7 +46969,7 @@ var completed = function completed() {
 exports.default = completed;
 
 /***/ }),
-/* 270 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45681,7 +46979,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__(10);
+var _actionTypes = __webpack_require__(14);
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -45722,7 +47020,7 @@ var uploaded = function uploaded() {
 exports.default = uploaded;
 
 /***/ }),
-/* 271 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45732,7 +47030,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__(10);
+var _actionTypes = __webpack_require__(14);
 
 var reportFilter = function reportFilter() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { type: null };
@@ -45750,7 +47048,7 @@ var reportFilter = function reportFilter() {
 exports.default = reportFilter;
 
 /***/ }),
-/* 272 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45760,7 +47058,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__(10);
+var _actionTypes = __webpack_require__(14);
 
 var connection = function connection() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { isConnected: false };
@@ -45777,7 +47075,7 @@ var connection = function connection() {
 exports.default = connection;
 
 /***/ }),
-/* 273 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45787,9 +47085,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__(10);
+var _actionTypes = __webpack_require__(14);
 
-var _Constants = __webpack_require__(4);
+var _Constants = __webpack_require__(5);
 
 var page = function page() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _Constants.MAIN_PAGE;
@@ -45809,7 +47107,7 @@ var page = function page() {
 exports.default = page;
 
 /***/ }),
-/* 274 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45819,7 +47117,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__(10);
+var _actionTypes = __webpack_require__(14);
 
 var currentReport = function currentReport() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
@@ -45837,7 +47135,7 @@ var currentReport = function currentReport() {
 exports.default = currentReport;
 
 /***/ }),
-/* 275 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45847,7 +47145,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _actionTypes = __webpack_require__(10);
+var _actionTypes = __webpack_require__(14);
 
 var notification = function notification() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
@@ -45864,7 +47162,7 @@ var notification = function notification() {
 exports.default = notification;
 
 /***/ }),
-/* 276 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45893,7 +47191,7 @@ thunk.withExtraArgument = createThunkMiddleware;
 exports['default'] = thunk;
 
 /***/ }),
-/* 277 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45902,7 +47200,7 @@ exports['default'] = thunk;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var Store = __webpack_require__(278);
+var Store = __webpack_require__(280);
 
 var createElectronStorage = function createElectronStorage() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
@@ -45932,13 +47230,13 @@ var createElectronStorage = function createElectronStorage() {
 exports.default = createElectronStorage;
 
 /***/ }),
-/* 278 */
+/* 280 */
 /***/ (function(module, exports) {
 
 module.exports = require("electron-store");
 
 /***/ }),
-/* 279 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

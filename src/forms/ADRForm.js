@@ -59,7 +59,7 @@ class ADRForm extends FormComponent {
           Adverse Drug Reaction (ADR) Report Form
         </h3>
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
-
+        
         <form className="form-horizontal">
           <h5 className="text-center">Patient Details</h5>
           <div className="container">

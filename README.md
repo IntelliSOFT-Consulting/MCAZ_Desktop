@@ -17,6 +17,26 @@ git clone https://github.com/IntelliSOFT-Consulting/MCAZ_Desktop
 
 This will run the application.
 
+To build and run the application
+
+```bash
+# Clone this repository
+  git clone https://github.com/IntelliSOFT-Consulting/MCAZ_Desktop
+# Install dependencies
+  npm install
+#Build packages
+  #Windows
+  npm run package-win
+  #Mac
+  npm run package-mac
+  #Linux
+  npm run package-linux
+#Create Installer (*Windows) 
+  create-installer-win
+```
+
+The packages can be found in the release-builds folder, the installer app for windows can be found in the installer folder.
+
 Dependencies used by the app
 
   * Electron
