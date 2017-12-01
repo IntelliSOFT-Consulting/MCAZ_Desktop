@@ -23,8 +23,12 @@
     "SAE",
     "AEFI"
   ],
+<<<<<<< HEAD
   "author": "IntelliSOFT Kenya Limited",
   "license": "CC0-1.0",
+=======
+  "author": "John Muiruri",
+>>>>>>> 7e580a05ad0da3ab89468fc3d10cfed727a9197f
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",

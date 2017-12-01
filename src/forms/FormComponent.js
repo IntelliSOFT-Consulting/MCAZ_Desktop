@@ -11,6 +11,7 @@ export default class FormComponent extends Component {
     this.cancel = this.cancel.bind(this)
     this.goBack = this.goBack.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.cancelConfirmed = this.cancelConfirmed.bind(this)
   }
 
   saveAndContinue(e) {
@@ -22,11 +23,15 @@ export default class FormComponent extends Component {
   }
 
   closeModal() {
-    this.setState({ confirmVisible : false })
+    this.setState({ confirmVisible : false, confirmCancel: false })
   }
 
   cancel(e) {
     e.preventDefault()
+    this.setState({ confirmCancel: true })
+  }
+
+  cancelConfirmed() {
     const { showPage } = this.props
     showPage(MAIN_PAGE)
   }
