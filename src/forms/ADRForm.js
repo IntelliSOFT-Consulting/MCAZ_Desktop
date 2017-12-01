@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import FormComponent from './FormComponent'
 
+import Confirm from '../dialogs/Confirm'
+
 import TextInput from '../inputs/TextInput'
 import DateSelectInput from '../inputs/DateSelectInput'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
@@ -28,10 +30,10 @@ class ADRForm extends FormComponent {
       model = {"rid":1510991587333,"type":"REPORT_TYPE_ADR"}
     }
     model = {"rid":1510853208716,"type":"REPORT_TYPE_ADR","name_of_institution":"Nairobi Hosp","sadr_list_of_drugs":[{"brand_name":"dawa","dose_id":"7","route_id":"4","frequency_id":"4","drug_name":"wwqq","dose":"1","indication":"1","start_date":"1-10-2017","stop_date":"21-10-2017","suspected_drug":""}],"user":{},"patient_name":"xxsss","date_of_birth":"6-4-2015","weight":"34","height":"12","gender":"Male","date_of_onset_of_reaction":"8-2-2017","severity":"No","medical_history":"ss","lab_test_results":"ssds","action_taken":"Dose reduced","outcome":"Recovering","":"Probable / Likely","designation_id":"2","reporter_name":"John","reporter_email":"john@gmail.com","description_of_reaction":"hhhn"}
-    this.state = { model : model, validate : null }
+    this.state = { model : model, validate : null, confirmVisible : false }
 
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
-
+    this.upload = this.upload.bind(this)
 
     this.mandatory = [
       { name : "patient_name", text : "Patient Initials", page : 1 },
@@ -50,8 +52,26 @@ class ADRForm extends FormComponent {
   render() {
     var { model } = this.state
 
+    var confirmVisible = null
+    if(this.state.confirmVisible) {
+      confirmVisible = (
+        <Confirm
+          visible={ this.state.confirmVisible }
+          title="Confirm"
+          cancel={ this.closeModal }
+          body={ "Submit the data to MCAZ?" }
+          confirmText={ "Upload" }
+          confirmBSStyle={ "success" }
+          onConfirm={ this.upload }
+          cancelText={ "Cancel" }
+          >
+        </Confirm>
+      )
+    }
+
     return (
       <div className='adr-form'>
+        { confirmVisible }
         <h3 className="text-center">
           <span className="text-center">
             <img src="assets/images/mcaz_3.png" className="logo"></img>
@@ -246,6 +266,12 @@ class ADRForm extends FormComponent {
       return
     }
 
+    this.setState({ confirmVisible : true })
+  }
+
+  upload() {
+    const { uploadData, saveCompleted, connection } = this.props
+    const { model } = this.state
     if(connection.isConnected) {
       uploadData(model, ADR_URL)
     } else {
@@ -254,7 +280,6 @@ class ADRForm extends FormComponent {
     }
     this.goBack()
   }
-
 
 }
 

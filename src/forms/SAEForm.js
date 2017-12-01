@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import FormComponent from './FormComponent'
 
+import Confirm from '../dialogs/Confirm'
+
 import TextInput from '../inputs/TextInput'
 import SelectInput from '../inputs/SelectInput'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
@@ -32,18 +34,35 @@ class SAEForm extends FormComponent {
       model = { rid : Date.now(), type : REPORT_TYPE_SAE }
     }
 
-    this.state = { model : model, validate : null }
+    this.state = { model : model, validate : null, confirmVisible : false }
 
-    //this.saveAndContinue = this.saveAndContinue.bind(this)
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
-    //this.cancel = this.cancel.bind(this)
-    //this.goBack = this.goBack.bind(this)
+    this.upload = this.upload.bind(this)
   }
 
   render() {
     const { model } = this.state
+
+    var confirmVisible = null
+    if(this.state.confirmVisible) {
+      confirmVisible = (
+        <Confirm
+          visible={ this.state.confirmVisible }
+          title="Confirm"
+          cancel={ this.closeModal }
+          body={ "Submit the data to MCAZ?" }
+          confirmText={ "Upload" }
+          confirmBSStyle={ "success" }
+          onConfirm={ this.upload }
+          cancelText={ "Cancel" }
+          >
+        </Confirm>
+      )
+    }
+
     return (
       <div className='sae-form'>
+        { confirmVisible }
         <h3 className="text-center">
           <span className="text-center">
             <img src="assets/images/mcaz_3.png" className="logo"></img>
@@ -380,6 +399,12 @@ this research." name="assess_risk" model={ model } validate={ this.state.validat
       return
     }
 
+    this.setState({ confirmVisible : true })
+  }
+
+  upload() {
+    const { uploadData, saveCompleted, connection } = this.props
+    const { model } = this.state
     if(connection.isConnected) {
       uploadData(model, SAE_URL)
     } else {
