@@ -13,7 +13,7 @@ export default class DatePickerInput extends Component {
     var value = null
     if(model && model[name]) {
       if(typeof model[name] == "string") {
-        const dateTime = model.split(" ")
+        const dateTime = model[name].split(" ")
         const v = dateTime[0].split("-")
 
         const date = moment().year(v[2]).month(v[1]).date(v[0]) //new Date(model[name]['month'] + '/' + model[name]['day'] + '/' + model[name]['year'])
