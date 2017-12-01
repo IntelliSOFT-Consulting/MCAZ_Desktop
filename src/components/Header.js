@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE } from '../utils/Constants'
+
 export default class Header extends Component {
    constructor(props) {
     super(props)
@@ -8,7 +10,7 @@ export default class Header extends Component {
 
   showPage(page, report) {
     const { showPage, setReport } = this.props
-    setReport(report)
+    //setReport(report)
     showPage(page)
   }
 

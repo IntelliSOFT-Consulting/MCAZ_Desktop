@@ -52,10 +52,10 @@ class Home extends Component {
   }
 
   render() {
-
+    const { showPage } = this.props
     return (
       <div>
-        <Header />
+        <Header showPage={ showPage }/>
         { this.getPage() }
         <Footer connection={ this.props.connection }/>
         <NotificationSystem ref="notificationSystem" />
