@@ -62,12 +62,12 @@ export default class ADRReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Date of Birth:" required={ true } type="date" model={ model } name="date_of_birth"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Weight (Kg)" model={ model } name="weight"/>
+              <ReadOnlyDataRenderer label="Age group" model={ model } name="age_group"/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Age group" model={ model } name="age_group"/>
+              <ReadOnlyDataRenderer label="Weight (Kg)" model={ model } name="weight"/>
             </div>
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Height (meters)" model={ model } name="height"/>
@@ -127,7 +127,7 @@ export default class ADRReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Outcome of ADR:" model={ model } name="outcome" type="option" validate={ this.state.validate } options={ OUTCOME }/>
             </div>
             <div className="col-md-4 col-sm-12">
-              <ReadOnlyDataRenderer label="Relatedness of suspected medicine(s) to ADR:" model={ model } type="option" name="" options={ RELATEDNESS_TO_ADR }/>
+              <ReadOnlyDataRenderer label="Relatedness of suspected medicine(s) to ADR:" model={ model } type="option" name="relatedness" options={ RELATEDNESS_TO_ADR }/>
             </div>
           </div>
           <h5 className="text-center">Reported By</h5>
@@ -145,11 +145,6 @@ export default class ADRReadOnlyReportComponent extends Component {
             </div>
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Phone number" model={ model } name="reporter_phone"/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Name and address of institution" model={ model } name=""/>
             </div>
           </div>
           <div className="container">

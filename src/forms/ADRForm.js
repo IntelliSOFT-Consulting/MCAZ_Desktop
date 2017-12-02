@@ -96,7 +96,7 @@ class ADRForm extends FormComponent {
           Adverse Drug Reaction (ADR) Report Form
         </h3>
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
-        
+
         <form className="form-horizontal">
           <h5 className="text-center">Patient Details</h5>
           <div className="container">
@@ -120,12 +120,12 @@ class ADRForm extends FormComponent {
               <DateSelectInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Weight (Kg)" model={ model } name="weight"/>
+              <SelectInput label="Age group" model={ model } name="age_group" options={ AGE_GROUP }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="Age group" model={ model } name="age_group" options={ AGE_GROUP }/>
+              <TextInput label="Weight (Kg)" model={ model } name="weight"/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Height (meters)" model={ model } name="height"/>
@@ -173,9 +173,9 @@ class ADRForm extends FormComponent {
           </div>
 
           <div className="container">
-            <MedicationTableComponent label="Current Medication (including OTC and herbals) "  validate={ this.state.validate } name="sadr_list_of_drugs" model={ model }/>
+            <MedicationTableComponent label="Current Medication"  validate={ this.state.validate } name="sadr_list_of_drugs" model={ model }/>
           </div>
-          <ConcomitantTableComponent label="Concomitant (Other) drugs taken, including herbal medicines & Dates/period taken: " name="sadr_other_drugs" model={ model }/>
+          <ConcomitantTableComponent label="Concomitant (Other) drugs taken, including herbal medicines &amp; Dates/period taken: " name="sadr_other_drugs" model={ model }/>
           <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them:" validate={ this.state.validate } name="files" model={ model }/>
           <div className="container">
             <div className="col-md-4 col-sm-12">
@@ -185,7 +185,7 @@ class ADRForm extends FormComponent {
               <SelectInput label="Outcome of ADR:" model={ model } name="outcome" required={ true } validate={ this.state.validate } options={ OUTCOME }/>
             </div>
             <div className="col-md-4 col-sm-12">
-              <SelectInput label="Relatedness of suspected medicine(s) to ADR:" model={ model } name="" options={ RELATEDNESS_TO_ADR }/>
+              <SelectInput label="Relatedness of suspected medicine(s) to ADR:" model={ model } name="relatedness" options={ RELATEDNESS_TO_ADR }/>
             </div>
           </div>
           <h5 className="text-center">Reported By</h5>
@@ -203,11 +203,6 @@ class ADRForm extends FormComponent {
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Phone number" model={ model } name="reporter_phone"/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Name and address of institution" model={ model } name=""/>
             </div>
           </div>
           <div className="container well">
