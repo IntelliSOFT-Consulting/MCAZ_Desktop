@@ -74,9 +74,7 @@ export default class SAEReadOnlyComponent extends Component {
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer type="option"  label="Designation in the study:" name="designation_id" model={ model } validate={ this.state.validate } required={ true } options={ DESIGNATION }/>
             </div>
-            <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Date Form completed"  name="" model={ model } validate={ this.state.validate } required={ true } type="date"/>
-            </div>
+
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
@@ -144,7 +142,7 @@ export default class SAEReadOnlyComponent extends Component {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer type="option" label="3a. Any previous Adverse Event’s report on this participant?:" name="previous_events" model={ model } validate={ this.state.validate } required={ true } inline={ true } options={["Yes", "No"]}/>
+              <ReadOnlyDataRenderer type="option" label="3a. Any previous Adverse Event’s report on this participant?:" name="previous_events" model={ model } validate={ this.state.validate } required={ true } inline={ true } options={ BOOLEAN_OPTIONS }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="If yes, how many?" name="previous_events_number" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "previous_events", value: "Yes" } }/>
@@ -176,7 +174,7 @@ export default class SAEReadOnlyComponent extends Component {
               <ReadOnlyDataRenderer label="6. Name of Drug, Device or Procedure:" required={ true } name="name_of_drug" model={ model } validate={ this.state.validate } required={ true } />
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer type="option" label="7. Is the drug/device investigational:" required={ true } name="drug_investigational" model={ model } validate={ this.state.validate } required={ true } options={["Yes", "No"]} inline={ true }/>
+              <ReadOnlyDataRenderer type="option" label="7. Is the drug/device investigational:" required={ true } name="drug_investigational" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_OPTIONS } inline={ true }/>
             </div>
           </div>
           <div className="container">
@@ -185,7 +183,7 @@ their relationship to the SAE: " readonly={ true }/>
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <ReadOnlyDataRenderer type="option" label="9. Was the patient taking any other drug at the time of onset of the AE?" required={ true } name="patient_other_drug" model={ model } validate={ this.state.validate } required={ true } options={["Yes", "No"]} inline={ true }/>
+              <ReadOnlyDataRenderer type="option" label="9. Was the patient taking any other drug at the time of onset of the AE?" required={ true } name="patient_other_drug" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_OPTIONS } inline={ true }/>
             </div>
           </div>
           <div className="container">
@@ -195,19 +193,19 @@ their relationship to the SAE: " readonly={ true }/>
           <div className="container">
             <h4>11. Has the Adverse Event been reported to:</h4>
             <div className="col-md-3 col-sm-12">
-              <ReadOnlyDataRenderer type="option" label="MCAZ" options={["Yes", "No"]} required={ true } name="report_to_mcaz" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
+              <ReadOnlyDataRenderer type="option" label="MCAZ" options={ BOOLEAN_OPTIONS } required={ true } name="report_to_mcaz" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
               <ReadOnlyDataRenderer type="date"  label="Date" required={ true } name="report_to_mcaz_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_mcaz", value: "Yes" } }/>
             </div>
             <div className="col-md-3 col-sm-12">
-              <ReadOnlyDataRenderer type="option" label="MCRZ" options={["Yes", "No"]} required={ true } name="report_to_mrcz" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
+              <ReadOnlyDataRenderer type="option" label="MCRZ" options={ BOOLEAN_OPTIONS } required={ true } name="report_to_mrcz" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
               <ReadOnlyDataRenderer type="date"  label="Date" required={ true } name="report_to_mrcz_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_mrcz", value: "Yes" } }/>
             </div>
             <div className="col-md-3 col-sm-12">
-              <ReadOnlyDataRenderer type="option" label="Sponsor" options={["Yes", "No"]} required={ true } name="report_to_sponsor" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
+              <ReadOnlyDataRenderer type="option" label="Sponsor" options={ BOOLEAN_OPTIONS } required={ true } name="report_to_sponsor" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
               <ReadOnlyDataRenderer type="date"  label="Date" required={ true } name="report_to_sponsor_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_sponsor", value: "Yes" } }/>
             </div>
             <div className="col-md-3 col-sm-12">
-              <ReadOnlyDataRenderer type="option" label="IRB" options={["Yes", "No"]} required={ true } name="report_to_irb" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
+              <ReadOnlyDataRenderer type="option" label="IRB" options={ BOOLEAN_OPTIONS } required={ true } name="report_to_irb" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
               <ReadOnlyDataRenderer type="date"  label="Date" required={ true } name="report_to_irb_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_irb", value: "Yes" } }/>
             </div>
           </div>
@@ -286,7 +284,7 @@ their relationship to the SAE: " readonly={ true }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer type="option" label="From the data obtained or from currently available information, do you see any need to reassess the risks and benefits to the subjects in
-this research." name="assess_risk" model={ model } validate={ this.state.validate } required={ true } options={["Yes", "No"]} inline={ true }/>
+this research." name="assess_risk" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_OPTIONS } inline={ true }/>
             </div>
           </div>
           <div className="container well">
