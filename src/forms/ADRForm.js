@@ -12,6 +12,8 @@ import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import ConcomitantTableComponent from '../components/ConcomitantTableComponent'
 import SelectInput from '../inputs/SelectInput'
 
+import moment from 'moment'
+
 import messages from '../utils/messages.json'
 
 import { MAIN_PAGE, REPORT_TYPE_ADR, ADR_URL } from '../utils/Constants'
@@ -117,7 +119,7 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth"/>
+              <DateSelectInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <SelectInput label="Age group" model={ model } name="age_group" options={ AGE_GROUP }/>

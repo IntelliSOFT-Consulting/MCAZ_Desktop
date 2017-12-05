@@ -5,6 +5,8 @@ import TableComponent from './TableComponent'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import SelectInput from '../inputs/SelectInput'
 
+import moment from 'moment'
+
 import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
 
 import { FREQUENCY, ROUTE, DOSE, RELATIONSHIP_SAE } from '../utils/FieldOptions'
@@ -40,7 +42,7 @@ export default class SAEDrugsTableComponent extends TableComponent {
         <td><SelectInput hideLabel={ true } name="dose_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ DOSE }/></td>
         <td><SelectInput hideLabel={ true } name="route_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ ROUTE }/></td>
         <td><SelectInput hideLabel={ true } name="frequency_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ FREQUENCY }/></td>
-        <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true } maxDate={ moment() }/></td>
         <td><SingleMultipleInput inline={ true } hideLabel={ true } name="taking_drug" options={['Yes', 'No']} model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
         <td><SelectInput hideLabel={ true } name="relationship_to_sae" model={ model[name][index] } options={ RELATIONSHIP_SAE } validate={ this.state.validate } required={ true } /></td>
         <td>

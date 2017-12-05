@@ -74,7 +74,7 @@ export default class DatePickerInput extends Component {
         <span className="required">*</span>
       )
     }
-    const dateFormat = showTime? "MM-DD-YYYY HH:mm" : "MM-DD-YYYY"
+    const dateFormat = showTime? "DD-MM-YYYY HH:mm" : "DD-MM-YYYY"
     const hasError = (this.state.validate && required)? this.validate()  : ""
     const className = "form-group" + hasError
     const minDateValue = (minDate && typeof minDate == 'string')? this.getDateTimeFromString(minDate) : minDate

@@ -38,8 +38,8 @@ export default class SAEConcomitantTableComponent extends TableComponent {
       <tr key={ Math.floor(Math.random() * 10000) }>
         <td>{ index + 1 }</td>
         <td><TextInput hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><DatePickerInput hideLabel={ true } name="stop_date" model={ model[name][index] } validate={ this.state.validate } required={ true } /></td>
+        <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true } maxDate={ moment() } onChange={ this.onChange } /></td>
+        <td><DatePickerInput hideLabel={ true } name="stop_date" model={ model[name][index] } validate={ this.state.validate } required={ true } maxDate={ moment() } minDate={ model[name][index]['start_date'] }/></td>
         <td><SelectInput hideLabel={ true } name="relationship_to_sae" model={ model[name][index] } options={ RELATIONSHIP_SAE } validate={ this.state.validate } required={ true }/></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>

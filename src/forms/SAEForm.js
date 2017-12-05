@@ -14,6 +14,8 @@ import SAEConcomitantTableComponent from '../components/SAEConcomitantTableCompo
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import SAELabTestsTableComponent from '../components/SAELabTestsTableComponent'
 
+import moment from 'moment'
+
 import messages from '../utils/messages.json'
 
 import { MAIN_PAGE, REPORT_TYPE_SAE, SAE_URL } from '../utils/Constants'
@@ -134,10 +136,10 @@ class SAEForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date of Adverse Event:" name="date_of_adverse_event" model={ model } validate={ this.state.validate } required={ true }/>
+              <DatePickerInput label="Date of Adverse Event:" name="date_of_adverse_event" model={ model } validate={ this.state.validate } required={ true } maxDate={ moment() } onChange={ (value) => this.setState(value) }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date of Site Awareness:" name="date_of_site_awareness" model={ model } validate={ this.state.validate } required={ true }/>
+              <DatePickerInput label="Date of Site Awareness:" name="date_of_site_awareness" model={ model } validate={ this.state.validate } required={ true } maxDate={ moment() } minDate={ this.state.model['date_of_adverse_event'] }/>
             </div>
           </div>
           <div className="container">
@@ -242,19 +244,19 @@ their relationship to the SAE: "/>
             <h4>11. Has the Adverse Event been reported to:</h4>
             <div className="col-md-3 col-sm-12">
               <SingleMultipleInput label="MCAZ" options={ BOOLEAN_OPTIONS } required={ true } name="report_to_mcaz" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
-              <DatePickerInput label="Date" required={ true } name="report_to_mcaz_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_mcaz", value: "Yes" } }/>
+              <DatePickerInput label="Date" required={ true } name="report_to_mcaz_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_mcaz", value: "Yes" } } maxDate={ moment() }/>
             </div>
             <div className="col-md-3 col-sm-12">
               <SingleMultipleInput label="MCRZ" options={ BOOLEAN_OPTIONS } required={ true } name="report_to_mrcz" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
-              <DatePickerInput label="Date" required={ true } name="report_to_mrcz_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_mrcz", value: "Yes" } }/>
+              <DatePickerInput label="Date" required={ true } name="report_to_mrcz_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_mrcz", value: "Yes" } } maxDate={ moment() }/>
             </div>
             <div className="col-md-3 col-sm-12">
               <SingleMultipleInput label="Sponsor" options={ BOOLEAN_OPTIONS } required={ true } name="report_to_sponsor" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
-              <DatePickerInput label="Date" required={ true } name="report_to_sponsor_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_sponsor", value: "Yes" } }/>
+              <DatePickerInput label="Date" required={ true } name="report_to_sponsor_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_sponsor", value: "Yes" } } maxDate={ moment() }/>
             </div>
             <div className="col-md-3 col-sm-12">
               <SingleMultipleInput label="IRB" options={ BOOLEAN_OPTIONS } required={ true } name="report_to_irb" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
-              <DatePickerInput label="Date" required={ true } name="report_to_irb_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_irb", value: "Yes" } }/>
+              <DatePickerInput label="Date" required={ true } name="report_to_irb_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_irb", value: "Yes" } } maxDate={ moment() }/>
             </div>
           </div>
           <div className="container">
