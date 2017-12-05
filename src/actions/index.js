@@ -70,23 +70,23 @@ export const uploadData = (data, url, updateProgress) => {
         const response = JSON.parse(arg)
         if(response.sadr) {
           response.sadr.sadr.id = response.sadr.id
-          dispatch(saveUploaded(response.sadr.sadr))
-          dispatch(removeCompleted(response.sadr.sadr))
+          dispatch(saveUploaded(response.sadr))
+          dispatch(removeCompleted(response.sadr))
 
         } else if(response.adr) {
-          response.adr.adr.id = response.adr.id
-          dispatch(saveUploaded(response.adr.adr))
-          dispatch(removeCompleted(response.adr.adr))
+          response.adr.id = response.adr.id
+          dispatch(saveUploaded(response.adr))
+          dispatch(removeCompleted(response.adr))
 
         } else if(response.aefi) {
           response.aefi.aefi.id = response.aefi.id
-          dispatch(saveUploaded(response.aefi.aefi))
-          dispatch(removeCompleted(response.aefi.aefi))
+          dispatch(saveUploaded(response.aefi))
+          dispatch(removeCompleted(response.aefi))
 
         } else if(response.saefi) {
-          response.saefi.saefi.id = response.saefi.id
-          dispatch(saveUploaded(response.saefi.saefi))
-          dispatch(removeCompleted(response.saefi.saefi))
+          response.saefi.id = response.saefi.id
+          dispatch(saveUploaded(response.saefi))
+          dispatch(removeCompleted(response.saefi))
 
         } else {
           console.log(JSON.stringify(json))

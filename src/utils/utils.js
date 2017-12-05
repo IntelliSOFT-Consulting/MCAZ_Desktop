@@ -53,6 +53,8 @@ export const subQuestionsValidator = (name, dependent, model) => {
 }
 
 export const getRequestPayload  = (data) => {
+  return data
+  /*
   if(data.type == REPORT_TYPE_ADR) {
     var payload = {}
     payload.sadr = data
@@ -69,7 +71,7 @@ export const getRequestPayload  = (data) => {
     var payload = {}
     payload.saefi = data
     return payload
-  }
+  }*/
 }
 
 export const getURL = (data) => {

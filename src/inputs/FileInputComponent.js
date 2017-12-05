@@ -5,11 +5,11 @@ export default class FileInputComponent extends Component {
   constructor(props) {
     super(props)
     const { model, name, validate } = this.props
-    var value = "", fileName = ""
+    var value = "", filename = ""
     if(model) {
-      fileName = model['fileName']
+      filename = model['filename']
     }
-    this.state = { value : value, validate, fileName }
+    this.state = { value : value, validate, filename }
     this.handleChange = this.handleChange.bind(this)
     this.selectFile = this.selectFile.bind(this)
     this.onFileSelect = this.onFileSelect.bind(this)
@@ -32,9 +32,9 @@ export default class FileInputComponent extends Component {
       var reader = new FileReader();
       reader.onload = ((theFile) => {
         return (e) => {
-          model['fileData'] = e.target.result
-          model['fileName'] = theFile.name
-          this.setState({ fileName : theFile.name })
+          model['file'] = e.target.result
+          model['filename'] = theFile.name
+          this.setState({ filename : theFile.name })
         };
       })(f);
       reader.readAsDataURL(f);
@@ -63,7 +63,7 @@ export default class FileInputComponent extends Component {
       return (
         <div className={ hasError }>
           <button className="btn btn-sm btn-default" onClick={ this.selectFile }>Select file</button>
-          <label>{ this.state.fileName }</label>
+          <label>{ this.state.filename }</label>
           <input className="hide"  ref={ (input) => this.fileInput = input } type='file' onChange={ this.onFileSelect } />
         </div>
       )
@@ -74,7 +74,7 @@ export default class FileInputComponent extends Component {
         <label className="col-md-4 control-label form-input-label">{ label  } { reqSpan }</label>
         <div className="col-md-6">
           <button className="btn btn-sm btn-default" onClick={ this.selectFile }>Select file</button>
-          <label>{ this.state.fileName }</label>
+          <label>{ this.state.filename }</label>
           <input type='file' ref={ (input) => this.fileInput = input } className="hide" onChange={ this.onFileSelect }/>
         </div>
       </div>
