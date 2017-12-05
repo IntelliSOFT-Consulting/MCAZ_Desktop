@@ -15,7 +15,7 @@ const url = require('url')
     return;
  }
 
- 
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -100,5 +100,5 @@ ipcMain.on('upload-data', (event, arg) => {
   request.end()
   //console.log(arg)  // prints "ping"
 
-  event.sender.send('asynchronous-reply', 'pong')
+  //event.sender.send('asynchronous-reply', 'pong')
 })

@@ -38,6 +38,8 @@ export default class ReadOnlyDataRenderer extends Component {
       return  value
     } else if(type == 'option' && options) {
       return model[name]
+    } else if(type == 'file') {
+      return model['filename']
     }
     return model[name]
   }

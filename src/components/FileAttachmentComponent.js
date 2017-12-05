@@ -32,7 +32,7 @@ export default class FileAttachmentComponent extends TableComponent {
       <tr key={ Math.floor(Math.random() * 10000) }>
         <td>{ index + 1 }</td>
         <td><FileInputComponent hideLabel={ true } name="file" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><TextInput hideLabel={ true } multiLine={ true } name="description"/></td>
+        <td><TextInput hideLabel={ true } multiLine={ true } name="description" model={ model[name][index] }/></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
             <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
@@ -54,7 +54,7 @@ export default class FileAttachmentComponent extends TableComponent {
     return (
       <tr key={ Math.floor(Math.random() * 10000) }>
         <td>{ index + 1 }</td>
-        <td><ReadOnlyDataRenderer hideLabel={ true } name="name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="file" validate={ this.props.validate } required={ true } model={ model[name][index] } type="file"/></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="description" model={ model[name][index] }/></td>
       </tr>
     )

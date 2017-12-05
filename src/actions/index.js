@@ -69,22 +69,21 @@ export const uploadData = (data, url, updateProgress) => {
       try {
         const response = JSON.parse(arg)
         if(response.sadr) {
-          response.sadr.sadr.id = response.sadr.id
+          //response.sadr.id = response.sadr.id
           dispatch(saveUploaded(response.sadr))
           dispatch(removeCompleted(response.sadr))
-
         } else if(response.adr) {
-          response.adr.id = response.adr.id
+          //response.adr.id = response.adr.id
           dispatch(saveUploaded(response.adr))
           dispatch(removeCompleted(response.adr))
 
         } else if(response.aefi) {
-          response.aefi.aefi.id = response.aefi.id
+          //response.aefi.aefi.id = response.aefi.id
           dispatch(saveUploaded(response.aefi))
           dispatch(removeCompleted(response.aefi))
 
         } else if(response.saefi) {
-          response.saefi.id = response.saefi.id
+          //response.saefi.id = response.saefi.id
           dispatch(saveUploaded(response.saefi))
           dispatch(removeCompleted(response.saefi))
 
@@ -101,6 +100,7 @@ export const uploadData = (data, url, updateProgress) => {
       } catch(e) {
         dispatch(setNotification({ message : messages.uploaderror, level: "error", id: new Date().getTime() }))
       }
+      ipcRenderer.removeAllListeners("upload-reply")
     })
   }
 }

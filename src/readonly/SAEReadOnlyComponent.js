@@ -272,7 +272,7 @@ their relationship to the SAE: " readonly={ true }/>
             </div>
           </div>
           <div className="container">
-            <FileAttachmentComponent model={ model } validate={ this.state.validate } required={ true } name="attachment" label="Do you have files that you would like to attach? click on the button to add them:" readonly={ true }/>
+            <FileAttachmentComponent model={ model } validate={ this.state.validate } required={ true } name="attachments" label="Do you have files that you would like to attach? click on the button to add them:" readonly={ true }/>
           </div>
           <div className="container">
             <h6>If changes are required, please attach a copy of the revised protocol/consent form with changes highlighted with a bright coloured highlighter.</h6>
