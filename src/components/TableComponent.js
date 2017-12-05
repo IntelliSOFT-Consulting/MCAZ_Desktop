@@ -8,6 +8,7 @@ export default class TableComponent extends Component {
 
     this.addRow = this.addRow.bind(this)
     this.removeRow = this.removeRow.bind(this)
+    this.onChange = this.onChange.bind(this)
     //this.initializeRows = this.initializeRows.bind(this)
     const { model, name, validate } = this.props
     var rows = []
@@ -15,6 +16,10 @@ export default class TableComponent extends Component {
       rows = model[name]
     }
     this.state = { rows }
+  }
+
+  onChange(value) {
+    this.setState(value)
   }
 
   addRow(e) {

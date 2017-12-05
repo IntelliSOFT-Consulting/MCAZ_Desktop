@@ -42,10 +42,12 @@ export default class DatePickerInput extends Component {
       if(showTime) {
         model[name] += " " + date.hour() + ":" + date.minute()
       }
-      //var dateStr = "[ 'day' : " + date.date() + ", 'month' : " + date.month() + ", 'year' : " + date.year() + "]"
-      //model[name]['day'] = date.date()
-      //model[name]['month'] = date.month()
-      //model[name]['year'] = date.year()
+    }
+    const { onChange } = this.props
+    if(onChange) {
+      var value = {}
+      value[name] = date
+      onChange(value)
     }
   }
 
