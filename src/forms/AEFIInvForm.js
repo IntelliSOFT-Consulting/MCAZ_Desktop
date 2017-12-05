@@ -12,6 +12,8 @@ import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import AEFIInvVaccinationTableComponent from '../components/AEFIInvVaccinationTableComponent'
 import FileInputComponent from '../inputs/FileInputComponent'
 
+import moment from 'moment'
+
 import { MAIN_PAGE, REPORT_TYPE_AEFI_INV, SAEFI_URL } from '../utils/Constants'
 
 import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, STATUS_ON_DATE, DESIGNATION, INFANT_BIRTH_OPTS, MULTI_VIALS, DELIVERY_OPTS, SOURCE_INFO,
@@ -135,15 +137,15 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date AEFI reported:" required={ true } name="report_date" model={ model }/>
+              <DatePickerInput label="Date AEFI reported:" required={ true } name="report_date" model={ model } maxDate={ moment() } onChange={ (value) => this.setState(value) }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date investigation started:" required={ true } name="start_date" model={ model }/>
+              <DatePickerInput label="Date investigation started:" required={ true } name="start_date" model={ model } maxDate={ moment() } minDate={ this.state.model['report_date'] } onChange={ (value) => this.setState(value) }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date investigation completed:" required={ true } name="complete_date" model={ model }/>
+              <DatePickerInput label="Date investigation completed:" required={ true } name="complete_date" model={ model } maxDate={ moment() } minDate={ this.state.model['start_date'] }/>
             </div>
           </div>
           <div className="container">
@@ -156,7 +158,7 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date of hospitalization (DD/MM/YYYY):" required={ true } name="hospitalization_date" model={ model }/>
+              <DatePickerInput label="Date of hospitalization (DD/MM/YYYY):" required={ true } name="hospitalization_date" model={ model } maxDate={ moment() }/>
             </div>
 
           </div>
@@ -168,7 +170,7 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="If died, date and time of death (DD/MM/YYYY):" name="died_date" model={ model } required={ true }/>
+              <DatePickerInput label="If died, date and time of death (DD/MM/YYYY):" name="died_date" model={ model } required={ true } onChange={ (value) => this.setState(value) } maxDate={ moment() }/>
             </div>
 
           </div>
@@ -177,7 +179,7 @@ class AEFIInvForm extends FormComponent {
               <SingleMultipleInput inline={ true } model={ model } label="Autopsy done?" required={ true } options={ BOOLEAN_OPTIONS } name="autopsy_done"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="If yes, date " name="autopsy_done_date" model={ model } required={ true }/>
+              <DatePickerInput label="If yes, date " name="autopsy_done_date" model={ model } required={ true } maxDate={ moment() } minDate={ this.state.model['died_date'] }/>
             </div>
           </div>
           <div className="container">
@@ -185,7 +187,7 @@ class AEFIInvForm extends FormComponent {
               <SingleMultipleInput inline={ true } model={ model } label="Autopsy planned?" required={ true } options={ BOOLEAN_OPTIONS } name="autopsy_planned"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="If yes, date " name="autopsy_planned_date" model={ model } required={ true }/>
+              <DatePickerInput label="If yes, date " name="autopsy_planned_date" model={ model } required={ true } minDate={ this.state.model['died_date'] }/>
             </div>
           </div>
           <div className="container">

@@ -5,6 +5,8 @@ import TableComponent from './TableComponent'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import SelectInput from '../inputs/SelectInput'
 
+import moment from 'moment'
+
 import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
 
 import { FREQUENCY, ROUTE, DOSE, RELATIONSHIP_SAE } from '../utils/FieldOptions'
@@ -36,7 +38,7 @@ export default class AEFIDilutentTableComponent extends TableComponent {
     return (
       <tr key={ Math.floor(Math.random() * 10000) }>
         <td><TextInput inline={ true } hideLabel={ true } name="diluent_name" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><DatePickerInput hideLabel={ true } name="diluent_date" model={ model[name][index] }  /></td>
+        <td><DatePickerInput hideLabel={ true } name="diluent_date" model={ model[name][index] }  maxDate={ moment() }/></td>
         <td><TextInput hideLabel={ true } name="batch_number" model={ model[name][index] } /></td>
         <td><DatePickerInput hideLabel={ true } name="expiry_date" model={ model[name][index] }  /></td>
         <td>

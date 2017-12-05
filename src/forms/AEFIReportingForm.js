@@ -12,6 +12,8 @@ import DateSelectInput from '../inputs/DateSelectInput'
 import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
 import AEFIDilutentTableComponent from '../components/AEFIDilutentTableComponent'
 
+import moment from 'moment'
+
 import messages from '../utils/messages.json'
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI, AEFI_URL } from '../utils/Constants'
@@ -119,7 +121,7 @@ class AEFIReportingForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Age on onset"  name="age_at_onset_specify" model={ model }/>
+              <TextInput label="Age on onset Specify"  name="age_at_onset_specify" model={ model }/>
             </div>
           </div>
           <div className="container">
@@ -154,11 +156,7 @@ class AEFIReportingForm extends FormComponent {
               <TextInput label="Email" name="reporter_email" model={ model }/>
             </div>
           </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Today's date" name="" model={ model } showTime={ true }/>
-            </div>
-          </div>
+
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <TextInput label="Name of vaccination center" required={ true } validate={ this.state.validate } name="name_of_vaccination_center" model={ model }/>
@@ -185,10 +183,10 @@ class AEFIReportingForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date and time AEFI started"  name="aefi_date" model={ model } showTime={ true }/>
+              <DatePickerInput label="Date and time AEFI started"  name="aefi_date" model={ model } showTime={ true } maxDate={ moment() } onChange={ (value) => this.setState(value) }/>
             </div>
             <div className="col-md-6 col-sm-6">
-              <DatePickerInput label="Date patient notified event to health system" name="notification_date" model={ model }/>
+              <DatePickerInput label="Date patient notified event to health system" name="notification_date" model={ model } maxDate={ moment() } minDate={ this.state.model['aefi_date'] }/>
             </div>
           </div>
           <div className="container">
@@ -212,7 +210,7 @@ class AEFIReportingForm extends FormComponent {
               <SelectInput label="Outcome"  name="outcome" required={ true } validate={ this.state.validate } model={ model } options={ OUTCOME }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="If died, date of death" name="died_date" model={ model } />
+              <DatePickerInput label="If died, date of death" name="died_date" model={ model } maxDate={ moment() } />
             </div>
           </div>
           <div className="container">
@@ -229,19 +227,19 @@ class AEFIReportingForm extends FormComponent {
           <h5 className="text-center">First decision making level to complete (District level):</h5>
           <div className="container">
             <div className="col-md-4 col-sm-12">
-              <DatePickerInput label="Date report recieved at District level" name="district_receive_date" model={ model } />
+              <DatePickerInput label="Date report recieved at District level" name="district_receive_date" model={ model } maxDate={ moment() }/>
             </div>
             <div className="col-md-4 col-sm-12">
               <SingleMultipleInput label="Investigation needed?"  name="investigation_needed" model={ model } options={ BOOLEAN_OPTIONS } inline={ true }/>
             </div>
             <div className="col-md-4 col-sm-12">
-              <DatePickerInput label="If yes, date investigation planned"  name="investigation_date" model={ model }/>
+              <DatePickerInput label="If yes, date investigation planned"  name="investigation_date" model={ model } minDate={ this.state.model['aefi_date'] }/>
             </div>
           </div>
           <h5 className="text-center">National level to complete:</h5>
           <div className="container">
             <div className="col-md-4 col-sm-12">
-              <DatePickerInput label="Date report received at national level (DD/MM/YYYY):" name="national_receive_date" model={ model }/>
+              <DatePickerInput label="Date report received at national level (DD/MM/YYYY):" name="national_receive_date" model={ model } maxDate={ moment() }/>
             </div>
             <div className="col-md-8 col-sm-12">
               <TextInput label="Comments" multiLine={ true } name="comments" model={ model }/>
