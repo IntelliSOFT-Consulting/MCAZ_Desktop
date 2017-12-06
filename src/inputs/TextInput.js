@@ -24,15 +24,16 @@ export default class TextInput extends Component {
   }
 
   render() {
-    const { label, name, multiLine, required, hideLabel } = this.props
+    const { label, name, multiLine, required, hideLabel, type } = this.props
     var input = null
     if(multiLine) {
       input = (
         <textarea type="text" name={ name } className="form-control input-sm" onChange={ this.handleChange } value={ this.state.value }></textarea>
       )
     } else {
+      const inputType = type != null? type : "text"
       input = (
-        <input type="text" name={ name } className="form-control input-sm" onChange={ this.handleChange } value={ this.state.value }/>
+        <input type={ inputType } name={ name } className="form-control input-sm" onChange={ this.handleChange } value={ this.state.value }/>
       )
     }
     var reqSpan = null

@@ -38,6 +38,10 @@ export default class DatePickerInput extends Component {
     });
     const { model, name, showTime } = this.props
     if(model) {
+      if(date == null) {
+        model[name] = null
+        return
+      }
       model[name] = date.date() + "-" + date.month() + "-" + date.year()
       if(showTime) {
         model[name] += " " + date.hour() + ":" + date.minute()

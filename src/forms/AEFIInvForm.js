@@ -31,8 +31,10 @@ class AEFIInvForm extends FormComponent {
       model = { rid : Date.now(), type : REPORT_TYPE_AEFI_INV }
     }
 
-    model = {"rid":1511846288224,"type":"REPORT_TYPE_AEFI_INV","designation_id":"1","vaccination_in_other":"s","site_type_other":"s","place_vaccination_other":"s","reporter_name":"s","telephone":"s","reporter_email":"s","report_date":"8-10-2017","start_date":"14-10-2017","complete_date":"27-10-2017","patient_name":"sss","gender":"Male","hospitalization_date":"7-10-2017","status_on_date":"Died","died_date":"7-10-2017","autopsy_done":"No","autopsy_planned":"No","past_history":"Unknown","adverse_event":"Unknown","past_history_remarks":"s","adverse_event_remarks":"s","allergy_history_remarks":"s","allergy_history":"Unknown","existing_illness":"Unknown","existing_illness_remarks":"s","hospitalization_history":"No","hospitalization_history_remarks":"s","medication_vaccination":"Unknown","medication_vaccination_remarks":"s","faith_healers":"No","faith_healers_remarks":"s","family_history":"No","family_history_remarks":"ss","pregnant":"No","breastfeeding":"No","infant":"full-term","birth_weight":"12","delivery_procedure":"Caesarean","source_examination":"source_examination","verbal_source":"x","examiner_name":"x","signs_symptoms":"x","person_details":"x","person_date":"22-10-2017","person_designation":"x","medical_care":"x","not_medical_care":"x","final_diagnosis":"x","saefi_list_of_vaccines":[{"vaccine_name":"xx","vaccination_doses":"2"}],"when_vaccinated":"Within the last vaccinations of the session","when_vaccinated_specify":"xxx","prescribing_error":"No","vaccine_unsterile":"Unable to assess","vaccine_condition":"Unable to assess","vaccine_reconstitution":"Unable to assess","vaccine_handling":"Unable to assess","vaccine_administered":"Unable to assess","vaccinated_vial":"2","vaccinated_session":"3","vaccinated_locations":"1","vaccinated_locations_specify":"dsd","vaccinated_cluster":"Unknown","vaccinated_cluster_vial":"Unknown","vaccinated_cluster_number":"4","vaccinated_cluster_vial_number":"d","syringes_used":"Unknown","syringes_used_specify":"Recycled disposable","syringes_used_findings":"d","reconstitution_multiple":"Yes","reconstitution_different":"d","reconstitution_syringe":"d","reconstitution_observations":"d","reconstitution_vial":"d","reconstitution_vaccines":"d","cold_temperature":"No","cold_temperature_deviation":"No","cold_temperature_specify":"d","procedure_followed":"No","partial_vaccines":"No","other_items":"No","unusable_vaccines":"No","unusable_diluents":"No","cold_transportation":"No","additional_observations":"d","vaccine_carrier":"No","transport_findings":"d","similar_events":"No","coolant_packs":"d","similar_events_describe":"d","similar_events_episodes":"dd","affected_vaccinated":"d","affected_unknown":"d","community_comments":"d","affected_not_vaccinated":"dd","relevant_findings":"ddf"}
-
+    //model = {"rid":1511846288224,"type":"REPORT_TYPE_AEFI_INV","designation_id":"1","vaccination_in_other":"s","site_type_other":"s","place_vaccination_other":"s","reporter_name":"s","telephone":"s","reporter_email":"s","report_date":"8-10-2017","start_date":"14-10-2017","complete_date":"27-10-2017","patient_name":"sss","gender":"Male","hospitalization_date":"7-10-2017","status_on_date":"Died","died_date":"7-10-2017","autopsy_done":"No","autopsy_planned":"No","past_history":"Unknown","adverse_event":"Unknown","past_history_remarks":"s","adverse_event_remarks":"s","allergy_history_remarks":"s","allergy_history":"Unknown","existing_illness":"Unknown","existing_illness_remarks":"s","hospitalization_history":"No","hospitalization_history_remarks":"s","medication_vaccination":"Unknown","medication_vaccination_remarks":"s","faith_healers":"No","faith_healers_remarks":"s","family_history":"No","family_history_remarks":"ss","pregnant":"No","breastfeeding":"No","infant":"full-term","birth_weight":"12","delivery_procedure":"Caesarean","source_examination":"source_examination","verbal_source":"x","examiner_name":"x","signs_symptoms":"x","person_details":"x","person_date":"22-10-2017","person_designation":"x","medical_care":"x","not_medical_care":"x","final_diagnosis":"x","saefi_list_of_vaccines":[{"vaccine_name":"xx","vaccination_doses":"2"}],"when_vaccinated":"Within the last vaccinations of the session","when_vaccinated_specify":"xxx","prescribing_error":"No","vaccine_unsterile":"Unable to assess","vaccine_condition":"Unable to assess","vaccine_reconstitution":"Unable to assess","vaccine_handling":"Unable to assess","vaccine_administered":"Unable to assess","vaccinated_vial":"2","vaccinated_session":"3","vaccinated_locations":"1","vaccinated_locations_specify":"dsd","vaccinated_cluster":"Unknown","vaccinated_cluster_vial":"Unknown","vaccinated_cluster_number":"4","vaccinated_cluster_vial_number":"d","syringes_used":"Unknown","syringes_used_specify":"Recycled disposable","syringes_used_findings":"d","reconstitution_multiple":"Yes","reconstitution_different":"d","reconstitution_syringe":"d","reconstitution_observations":"d","reconstitution_vial":"d","reconstitution_vaccines":"d","cold_temperature":"No","cold_temperature_deviation":"No","cold_temperature_specify":"d","procedure_followed":"No","partial_vaccines":"No","other_items":"No","unusable_vaccines":"No","unusable_diluents":"No","cold_transportation":"No","additional_observations":"d","vaccine_carrier":"No","transport_findings":"d","similar_events":"No","coolant_packs":"d","similar_events_describe":"d","similar_events_episodes":"dd","affected_vaccinated":"d","affected_unknown":"d","community_comments":"d","affected_not_vaccinated":"dd","relevant_findings":"ddf"}
+    if(model.reports == null) {
+      model.reports = [{}]
+    }
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.upload = this.upload.bind(this)
 
@@ -170,7 +172,7 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="If died, date and time of death (DD/MM/YYYY):" name="died_date" model={ model } required={ true } onChange={ (value) => this.setState(value) } maxDate={ moment() }/>
+              <DatePickerInput label="If died, date and time of death (DD/MM/YYYY):" name="died_date" model={ model } showTime={ true } required={ true } onChange={ (value) => this.setState(value) } maxDate={ moment() }/>
             </div>
 
           </div>
@@ -192,7 +194,7 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <FileInputComponent name="reports" label="Attach report (if available)" required={ true } model={ model }/>
+              <FileInputComponent name="reports" label="Attach report (if available)" required={ true } model={ model.reports[0] }/>
             </div>
           </div>
 
@@ -418,18 +420,18 @@ additional sheets if necessary)</h5>
                 </tr>
                 <tr>
                   <td><label>h. Number vaccinated from the concerned vaccine vial/ampoule</label></td>
-                  <td><TextInput inline={ true } hideLabel={ true } name="vaccinated_vial" model={ model }/></td>
+                  <td><TextInput inline={ true } hideLabel={ true } name="vaccinated_vial" model={ model } type="number"/></td>
                   <td></td>
                 </tr>
                 <tr>
                   <td><label>i. Number vaccinated with the concerned vaccine in the same session</label></td>
-                  <td><TextInput inline={ true } hideLabel={ true } name="vaccinated_session" model={ model }/></td>
+                  <td><TextInput inline={ true } hideLabel={ true } name="vaccinated_session" model={ model } type="number"/></td>
                   <td></td>
                 </tr>
                 <tr>
                   <td><label>j. Number vaccinated with the concerned vaccine having the same batch number in other locations.</label></td>
-                  <td><TextInput inline={ true } hideLabel={ true } name="vaccinated_locations" model={ model }/></td>
-                  <td><TextInput multiLine={ true } inline={ true } hideLabel={ true } name="vaccinated_locations_specify" model={ model }/></td>
+                  <td><TextInput inline={ true } hideLabel={ true } name="vaccinated_locations" model={ model } type="number"/></td>
+                  <td><TextInput multiLine={ true } inline={ true } hideLabel={ true } name="vaccinated_locations_specify" model={ model } type="number"/></td>
                 </tr>
                 <tr>
                   <td><label>k. Is this case a part of a cluster?</label></td>
@@ -438,7 +440,7 @@ additional sheets if necessary)</h5>
                 </tr>
                 <tr>
                   <td><label>If yes, how many other cases have been detected in the cluster?</label></td>
-                  <td><TextInput inline={ true } hideLabel={ true } name="vaccinated_cluster_number" model={ model }/></td>
+                  <td><TextInput inline={ true } hideLabel={ true } name="vaccinated_cluster_number" model={ model } type="number"/></td>
                   <td></td>
                 </tr>
                 <tr>
@@ -448,7 +450,7 @@ additional sheets if necessary)</h5>
                 </tr>
                 <tr>
                   <td><label>b. If no, number of vials used in the cluster (enter details separately)</label></td>
-                  <td><TextInput inline={ true } hideLabel={ true } name="vaccinated_cluster_vial_number" model={ model }/></td>
+                  <td><TextInput inline={ true } hideLabel={ true } name="vaccinated_cluster_vial_number" model={ model } type="number"/></td>
                   <td></td>
                 </tr>
               </tbody>
@@ -577,16 +579,16 @@ additional sheets if necessary)</h5>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If yes, how many events/episodes?" name="similar_events_episodes" model={ model }/>
+              <TextInput label="If yes, how many events/episodes?" name="similar_events_episodes" model={ model } type="number"/>
             </div>
           </div>
           <div className="container">
             <h5>Of those affected, how many are</h5>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Vaccinated:" name='affected_vaccinated' model={ model }/>
+              <TextInput label="Vaccinated:" name='affected_vaccinated' model={ model } type="number"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Not vaccinated::" name="affected_not_vaccinated" model={ model }/>
+              <TextInput label="Not vaccinated::" name="affected_not_vaccinated" model={ model } type="number"/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Unknown:" name="affected_unknown" model={ model }/>
