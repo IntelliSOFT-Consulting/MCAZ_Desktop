@@ -177,7 +177,7 @@ class ADRForm extends FormComponent {
           <div className="container">
             <MedicationTableComponent label="Current Medication"  validate={ this.state.validate } name="sadr_list_of_drugs" model={ model }/>
           </div>
-          <ConcomitantTableComponent label="Concomitant (Other) drugs taken, including herbal medicines &amp; Dates/period taken: " name="sadr_other_drugs" model={ model }/>
+
           <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them:" validate={ this.state.validate } name="attachments" model={ model }/>
           <div className="container">
             <div className="col-md-4 col-sm-12">
@@ -242,6 +242,7 @@ class ADRForm extends FormComponent {
         const values = model[field.name]
         var arrayNames = []
         if(Array.isArray(values)) {
+          var suspected_drug = 0
           for(let i = 0; i < values.length; i++) {
             const val = values[i]
             fields.forEach((f) => {
@@ -255,7 +256,15 @@ class ADRForm extends FormComponent {
                 }
               }
             })
+            if(val['suspected_drug'] == '1') {
+              suspected_drug++
+            }
           }
+          if(suspected_drug == 0) {
+            valid = false
+          }
+        } else {
+          valid = false
         }
         if(names != "") {
           names += ",\n"
@@ -330,3 +339,5 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ADRForm)
+
+//<ConcomitantTableComponent label="Concomitant (Other) drugs taken, including herbal medicines &amp; Dates/period taken: " name="sadr_other_drugs" model={ model }/>

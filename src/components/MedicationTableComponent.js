@@ -22,6 +22,9 @@ export default class MedicationTableComponent extends TableComponent {
     var rows = []
     if(model && model[name]) {
       rows = model[name]
+    } else {
+      rows = [{}]
+      model[name] = rows
     }
     this.state = { rows, validate }
   }

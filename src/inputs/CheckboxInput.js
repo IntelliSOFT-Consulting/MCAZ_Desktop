@@ -28,7 +28,7 @@ export default class CheckboxInput extends Component {
 
     this.setState({ value })
     if(model) {
-      model[name] = this.state.value
+      model[name] = value
     }
   }
 
@@ -42,7 +42,7 @@ export default class CheckboxInput extends Component {
         return (
           <div className="checkbox" key={ Math.floor(Math.random() * 100000 )}>
             <label>
-              <input name={ name } disabled={ disabled } type="checkbox" onChange={ this.handleCheck } checked={ this.state.value === option } value={ option } aria-label="..." />
+              <input name={ name } disabled={ disabled } type="checkbox" onChange={ this.handleCheck } checked={ this.state.value.indexOf(option) != -1 } value={ option } aria-label="..." />
             </label>
           </div>
         )
