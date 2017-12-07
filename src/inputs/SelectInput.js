@@ -24,7 +24,7 @@ export default class SelectInput extends Component {
   }
 
   render() {
-    const { label, name, options, hideLabel, required } = this.props
+    const { label, name, options, hideLabel, required, disabled } = this.props
     const optionList = options.map((option) => {
       var label, value;
       if(typeof option == "string") {
@@ -45,7 +45,7 @@ export default class SelectInput extends Component {
     if(hideLabel) {
       return (
         <div className={ hasError }>
-          <select name={ name } className="form-control input-sm" value={ this.state.value } onChange={ this.handleChange }>
+          <select name={ name } disabled={ disabled } className="form-control input-sm" value={ this.state.value } onChange={ this.handleChange }>
             { optionList }
           </select>
         </div>
@@ -61,7 +61,7 @@ export default class SelectInput extends Component {
       <div className={ className }>
         <label className="col-md-4 control-label form-input-label">{ label } { reqSpan }</label>
         <div className="col-md-6">
-          <select name={ name } className="form-control input-sm" value={ this.state.value } onChange={ this.handleChange }>
+          <select name={ name } disabled={ disabled } className="form-control input-sm" value={ this.state.value } onChange={ this.handleChange }>
             { optionList }
           </select>
         </div>
@@ -70,10 +70,14 @@ export default class SelectInput extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { validate } = this.state
+    const { validate, value } = this.state
+    const { model, name } = this.props
     const newValidate = nextProps.validate
     if(newValidate != validate) {
       this.setState({ validate: newValidate })
+    }
+    if(value != model[name]) {
+      this.setState({ value : model[name] })
     }
   }
 

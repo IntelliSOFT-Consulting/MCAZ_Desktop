@@ -36,6 +36,7 @@ class ADRForm extends FormComponent {
 
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.upload = this.upload.bind(this)
+    this.setAgeGroup = this.setAgeGroup.bind(this)
 
     this.mandatory = [
       { name : "patient_name", text : "Patient Initials", page : 1 },
@@ -119,10 +120,10 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() }/>
+              <DateSelectInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() } onChange={ this.setAgeGroup }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="Age group" model={ model } name="age_group" options={ AGE_GROUP }/>
+              <SelectInput label="Age group" model={ model } name="age_group" options={ AGE_GROUP } disabled={ "true" }/>
             </div>
           </div>
           <div className="container">
@@ -223,7 +224,30 @@ class ADRForm extends FormComponent {
     )
   }
 
-
+  setAgeGroup(value) {
+    const values = value.split("-")
+    if(values[2] != "") {
+      const time = moment().year(values[2]).month(values[1]).day(values[0])
+      const now = moment()
+      const age = now.diff(time, 'years', true);
+      const months = now.diff(time, 'days', true);
+      var age_group = ""
+      if(months <= 28) {
+        age_group = "neonate"
+      } else if(age >= 50) {
+        age_group = "elderly"
+      } else if(age >= 19) {
+        age_group = "adult"
+      } else if(age >= 10) {
+        age_group = "adolescent"
+      } else {
+        age_group = "child"
+      }
+      const { model } = this.state
+      model['age_group'] = age_group
+      this.setState({ model })
+    }
+  }
 
   /**
     When saved, check connection status.

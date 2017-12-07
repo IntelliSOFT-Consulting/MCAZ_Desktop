@@ -35,6 +35,11 @@ export default class DateSelectInput extends Component {
       value: value
     });
 
+    const { onChange } = this.props
+    if(onChange) {
+      onChange(model[name])
+    }
+
   }
 
   render() {

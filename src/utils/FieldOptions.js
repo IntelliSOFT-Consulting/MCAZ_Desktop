@@ -173,7 +173,7 @@ export const EVENT_TYPE = [
   { key : "AE", value : "AE"}, { key : "SAE", value : "SAE"}, { key : "Death", value : "Death"}
 ]
 
-export const AGE_GROUP = [ { key : "neonate", value : "neonate"}, { key : "infant", value : "infant"}, { key : "child", value : "child"},
+export const AGE_GROUP = [ { key : "", value : ""}, { key : "neonate", value : "neonate"}, { key : "infant", value : "infant"}, { key : "child", value : "child"},
   { key : "adolescent", value : "adolescent"}, { key : "adult", value : "adult"}, { key : "elderly", value : "elderly"}
 ]
 
