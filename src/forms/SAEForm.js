@@ -196,12 +196,12 @@ class SAEForm extends FormComponent {
               <SingleMultipleInput label="3a. Any previous Adverse Event’s report on this participant?:" name="previous_events" model={ model } validate={ this.state.validate } required={ true } inline={ true } options={ BOOLEAN_OPTIONS }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If yes, how many?" name="previous_events_number" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "previous_events", value: "Yes" } }/>
+              <TextInput label="If yes, how many?" name="previous_events_number" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "previous_events", value: "Yes" } } type="number"/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="3b. Total Number of SAEs to date for the whole study:" name="total_saes" model={ model } validate={ this.state.validate } required={ true }/>
+              <TextInput label="3b. Total Number of SAEs to date for the whole study:" name="total_saes" model={ model } validate={ this.state.validate } required={ true } type="number"/>
             </div>
           </div>
           <div className="container">

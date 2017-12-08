@@ -128,10 +128,10 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Weight (Kg)" model={ model } name="weight"/>
+              <TextInput label="Weight (Kg)" model={ model } name="weight" type="number"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Height (meters)" model={ model } name="height"/>
+              <TextInput label="Height (centrimetres)" model={ model } name="height" type="number"/>
             </div>
           </div>
           <div className="container">
@@ -163,7 +163,7 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Relevant Medical History" multiLine={ true } model={ model } name="medical_history"/>
+              <TextInput label="Relevant Medical History, including any allergies" multiLine={ true } model={ model } name="medical_history"/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Relevant Past Drug Therapy" multiLine={ true } model={ model } name="past_drug_therapy"/>

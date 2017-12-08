@@ -27,7 +27,9 @@ export default class SingleMultipleInput extends Component {
     } else {
       if(e.target.checked) {
         values.push(e.target.value)
+        model[e.target.value] = "1"
       } else {
+        model[e.target.value] = "0"
         values = values.filter((v) => v != e.target.value )
       }
     }
@@ -40,7 +42,7 @@ export default class SingleMultipleInput extends Component {
 
 
   render() {
-    const { label, name, options, multiple, required, inline, hideLabel } = this.props
+    const { label, name, options, multiple, required, inline, hideLabel, model } = this.props
     var type = multiple? "checkbox" : "radio";
 
     const inlineClass = inline? type + '-inline' : ''
@@ -61,7 +63,7 @@ export default class SingleMultipleInput extends Component {
         if(inline) {
           return (
             <label className={ inlineClass } key={ index }>
-              <input type={ type } value={ value } name={ name } checked={ this.state.values.indexOf(value) != -1 } onChange={ this.handleCheck }/> { label }
+              <input type={ type } value={ value } name={ name } checked={ model[value] == "1" || this.state.values.indexOf(value) != -1 } onChange={ this.handleCheck }/> { label }
             </label>
           )
         }

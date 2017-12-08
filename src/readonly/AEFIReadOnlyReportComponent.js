@@ -8,7 +8,7 @@ import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableCom
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI } from '../utils/Constants'
 
-import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, OUTCOME } from '../utils/FieldOptions'
+import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, OUTCOME, AEFI_ADVERSE_EVENTS } from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
@@ -19,7 +19,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
     super(props)
     var { model } = this.props
     if(model == null) {
-      model = {"rid":1510991587333,"type":"REPORT_TYPE_ADR","name_of_institution":"Nairobi Hosp","sadr_list_of_drugs":[{"brand_name":"dawa","dose_id":"3","drug_name":"c","dose":"1","route_id":"3","frequency_id":"2","start_date":[],"stop_date":[],"suspected_drug":""}],"user":{},"patient_name":"JM","date_of_birth":[],"gender":"Male","date_of_onset_of_reaction":[],"description_of_reaction":"ds","severity":"Yes","severity_reason":"Death","action_taken":"Drug withdrawn","outcome":"Recovered","":"Certain","designation_id":"1","reporter_name":"John","reporter_email":"john@h.com","date_of_end_of_reaction":[]}
+      model = {}
     }
     this.state = { model : model, validate : null }
     //this.saveAndContinue = this.saveAndContinue.bind(this)
@@ -55,7 +55,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Telephone" name="patient_telephone" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Gender" name="gender" model={ model } type="options" options={ GENDER } inline={ true }/>
+              <ReadOnlyDataRenderer label="Gender" name="gender" model={ model } type="option" options={ GENDER } inline={ true }/>
             </div>
           </div>
           <div className="container">
@@ -63,7 +63,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Date of Birth:" required={ true }   name="date_of_birth" model={ model } type="date"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Age on onset"  name="age_at_onset" model={ model } options={ [] } type="options"/>
+              <ReadOnlyDataRenderer label="Age on onset"  name="age_at_onset" model={ model } options={ [] } type="option"/>
             </div>
           </div>
           <div className="container">
@@ -76,7 +76,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Reporter's name" required={ true }   name="reporter_name" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Designation" name="designation_id" model={ model } type="options" options={ DESIGNATION }/>
+              <ReadOnlyDataRenderer label="Designation" name="designation_id" model={ model } type="option" options={ DESIGNATION }/>
             </div>
           </div>
           <div className="container">
@@ -103,11 +103,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Email" name="reporter_email" model={ model }/>
             </div>
           </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Today's date" name="" model={ model } type="date"/>
-            </div>
-          </div>
+
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Name of vaccination center" required={ true }  name="name_of_vaccination_center" model={ model }/>
@@ -121,7 +117,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
           <h5 className="text-center">Adverse events</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Adverse events" required={ true }   name="adverse_events" model={ model } type="options" options={ [] }/>
+              <ReadOnlyDataRenderer label="Adverse events" required={ true }   name="adverse_events" model={ model } type="option" options={ AEFI_ADVERSE_EVENTS }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Date and time AEFI started"  name="aefi_date" model={ model } showTime={ true } type="date" />
@@ -137,20 +133,20 @@ export default class AEFIReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Describe AEFI" multiLine={ true } name="description_of_reaction" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Treatment provided"  name="treatment_provided" model={ model } type="options" options={ BOOLEAN_OPTIONS } inline={ true }/>
+              <ReadOnlyDataRenderer label="Treatment provided"  name="treatment_provided" model={ model } type="option" options={ BOOLEAN_OPTIONS } inline={ true }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Serious" required={ true }  name="serious" model={ model } inline={ true } type="options" options={ BOOLEAN_OPTIONS }/>
+              <ReadOnlyDataRenderer label="Serious" required={ true }  name="serious" model={ model } inline={ true } type="option" options={ BOOLEAN_OPTIONS }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="If yes"  name="serious_yes" model={ model } type="options" options={ AEFI_SEVERITY_REASON }/>
+              <ReadOnlyDataRenderer label="If yes"  name="serious_yes" model={ model } type="option" options={ AEFI_SEVERITY_REASON }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Outcome"  name="outcome" required={ true }  model={ model } type="options" options={ OUTCOME }/>
+              <ReadOnlyDataRenderer label="Outcome"  name="outcome" required={ true }  model={ model } type="option" options={ OUTCOME }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="If died, date of death" name="died_date" model={ model } type="date"/>
@@ -158,7 +154,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <ReadOnlyDataRenderer label="Autopsy done" name="autopsy" model={ model } type="options" options={ BOOLEAN_UNKNOWN_OPTIONS } inline={ true }/>
+              <ReadOnlyDataRenderer label="Autopsy done" name="autopsy" model={ model } type="option" options={ BOOLEAN_UNKNOWN_OPTIONS } inline={ true }/>
             </div>
           </div>
           <div className="container">
@@ -173,7 +169,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Date report recieved at District level" name="district_receive_date" model={ model } type="date"/>
             </div>
             <div className="col-md-4 col-sm-12">
-              <ReadOnlyDataRenderer label="Investigation needed?"  name="investigation_needed" model={ model } type="options" options={ BOOLEAN_OPTIONS } inline={ true }/>
+              <ReadOnlyDataRenderer label="Investigation needed?"  name="investigation_needed" model={ model } type="option" options={ BOOLEAN_OPTIONS } inline={ true }/>
             </div>
             <div className="col-md-4 col-sm-12">
               <ReadOnlyDataRenderer label="If yes, date investigation planned"  name="investigation_date" model={ model } type="date"/>

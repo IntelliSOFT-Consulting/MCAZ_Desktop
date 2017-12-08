@@ -19,24 +19,19 @@ export default class ReadOnlyDataRenderer extends Component {
       return ""
     }
     if(type == 'date') {
-      var value = ''
-      if(model[name]['day']) {
-        value = model[name]['day']
-      } else {
-        value = "-"
-      }
-      if(model[name]['month']) {
-        value = value + "/" + (parseInt(model[name]['month']) + 1)
-      } else {
-        value = value + "/-"
-      }
-      if(model[name]['year']) {
-        value = value + "/" + model[name]['year']
-      } else {
-        value = value + "/-"
-      }
-      return  value
+      var values = model[name].split("-")
+      return  model[name]
     } else if(type == 'option' && options) {
+      var values = model[name].split(",")
+      var renderValue = []
+      options.forEach((option) => {
+        if(values.indexOf(option.key) != -1) {
+          renderValue.push(option.value)
+        }
+      })
+      if(renderValue.length > 0) {
+        return renderValue.join(",")
+      }
       return model[name]
     } else if(type == 'file') {
       return model['filename']

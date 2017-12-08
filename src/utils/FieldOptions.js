@@ -288,3 +288,7 @@ export const VACCINATION_IN = [
 export const BOOLEAN_UNABLE_OPTIONS = [
   { key : "Yes", value : "Yes"}, { key : "No", value : "No"}, { key : "Unable to assess", value : "Unable to assess"}
 ]
+
+export const AGE_ON_ONSET = [
+  { key : "Years", value : "Years"}, { key : "Months", value : "Months"}, { key : "Days", value : "Days"}
+]

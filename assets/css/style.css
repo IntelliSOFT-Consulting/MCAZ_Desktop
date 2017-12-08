@@ -75,6 +75,11 @@ select.month {
   margin: 5px 0px;
 }
 
+.aefi-form {
+  background-color: #FF92C9;
+  padding: 20px 0px;
+}
+
 /**
   date picker fixes
 */

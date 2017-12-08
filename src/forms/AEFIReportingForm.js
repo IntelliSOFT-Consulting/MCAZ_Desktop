@@ -18,7 +18,7 @@ import messages from '../utils/messages.json'
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI, AEFI_URL } from '../utils/Constants'
 
-import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, OUTCOME, AEFI_ADVERSE_EVENTS } from '../utils/FieldOptions'
+import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, OUTCOME, AEFI_ADVERSE_EVENTS, AGE_ON_ONSET } from '../utils/FieldOptions'
 import { AEFI_MANDATORY_FIELS } from '../utils/FormFields'
 
 import { connect } from 'react-redux'
@@ -79,7 +79,7 @@ class AEFIReportingForm extends FormComponent {
       )
     }
     return (
-      <div>
+      <div className="aefi-form">
         { confirmVisible }
         { confirmCancel }
         <h3 className="text-center">Adverse Event After Immunization (AEFI) Report Form</h3>
@@ -115,13 +115,14 @@ class AEFIReportingForm extends FormComponent {
             <div className="col-md-6 col-sm-12">
               <DateSelectInput label="Date of Birth:" required={ true } validate={ this.state.validate }  name="date_of_birth" model={ model }/>
             </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Age on onset"  name="age_at_onset" model={ model }/>
-            </div>
+
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Age on onset Specify"  name="age_at_onset_specify" model={ model }/>
+              <SingleMultipleInput label="Age on onset" inline={ true } name="age_at_onset" model={ model } options={ AGE_ON_ONSET }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="Specify"  name="age_at_onset_specify" type="number" model={ model }/>
             </div>
           </div>
           <div className="container">
