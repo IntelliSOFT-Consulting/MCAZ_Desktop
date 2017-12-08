@@ -533,7 +533,7 @@ additional sheets if necessary)</h5>
           <div className="container">
             <h5>Of those affected, how many are</h5>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Vaccinated:" name='affected_vaccinated' model={ model }/>
+              <TextInput label="Vaccinated:" name='affected_vaccinated' model={ model } type="number"/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Not vaccinated::" name="affected_not_vaccinated" model={ model }/>

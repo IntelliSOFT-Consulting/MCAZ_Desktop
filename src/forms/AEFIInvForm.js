@@ -97,7 +97,7 @@ class AEFIInvForm extends FormComponent {
               <SelectInput label="Place of vaccination" name="place_vaccination" model={ model } required={ true } options={ PLACE_VACCINATION }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If other, specify:" required={ true } name="place_vaccination_other" model={ model }/>
+              <TextInput label="If other, specify:" name="place_vaccination_other" model={ model }/>
             </div>
           </div>
           <div className="container">
@@ -105,7 +105,7 @@ class AEFIInvForm extends FormComponent {
               <SelectInput label="Type of site" name="site_type" model={ model } options={ SITE_TYPE } />
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If other, specify:" required={ true } name="site_type_other" model={ model }/>
+              <TextInput label="If other, specify:"  name="site_type_other" model={ model }/>
             </div>
           </div>
           <div className="container">
@@ -113,7 +113,7 @@ class AEFIInvForm extends FormComponent {
               <SelectInput label="Vaccination in" name="vaccination_in" options={ VACCINATION_IN } model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Specify:" required={ true } name="vaccination_in_other" model={ model }/>
+              <TextInput label="Specify:" name="vaccination_in_other" model={ model }/>
             </div>
           </div>
           <div className="container">
@@ -205,9 +205,9 @@ class AEFIInvForm extends FormComponent {
             <table className="table table-bordered">
               <thead>
                 <tr>
-                  <td>Criteria</td>
-                  <td>Findings</td>
-                  <td>Remarks</td>
+                  <th>Criteria</th>
+                  <th>Findings</th>
+                  <th>Remarks</th>
                 </tr>
               </thead>
               <tbody>
@@ -264,7 +264,7 @@ class AEFIInvForm extends FormComponent {
               <SingleMultipleInput inline={ true } label="Currently pregnant?" name="pregnant" model={ model } options={ BOOLEAN_UNKNOWN_OPTIONS }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Weeks" name="pregnant_weeks" model={ model }/>
+              <TextInput label="Weeks" name="pregnant_weeks" type="number" model={ model }/>
             </div>
           </div>
           <div className="container">
@@ -280,7 +280,7 @@ class AEFIInvForm extends FormComponent {
               <SingleMultipleInput label="The birth was" inline={ true } name="infant" model={ model } options={ INFANT_BIRTH_OPTS } />
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Birth weight:" name="birth_weight" model={ model }/>
+              <TextInput label="Birth weight:" name="birth_weight" type="number" model={ model }/>
             </div>
           </div>
           <div className="container">
@@ -376,9 +376,9 @@ additional sheets if necessary)</h5>
             <table className="table table-bordered">
               <thead>
                 <tr>
-                  <td className="col-md-6">Criteria</td>
-                  <td className="col-md-3">Findings</td>
-                  <td className="col-md-3">Remarks</td>
+                  <th className="col-md-6">Criteria</th>
+                  <th className="col-md-3">Findings</th>
+                  <th className="col-md-3">Remarks</th>
                 </tr>
               </thead>
               <tbody>
@@ -559,7 +559,7 @@ additional sheets if necessary)</h5>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput name="coolant_packs" model={ model} options={ BOOLEAN_UNKNOWN_OPTIONS } label="Were conditioned coolant-packs used?" />
+              <SingleMultipleInput name="coolant_packs" model={ model} options={ BOOLEAN_UNKNOWN_OPTIONS } label="Were conditioned coolant-packs used?" />
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput name="transport_findings" multiLine={ true } model={ model } label="Specific key findings/additional observations and comments:" />
