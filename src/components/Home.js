@@ -7,11 +7,13 @@ import SAEForm from '../forms/SAEForm'
 import AEFIReportingForm from '../forms/AEFIReportingForm'
 import AEFIInvForm from '../forms/AEFIInvForm'
 import ReadOnlyReportComponent from '../readonly/ReadOnlyReportComponent'
+import LoginPage from './LoginPage'
+import SignupPage from './SignupPage'
 var NotificationSystem = require('react-notification-system')
 
 import { connect } from 'react-redux'
 
-import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, REPORTS_LIST_PAGE, READ_ONLY_PAGE } from '../utils/Constants'
+import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, REPORTS_LIST_PAGE, READ_ONLY_PAGE, LOGIN_PAGE, SIGNUP_PAGE } from '../utils/Constants'
 
 import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification } from '../actions'
 
@@ -46,8 +48,14 @@ class Home extends Component {
         return <AEFIInvForm />
       case READ_ONLY_PAGE:
         return <ReadOnlyReportComponent />
+      case LOGIN_PAGE:
+        return <LoginPage {...this.props}/>
+      case SIGNUP_PAGE:
+        return <SignupPage {...this.props}/>
+      case MAIN_PAGE:
+        return <IntroPage  {...this.props}/>
       default:
-        return <IntroPage {...this.props} />
+        return <LoginPage {...this.props} />
     }
   }
 

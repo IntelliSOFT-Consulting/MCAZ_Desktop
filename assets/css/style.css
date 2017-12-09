@@ -80,6 +80,15 @@ select.month {
   padding: 20px 0px;
 }
 
+.login-signup-box {
+  margin: 0 auto;
+  border-color: #ddd;
+  border-width: 1px;
+  border-radius: 4px;
+  width: 500px;
+  padding: 10px;
+}
+
 /**
   date picker fixes
 */

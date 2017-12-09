@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE } from '../utils/Constants'
+import { ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, LOGIN_PAGE, SIGNUP_PAGE, MAIN_PAGE } from '../utils/Constants'
 
 export default class Header extends Component {
    constructor(props) {
@@ -26,11 +26,13 @@ export default class Header extends Component {
             <div className="navbar-header">
             </div>
             <ul className="nav navbar-nav">
-              <li className="active"><a href="#">Home</a></li>
+              <li className="active"><a href="#" onClick={ () => this.showPage(MAIN_PAGE) }>Home</a></li>
               <li><a href="#" onClick={ () => this.showPage(ADR_FORM_PAGE) }>ADR</a></li>
               <li><a href="#" onClick={ () => this.showPage(SAE_FORM_PAGE) }>SAE</a></li>
               <li><a href="#" onClick={ () => this.showPage(AEFI_REPORT_PAGE) }>AEFI</a></li>
               <li><a href="#" onClick={ () => this.showPage(AEFI_INV_PAGE) }>Serious AEFI</a></li>
+              <li><a href="#" onClick={ () => this.showPage(LOGIN_PAGE) }>Logout</a></li>
+              
             </ul>
           </div>
         </nav>
