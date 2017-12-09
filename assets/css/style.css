@@ -89,6 +89,10 @@ select.month {
   padding: 10px;
 }
 
+.saved-reports {
+  margin-top: 10px;
+}
+
 /**
   date picker fixes
 */

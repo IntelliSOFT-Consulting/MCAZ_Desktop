@@ -81,7 +81,7 @@ export default class ReportListComponent extends Component {
   render() {
     const { drafts, completed, uploaded } = this.props
     return (
-      <div>
+      <div className="saved-reports">
         <select className="input-sm form-control" value={ this.state.current } onChange={ this.changeType }>
           <option value="">All ({ drafts.length + completed.length + uploaded.length })</option>
           <option value="drafts">Draft ({ drafts.length })</option>
