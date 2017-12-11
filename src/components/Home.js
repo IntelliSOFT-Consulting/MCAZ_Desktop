@@ -15,7 +15,7 @@ import { connect } from 'react-redux'
 
 import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, REPORTS_LIST_PAGE, READ_ONLY_PAGE, LOGIN_PAGE, SIGNUP_PAGE } from '../utils/Constants'
 
-import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification } from '../actions'
+import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification, setFollowUp } from '../actions'
 
 class Home extends Component {
   _notificationSystem: null
@@ -127,6 +127,9 @@ const mapDispatchToProps = dispatch => {
     },
     setNotification: message => {
       dispatch(setNotification(message))
+    },
+    setFollowUp: followUp => {
+      dispatch(setFollowUp(followUp))
     },
     dispatch: dispatch
   }

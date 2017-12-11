@@ -43,6 +43,7 @@ class AEFIInvForm extends FormComponent {
 
   render() {
     const { model } = this.state
+    const { followUp } = this.props
 
     var confirmVisible = null
     if(this.state.confirmVisible) {
@@ -78,6 +79,12 @@ class AEFIInvForm extends FormComponent {
       )
     }
 
+    const followUpInput = followUp == true? (
+      <div className="container"><div className="col-md-6 col-sm-12">
+        <TextInput label="Parent MCAZ Ref #" model={ model } name="parent_id"/>
+      </div></div>
+    ) : null
+
     return (
       <div className="saefi-form">
         { confirmVisible }
@@ -91,6 +98,7 @@ class AEFIInvForm extends FormComponent {
         <h5 className="text-center">(Only for Serious Adverse Events Following Immunization - Death / Disability / Hospitalization / Cluster)</h5>
 
         <form className="form-horizontal">
+          { followUpInput }
           <h5 className="text-center">Basic Details</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
@@ -707,7 +715,8 @@ additional sheets if necessary)</h5>
 const mapStateToProps = state => {
   return {
     connection: state.appState.connection,
-    model: state.appState.currentReport
+    model: state.appState.currentReport,
+    followUp: state.appState.followUp
   }
 }
 

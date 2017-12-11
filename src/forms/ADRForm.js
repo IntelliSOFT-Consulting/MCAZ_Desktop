@@ -54,7 +54,7 @@ class ADRForm extends FormComponent {
 
   render() {
     var { model } = this.state
-
+    const { followUp } = this.props
     var confirmVisible = null
     if(this.state.confirmVisible) {
       confirmVisible = (
@@ -88,6 +88,12 @@ class ADRForm extends FormComponent {
       )
     }
 
+    const followUpInput = followUp == true? (
+      <div className="container"><div className="col-md-6 col-sm-12">
+        <TextInput label="Parent MCAZ Ref #" model={ model } name="parent_id"/>
+      </div></div>
+    ) : null
+
     return (
       <div className='adr-form'>
         { confirmVisible }
@@ -101,6 +107,7 @@ class ADRForm extends FormComponent {
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
 
         <form className="form-horizontal">
+          { followUpInput }
           <h5 className="text-center">Patient Details</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
@@ -333,7 +340,8 @@ class ADRForm extends FormComponent {
 const mapStateToProps = state => {
   return {
     connection: state.appState.connection,
-    model: state.appState.currentReport
+    model: state.appState.currentReport,
+    followUp: state.appState.followUp
   }
 }
 

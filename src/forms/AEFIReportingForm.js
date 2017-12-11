@@ -18,7 +18,7 @@ import messages from '../utils/messages.json'
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI, AEFI_URL } from '../utils/Constants'
 
-import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, OUTCOME, AEFI_ADVERSE_EVENTS, AGE_ON_ONSET } from '../utils/FieldOptions'
+import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, OUTCOME, AEFI_ADVERSE_EVENTS, AGE_ON_ONSET, PROVINCES } from '../utils/FieldOptions'
 import { AEFI_MANDATORY_FIELS } from '../utils/FormFields'
 
 import { connect } from 'react-redux'
@@ -44,6 +44,7 @@ class AEFIReportingForm extends FormComponent {
 
   render() {
     const { model } = this.state
+    const { followUp } = this.props
 
     var confirmVisible = null
     if(this.state.confirmVisible) {
@@ -78,6 +79,13 @@ class AEFIReportingForm extends FormComponent {
         </Confirm>
       )
     }
+
+    const followUpInput = followUp == true? (
+      <div className="container"><div className="col-md-6 col-sm-12">
+        <TextInput label="Parent MCAZ Ref #" model={ model } name="parent_id"/>
+      </div></div>
+    ) : null
+
     return (
       <div className="aefi-form">
         { confirmVisible }
@@ -86,6 +94,7 @@ class AEFIReportingForm extends FormComponent {
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
 
         <form className="form-horizontal">
+          { followUpInput }
           <h5 className="text-center">Patient Details</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
@@ -146,7 +155,7 @@ class AEFIReportingForm extends FormComponent {
               <TextInput label="District" name="reporter_district" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Province" name="reporter_province" model={ model }/>
+              <SelectInput label="Province" name="reporter_province" model={ model } options={ PROVINCES }/>
             </div>
           </div>
           <div className="container">
@@ -332,7 +341,8 @@ class AEFIReportingForm extends FormComponent {
 const mapStateToProps = state => {
   return {
     connection: state.appState.connection,
-    model: state.appState.currentReport
+    model: state.appState.currentReport,
+    followUp: state.appState.followUp
   }
 }
 

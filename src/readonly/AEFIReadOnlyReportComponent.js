@@ -92,7 +92,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="District" name="reporter_district" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Province" name="reporter_province" model={ model }/>
+              <ReadOnlyDataRenderer label="Province" name="reporter_province" model={ model } options={ PROVINCES } type="option"/>
             </div>
           </div>
           <div className="container">
