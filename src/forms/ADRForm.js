@@ -11,6 +11,7 @@ import MedicationTableComponent from '../components/MedicationTableComponent'
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import ConcomitantTableComponent from '../components/ConcomitantTableComponent'
 import SelectInput from '../inputs/SelectInput'
+import AutoSuggestInput from '../inputs/AutoSuggestInput'
 
 import moment from 'moment'
 
@@ -111,7 +112,8 @@ class ADRForm extends FormComponent {
           <h5 className="text-center">Patient Details</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Clinic/Hospital Name" model={ model } name="name_of_institution"/>
+
+              <AutoSuggestInput label="Clinic/Hospital Name" model={ model } name="name_of_institution"/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Clinic/Hospital Number" model={ model } name="institution_code"/>
