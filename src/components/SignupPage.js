@@ -25,7 +25,17 @@ export default class SignupPage extends Component {
   }
 
   signup() {
-    this.setState({ validate: true })
+    if(this.state.email != "" && this.state.password != '' && this.state.confirmPassword != '') {
+      const { signUp } = this.props
+      var data = {}
+      data.email = this.state.email
+      data.password = this.state.password
+      data.confirm_password = this.state.confirmPassword
+      data.is_active = true
+      signUp(data)
+    } else {
+      this.setState({ validate: true })
+    }
   }
 
   handleChange(e) {
@@ -44,15 +54,15 @@ export default class SignupPage extends Component {
 
           <div className={ `form-group ${hasErrorEmail}` }>
             <label htmlFor="exampleInputEmail1">Email address</label>
-            <input type="email" name="email" value={ this.state.email } className="form-control" id="exampleInputEmail1" placeholder="Email"/>
+            <input type="email" name="email" value={ this.state.email } className="form-control" id="exampleInputEmail1" placeholder="Email" onChange={ this.handleChange }/>
           </div>
           <div className={ `form-group ${hasErrorPass}` }>
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" value={ this.state.password } className="form-control" id="password" placeholder="Password"/>
+            <input type="password" name="password" value={ this.state.password } className="form-control" id="password" placeholder="Password" onChange={ this.handleChange }/>
           </div>
           <div className={ `form-group ${hasErrorPassConf}` }>
             <label htmlFor="confirmPassword">Confirm Password</label>
-            <input type="password" name="confirmPassword" value={ this.state.confirmPassword } className="form-control" id="confirmPassword" placeholder="Confirm Password"/>
+            <input type="password" name="confirmPassword" value={ this.state.confirmPassword } className="form-control" id="confirmPassword" placeholder="Confirm Password" onChange={ this.handleChange }/>
           </div>
           <button type="submit" className="btn btn-default btn-sm" onClick={ this.signup }>Signup</button> | <a href="#" onClick={ () => this.showPage(LOGIN_PAGE) }>Return to login</a>
         </div>

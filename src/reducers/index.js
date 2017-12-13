@@ -10,7 +10,8 @@ import currentReport from './currentReport'
 import notification from './notification'
 import uploadStatus from './uploadStatus'
 import followUp from './followUp'
+import auth from './auth'
 
-const pvApp = combineReducers({ drafts, completed, uploaded, reportFilter, connection, page, currentReport, notification, uploadStatus, followUp })
+const pvApp = combineReducers({ drafts, completed, uploaded, reportFilter, connection, page, currentReport, notification, uploadStatus, followUp, auth })
 
 export default pvApp

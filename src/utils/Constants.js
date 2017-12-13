@@ -30,3 +30,5 @@ export const ADR_URL = 'http://45.79.130.91/api/sadrs' // Url for ADR
 export const SAE_URL = 'http://45.79.130.91/api/adrs' // Url for SAE
 export const AEFI_URL = 'http://45.79.130.91/api/aefis' // Url for AEFI
 export const SAEFI_URL = 'http://45.79.130.91/api/saefis' // Url for SAEFI
+export const LOGIN_URL = 'http://45.79.130.91/api/users/token' // Url for SAEFI
+export const SIGNUP_URL = 'http://45.79.130.91/api/users/register' // Url for SAEFI

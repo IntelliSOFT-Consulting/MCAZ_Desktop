@@ -219,16 +219,6 @@ export const AEFI_SEVERITY_REASON = [ { key: "", value: "select one" },
   { key : 'Disabling', value : 'Disabling'}, { key : 'Congenital-anomaly', value : 'Congenital-anomaly' }
 ]
 
-export const AEFI_ADVERSE_EVENTS = [
-  { key : "ae_severe_local_reaction", value: "Severe local reaction"}, { key : "ae_seizures", value: "Seizures"},
-  { key : "ae_abscess", value: "Abscess"}, { key : "ae_sepsis", value: "Sepsis"},
-  { key : "ae_encephalopathy", value: "Encephalopathy"}, { key : "ae_toxic_shock", value: "Toxic shock syndrome"},
-  { key : "ae-thrombocytopenia", value: "Thrombocytopenia"}, { key : "ae_anaphylaxis", value: "Anaphylaxis"},
-  { key : "ae-fever", value: "Fever≥38°C"}, { key : "ae-3days", value: ">3 days"},
-  { key : "ae-febrile", value: "febrile"}, { key : "ae-beyond-joint", value: "beyond nearest joint"},
-  { key : "ae_afebrile", value: "afebrile"}, { key: "ae-other", value: "Other (specify)"}
-]
-
 export const STATUS_ON_DATE = [
   { key : "Died", value: "Died"}, { key : "Disabled", value: "Disabled"},
   { key : "Recovering", value: "Recovering"}, { key : "Recovered completely", value: "Recovered completely"},
@@ -297,4 +287,14 @@ export const PROVINCES = [
   { key : "", value : ""}, { key : "1", value : "Bulawayo"}, { key : "2", value : "Harare"}, { key : "3", value : "Manicaland"},
   { key : "4", value : "Mashonaland Central"}, { key : "5", value : "Mashonaland East"}, { key : "6", value : "Mashonaland West"}, { key : "7", value : "Masvingo"},
   { key : "8", value : "Matebeleland North"}, { key : "9", value : "Matebeleland South"}, { key : "10", value : "Midlands"},
+]
+
+export const AEFI_ADVERSE_EVENTS = [
+  { key : "ae_severe_local_reaction", value: "Severe local reaction"}, { key : "ae_seizures", value: "Seizures"},
+  { key : "ae_abscess", value: "Abscess"}, { key : "ae_sepsis", value: "Sepsis"},
+  { key : "ae_encephalopathy", value: "Encephalopathy"}, { key : "ae_toxic_shock", value: "Toxic shock syndrome"},
+  { key : "ae_thrombocytopenia", value: "Thrombocytopenia"}, { key : "ae_anaphylaxis", value: "Anaphylaxis"},
+  { key : "ae_fever", value: "Fever≥38°C"}, { key : "ae_3days", value: ">3 days"},
+  { key : "ae_febrile", value: "febrile"}, { key : "ae_beyond_joint", value: "beyond nearest joint"},
+  { key : "ae_afebrile", value: "afebrile"}, { key: "ae_other", value: "Other (specify)"}
 ]

@@ -18,3 +18,6 @@ export const SET_NOTIFICATION = 'SET_NOTIFICATION'
 
 export const RESET_UPLOAD_STATUS = 'RESET_UPLOAD_STATUS' // reset upload status.
 export const UPDATE_UPLOAD_STATUS = 'UPDATE_UPLOAD_STATUS' // update upload status.
+
+export const LOGGED_IN = 'LOGGED_IN'
+export const LOGOUT = 'LOGOUT'

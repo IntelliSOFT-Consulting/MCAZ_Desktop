@@ -3,5 +3,6 @@
   "changesSaved": "Changes saved",
   "datauploaded" : "Data uploaded",
   "uploaderror" : "Unexpected response from server.",
-  "offline" : "The application seems to be offline, try when connection is available"
+  "offline" : "The application seems to be offline, try when connection is available",
+  "login_error" : "Error logging in"
 }

@@ -24,7 +24,15 @@ export default class LoginPage extends Component {
   }
 
   login() {
-    this.setState({ validate: true })
+    if(this.state.email != '' && this.state.password != '') {
+      const { login } = this.props
+      var data = {}
+      data.username = this.state.email
+      data.password = this.state.password
+      login(data)
+    } else {
+      this.setState({ validate: true })
+    }
   }
 
   handleChange(e) {
