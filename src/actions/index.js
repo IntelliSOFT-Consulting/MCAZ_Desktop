@@ -48,14 +48,6 @@ export const setReport = (model) => (
   { type : SET_REPORT, model }
 )
 
-export const loggedIn = (token) => (
-  { type : LOGGED_IN, token }
-)
-
-export const logout = (token) => (
-  { type : LOGOUT }
-)
-
 export const uploadData = (data, url, token, updateProgress) => {
   return dispatch => {
     dispatch(saveCompleted(data))
@@ -67,7 +59,7 @@ export const uploadData = (data, url, token, updateProgress) => {
       headers: {
         "Accept" : "application/json",
         'Content-Type': 'application/json',
-        'Authorization' : 'Bearer ' + token 
+        'Authorization' : 'Bearer ' + token
       },
       body: JSON.stringify(getRequestPayload(data))
     }).then(response => response.json()).then((json) => {
@@ -112,6 +104,14 @@ export const uploadData = (data, url, token, updateProgress) => {
     })
   }
 }
+
+export const loggedIn = (token) => (
+  { type : LOGGED_IN, token }
+)
+
+export const logout = (token) => (
+  { type : LOGOUT }
+)
 
 export const login = (data) => {
   return dispatch => {
