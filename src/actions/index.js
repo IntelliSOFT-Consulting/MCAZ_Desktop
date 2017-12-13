@@ -8,7 +8,7 @@ import messages from '../utils/messages.json'
 import { MAIN_URL, LOGIN_URL, SIGNUP_URL, MAIN_PAGE } from '../utils/Constants'
 
 const { ipcRenderer } = require('electron')
-import fetch from 'electron-fetch'
+import fetch from 'isomorphic-fetch'
 /**
   Saves a draft report
 */
@@ -100,7 +100,7 @@ export const uploadData = (data, url, token, updateProgress) => {
       } else {
         dispatch(setNotification({ message : messages.erroruploading, level: "info", id: new Date().getTime() }))
       }
-      dispatch(setNotification({ message : messages.uploaderror, level: "error", id: new Date().getTime() }))
+      dispatch(setNotification({ message : messages.request_error, level: "error", id: new Date().getTime() }))
     })
   }
 }
@@ -117,14 +117,18 @@ export const login = (data) => {
   return dispatch => {
     return fetch(LOGIN_URL, {
       method : "POST",
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Accept" : "application/json", 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
-    }).then(response => response.json()).then((json) => {
+    }).then(res => res.json()).then((json) => {
       console.log(json)
-      dispatch(loggedIn(json.data.token))
-      dispatch(showPage(MAIN_PAGE))
+      if(json.success) {
+        dispatch(loggedIn(json.data.token))
+        //dispatch(showPage(MAIN_PAGE))
+      } else {
+        dispatch(setNotification({ message : messages.login_error, level: "error", id: new Date().getTime() }))
+      }
     }).catch((error) => {
-      dispatch(setNotification({ message : messages.login_error, level: "error", id: new Date().getTime() }))
+      dispatch(setNotification({ message : messages.request_error, level: "error", id: new Date().getTime() }))
     })
   }
 }
@@ -133,14 +137,17 @@ export const signUp = (data) => {
   return dispatch => {
     return fetch(SIGNUP_URL, {
       method : "POST",
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Accept" : "application/json", 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
-    }).then(response => response.json()).then((json) => {
-      console.log(json)
-      dispatch(loggedIn(json.token))
-      dispatch(showPage(MAIN_PAGE))
+    }).then(res => res.json()).then((json) => {
+      if(json.token) {
+        dispatch(loggedIn(json.token))
+        //dispatch(showPage(MAIN_PAGE))
+      } else {
+        dispatch(setNotification({ message : messages.signup_error, level: "error", id: new Date().getTime() }))
+      }
     }).catch((error) => {
-      dispatch(setNotification({ message : messages.login_error, level: "error", id: new Date().getTime() }))
+      dispatch(setNotification({ message : messages.request_error, level: "error", id: new Date().getTime() }))
     })
   }
 }

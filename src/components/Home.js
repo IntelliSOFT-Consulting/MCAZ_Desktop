@@ -15,7 +15,7 @@ import { connect } from 'react-redux'
 
 import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, REPORTS_LIST_PAGE, READ_ONLY_PAGE, LOGIN_PAGE, SIGNUP_PAGE } from '../utils/Constants'
 
-import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification, setFollowUp, login, signUp } from '../actions'
+import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification, setFollowUp, login, signUp, logout } from '../actions'
 
 class Home extends Component {
   _notificationSystem: null
@@ -25,6 +25,8 @@ class Home extends Component {
     this.getPage = this.getPage.bind(this)
     this.updateConnectionStatus = this.updateConnectionStatus.bind(this)
     this._addNotification = this._addNotification.bind(this)
+    const { token } = this.props
+    this.state = { token : token }
   }
 
   handleClick() {
@@ -36,7 +38,12 @@ class Home extends Component {
   }
 
   getPage() {
-    const { page } = this.props
+    const { page, token } = this.props
+    if(token == null && page != LOGIN_PAGE && page != SIGNUP_PAGE) {
+      return <LoginPage {...this.props} />
+    } else if(token != null && (page == LOGIN_PAGE || page == SIGNUP_PAGE)) {
+      return <IntroPage  {...this.props}/>
+    }
     switch(page) {
       case ADR_FORM_PAGE:
         return <ADRForm {...this.props} />
@@ -60,10 +67,10 @@ class Home extends Component {
   }
 
   render() {
-    const { showPage } = this.props
+    const { showPage, logout } = this.props
     return (
       <div>
-        <Header showPage={ showPage }/>
+        <Header showPage={ showPage } logout={ logout }/>
         { this.getPage() }
         <Footer connection={ this.props.connection }/>
         <NotificationSystem ref="notificationSystem" />
@@ -92,10 +99,17 @@ class Home extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { notification } = this.props
+    const { notification, showPage } = this.props
     const nextNotification = nextProps.notification
     if(nextNotification && ((notification && notification.id != nextNotification.id) || notification == null)) {
       this._addNotification(nextNotification)
+    }
+    const { token } = this.state
+    this.setState({ token : nextProps.token })
+    if(token != null && nextProps.token == null) {
+      showPage(LOGIN_PAGE)
+    } else if(token == null && nextProps.token != null) {
+      showPage(MAIN_PAGE)
     }
   }
 }
@@ -134,6 +148,9 @@ const mapDispatchToProps = dispatch => {
     },
     login: data => {
       dispatch(login(data))
+    },
+    logout: data => {
+      dispatch(logout(data))
     },
     signUp: data => {
       dispatch(signUp(data))

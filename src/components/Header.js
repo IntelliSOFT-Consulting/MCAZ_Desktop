@@ -6,12 +6,18 @@ export default class Header extends Component {
    constructor(props) {
     super(props)
     this.showPage = this.showPage.bind(this)
+    this.logout = this.logout.bind(this)
   }
 
   showPage(page, report) {
     const { showPage, setReport } = this.props
     //setReport(report)
     showPage(page)
+  }
+
+  logout() {
+    const { logout } = this.props
+    logout()
   }
 
   render() {
@@ -31,8 +37,8 @@ export default class Header extends Component {
               <li><a href="#" onClick={ () => this.showPage(SAE_FORM_PAGE) }>SAE</a></li>
               <li><a href="#" onClick={ () => this.showPage(AEFI_REPORT_PAGE) }>AEFI</a></li>
               <li><a href="#" onClick={ () => this.showPage(AEFI_INV_PAGE) }>Serious AEFI</a></li>
-              <li><a href="#" onClick={ () => this.showPage(LOGIN_PAGE) }>Logout</a></li>
-              
+              <li><a href="#" onClick={ () => this.logout() }>Logout</a></li>
+
             </ul>
           </div>
         </nav>

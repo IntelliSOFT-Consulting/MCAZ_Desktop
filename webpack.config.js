@@ -1,4 +1,5 @@
 const path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -24,6 +25,9 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new webpack.IgnorePlugin(/\/iconv-loader$/)
+  ],
   externals: {
     'electron': 'require("electron")',
     'net': 'require("net")',
