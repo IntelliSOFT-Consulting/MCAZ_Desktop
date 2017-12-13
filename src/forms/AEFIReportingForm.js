@@ -327,10 +327,10 @@ class AEFIReportingForm extends FormComponent {
   }
 
   upload() {
-    const { uploadData, saveCompleted, connection } = this.props
+    const { uploadData, saveCompleted, connection, token } = this.props
     const { model } = this.state
     if(connection.isConnected) {
-      uploadData(model, AEFI_URL)
+      uploadData(model, AEFI_URL, token)
     } else {
       saveCompleted(data)
     }
@@ -342,7 +342,8 @@ const mapStateToProps = state => {
   return {
     connection: state.appState.connection,
     model: state.appState.currentReport,
-    followUp: state.appState.followUp
+    followUp: state.appState.followUp,
+    token: state.appState.token
   }
 }
 
@@ -351,8 +352,8 @@ const mapDispatchToProps = dispatch => {
     saveDraft: (data) => {
       dispatch(saveDraft(data))
     },
-    uploadData: (data, url) => { // Upload the data.
-      dispatch(uploadData(data, url))
+    uploadData: (data, url, token) => { // Upload the data.
+      dispatch(uploadData(data, url, token))
     },
     validate: (valid) => { // Validate the form
       dispatch(validate(valid))

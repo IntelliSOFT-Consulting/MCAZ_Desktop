@@ -56,7 +56,7 @@ export const logout = (token) => (
   { type : LOGOUT }
 )
 
-export const uploadData = (data, url, updateProgress) => {
+export const uploadData = (data, url, token, updateProgress) => {
   return dispatch => {
     dispatch(saveCompleted(data))
     dispatch(removeDraft(data))
@@ -66,7 +66,8 @@ export const uploadData = (data, url, updateProgress) => {
       method : "POST",
       headers: {
         "Accept" : "application/json",
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization' : 'Bearer ' + token 
       },
       body: JSON.stringify(getRequestPayload(data))
     }).then(response => response.json()).then((json) => {
@@ -223,11 +224,11 @@ export const updateUploadStatus = () => (
   { type : UPDATE_UPLOAD_STATUS }
 )
 
-export const uploadCompletedReports = (completed) => {
+export const uploadCompletedReports = (completed, token) => {
   return dispatch => {
     dispatch(resetUploadStatus(completed.length))
     completed.forEach((data) => {
-      dispatch(uploadData(data, getURL(data), true))
+      dispatch(uploadData(data, getURL(data), token, true))
     })
   }
 }

@@ -107,7 +107,8 @@ const mapStateToProps = state => {
     drafts: state.appState.drafts,
     completed: state.appState.completed,
     uploaded: state.appState.uploaded,
-    notification: state.appState.notification
+    notification: state.appState.notification,
+    token : state.appState.token
   }
 }
 
@@ -122,8 +123,8 @@ const mapDispatchToProps = dispatch => {
     changeConnection: (status) => {
       dispatch(changeConnection(status))
     },
-    uploadCompletedReports: (completed) => {
-      dispatch(uploadCompletedReports(completed))
+    uploadCompletedReports: (completed, token) => {
+      dispatch(uploadCompletedReports(completed, token))
     },
     setNotification: message => {
       dispatch(setNotification(message))
