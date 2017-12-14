@@ -299,7 +299,7 @@ export const fetchAllReports = (url, token) => {
       const getReports = (reports, type) => {
         return reports.map((r) => {
           r.type = type
-          return type
+          return r
         })
       }
       if(json.sadrs) {

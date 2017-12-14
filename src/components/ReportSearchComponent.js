@@ -30,12 +30,12 @@ export default class ReportSearchComponent extends Component {
     }
     const { uploaded, showPage } = this.props
     const report = uploaded.find((i) => i.reference_number == this.state.reference_number)
-    /*if(report) {
+    if(report) {
       showPage('READ_ONLY_PAGE', report)
-    } else {*/
+    } else {
       const { fetchReport, token } = this.props
       fetchReport(btoa(this.state.reference_number), getURL({ type : this.state.type }),token)
-    //}
+    }
 
   }
 
