@@ -327,7 +327,7 @@ class AEFIReportingForm extends FormComponent {
         names += arrayNames.join(',\n')
       } else {
         if(field.dependent) {
-          if((model[field.dependent] == field.value || (field.value == "" && model[name] == null)) && (model[field.name] == null || model[field.name] === "")) {
+          if((model[field.dependent] == field.value || (field.value == "" && model[field.name] == null)) && (model[field.name] == null || model[field.name] === "")) {
             valid = false
             if(names != "") {
               names += ",\n "
