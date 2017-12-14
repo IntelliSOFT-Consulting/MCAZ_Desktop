@@ -4,6 +4,7 @@ import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, REPORTS_LIST
 
 import ReportListComponent from './ReportListComponent'
 
+
 export default class IntroPage extends Component {
 
   constructor(props) {
@@ -11,6 +12,7 @@ export default class IntroPage extends Component {
     this.showPage = this.showPage.bind(this)
     this.getReport = this.getReport.bind(this)
     this.uploadData = this.uploadData.bind(this)
+    this.downloadReports = this.downloadReports.bind(this)
 
     const { completed, connection } = this.props
     this.state = { completed, connection }
@@ -34,6 +36,30 @@ export default class IntroPage extends Component {
     } else {
       setNotification({ message : messages.offline, level: "error", id: new Date().getTime() })
     }
+  }
+
+  downloadReports() {
+    const { uploadCompletedReports, completed, connection, token } = this.props
+    if(completed.length == 0) {
+      //Alert.alert("Info", "No reports to download.")
+      //return
+    }
+    var reports = {}
+    reports.sadr = completed.filter(report => report.type == REPORT_TYPE_ADR)
+    reports.adr = completed.filter(report => report.type == REPORT_TYPE_SAE)
+    reports.aefi = completed.filter(report => report.type == REPORT_TYPE_AEFI)
+    reports.saefi = completed.filter(report => report.type == REPORT_TYPE_AEFI_INV)
+
+    const string = JSON.stringify(reports)
+    const name = new Date().toString().split(/ /).join('_') + '.json'
+    const url = window.URL.createObjectURL(new Blob([string], { type : "text/plain" }));
+    const anchor = document.createElement('a');
+
+    document.body.appendChild(anchor);
+    anchor.href = url;
+    anchor.download = name ;
+    anchor.style = 'display: none';
+    anchor.click();
   }
 
   render() {
@@ -79,8 +105,13 @@ export default class IntroPage extends Component {
             <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_SAE) } completed={ this.getReport(this.props.completed, REPORT_TYPE_SAE) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_SAE) } showPage={ this.showPage } type={ SAE_FORM_PAGE }/>
           </div>
         </div>
-        <div className="container">
-          <button className="btn btn-sm btn-primary" disabled={ disabled } onClick={ this.uploadData }>Upload data ({ this.state.completed.length })</button>
+        <div className="container btn-toolbar">
+          <button className="btn btn-sm btn-primary" disabled={ disabled } onClick={ this.uploadData }>
+            <span className="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload data ({ this.state.completed.length })
+          </button>
+          <button className="btn btn-sm btn-primary" disabled={ disabled } onClick={ this.downloadReports }>
+            <span className="glyphicon glyphicon-download" aria-hidden="true"></span>Download data ({ this.state.completed.length })
+          </button>
         </div>
       </div>
     )
