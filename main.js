@@ -72,6 +72,11 @@ app.on('activate', function () {
 
 const { ipcMain } = require('electron')
 
+ipcMain.on('get-info', (event, arg) => {
+  const os = require('os')
+  event.sender.send('get-info-reply', JSON.stringify({ device_type : os.platform() }))
+})
+
 ipcMain.on('upload-data', (event, arg) => {
   const { net } = require('electron')
 

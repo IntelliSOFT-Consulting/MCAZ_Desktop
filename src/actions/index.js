@@ -1,4 +1,4 @@
-import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, SAVE_COMPLETED_REPORT, REMOVE_COMPLETED_REPORT,
+import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, SAVE_COMPLETED_REPORT, REMOVE_COMPLETED_REPORT, SET_SETTING,
  SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SET_REPORT_FILTER, CHANGE_CONNECTION_STATUS, SHOW_PAGE, SAVE_FETCHED_REPORTS,
  SET_REPORT, SET_NOTIFICATION, RESET_UPLOAD_STATUS, UPDATE_UPLOAD_STATUS, SET_FOLLOW_UP, LOGGED_IN, LOGOUT }  from './actionTypes'
 
@@ -319,3 +319,17 @@ export const fetchAllReports = (url, token) => {
     })
   }
 }
+
+export const fetchDeviceInfo = () => {
+  return dispatch => {
+    ipcRenderer.send('get-info')
+
+    ipcRenderer.on('get-info-reply', (event, arg, updateProgress) => {
+      dispatch(setSetting(JSON.parse(arg)))
+    })
+  }
+}
+
+export const setSetting = (setting) => (
+  { type : SET_SETTING, setting }
+)
