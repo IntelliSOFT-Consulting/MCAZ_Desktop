@@ -6,5 +6,6 @@
   "offline" : "The application seems to be offline, try when connection is available",
   "login_error" : "Error logging in",
   "signup_error" : "Error signing up.",
-  "request_error" : "Error sending request."
+  "request_error" : "Error sending request.",
+  "report_not_found" : "Report not found"
 }

@@ -58,9 +58,11 @@ export default class ReportListComponent extends Component {
     var start = this.itemsPerPage * (this.state.activePage - 1)
     const items = viewing.slice(start, start + this.itemsPerPage)
     const rows = items.map((report, index) => {
+      const ref = report.reference_number != null? report.reference_number : new Date(report.rid).toString()
+      const modified = report.created != null? report.created : new Date(report.rid).toString()
       return (
         <tr key={ index }>
-          <td>{ start + index + 1 }</td><td className="pointer" onClick={ () => this.openReport(report) }>{ report.rid }</td><td>{ new Date(report.rid).toString() }</td>
+          <td>{ start + index + 1 }</td><td className="pointer" onClick={ () => this.openReport(report) }>{ ref }</td><td>{ modified }</td>
         </tr>
       )
     })

@@ -21,3 +21,5 @@ export const UPDATE_UPLOAD_STATUS = 'UPDATE_UPLOAD_STATUS' // update upload stat
 
 export const LOGGED_IN = 'LOGGED_IN'
 export const LOGOUT = 'LOGOUT'
+
+export const SAVE_FETCHED_REPORTS = 'SAVE_FETCHED_REPORTS'

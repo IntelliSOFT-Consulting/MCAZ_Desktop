@@ -93,6 +93,14 @@ select.month {
   margin-top: 10px;
 }
 
+.search-form {
+  margin-left: 20px;
+  float: left;
+}
+
+.search-form div {
+  margin-right: 10px;
+}
 /**
   date picker fixes
 */

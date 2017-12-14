@@ -3,6 +3,7 @@ import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, REPORTS_LIST
   REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV, AEFI_INV_PAGE } from '../utils/Constants'
 
 import ReportListComponent from './ReportListComponent'
+import ReportSearchComponent from './ReportSearchComponent'
 
 
 export default class IntroPage extends Component {
@@ -63,6 +64,7 @@ export default class IntroPage extends Component {
   }
 
   render() {
+    const { uploaded, showPage, fetchReport, token } = this.props
     const disabled = this.state.connection.isConnected? null : " disabled "
     return(
       <div>
@@ -105,13 +107,17 @@ export default class IntroPage extends Component {
             <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_SAE) } completed={ this.getReport(this.props.completed, REPORT_TYPE_SAE) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_SAE) } showPage={ this.showPage } type={ SAE_FORM_PAGE }/>
           </div>
         </div>
-        <div className="container btn-toolbar">
-          <button className="btn btn-sm btn-primary" disabled={ disabled } onClick={ this.uploadData }>
-            <span className="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload data ({ this.state.completed.length })
-          </button>
-          <button className="btn btn-sm btn-primary" disabled={ disabled } onClick={ this.downloadReports }>
-            <span className="glyphicon glyphicon-download" aria-hidden="true"></span>Download data ({ this.state.completed.length })
-          </button>
+        <div className="container">
+          <div className=" btn-toolbar pull-left">
+            <button className="btn btn-sm btn-primary" disabled={ disabled } onClick={ this.uploadData }>
+              <span className="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload data ({ this.state.completed.length })
+            </button>
+            <button className="btn btn-sm btn-primary" disabled={ disabled } onClick={ this.downloadReports }>
+              <span className="glyphicon glyphicon-download" aria-hidden="true"></span> Download data ({ this.state.completed.length })
+            </button>
+
+          </div>
+          <ReportSearchComponent uploaded={ uploaded } showPage={ showPage } fetchReport={ fetchReport } token={ token }/>
         </div>
       </div>
     )

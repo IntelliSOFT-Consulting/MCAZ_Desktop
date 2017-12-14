@@ -1,11 +1,14 @@
 import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, SAVE_COMPLETED_REPORT, REMOVE_COMPLETED_REPORT,
- SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SET_REPORT_FILTER, CHANGE_CONNECTION_STATUS, SHOW_PAGE,
+ SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SET_REPORT_FILTER, CHANGE_CONNECTION_STATUS, SHOW_PAGE, SAVE_FETCHED_REPORTS,
  SET_REPORT, SET_NOTIFICATION, RESET_UPLOAD_STATUS, UPDATE_UPLOAD_STATUS, SET_FOLLOW_UP, LOGGED_IN, LOGOUT }  from './actionTypes'
 
 import { getRequestPayload, getURL } from '../utils/utils'
 import messages from '../utils/messages.json'
 
 import { MAIN_URL, LOGIN_URL, SIGNUP_URL, MAIN_PAGE } from '../utils/Constants'
+
+import { ADR_URL, SAE_URL, AEFI_URL, SAEFI_URL } from '../utils/Constants'
+import { REPORT_TYPE_ADR, REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV } from '../utils/Constants'
 
 const { ipcRenderer } = require('electron')
 import fetch from 'isomorphic-fetch'
@@ -30,6 +33,10 @@ export const removeCompleted = (data) => (
 
 export const saveUploaded = (data) => (
   { type : SAVE_UPLOADED_REPORT, data }
+)
+
+export const saveFetchedReports = (data) => (
+  { type : SAVE_FETCHED_REPORTS, data }
 )
 
 export const removeUploaded = (data) => (
@@ -123,6 +130,10 @@ export const login = (data) => {
       console.log(json)
       if(json.success) {
         dispatch(loggedIn(json.data.token))
+        dispatch(fetchAllReports(ADR_URL, json.data.token))
+        dispatch(fetchAllReports(SAE_URL, json.data.token))
+        dispatch(fetchAllReports(AEFI_URL, json.data.token))
+        dispatch(fetchAllReports(SAEFI_URL, json.data.token))
         //dispatch(showPage(MAIN_PAGE))
       } else {
         dispatch(setNotification({ message : messages.login_error, level: "error", id: new Date().getTime() }))
@@ -236,6 +247,75 @@ export const uploadCompletedReports = (completed, token) => {
     dispatch(resetUploadStatus(completed.length))
     completed.forEach((data) => {
       dispatch(uploadData(data, getURL(data), token, true))
+    })
+  }
+}
+
+export const fetchReport = (id, url, token) => {
+  return dispatch => {
+    return fetch(url + "/" + id, {
+      method : "GET",
+      headers: {
+        "Accept" : "application/json",
+        'Content-Type': 'application/json',
+        'Authorization' : 'Bearer ' + token
+      }
+    }).then(response => response.json()).then((json) => {
+      console.log(json)
+      if(json.sadr) {
+        json.sadr.type = REPORT_TYPE_ADR
+        dispatch(showPage('READ_ONLY_PAGE', json.sadr))
+      } else if(json.adr) {
+        json.adr.type = REPORT_TYPE_SAE
+        dispatch(showPage('READ_ONLY_PAGE', json.adr))
+      } else if(json.aefi) {
+        json.aefi.type = REPORT_TYPE_AEFI
+        dispatch(showPage('READ_ONLY_PAGE',json.aefi))
+      } else if(json.saefi) {
+        json.saefi.type = REPORT_TYPE_AEFI_INV
+        dispatch(showPage('READ_ONLY_PAGE', json.saefi))
+      } else {
+        dispatch(setNotification({ message : messages.report_not_found, level: "warn", id: new Date().getTime() }))
+        return
+      }
+    }).catch((error) => {
+      dispatch(setNotification({ message : messages.request_error, level: "error", id: new Date().getTime() }))
+    })
+  }
+}
+
+export const fetchAllReports = (url, token) => {
+  return dispatch => {
+    return fetch(url, {
+      method : "GET",
+      headers: {
+        "Accept" : "application/json",
+        'Content-Type': 'application/json',
+        'Authorization' : 'Bearer ' + token
+      }
+    }).then(response => response.json()).then((json) => {
+      console.log(json)
+
+      const getReports = (reports, type) => {
+        return reports.map((r) => {
+          r.type = type
+          return type
+        })
+      }
+      if(json.sadrs) {
+        dispatch(saveFetchedReports(getReports(json.sadrs, REPORT_TYPE_ADR)))
+      } else if(json.adrs) {
+        dispatch(saveFetchedReports(getReports(json.adrs, REPORT_TYPE_SAE)))
+      } else if(json.aefis) {
+        dispatch(saveFetchedReports(getReports(json.aefis, REPORT_TYPE_AEFI)))
+      } else if(json.saefis) {
+        dispatch(saveFetchedReports(getReports(json.saefis, REPORT_TYPE_AEFI_INV)))
+      } else {
+        console.log(JSON.stringify(json))
+        return
+      }
+    }).catch((error) => {
+      dispatch(setNotification({ message : messages.request_error, level: "error", id: new Date().getTime() }))
     })
   }
 }

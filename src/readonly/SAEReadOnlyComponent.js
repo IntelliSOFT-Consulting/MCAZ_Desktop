@@ -11,7 +11,7 @@ import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableCom
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI } from '../utils/Constants'
 
-import { DESIGNATION, SAE_REPORT_TYPE, EVENT_TYPE, SAE_EVENT_TYPE, SAE_TOXICITY_GRADE, RESEARCH_INVOLVES, LOCATION_ADVERSE_EVENT, BOOLEAN_NA_OPTIONS } from '../utils/FieldOptions'
+import { DESIGNATION, SAE_REPORT_TYPE, EVENT_TYPE, SAE_EVENT_TYPE, SAE_TOXICITY_GRADE, RESEARCH_INVOLVES, LOCATION_ADVERSE_EVENT, BOOLEAN_NA_OPTIONS, BOOLEAN_OPTIONS } from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
