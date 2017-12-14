@@ -35,6 +35,7 @@
     "devtron": "^1.4.0",
     "electron": "~1.7.8",
     "electron-builder": "^19.45.5",
+	"electron-packager": "^8.1.0",
     "electron-winstaller": "^2.6.3",
     "eslint": "^4.11.0",
     "react-hot-loader": "^3.1.3",
