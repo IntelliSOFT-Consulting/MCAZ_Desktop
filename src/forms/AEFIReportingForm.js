@@ -9,6 +9,7 @@ import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import SelectInput from '../inputs/SelectInput'
 import DatePickerInput from '../inputs/DatePickerInput'
 import DateSelectInput from '../inputs/DateSelectInput'
+import AgeAtOnSetInput from '../inputs/AgeAtOnSetInput'
 import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
 import AEFIDilutentTableComponent from '../components/AEFIDilutentTableComponent'
 
@@ -130,12 +131,10 @@ class AEFIReportingForm extends FormComponent {
 
           </div>
           <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="OR Age on onset" inline={ true } name="age_at_onset" model={ model } options={ AGE_ON_ONSET } onChange={ (value) => this.validateAge(value) }/>
+            <div className="col-md-12 col-sm-12">
+              <AgeAtOnSetInput label="OR Age on onset" inline={ true } name="age_at_onset" model={ model } options={ AGE_ON_ONSET } onChange={ (value) => this.validateAge(value) }/>
             </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Specify"  name="age_at_onset_specify"  type="number" model={ model } onChange={ (value) => this.validateAge(value) }/>
-            </div>
+
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
@@ -277,8 +276,8 @@ class AEFIReportingForm extends FormComponent {
   validateDateofBirth(value) {
     var { model } = this.state
     if(value != '' && value != '--') {
-      model['age_at_onset'] = ""
-      model['age_at_onset_specify'] = ""
+      model['age_at_onset'] = {}
+      //model['age_at_onset_specify'] = ""
     }
     this.setState({ model })
   }
