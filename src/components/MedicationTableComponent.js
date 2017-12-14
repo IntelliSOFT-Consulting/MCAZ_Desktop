@@ -97,7 +97,7 @@ export default class MedicationTableComponent extends TableComponent {
       lastCol = ( <td></td>)
       addRowBtn = (
         <button className="btn btn-sm btn-primary" onClick={ this.addRow }>
-          <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Add <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
       )
     }
@@ -105,15 +105,15 @@ export default class MedicationTableComponent extends TableComponent {
 
     return (
       <div className="container">
-        <h5 className="text-center"> { label }
+        <h5 className="text-center"> { label } &nbsp;
           { addRowBtn }
         </h5>
         <table className="table table-condensed table-bordered">
           <thead>
             <tr>
               <td>Generic name<span className="required">*</span></td>
-              <td>Brand name<span className="required">*</span></td>
-              <td>Batch No.</td>
+              <td>Brand name</td>
+              <td>Batch Number</td>
               <td colSpan="2">Dose<span className="required">*</span></td>
               <td colSpan="2">Route & Frequency<span className="required">*</span></td>
               <td>Indication</td>

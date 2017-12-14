@@ -88,7 +88,7 @@ export default class SAEDrugsTableComponent extends TableComponent {
       lastCol = ( <td></td>)
       addRowBtn = (
         <button className="btn btn-sm btn-primary" onClick={ this.addRow }>
-          <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Add <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
       )
     }
@@ -96,7 +96,7 @@ export default class SAEDrugsTableComponent extends TableComponent {
 
     return (
       <div className="container">
-        <h5 className="text-center"> { label }
+        <h5 className="text-center"> { label } &nbsp;
           { addRowBtn }
         </h5>
         <table className="table table-condensed table-bordered">

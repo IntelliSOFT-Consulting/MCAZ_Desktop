@@ -16,11 +16,14 @@ export default class TextInput extends Component {
   }
 
   handleChange(e) {
-    const { model, name } = this.props
+    const { model, name, onChange } = this.props
     if(model) {
       model[name] = e.target.value
     }
     this.setState({ value : e.target.value })
+    if(onChange) {
+      onChange(model[name])
+    }
   }
 
   render() {
@@ -63,10 +66,14 @@ export default class TextInput extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { validate } = this.state
+    const { validate, value } = this.state
+    const { model, name } = this.props
     const newValidate = nextProps.validate
     if(newValidate != validate) {
       this.setState({ validate: newValidate })
+    }
+    if(value != model[name] && model[name] != null) {
+      this.setState({ value : model[name]})
     }
   }
 

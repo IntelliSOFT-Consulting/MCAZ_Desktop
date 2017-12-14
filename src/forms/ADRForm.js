@@ -19,7 +19,7 @@ import messages from '../utils/messages.json'
 
 import { MAIN_PAGE, REPORT_TYPE_ADR, ADR_URL } from '../utils/Constants'
 
-import { SEVERITY_REASON, OUTCOME, DESIGNATION, ACTION_TAKEN, RELATEDNESS_TO_ADR, AGE_GROUP } from '../utils/FieldOptions'
+import { SEVERITY_REASON, OUTCOME, DESIGNATION, ACTION_TAKEN, RELATEDNESS_TO_ADR, AGE_GROUP, PROVINCES } from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setNotification } from '../actions'
@@ -46,7 +46,7 @@ class ADRForm extends FormComponent {
       { name : "date_of_onset_of_reaction", text : "Date of onset", page : 2 },
       { name : 'description_of_reaction', text : "Description of ADR", page : 2},
       { name : "severity", text : "Serious", page : 2 }, { name : "outcome", text : "Outcome", page : 3 },
-      { name : "sadr_list_of_drugs", fields: [{ name : "brand_name", text : "Generic/Brand name" }, { name : "dose_id", text : "Dose" },
+      { name : "sadr_list_of_drugs", fields: [{ name : "drug_name", text : "Generic name" }, { name : "dose_id", text : "Dose" },
         { name : "frequency_id", text : "Frequency" }, { name : "start_date", text : "Start date" }]}, // , { name : "suspected_drug", text : "Tick suspected medicine" }
       { name : 'action_taken', text : "Action taken", page : 3 },
       { name : "reporter_name", text : "Forename & Surname", page : 4 },
@@ -106,17 +106,21 @@ class ADRForm extends FormComponent {
           Adverse Drug Reaction (ADR) Report Form
         </h3>
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
-
+        <hr/>
         <form className="form-horizontal">
           { followUpInput }
           <h5 className="text-center">Patient Details</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-
               <AutoSuggestInput label="Clinic/Hospital Name" model={ model } name="name_of_institution"/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Clinic/Hospital Number" model={ model } name="institution_code"/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <SelectInput label="Province" name="province_id" model={ model } options={ PROVINCES }/>
             </div>
           </div>
           <div className="container">
@@ -148,10 +152,11 @@ class ADRForm extends FormComponent {
               <SingleMultipleInput label="Gender" name="gender" model={ model } required={ true } validate={ this.state.validate } inline={ true } options={["Male", "Female", "Unknown"]}/>
             </div>
           </div>
-          <h5 className="text-center">Adverse Reaction</h5>
+          <hr/>
+          <h4 className="text-center">Adverse Reaction</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of onset" model={ model } validate={ this.state.validate } required={ true } name="date_of_onset_of_reaction"/>
+              <DateSelectInput label="Date of onset of reaction" model={ model } validate={ this.state.validate } required={ true } name="date_of_onset_of_reaction"/>
             </div>
             <div className="col-md-6 col-sm-12">
               <DateSelectInput label="Date of end of reaction (if it ended)" model={ model } name="date_of_end_of_reaction"/>
@@ -183,12 +188,10 @@ class ADRForm extends FormComponent {
               <TextInput label="Laboratory tests results:" multiLine={ true } model={ model } name="lab_test_results"/>
             </div>
           </div>
-
+          <hr/>
           <div className="container">
             <MedicationTableComponent label="Current Medication"  validate={ this.state.validate } name="sadr_list_of_drugs" model={ model }/>
           </div>
-
-          <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them:" validate={ this.state.validate } name="attachments" model={ model }/>
           <div className="container">
             <div className="col-md-4 col-sm-12">
               <SelectInput label="Action taken:" model={ model } name="action_taken" required={ true } validate={ this.state.validate } options={ ACTION_TAKEN }/>
@@ -200,10 +203,13 @@ class ADRForm extends FormComponent {
               <SelectInput label="Relatedness of suspected medicine(s) to ADR:" model={ model } name="relatedness" options={ RELATEDNESS_TO_ADR }/>
             </div>
           </div>
-          <h5 className="text-center">Reported By</h5>
+          <hr/>
+          <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them" validate={ this.state.validate } name="attachments" model={ model }/>
+          <hr/>
+          <h4 className="text-center">Reported By</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Forenames & Surname" required={ true }  model={ model } name="reporter_name" />
+              <TextInput label="Reporter name" required={ true }  model={ model } name="reporter_name" />
             </div>
             <div className="col-md-6 col-sm-12">
               <SelectInput label="Designation" model={ model } required={ true } name="designation_id" options={ DESIGNATION }/>

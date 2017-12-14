@@ -52,8 +52,8 @@ export const SAE_MANDATORY_FIELS  = [
   { name : 'investigations', text : "(d) Investigations-Laboratory and any other significant investigations conducted", page : 3 },
 
   { name : "adr_lab_tests", fields: [{ name : "lab_test", text : "Lab test" }, { name : "abnormal_result", text : "Abnormal Result" },
-    { name : "site_normal_range", text : "Site Normal Range" }, { name : "collection_date", text : "Collection date" },
-  { name : "lab_value", text : "Lab value previous or subsequent to this event" }, { name : "lab_value_date", text : "Collection date" }]},
+    { name : "collection_date", text : "Collection date" },
+  { name : "lab_value_date", text : "Collection date" }]},
 
   { name : 'results', text : "(e) Results", page : 3 },
   { name : 'management', text : "(f) Management (Include management of study treatment, continued, temporarily held, reduced dose, permanent discontinuation, off Product)", page : 3 },
@@ -69,8 +69,12 @@ export const SAE_MANDATORY_FIELS  = [
 
 export const AEFI_MANDATORY_FIELS  = [
   { name : "patient_name", text : "Patient name", page : 1 },
+  { name : "patient_surname", text : "Patient Surname", page : 1 },
   { name : "patient_address", text: "Patient Address", page : 1},
+  { name : "gender", text: "Gender", page : 1},
   { name : "date_of_birth", text : "Date of birth", page : 1 },
+  { name : "age_at_onset", text : "Age on onset", page : 1, dependent: "date_of_birth", value : "" },
+  { name : "age_at_onset_specify", text : "Age on onset", page : 1, dependent: "date_of_birth", value : "" },
   { name : "reporter_name", text : "Reporter’s Name", page : 1 },
   { name : 'adverse_events', text : "Adverse event", page : 2},
   { name : "serious", text : "Serious", page : 2 },

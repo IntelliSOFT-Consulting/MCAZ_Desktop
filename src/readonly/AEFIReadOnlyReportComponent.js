@@ -8,7 +8,7 @@ import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableCom
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI } from '../utils/Constants'
 
-import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, OUTCOME, AEFI_ADVERSE_EVENTS } from '../utils/FieldOptions'
+import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, AEFI_OUTCOME, AEFI_ADVERSE_EVENTS } from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
@@ -146,7 +146,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Outcome"  name="outcome" required={ true }  model={ model } type="option" options={ OUTCOME }/>
+              <ReadOnlyDataRenderer label="Outcome"  name="outcome" required={ true }  model={ model } type="option" options={ AEFI_OUTCOME }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="If died, date of death" name="died_date" model={ model } type="date"/>

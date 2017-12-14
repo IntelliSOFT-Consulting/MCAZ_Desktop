@@ -3,7 +3,20 @@ import React, { Component } from 'react'
 export default class DateSelectInput extends Component {
   constructor(props) {
     super(props)
+
+    this.getModelValue = this.getModelValue.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     const { model, name, validate } = this.props
+
+    var value = this.getModelValue(model, name)
+
+    this.state = {
+      value, validate
+    }
+
+  }
+
+  getModelValue(model, name) {
 
     var value = { day : "", month: "", year : "" }
     if(model && model[name]) {
@@ -18,12 +31,8 @@ export default class DateSelectInput extends Component {
       //if(model[name][year]) {
         value['year'] = v[2] == null? "" : v[2] //model[name]['year']
       }
-
     }
-    this.state = {
-      value, validate
-    }
-    this.handleChange = this.handleChange.bind(this)
+    return value
   }
 
   handleChange(e) {
@@ -61,14 +70,14 @@ export default class DateSelectInput extends Component {
     const days = [<option value="" key={ Math.random() * 100000 }></option>].concat(Array(31).fill("").map((value, index) => (<option value={ (index + 1)} key={ Math.random() * 100000 * (index + 1) }>{ (index + 1) }</option>)))
     const years = [<option value="" key={ Math.random() * 100000 }></option>].concat(Array(100).fill("").map((val, index) => (<option value={ ((year - 100) + index) } key={ Math.random() * 100000 * (index + 1) }>{ ((year - 100) + index) }</option>)).reverse())
 
-    const hasError = (this.state.validate && required && Object.keys(this.state.value).length == 0)? " has-error " : ""
+    const hasError = (this.state.validate && required && Object.values(this.state.value).filter( v => v !== '').length == 0)? " has-error " : ""
     const className = "form-group" + hasError
 
     return (
       <div className={ className }>
         <label className="col-md-4 control-label form-input-label">{ label  } { reqSpan }</label>
         <div className="col-md-6 date">
-          <select name="day" className="col-md-3 form-control day input-sm" value={ this.state.value.day } onChange={ this.handleChange }>
+          <select name="day" className={`col-md-3 form-control day input-sm ${hasError}` } value={ this.state.value.day } onChange={ this.handleChange }>
             { days }
           </select>
           <select name="month" className="col-md-6 form-control month input-sm" value={ this.state.value.month } onChange={ this.handleChange }>
@@ -83,10 +92,16 @@ export default class DateSelectInput extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { validate } = this.state
+    const { validate, value } = this.state
+    const { model, name } = this.props
     const newValidate = nextProps.validate
     if(newValidate != validate) {
       this.setState({ validate: newValidate })
+    }
+    const modelVal = value.day + "-" + value.month + "-" + value.year
+    if(modelVal != model[name]) {
+      var val = this.getModelValue(model, name)
+      this.setState({ value : val })
     }
   }
 }

@@ -17,7 +17,7 @@ export default class SingleMultipleInput extends Component {
   }
 
   handleCheck(e) {
-    const { options, name, model, multiple } = this.props
+    const { options, name, model, multiple, onChange } = this.props
     var { values } = this.state
     if(values == null) {
       values = []
@@ -37,6 +37,9 @@ export default class SingleMultipleInput extends Component {
     this.setState({ values })
     if(model) {
       model[name] = values.join(',')
+    }
+    if(onChange) {
+      onChange(model[name])
     }
   }
 
@@ -102,10 +105,18 @@ export default class SingleMultipleInput extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { validate } = this.state
+    const { validate, values } = this.state
+    const { model, name } = this.props
     const newValidate = nextProps.validate
     if(newValidate != validate) {
       this.setState({ validate: newValidate })
+    }
+    if(model && model[name] != null) {
+      var vals = model[name].split(",")
+      const difference = values.filter( val => vals.indexOf(val) === -1 )
+      if(difference.length > 0){
+        this.setState({ values : vals })
+      }
     }
   }
 }

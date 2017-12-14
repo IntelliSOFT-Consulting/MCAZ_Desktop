@@ -11,7 +11,7 @@ import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableCom
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI } from '../utils/Constants'
 
-import { DESIGNATION, SAE_REPORT_TYPE, EVENT_TYPE, SAE_EVENT_TYPE, SAE_TOXICITY_GRADE, RESEARCH_INVOLVES, LOCATION_ADVERSE_EVENT } from '../utils/FieldOptions'
+import { DESIGNATION, SAE_REPORT_TYPE, EVENT_TYPE, SAE_EVENT_TYPE, SAE_TOXICITY_GRADE, RESEARCH_INVOLVES, LOCATION_ADVERSE_EVENT, BOOLEAN_NA_OPTIONS } from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
@@ -22,7 +22,7 @@ export default class SAEReadOnlyComponent extends Component {
     super(props)
     var { model } = this.props
     if(model == null) {
-      model = {"rid":1510991587333,"type":"REPORT_TYPE_ADR","name_of_institution":"Nairobi Hosp","sadr_list_of_drugs":[{"brand_name":"dawa","dose_id":"3","drug_name":"c","dose":"1","route_id":"3","frequency_id":"2","start_date":[],"stop_date":[],"suspected_drug":""}],"user":{},"patient_name":"JM","date_of_birth":[],"gender":"Male","date_of_onset_of_reaction":[],"description_of_reaction":"ds","severity":"Yes","severity_reason":"Death","action_taken":"Drug withdrawn","outcome":"Recovered","":"Certain","designation_id":"1","reporter_name":"John","reporter_email":"john@h.com","date_of_end_of_reaction":[]}
+      //model = {"rid":1510991587333,"type":"REPORT_TYPE_ADR","name_of_institution":"Nairobi Hosp","sadr_list_of_drugs":[{"brand_name":"dawa","dose_id":"3","drug_name":"c","dose":"1","route_id":"3","frequency_id":"2","start_date":[],"stop_date":[],"suspected_drug":""}],"user":{},"patient_name":"JM","date_of_birth":[],"gender":"Male","date_of_onset_of_reaction":[],"description_of_reaction":"ds","severity":"Yes","severity_reason":"Death","action_taken":"Drug withdrawn","outcome":"Recovered","":"Certain","designation_id":"1","reporter_name":"John","reporter_email":"john@h.com","date_of_end_of_reaction":[]}
     }
     this.state = { model : model, validate : null }
     //this.saveAndContinue = this.saveAndContinue.bind(this)
@@ -257,18 +257,18 @@ their relationship to the SAE: " readonly={ true }/>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer type="option" label="D1. Was this Adverse Event originally addressed in the protocol and consent form?" name="d1_consent_form" model={ model } validate={ this.state.validate } required={ true } options={["Yes", "No", "Unknown"]} inline={ true }/>
+              <ReadOnlyDataRenderer type="option" label="D1. Was this Adverse Event originally addressed in the protocol and consent form?" name="d1_consent_form" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_NA_OPTIONS} inline={ true }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer type="option" label="D2. Was this Adverse Event originally addressed in Investigators Brochure?" required={ true } name="d2_brochure" model={ model } validate={ this.state.validate } required={ true } options={["Yes", "No", "Unknown"]} inline={ true }/>
+              <ReadOnlyDataRenderer type="option" label="D2. Was this Adverse Event originally addressed in Investigators Brochure?" required={ true } name="d2_brochure" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_NA_OPTIONS } inline={ true }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer type="option" label="D3. Are changes required to the protocol as a result of this SAE?" name="d3_changes_sae" model={ model } validate={ this.state.validate } required={ true } options={["Yes", "No", "Unknown"]} inline={ true }/>
+              <ReadOnlyDataRenderer type="option" label="D3. Are changes required to the protocol as a result of this SAE?" name="d3_changes_sae" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_NA_OPTIONS } inline={ true }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer type="option" label="D4. Are changes required to the consent form as a result of this SAE?" required={ true } name="d4_consent_sae" model={ model } validate={ this.state.validate } required={ true } options={["Yes", "No", "Unknown"]} inline={ true }/>
+              <ReadOnlyDataRenderer type="option" label="D4. Are changes required to the consent form as a result of this SAE?" required={ true } name="d4_consent_sae" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_NA_OPTIONS } inline={ true }/>
             </div>
           </div>
           <div className="container">

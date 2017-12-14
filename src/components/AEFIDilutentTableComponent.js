@@ -80,7 +80,7 @@ export default class AEFIDilutentTableComponent extends TableComponent {
       lastCol = ( <td></td>)
       addRowBtn = (
         <button className="btn btn-sm btn-primary" onClick={ this.addRow }>
-          <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          <span className="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD
         </button>
       )
     }

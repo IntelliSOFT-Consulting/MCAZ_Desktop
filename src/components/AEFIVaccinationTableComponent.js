@@ -82,7 +82,7 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
       lastCol = ( <td></td>)
       addRowBtn = (
         <button className="btn btn-sm btn-primary" onClick={ this.addRow }>
-          <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Add <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
       )
     }
@@ -90,7 +90,7 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
 
     return (
       <div className="container">
-        <h5 className="text-center"> { label }
+        <h5 className="text-center"> { label } &nbsp;
           { addRowBtn }
         </h5>
         <table className="table table-condensed table-bordered">
@@ -98,7 +98,7 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
 
             <tr>
               <td>Name<span className="required">*</span></td>
-              <td>Date of vaccination<span className="required">*</span></td>
+              <td>Date and time of vaccination<span className="required">*</span></td>
               <td>Dose</td>
               <td>Batch/Lot no<span className="required">*</span></td>
               <td>Expiry date</td>

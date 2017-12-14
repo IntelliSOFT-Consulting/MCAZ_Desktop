@@ -82,7 +82,7 @@ export default class SAELabTestsTableComponent extends TableComponent {
       lastCol = ( <td></td>)
       addRowBtn = (
         <button className="btn btn-sm btn-primary" onClick={ this.addRow }>
-          <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Add <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
       )
     }
@@ -90,7 +90,7 @@ export default class SAELabTestsTableComponent extends TableComponent {
 
     return (
       <div className="container">
-        <h5 className="text-center"> { label }
+        <h5 className="text-center"> { label } &nbsp;
           { addRowBtn }
         </h5>
         <table className="table table-condensed table-bordered">
@@ -98,9 +98,9 @@ export default class SAELabTestsTableComponent extends TableComponent {
             <tr>
               <td>Lab test</td>
               <td>Abnormal Result</td>
-              <td>Site Normal Range<span className="required">*</span></td>
+              <td>Site Normal Range</td>
               <td>Collection date</td>
-              <td>Lab value previous or subsequent to this event<span className="required">*</span></td>
+              <td>Lab value previous or subsequent to this event</td>
               <td>Collection date</td>
               { lastCol }
             </tr>

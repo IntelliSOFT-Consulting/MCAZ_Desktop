@@ -18,7 +18,7 @@ import messages from '../utils/messages.json'
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI, AEFI_URL } from '../utils/Constants'
 
-import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, OUTCOME, AEFI_ADVERSE_EVENTS, AGE_ON_ONSET, PROVINCES } from '../utils/FieldOptions'
+import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, AEFI_OUTCOME, AEFI_ADVERSE_EVENTS, AGE_ON_ONSET, PROVINCES } from '../utils/FieldOptions'
 import { AEFI_MANDATORY_FIELS } from '../utils/FormFields'
 
 import { connect } from 'react-redux'
@@ -37,6 +37,8 @@ class AEFIReportingForm extends FormComponent {
     //model = {"rid":1511898412729,"type":"REPORT_TYPE_AEFI","patient_name":"JMM","patient_next_of_kin":"s","patient_surname":"s","patient_address":"s","gender":"Male","patient_telephone":"s","date_of_birth":"4-2-2016","age_at_onset":"s","reporter_name":"s","designation_id":"3","name_of_vaccination_center":"ss","aefi_list_of_vaccines":[{"vaccine_name":"ss","vaccination_date":"14-10-2017","dosage":"s","batch_number":"ss","expiry_date":"22-10-2017"}],"aefi_list_of_diluents":[{"diluent_name":"sss","diluent_date":"9-10-2017","batch_number":"ss","expiry_date":"15-10-2017"}],"adverse_events":"ae_seizures,ae-thrombocytopenia","aefi_date":"21-10-2017","notification_date":"21-10-2017","description_of_reaction":"ss","serious":"Yes","serious_yes":"Hospitalizaion/Prolonged","outcome":"Recovering","autopsy":"No","past_medical_history":"ss","district_receive_date":"1-10-2017","investigation_needed":"Yes","investigation_date":"13-10-2017","national_receive_date":"20-10-2017","comments":"sss"}
 
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
+    this.validateDateofBirth = this.validateDateofBirth.bind(this)
+    this.validateAge = this.validateAge.bind(this)
     this.upload = this.upload.bind(this)
 
     this.state = { model , validate : null, confirmVisible : false, confirmCancel : false }
@@ -90,23 +92,24 @@ class AEFIReportingForm extends FormComponent {
       <div className="aefi-form">
         { confirmVisible }
         { confirmCancel }
-        <h3 className="text-center">Adverse Event After Immunization (AEFI) Report Form</h3>
+        <h3 className="text-center">Adverse Event After Immunization (AEFI) Reporting Form</h3>
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
 
         <form className="form-horizontal">
           { followUpInput }
-          <h5 className="text-center">Patient Details</h5>
+
+          <hr/>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <TextInput label="Patient first name" required={ true } validate={ this.state.validate } name="patient_name" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Surname"  name="patient_surname" model={ model }/>
+              <TextInput label="Surname"  required={ true } name="patient_surname" model={ model }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Next of kin"  name="patient_next_of_kin" model={ model }/>
+              <TextInput label="Patient Next of Kin"  name="patient_next_of_kin" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Patient's physical address" required={ true } validate={ this.state.validate } name="patient_address" model={ model }/>
@@ -114,24 +117,24 @@ class AEFIReportingForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Telephone" name="patient_telephone" model={ model }/>
+              <TextInput label="Patient Telephone" name="patient_telephone" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Gender" name="gender" model={ model } options={ GENDER } inline={ true }/>
+              <SingleMultipleInput label="Gender" name="gender" model={ model } required={ true } options={ GENDER } inline={ true } validate={ this.state.validate }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of Birth:" required={ true } validate={ this.state.validate }  name="date_of_birth" model={ model }/>
+              <DateSelectInput label="Date of Birth" required={ true } validate={ this.state.validate }  name="date_of_birth" model={ model } onChange={ (value) => this.validateDateofBirth(value) }/>
             </div>
 
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Age on onset" inline={ true } name="age_at_onset" model={ model } options={ AGE_ON_ONSET }/>
+              <SingleMultipleInput label="OR Age on onset" inline={ true } name="age_at_onset" model={ model } options={ AGE_ON_ONSET } onChange={ (value) => this.validateAge(value) }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Specify"  name="age_at_onset_specify" type="number" model={ model }/>
+              <TextInput label="Specify"  name="age_at_onset_specify"  type="number" model={ model } onChange={ (value) => this.validateAge(value) }/>
             </div>
           </div>
           <div className="container">
@@ -155,15 +158,15 @@ class AEFIReportingForm extends FormComponent {
               <TextInput label="District" name="reporter_district" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="Province" name="reporter_province" model={ model } options={ PROVINCES }/>
+              <SelectInput label="Province" name="province_id" model={ model } options={ PROVINCES }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Telephone" name="reporter_phone" model={ model }/>
+              <TextInput label="Reporter Telephone" name="reporter_phone" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Email" name="reporter_email" model={ model }/>
+              <TextInput label="Reporter Email" name="reporter_email" model={ model }/>
             </div>
           </div>
 
@@ -179,7 +182,7 @@ class AEFIReportingForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <AEFIDilutentTableComponent name="aefi_list_of_diluents" model={ model } validate={ this.state.validate } label="Dilutent   "/>
+              <AEFIDilutentTableComponent name="aefi_list_of_diluents" model={ model } validate={ this.state.validate } label="Diluent   "/>
             </div>
           </div>
           <h5 className="text-center">Adverse events</h5>
@@ -217,7 +220,7 @@ class AEFIReportingForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="Outcome"  name="outcome" required={ true } validate={ this.state.validate } model={ model } options={ OUTCOME }/>
+              <SelectInput label="Outcome"  name="outcome" required={ true } validate={ this.state.validate } model={ model } options={ AEFI_OUTCOME }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <DatePickerInput label="If died, date of death" name="died_date" model={ model } maxDate={ moment() } />
@@ -255,7 +258,7 @@ class AEFIReportingForm extends FormComponent {
               <TextInput label="Comments" multiLine={ true } name="comments" model={ model }/>
             </div>
           </div>
-          <div className="container">
+          <div className="container well">
             <div className="col-md-3 col-md-offset-1">
               <button className="btn btn-sm btn-primary" onClick={ this.saveAndContinue }>Save Changes</button>
             </div>
@@ -269,6 +272,23 @@ class AEFIReportingForm extends FormComponent {
         </form>
       </div>
     )
+  }
+
+  validateDateofBirth(value) {
+    var { model } = this.state
+    if(value != '' && value != '--') {
+      model['age_at_onset'] = ""
+      model['age_at_onset_specify'] = ""
+    }
+    this.setState({ model })
+  }
+
+  validateAge(value) {
+    var { model } = this.state
+    if(value != '') {
+      model['date_of_birth'] = ''
+    }
+    this.setState({ model : model })
   }
 
   /**
@@ -306,7 +326,17 @@ class AEFIReportingForm extends FormComponent {
         }
         names += arrayNames.join(',\n')
       } else {
-        if(model[field.name] == null || model[field.name] === "") {
+        if(field.dependent) {
+          if((model[field.dependent] == field.value || (field.value == "" && model[name] == null)) && (model[field.name] == null || model[field.name] === "")) {
+            valid = false
+            if(names != "") {
+              names += ",\n "
+            } else {
+              page = field.page
+            }
+            names += field.text
+          }
+        } else if(model[field.name] == null || model[field.name] === "") {
           valid = false
           if(names != "") {
             names += ",\n "

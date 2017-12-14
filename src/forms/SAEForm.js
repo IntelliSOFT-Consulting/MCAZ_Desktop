@@ -21,7 +21,7 @@ import messages from '../utils/messages.json'
 import { MAIN_PAGE, REPORT_TYPE_SAE, SAE_URL } from '../utils/Constants'
 import { SAE_MANDATORY_FIELS } from '../utils/FormFields'
 
-import { DESIGNATION, SAE_REPORT_TYPE, EVENT_TYPE, SAE_EVENT_TYPE, SAE_TOXICITY_GRADE, RESEARCH_INVOLVES, LOCATION_ADVERSE_EVENT, BOOLEAN_OPTIONS } from '../utils/FieldOptions'
+import { DESIGNATION, SAE_REPORT_TYPE, EVENT_TYPE, SAE_EVENT_TYPE, SAE_TOXICITY_GRADE, RESEARCH_INVOLVES, LOCATION_ADVERSE_EVENT, BOOLEAN_OPTIONS, BOOLEAN_NA_OPTIONS } from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setNotification } from '../actions'
@@ -95,10 +95,10 @@ class SAEForm extends FormComponent {
             <img src="assets/images/mcaz_3.png" className="logo"></img>
           </span><br/>SERIOUS ADVERSE EVENT REPORTING FORM</h3>
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
-
+        <hr/>
         <form className="form-horizontal">
           { followUpInput }
-          <h5 className="text-center">Patient Details</h5>
+
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <TextInput label="MRCZ Protocol #:" required={ true } name="mrcz_protocol_number" model={ model } validate={ this.state.validate } required={ true }/>
@@ -122,7 +122,7 @@ class SAEForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Report prepared by" required={ true } name="reporter_name" model={ model } validate={ this.state.validate } required={ true }/>
+              <TextInput label="Reporter name" required={ true } name="reporter_name" model={ model } validate={ this.state.validate } required={ true }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Email" name="reporter_email" model={ model } validate={ this.state.validate } required={ true }/>
@@ -179,7 +179,8 @@ class SAEForm extends FormComponent {
               <TextInput label="Visit number:-" name="visit_number" model={ model } validate={ this.state.validate } required={ true }/>
             </div>
           </div>
-
+          <hr/>
+          <h4 className="text-center">Section B</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <SingleMultipleInput label="1. What type of adverse event is this?" name="adverse_event_type" model={ model } validate={ this.state.validate } required={ true } inline={ true } options={ EVENT_TYPE }/>
@@ -235,6 +236,8 @@ class SAEForm extends FormComponent {
               <SingleMultipleInput label="7. Is the drug/device investigational:" required={ true } name="drug_investigational" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_OPTIONS } inline={ true }/>
             </div>
           </div>
+          <hr/>
+          <h4 className="text-center">Section C</h4>
           <div className="container">
             <SAEDrugsTableComponent name="adr_list_of_drugs" model={ model } validate={ this.state.validate } required={ true } label="8a. List all study / intervention drugs being taken at the time of onset of the SAE, or within 30 days prior to onset, and describe
 their relationship to the SAE: "/>
@@ -249,7 +252,7 @@ their relationship to the SAE: "/>
               dependent={ { name: "patient_other_drug", value: "Yes" } }/>
           </div>
           <div className="container">
-            <h4>11. Has the Adverse Event been reported to:</h4>
+            <h5>11. Has the Adverse Event been reported to:</h5>
             <div className="col-md-3 col-sm-12">
               <SingleMultipleInput label="MCAZ" options={ BOOLEAN_OPTIONS } required={ true } name="report_to_mcaz" model={ model } validate={ this.state.validate } required={ true } inline={ true }/>
               <DatePickerInput label="Date" required={ true } name="report_to_mcaz_date" model={ model } validate={ this.state.validate } required={ true } dependent={ { name: "report_to_mcaz", value: "Yes" } } maxDate={ moment() }/>
@@ -313,33 +316,39 @@ their relationship to the SAE: "/>
           <div className="container">
             <h6>NB If the outcome is death, please complete &amp; attach the death form.</h6>
           </div>
+          <hr/>
+          <h4 className="text-center">Section D</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="D1. Was this Adverse Event originally addressed in the protocol and consent form?" name="d1_consent_form" model={ model } validate={ this.state.validate } required={ true } options={["Yes", "No", "Unknown"]} inline={ true }/>
+              <SingleMultipleInput label="D1. Was this Adverse Event originally addressed in the protocol and consent form?" name="d1_consent_form" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_NA_OPTIONS } inline={ true }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="D2. Was this Adverse Event originally addressed in Investigators Brochure?" required={ true } name="d2_brochure" model={ model } validate={ this.state.validate } required={ true } options={["Yes", "No", "Unknown"]} inline={ true }/>
+              <SingleMultipleInput label="D2. Was this Adverse Event originally addressed in Investigators Brochure?" required={ true } name="d2_brochure" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_NA_OPTIONS } inline={ true }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="D3. Are changes required to the protocol as a result of this SAE?" name="d3_changes_sae" model={ model } validate={ this.state.validate } required={ true } options={["Yes", "No", "Unknown"]} inline={ true }/>
+              <SingleMultipleInput label="D3. Are changes required to the protocol as a result of this SAE?" name="d3_changes_sae" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_NA_OPTIONS } inline={ true }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="D4. Are changes required to the consent form as a result of this SAE?" required={ true } name="d4_consent_sae" model={ model } validate={ this.state.validate } required={ true } options={["Yes", "No", "Unknown"]} inline={ true }/>
+              <SingleMultipleInput label="D4. Are changes required to the consent form as a result of this SAE?" required={ true } name="d4_consent_sae" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_NA_OPTIONS } inline={ true }/>
             </div>
           </div>
           <div className="container">
             <FileAttachmentComponent model={ model } validate={ this.state.validate } required={ true } name="attachments" label="Do you have files that you would like to attach? click on the button to add them:"/>
           </div>
           <div className="container">
-            <h6>If changes are required, please attach a copy of the revised protocol/consent form with changes highlighted with a bright coloured highlighter.</h6>
+            <h6>If changes are <strong>required</strong>, please attach a copy of the revised protocol/consent form with changes highlighted with a bright coloured highlighter.</h6>
+
           </div>
           <div className="container">
+            <p>If changes are <strong>not required</strong>, please explain as to why changes to the protocol /consent form are not necessary based on the event.</p>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="If changes are not required, please explain as to why changes to the protocol /consent form are not necessary based on the event."
-                required={ true } name="changes_explain" model={ model } validate={ this.state.validate } required={ true } multiLine={ true } dependent={ [{ name: "d3_changes_sae", value: "No" }, { name: "d4_consent_sae", value: "No" }] }/>
+              <TextInput label="" hideLabel={ true }
+                name="changes_explain" model={ model } validate={ this.state.validate } multiLine={ true } dependent={ [{ name: "d3_changes_sae", value: "No" }, { name: "d4_consent_sae", value: "No" }] }/>
             </div>
+          </div>
+          <div className="container">
             <div className="col-md-6 col-sm-12">
               <SingleMultipleInput label="From the data obtained or from currently available information, do you see any need to reassess the risks and benefits to the subjects in
 this research." name="assess_risk" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_OPTIONS } inline={ true }/>
