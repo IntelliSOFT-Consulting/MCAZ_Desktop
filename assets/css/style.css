@@ -101,6 +101,11 @@ select.month {
 .search-form div {
   margin-right: 10px;
 }
+
+.top-margins {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 /**
   date picker fixes
 */

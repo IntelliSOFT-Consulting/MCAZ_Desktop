@@ -19,7 +19,6 @@ export default class ReadOnlyDataRenderer extends Component {
       return ""
     }
     if(type == 'date') {
-      var values = model[name].split("-")
       return  model[name]
     } else if(type == 'option' && options) {
       var values = ""

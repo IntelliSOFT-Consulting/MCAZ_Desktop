@@ -84,21 +84,29 @@ class AEFIReportingForm extends FormComponent {
     }
 
     const followUpInput = followUp == true? (
+      <div>
+      { followUpInput }
       <div className="container"><div className="col-md-6 col-sm-12">
         <TextInput label="Parent MCAZ Ref #" model={ model } name="parent_id"/>
-      </div></div>
+      </div></div></div>
     ) : null
 
     return (
       <div className="aefi-form">
         { confirmVisible }
         { confirmCancel }
-        <h3 className="text-center">Adverse Event After Immunization (AEFI) Reporting Form</h3>
+        <h3 className="text-center">
+          <span className="text-center">
+            <img src="assets/images/mcaz_3.png" className="logo"></img>
+          </span><br/>
+          Adverse Event After Immunization (AEFI) Reporting Form
+        </h3>
+
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
 
         <form className="form-horizontal">
-          { followUpInput }
 
+          { followUpInput }
           <hr/>
           <div className="container">
             <div className="col-md-6 col-sm-12">

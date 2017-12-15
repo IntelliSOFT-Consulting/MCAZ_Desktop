@@ -99,7 +99,13 @@ class AEFIInvForm extends FormComponent {
 
         <form className="form-horizontal">
           { followUpInput }
+          <hr/>
           <h5 className="text-center">Basic Details</h5>
+          <div className="container">
+            <div className="col-md-offset-2 col-md-8 col-sm-12 top-margins">
+              <TextInput label="" hideLabel={ true } name="basic_details" model={ model } multiLine={ true}/>
+            </div>
+          </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <SelectInput label="Place of vaccination" name="place_vaccination" model={ model } required={ true } options={ PLACE_VACCINATION }/>
@@ -205,9 +211,9 @@ class AEFIInvForm extends FormComponent {
               <FileInputComponent name="reports" label="Attach report (if available)" required={ true } model={ model.reports[0] }/>
             </div>
           </div>
-
+          <hr/>
           <div className="container">
-            <h5>Section B: Relevant patient information prior to immunization</h5>
+            <h4>Section B: Relevant patient information prior to immunization</h4>
           </div>
           <div className="container">
             <table className="table table-bordered">
@@ -299,9 +305,9 @@ class AEFIInvForm extends FormComponent {
               <TextInput label="If with complications, specify:" name="delivery_procedure_specify" model={ model }/>
             </div>
           </div>
-
+          <hr/>
           <div className="container">
-            <h5>Section C : Details of first examination** of serious AEFI case</h5>
+            <h4>Section C : Details of first examination** of serious AEFI case</h4>
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
@@ -360,9 +366,9 @@ additional sheets if necessary)</h5>
           <div className="container">
             <TextInput label="Provisional / Final diagnosis:" multiLine={ true } name="final_diagnosis" model={ model }/>
           </div>
-
+          <hr/>
           <div className="container">
-            <h5>Section D: Details of vaccines provided at the site linked to AEFI on the corresponding day</h5>
+            <h4>Section D: Details of vaccines provided at the site linked to AEFI on the corresponding day</h4>
           </div>
           <div className="container">
             <AEFIInvVaccinationTableComponent model={ model } name="saefi_list_of_vaccines" label="Number vaccinated for each antigen at session site. Attach record if available.  "/>
@@ -464,10 +470,10 @@ additional sheets if necessary)</h5>
               </tbody>
             </table>
           </div>
-
+          <hr/>
 
           <div className="container">
-            <h5>SECTION E: Immunization practices at the place(s) where concerned vaccine was used</h5>
+            <h4>SECTION E: Immunization practices at the place(s) where concerned vaccine was used</h4>
             <h6>(Complete this section by asking and/or observing practice)</h6>
           </div>
           <div className="container">
@@ -513,9 +519,9 @@ additional sheets if necessary)</h5>
               <TextInput label="Specific key findings/additional observations and comments:" name="reconstitution_observations" model={ model }/>
             </div>
           </div>
-
+          <hr />
           <div className="container">
-            <h5>SECTION F : Cold chain and transport</h5>
+            <h4>SECTION F : Cold chain and transport</h4>
             <h6>(Complete this section by asking and/or observing practice)</h6>
           </div>
           <div className="container">
@@ -573,9 +579,9 @@ additional sheets if necessary)</h5>
               <TextInput name="transport_findings" multiLine={ true } model={ model } label="Specific key findings/additional observations and comments:" />
             </div>
           </div>
-
+          <hr/>
           <div className="container">
-            <h5>SECTION G: Community investigation (Please visit locality and interview parents/others)</h5>
+            <h4>SECTION G: Community investigation (Please visit locality and interview parents/others)</h4>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
@@ -607,10 +613,10 @@ additional sheets if necessary)</h5>
               <TextInput label="Other comments:" name="community_comments" model={ model }/>
             </div>
           </div>
-
+          <hr/>
           <div className="container">
             <div className="form-group">
-              <h5>Other relevant findings/observations/comments</h5>
+              <h4>Section H : Other relevant findings/observations/comments</h4>
               <div className="col-md-12 col-sm-12">
                 <TextInput label="" hideLabel={ true } multiLine={ true } name="relevant_findings" model={ model }/>
               </div>
