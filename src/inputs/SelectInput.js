@@ -35,7 +35,7 @@ export default class SelectInput extends Component {
         value = option.key;
       }
       return (
-        <option value={ value } key={ value }> { label }</option>
+        <option value={ value } key={ value + " " + Math.random() }> { label }</option>
       )
     })
 

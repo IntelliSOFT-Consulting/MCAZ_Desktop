@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Confirm from '../dialogs/Confirm'
+
 import { ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, LOGIN_PAGE, SIGNUP_PAGE, MAIN_PAGE } from '../utils/Constants'
 
 export default class Header extends Component {
@@ -7,6 +9,9 @@ export default class Header extends Component {
     super(props)
     this.showPage = this.showPage.bind(this)
     this.logout = this.logout.bind(this)
+    this.logoutConfirmed = this.logoutConfirmed.bind(this)
+    this.closeModal = this.closeModal.bind(this)
+    this.state = { confirmLogout : false }
   }
 
   showPage(page, report) {
@@ -16,13 +21,42 @@ export default class Header extends Component {
   }
 
   logout() {
+    const { token } = this.props
+    if(token != null) {
+      this.setState({ confirmLogout : true })
+    }
+  }
+
+  closeModal() {
+    this.setState({ confirmLogout : false })
+  }
+
+  logoutConfirmed() {
+    this.closeModal()
     const { logout } = this.props
     logout()
   }
 
   render() {
+    var confirmLogout = null
+    if(this.state.confirmLogout) {
+      confirmLogout = (
+        <Confirm
+          visible={ this.state.confirmLogout }
+          title="Confirm"
+          cancel={ this.closeModal }
+          body={ "Proceed with logout?" }
+          confirmText={ "Yes" }
+          confirmBSStyle={ "danger" }
+          onConfirm={ this.logoutConfirmed }
+          cancelText={ "No" }
+          >
+        </Confirm>
+      )
+    }
     return(
       <div className="jumbotron">
+        { confirmLogout }
         <div className="container">
           <h2>Medicines Control Authourity of Zimbabwe</h2>
           <p>SAE, ADR and AEFI electronic reportings.</p>
