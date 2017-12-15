@@ -148,12 +148,11 @@ export const ROUTE = [ {"key":"1", value: ""},{"key":"2","value":"oral"},{"key":
 
 export const FREQUENCY = [{"key":"1", value: ""},{"key":"2","value":"OD (once daily)"},{"key":"3","value":"BD (twice daily)"},{"key":"4","value":"TID. (three times a day)"},{"key":"5","value":"QID|QDS (four times a day)"},{"key":"6","value":"PRN (as needed)"},{"key":"7","value":"MANE (in the morning)"},{"key":"8","value":"NOCTE (at night)"},{"key":"9","value":"STAT (immediately)"}]
 
-export const DESIGNATION = [ { key : "", value: ""}, { key : "1", value : "Nurse" },
-  { key : "2", value : 'Medical Practitioner/Physician' }, { key : "3", value : 'Pharmacy Staff' }, { key : "5", value : 'Patient/Consumer/General Public' },
-  { key : "", value: "Physician"}, { key : "", value: "Therapist"}, { key : "1", value : "Nurse" },{ key : "", value: "Pharmacy Technician"}, { key : "", value: "Clinical Laboratory Technician"}, { key : "", value: "Pharmacist"},
-  { key : "", value: "Health Information Technician"}, { key : "", value: "Family Practitioner"}, { key : "", value: "Dentist"}, { key : "", value: "Occupational Therapist"}, { key : "", value: "Ophthalmologist"}, { key : "", value: "Veterinary surgeon"},
-  { key : "", value: "Surgeon"}, { key : "", value: "Paediatrician"}, { key : "", value: "Anaesthetist"}, { key : "", value: "Optometrist"}, { key : "", value: "Psychiatrist"},
-  { key : "", value: "Obstetrician/Gynaecologist"}, { key : "", value: "Dispensary Assistant"}, { key : "", value: "Doctor"}, { key : "", value: "Patient"}, { key : "", value: "Relative/Friend"}, { key : "6", value : 'Other Health Professionals'}
+export const DESIGNATION = [ { key : "", value: ""},
+  { key : "1", value: "Physician"}, { key : "2", value: "Therapist"}, { key : "3", value : "Nurse" },{ key : "4", value: "Pharmacy Technician"}, { key : "5", value: "Clinical Laboratory Technician"}, { key : "6", value: "Pharmacist"},
+  { key : "7", value: "Health Information Technician"}, { key : "8", value: "Family Practitioner"}, { key : "9", value: "Dentist"}, { key : "10", value: "Occupational Therapist"}, { key : "11", value: "Ophthalmologist"}, { key : "12", value: "Veterinary surgeon"},
+  { key : "13", value: "Surgeon"}, { key : "14", value: "Paediatrician"}, { key : "15", value: "Anaesthetist"}, { key : "16", value: "Optometrist"}, { key : "17", value: "Psychiatrist"},
+  { key : "18", value: "Obstetrician/Gynaecologist"}, { key : "19", value: "Dispensary Assistant"}, { key : "20", value: "Doctor"}, { key : "21", value: "Patient"}, { key : "22", value: "Relative/Friend"}, { key : "23", value : 'Other Health Professionals'}
 ]
 
 export const ACTION_TAKEN = [
