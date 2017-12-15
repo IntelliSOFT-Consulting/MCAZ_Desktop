@@ -5,10 +5,11 @@ import ReadOnlyDataRenderer from './ReadOnlyDataRenderer'
 
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
+import AEFIDilutentTableComponent from '../components/AEFIDilutentTableComponent'
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI } from '../utils/Constants'
 
-import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, AEFI_OUTCOME, AEFI_ADVERSE_EVENTS } from '../utils/FieldOptions'
+import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, AEFI_OUTCOME, AEFI_ADVERSE_EVENTS, PROVINCES } from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
@@ -28,12 +29,21 @@ export default class AEFIReadOnlyReportComponent extends Component {
   render() {
     const { model, goBack } = this.props
     return (
-      <div>
-        <h3 className="text-center">Adverse Drug Reaction (ADR) Report Form</h3>
+      <div className="aefi-form form">
+        <h3 className="text-center">
+          <span className="text-center">
+            <img src="assets/images/mcaz_3.png" className="logo"></img>
+          </span><br/>
+          Adverse Event After Immunization (AEFI) Reporting Form
+        </h3>
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
-
+        <div className="container">
+          <div className="col-md-6 col-sm-12">
+            <ReadOnlyDataRenderer label="MCAZ Ref #" model={ model } name="reference_number"/>
+          </div>
+        </div>
         <form className="form-horizontal">
-          <h5 className="text-center">Patient Details</h5>
+          <hr/>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Patient first name" required={ true }  name="patient_name" model={ model }/>
@@ -109,12 +119,19 @@ export default class AEFIReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Name of vaccination center" required={ true }  name="name_of_vaccination_center" model={ model }/>
             </div>
           </div>
+          <hr/>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <AEFIVaccinationTableComponent readonly={ true } name="vaccination" model={ model }  label="Vaccine/Dilutent   "/>
+              <AEFIVaccinationTableComponent readonly={ true } name="vaccination" model={ model }  label="Vaccine   "/>
             </div>
           </div>
-          <h5 className="text-center">Adverse events</h5>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <AEFIDilutentTableComponent name="aefi_list_of_diluents"  readonly={ true } model={ model } validate={ this.state.validate } label="Diluent   "/>
+            </div>
+          </div>
+          <hr/>
+          <h4 className="text-center">Adverse events</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Adverse events" required={ true }   name="adverse_events" model={ model } type="option" options={ AEFI_ADVERSE_EVENTS }/>
@@ -184,7 +201,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Comments" multiLine={ true } name="comments" model={ model }/>
             </div>
           </div>
-          <div className="container">
+          <div className="container well">
             <div className="col-md-3 col-md-offset-1">
               <button className="btn btn-sm btn-default" onClick={ (e) => { e.preventDefault(); goBack(e) } }>Close</button>
             </div>

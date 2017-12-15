@@ -36,7 +36,18 @@ export default class AEFIInvReadOnlyReportComponent extends Component {
         <h5 className="text-center">(Only for Serious Adverse Events Following Immunization - Death / Disability / Hospitalization / Cluster)</h5>
 
         <form className="form-horizontal">
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <ReadOnlyDataRenderer label="MCAZ Ref #" model={ model } name="reference_number"/>
+            </div>
+          </div>
+          <hr/>
           <h5 className="text-center">Basic Details</h5>
+          <div className="container">
+            <div className="col-md-offset-2 col-md-8 col-sm-12 top-margins">
+              <ReadOnlyDataRenderer label="" hideLabel={ true } name="basic_details" model={ model } multiLine={ true}/>
+            </div>
+          </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer type="option"  label="Place of vaccination" name="place_vaccination" model={ model } required={ true } options={ PLACE_VACCINATION }/>
@@ -142,9 +153,9 @@ export default class AEFIInvReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer type="file" name="reports" label="Attach report (if available)" required={ true } model={ model }/>
             </div>
           </div>
-
+          <hr/>
           <div className="container">
-            <h5>Section B: Relevant patient information prior to immunization</h5>
+            <h4>Section B: Relevant patient information prior to immunization</h4>
           </div>
           <div className="container">
             <table className="table table-bordered">
@@ -236,9 +247,9 @@ export default class AEFIInvReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="If with complications, specify:" name="delivery_procedure_specify" model={ model }/>
             </div>
           </div>
-
+          <hr/>
           <div className="container">
-            <h5>Section C : Details of first examination** of serious AEFI case</h5>
+            <h4>Section C : Details of first examination** of serious AEFI case</h4>
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
@@ -297,9 +308,9 @@ additional sheets if necessary)</h5>
           <div className="container">
             <ReadOnlyDataRenderer label="Provisional / Final diagnosis:" multiLine={ true } name="final_diagnosis" model={ model }/>
           </div>
-
+          <hr/>
           <div className="container">
-            <h5>Section D: Details of vaccines provided at the site linked to AEFI on the corresponding day</h5>
+            <h4>Section D: Details of vaccines provided at the site linked to AEFI on the corresponding day</h4>
           </div>
           <div className="container">
             <AEFIInvVaccinationTableComponent model={ model } name="saefi_list_of_vaccines" label="Number vaccinated for each antigen at session site. Attach record if available.  " readonly={ true }/>
@@ -402,9 +413,9 @@ additional sheets if necessary)</h5>
             </table>
           </div>
 
-
+          <hr/>
           <div className="container">
-            <h5>SECTION E: Immunization practices at the place(s) where concerned vaccine was used</h5>
+            <h4>SECTION E: Immunization practices at the place(s) where concerned vaccine was used</h4>
             <h6>(Complete this section by asking and/or observing practice)</h6>
           </div>
           <div className="container">
@@ -450,9 +461,9 @@ additional sheets if necessary)</h5>
               <ReadOnlyDataRenderer label="Specific key findings/additional observations and comments:" name="reconstitution_observations" model={ model }/>
             </div>
           </div>
-
+          <hr/>
           <div className="container">
-            <h5>SECTION F : Cold chain and transport</h5>
+            <h4>SECTION F : Cold chain and transport</h4>
             <h6>(Complete this section by asking and/or observing practice)</h6>
           </div>
           <div className="container">
@@ -510,9 +521,9 @@ additional sheets if necessary)</h5>
               <ReadOnlyDataRenderer name="transport_findings" multiLine={ true } model={ model } label="Specific key findings/additional observations and comments:" />
             </div>
           </div>
-
+          <hr/>
           <div className="container">
-            <h5>SECTION G: Community investigation (Please visit locality and interview parents/others)</h5>
+            <h4>SECTION G: Community investigation (Please visit locality and interview parents/others)</h4>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">

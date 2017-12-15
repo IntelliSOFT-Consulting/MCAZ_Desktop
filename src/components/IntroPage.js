@@ -74,7 +74,7 @@ export default class IntroPage extends Component {
             <h3>ADR</h3>
             <p>Adverse drug reaction</p>
             <div className="btn-toolbar">
-              <button type="button" className="btn btn-sm btn-default" onClick={ () => this.showPage(ADR_FORM_PAGE) }>Report</button>
+              <button type="button" className="btn btn-sm btn-default btn-primary adr-form" onClick={ () => this.showPage(ADR_FORM_PAGE) }>Report</button>
               <button type="button" className="btn btn-sm btn-warning" onClick={ () => this.showPage(ADR_FORM_PAGE, null, true) }>Follow up</button>
             </div>
             <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_ADR) } completed={ this.getReport(this.props.completed, REPORT_TYPE_ADR) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_ADR) } showPage={ this.showPage } type={ ADR_FORM_PAGE }/>
@@ -83,7 +83,7 @@ export default class IntroPage extends Component {
             <h3>AEFI</h3>
             <p>Adverse Event Following Immunization.</p>
             <div className="btn-toolbar">
-              <button type="button" className="btn btn-sm btn-default" onClick={ () => this.showPage(AEFI_REPORT_PAGE) }>Report</button>
+              <button type="button" className="btn btn-sm btn-default btn-primary aefi-form" onClick={ () => this.showPage(AEFI_REPORT_PAGE) }>Report</button>
               <button type="button" className="btn btn-sm btn-warning" onClick={ () => this.showPage(AEFI_REPORT_PAGE, null, true) }>Follow up</button>
             </div>
             <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_AEFI) } completed={  this.getReport(this.props.completed, REPORT_TYPE_AEFI) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_AEFI) } showPage={ this.showPage } type={ AEFI_REPORT_PAGE }/>
@@ -92,7 +92,7 @@ export default class IntroPage extends Component {
             <h3>AEFI Inv.</h3>
             <p>Serious Adverse Event Following Immunization.</p>
             <div className="btn-toolbar">
-              <button type="button" className="btn btn-sm btn-default" onClick={ () => this.showPage(AEFI_INV_PAGE) }>Report</button>
+              <button type="button" className="btn btn-sm btn-default btn-primary aefi-form" onClick={ () => this.showPage(AEFI_INV_PAGE) }>Report</button>
               <button type="button" className="btn btn-sm btn-warning" onClick={ () => this.showPage(AEFI_INV_PAGE, null, true) }>Follow up</button>
             </div>
             <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_AEFI_INV) } completed={  this.getReport(this.props.completed, REPORT_TYPE_AEFI_INV) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_AEFI_INV) } showPage={ this.showPage } type={ AEFI_INV_PAGE }/>
@@ -101,7 +101,7 @@ export default class IntroPage extends Component {
             <h3>SAE</h3>
             <p>Serious Adverse Event</p>
             <div className="btn-toolbar">
-              <button type="button" className="btn btn-sm btn-primary" onClick={ () => this.showPage(SAE_FORM_PAGE) }>Report</button>
+              <button type="button" className="btn btn-sm btn-primary sae-form" onClick={ () => this.showPage(SAE_FORM_PAGE) }>Report</button>
               <button type="button" className="btn btn-sm btn-warning" onClick={ () => this.showPage(SAE_FORM_PAGE, null, true) }>Follow up</button>
             </div>
             <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_SAE) } completed={ this.getReport(this.props.completed, REPORT_TYPE_SAE) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_SAE) } showPage={ this.showPage } type={ SAE_FORM_PAGE }/>
@@ -112,7 +112,7 @@ export default class IntroPage extends Component {
             <button className="btn btn-sm btn-primary" disabled={ disabled } onClick={ this.uploadData }>
               <span className="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload data ({ this.state.completed.length })
             </button>
-            <button className="btn btn-sm btn-primary" disabled={ disabled } onClick={ this.downloadReports }>
+            <button className="btn btn-sm btn-primary" onClick={ this.downloadReports }>
               <span className="glyphicon glyphicon-download" aria-hidden="true"></span> Download data ({ this.state.completed.length })
             </button>
 

@@ -96,7 +96,7 @@ class ADRForm extends FormComponent {
     ) : null
 
     return (
-      <div className='adr-form'>
+      <div className='adr-form form'>
         { confirmVisible }
         { confirmCancel }
         <h3 className="text-center">
@@ -109,7 +109,7 @@ class ADRForm extends FormComponent {
         <hr/>
         <form className="form-horizontal">
           { followUpInput }
-          <h5 className="text-center">Patient Details</h5>
+          <h4 className="text-center">Patient Details</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <AutoSuggestInput label="Clinic/Hospital Name" model={ model } name="name_of_institution"/>

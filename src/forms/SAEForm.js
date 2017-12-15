@@ -87,7 +87,7 @@ class SAEForm extends FormComponent {
     ) : null
 
     return (
-      <div className='sae-form'>
+      <div className='sae-form form'>
         { confirmVisible }
         { confirmCancel }
         <h3 className="text-center">

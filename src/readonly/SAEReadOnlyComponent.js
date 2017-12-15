@@ -32,7 +32,7 @@ export default class SAEReadOnlyComponent extends Component {
   render() {
     const { model, goBack } = this.props
     return (
-      <div className='sae-form'>
+      <div className='sae-form form'>
         <h3 className="text-center">
           <span className="text-center">
             <img src="assets/images/mcaz_3.png" className="logo"></img>
@@ -40,7 +40,12 @@ export default class SAEReadOnlyComponent extends Component {
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
 
         <form className="form-horizontal">
-          <h5 className="text-center">Patient Details</h5>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <ReadOnlyDataRenderer label="MCAZ Ref #" model={ model } name="reference_number"/>
+            </div>
+          </div>
+          <hr/>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="MRCZ Protocol #:" required={ true } name="mrcz_protocol_number" model={ model } validate={ this.state.validate } required={ true }/>
@@ -121,7 +126,8 @@ export default class SAEReadOnlyComponent extends Component {
               <ReadOnlyDataRenderer label="Visit number:-" name="visit_number" model={ model } validate={ this.state.validate } required={ true }/>
             </div>
           </div>
-
+          <hr/>
+          <h4 className="text-center">Section B</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer type="option" label="1. What type of adverse event is this?" name="adverse_event_type" model={ model } validate={ this.state.validate } required={ true } inline={ true } options={ EVENT_TYPE }/>
@@ -177,6 +183,8 @@ export default class SAEReadOnlyComponent extends Component {
               <ReadOnlyDataRenderer type="option" label="7. Is the drug/device investigational:" required={ true } name="drug_investigational" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_OPTIONS } inline={ true }/>
             </div>
           </div>
+          <hr/>
+          <h4 className="text-center">Section C</h4>
           <div className="container">
             <SAEDrugsTableComponent name="adr_list_of_drugs" model={ model } validate={ this.state.validate } required={ true } label="8a. List all study / intervention drugs being taken at the time of onset of the SAE, or within 30 days prior to onset, and describe
 their relationship to the SAE: " readonly={ true }/>
@@ -255,6 +263,8 @@ their relationship to the SAE: " readonly={ true }/>
           <div className="container">
             <h6>NB If the outcome is death, please complete &amp; attach the death form.</h6>
           </div>
+          <hr/>
+          <h4 className="text-center">Section D</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer type="option" label="D1. Was this Adverse Event originally addressed in the protocol and consent form?" name="d1_consent_form" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_NA_OPTIONS} inline={ true }/>
@@ -275,13 +285,16 @@ their relationship to the SAE: " readonly={ true }/>
             <FileAttachmentComponent model={ model } validate={ this.state.validate } required={ true } name="attachments" label="Do you have files that you would like to attach? click on the button to add them:" readonly={ true }/>
           </div>
           <div className="container">
-            <h6>If changes are required, please attach a copy of the revised protocol/consent form with changes highlighted with a bright coloured highlighter.</h6>
+            <h6>If changes are <strong>required</strong>, please attach a copy of the revised protocol/consent form with changes highlighted with a bright coloured highlighter.</h6>
           </div>
           <div className="container">
+            <p>If changes are <strong>not required</strong>, please explain as to why changes to the protocol /consent form are not necessary based on the event.</p>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="If changes are not required, please explain as to why changes to the protocol /consent form are not necessary based on the event."
+              <ReadOnlyDataRenderer label="" hideLabel={ true }
                 required={ true } name="changes_explain" model={ model } validate={ this.state.validate } required={ true } multiLine={ true } dependent={ [{ name: "d3_changes_sae", value: "No" }, { name: "d4_consent_sae", value: "No" }] }/>
             </div>
+          </div>
+          <div className="container">
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer type="option" label="From the data obtained or from currently available information, do you see any need to reassess the risks and benefits to the subjects in
 this research." name="assess_risk" model={ model } validate={ this.state.validate } required={ true } options={ BOOLEAN_OPTIONS } inline={ true }/>

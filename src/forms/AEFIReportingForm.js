@@ -85,14 +85,14 @@ class AEFIReportingForm extends FormComponent {
 
     const followUpInput = followUp == true? (
       <div>
-      { followUpInput }
+
       <div className="container"><div className="col-md-6 col-sm-12">
         <TextInput label="Parent MCAZ Ref #" model={ model } name="parent_id"/>
       </div></div></div>
     ) : null
 
     return (
-      <div className="aefi-form">
+      <div className="aefi-form form">
         { confirmVisible }
         { confirmCancel }
         <h3 className="text-center">

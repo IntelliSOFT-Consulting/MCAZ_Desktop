@@ -30,7 +30,7 @@ export default class ADRReadOnlyReportComponent extends Component {
     //var { model } = this.state
     const { goBack, model } = this.props
     return (
-      <div className='adr-form'>
+      <div className='adr-form form'>
         <h3 className="text-center">
           <span className="text-center">
             <img src="assets/images/mcaz_3.png" className="logo"></img>
@@ -40,7 +40,13 @@ export default class ADRReadOnlyReportComponent extends Component {
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
 
         <form className="form-horizontal">
-          <h5 className="text-center">Patient Details</h5>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <ReadOnlyDataRenderer label="MCAZ Ref #" model={ model } name="reference_number"/>
+            </div>
+          </div>
+          <hr/>
+          <h4 className="text-center">Patient Details</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Clinic/Hospital Name" model={ model } name="name_of_institution"/>
@@ -78,7 +84,8 @@ export default class ADRReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Gender" name="gender" model={ model } required={ true } type="option" inline={ true } options={["Male", "Female", "Unknown"]}/>
             </div>
           </div>
-          <h5 className="text-center">Adverse Reaction</h5>
+          <hr/>
+          <h4 className="text-center">Adverse Reaction</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Date of onset" model={ model } type="date"  required={ true } name="date_of_onset_of_reaction"/>
@@ -113,12 +120,11 @@ export default class ADRReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Laboratory tests results:" multiLine={ true } model={ model } name="lab_test_results"/>
             </div>
           </div>
-
+          <hr/>
           <div className="container">
             <MedicationTableComponent label="Current Medication (including OTC and herbals) "  readonly={ true } name="sadr_list_of_drugs" model={ model }/>
           </div>
-          <ConcomitantTableComponent label="Concomitant (Other) drugs taken, including herbal medicines & Dates/period taken: " readonly={ true }  name="sadr_other_drugs" model={ model }/>
-          <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them:" readonly={ true }  name="attachments" model={ model }/>
+
           <div className="container">
             <div className="col-md-4 col-sm-12">
               <ReadOnlyDataRenderer label="Action taken:" model={ model } name="action_taken" type="option" validate={ this.state.validate } options={ ACTION_TAKEN }/>
@@ -130,10 +136,13 @@ export default class ADRReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Relatedness of suspected medicine(s) to ADR:" model={ model } type="option" name="relatedness" options={ RELATEDNESS_TO_ADR }/>
             </div>
           </div>
-          <h5 className="text-center">Reported By</h5>
+          <hr/>
+          <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them:" readonly={ true }  name="attachments" model={ model }/>
+          <hr/>
+          <h4 className="text-center">Reported By</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Forenames & Surname" required={ true }  model={ model } name="reporter_name" />
+              <ReadOnlyDataRenderer label="Reporter Name" required={ true }  model={ model } name="reporter_name" />
             </div>
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Designation" model={ model } type="option" required={ true } name="designation_id" options={ DESIGNATION }/>
@@ -147,7 +156,7 @@ export default class ADRReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Phone number" model={ model } name="reporter_phone"/>
             </div>
           </div>
-          <div className="container">
+          <div className="container well">
             <div className="col-md-3 col-md-offset-1">
               <button className="btn btn-sm btn-primary" onClick={ (e) => { e.preventDefault(); goBack(e) } }>Close</button>
             </div>

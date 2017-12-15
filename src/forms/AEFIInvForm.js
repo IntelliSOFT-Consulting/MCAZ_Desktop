@@ -86,7 +86,7 @@ class AEFIInvForm extends FormComponent {
     ) : null
 
     return (
-      <div className="saefi-form">
+      <div className="saefi-form form">
         { confirmVisible }
         { confirmCancel }
         <h3 className="text-center">
