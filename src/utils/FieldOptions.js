@@ -150,7 +150,10 @@ export const FREQUENCY = [{"key":"1", value: ""},{"key":"2","value":"OD (once da
 
 export const DESIGNATION = [ { key : "", value: ""}, { key : "1", value : "Nurse" },
   { key : "2", value : 'Medical Practitioner/Physician' }, { key : "3", value : 'Pharmacy Staff' }, { key : "5", value : 'Patient/Consumer/General Public' },
-  { key : "6", value : 'Other Health Professionals' }
+  { key : "", value: "Physician"}, { key : "", value: "Therapist"}, { key : "1", value : "Nurse" },{ key : "", value: "Pharmacy Technician"}, { key : "", value: "Clinical Laboratory Technician"}, { key : "", value: "Pharmacist"},
+  { key : "", value: "Health Information Technician"}, { key : "", value: "Family Practitioner"}, { key : "", value: "Dentist"}, { key : "", value: "Occupational Therapist"}, { key : "", value: "Ophthalmologist"}, { key : "", value: "Veterinary surgeon"},
+  { key : "", value: "Surgeon"}, { key : "", value: "Paediatrician"}, { key : "", value: "Anaesthetist"}, { key : "", value: "Optometrist"}, { key : "", value: "Psychiatrist"},
+  { key : "", value: "Obstetrician/Gynaecologist"}, { key : "", value: "Dispensary Assistant"}, { key : "", value: "Doctor"}, { key : "", value: "Patient"}, { key : "", value: "Relative/Friend"}, { key : "6", value : 'Other Health Professionals'}
 ]
 
 export const ACTION_TAKEN = [
