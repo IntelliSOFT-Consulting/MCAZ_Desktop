@@ -42,6 +42,9 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
         <td><TextInput hideLabel={ true } name="dosage" model={ model[name][index] } validate={ this.state.validate } required={ true } /></td>
         <td><TextInput hideLabel={ true } name="batch_number" model={ model[name][index] } /></td>
         <td><DatePickerInput hideLabel={ true } name="expiry_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
+        <td><TextInput hideLabel={ true } name="diluent_batch_number" model={ model[name][index] } /></td>
+        <td><DatePickerInput hideLabel={ true } name="diluent_expiry_date" model={ model[name][index] }  /></td>
+        <td><DatePickerInput hideLabel={ true } name="diluent_date" model={ model[name][index] }  maxDate={ moment() } showTime={ true }/></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
             <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
@@ -67,6 +70,9 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
         <td><ReadOnlyDataRenderer hideLabel={ true } name="dosage" model={ model[name][index] }  type="date" /></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="batch_number" model={ model[name][index] }  /></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="expiry_date" model={ model[name][index] } /></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="diluent_batch_number" model={ model[name][index] } /></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="diluent_expiry_date" model={ model[name][index] } type="date" /></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="diluent_date" model={ model[name][index] } type="date" showTime={ true }/></td>
       </tr>
     )
   }
@@ -78,13 +84,15 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
     const rows = this.initializeRows(readonly) //.rows
     var lastCol = null
     var addRowBtn = null
+    var diluentColSpan = 3
     if(!readonly) {
-      lastCol = ( <td></td>)
+      lastCol = ( <th></th>)
       addRowBtn = (
         <button className="btn btn-sm btn-primary" onClick={ this.addRow }>
           Add <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
       )
+      diluentColSpan = 4
     }
 
 
@@ -95,13 +103,16 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
         </h5>
         <table className="table table-condensed table-bordered">
           <thead>
-
+            <tr><th colSpan='5'>Vaccine</th><th colSpan={ diluentColSpan }>Diluent</th></tr>
             <tr>
-              <td>Name<span className="required">*</span></td>
-              <td>Date and time of vaccination<span className="required">*</span></td>
-              <td>Dose</td>
-              <td>Batch/Lot no<span className="required">*</span></td>
-              <td>Expiry date</td>
+              <th>Name<span className="required">*</span></th>
+              <th>Date and time of vaccination<span className="required">*</span></th>
+              <th>Dose</th>
+              <th>Batch/Lot no<span className="required">*</span></th>
+              <th>Expiry date</th>
+              <th>Batch/ Lot Number</th>
+              <th>Expiry date</th>
+              <th>Time of reconstitution</th>
               { lastCol }
             </tr>
           </thead>

@@ -73,7 +73,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Date of Birth:" required={ true }   name="date_of_birth" model={ model } type="date"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Age on onset"  name="age_at_onset" model={ model } options={ [] } type="option"/>
+              <ReadOnlyDataRenderer label="Age at onset"  name="age_at_onset" model={ model } />
             </div>
           </div>
           <div className="container">
@@ -125,11 +125,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
               <AEFIVaccinationTableComponent readonly={ true } name="vaccination" model={ model }  label="Vaccine   "/>
             </div>
           </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <AEFIDilutentTableComponent name="aefi_list_of_diluents"  readonly={ true } model={ model } validate={ this.state.validate } label="Diluent   "/>
-            </div>
-          </div>
+
           <hr/>
           <h4 className="text-center">Adverse events</h4>
           <div className="container">

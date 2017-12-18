@@ -140,7 +140,7 @@ class AEFIReportingForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <AgeAtOnSetInput label="OR Age on onset" inline={ true } name="age_at_onset" model={ model } options={ AGE_ON_ONSET } onChange={ (value) => this.validateAge(value) }/>
+              <AgeAtOnSetInput label="OR Age at onset" inline={ true } name="age_at_onset" model={ model } options={ AGE_ON_ONSET } onChange={ (value) => this.validateAge(value) }/>
             </div>
           </div>
           <div className="container">
@@ -186,11 +186,7 @@ class AEFIReportingForm extends FormComponent {
               <AEFIVaccinationTableComponent name="aefi_list_of_vaccines" model={ model } validate={ this.state.validate } label="Vaccine   "/>
             </div>
           </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <AEFIDilutentTableComponent name="aefi_list_of_diluents" model={ model } validate={ this.state.validate } label="Diluent   "/>
-            </div>
-          </div>
+
           <h5 className="text-center">Adverse events</h5>
           <div className="container">
             <div className="col-md-6 col-sm-12">
