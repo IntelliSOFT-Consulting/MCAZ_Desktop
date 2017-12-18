@@ -142,7 +142,6 @@ class AEFIReportingForm extends FormComponent {
             <div className="col-md-12 col-sm-12">
               <AgeAtOnSetInput label="OR Age on onset" inline={ true } name="age_at_onset" model={ model } options={ AGE_ON_ONSET } onChange={ (value) => this.validateAge(value) }/>
             </div>
-
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
@@ -284,7 +283,9 @@ class AEFIReportingForm extends FormComponent {
   validateDateofBirth(value) {
     var { model } = this.state
     if(value != '' && value != '--') {
-      model['age_at_onset'] = {}
+      model['age_at_onset_days'] = ""
+      model['age_at_onset_months'] = ""
+      model['age_at_onset_years'] = ""
       //model['age_at_onset_specify'] = ""
     }
     this.setState({ model })

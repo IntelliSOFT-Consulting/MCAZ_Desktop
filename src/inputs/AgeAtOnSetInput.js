@@ -17,26 +17,28 @@ export default class AgeAtOnSetInput extends Component {
   }
 
   getModelValue(model, name) {
+    var value = { age_at_onset_days : "", age_at_onset_months: "", age_at_onset_years : "" }
 
-    var value = { days : "", months: "", years : "" }
-    if(model && model[name]) {
-      if(typeof model[name] == "object") {
+
       //if(model[name][day]) {
-        value['days'] = model[name]["days"] == null? "" : model[name]["days"] //model[name]['day']
+        value['age_at_onset_days'] = model["age_at_onset_days"] == null? "" : model["age_at_onset_days"] //model[name]['day']
       //if(model[name][month]) {
-        value['months'] = model[name]["months"] == null? "" : model[name]["months"] //model[name]['month']
+        value['age_at_onset_months'] = model["age_at_onset_months"] == null? "" : model["age_at_onset_months"] //model[name]['month']
       //if(model[name][year]) {
-        value['years'] = model[name]["years"] == null? "" : model[name]["years"] //model[name]['year']
-      }
-    }
+        value['age_at_onset_years'] = model["age_at_onset_years"] == null? "" : model["age_at_onset_years"] //model[name]['year']
+
+
     return value
   }
 
   handleChange(e) {
     var { value } = this.state
     const { model, name } = this.props
+    if(e.target.value < 0) {
+      return
+    }
     value[e.target.name] = e.target.value
-    model[name] = value
+    model[e.target.name] = e.target.value
     this.setState({
       value: value
     });
@@ -58,14 +60,6 @@ export default class AgeAtOnSetInput extends Component {
         <span className="required">*</span>
       )
     }
-    const monthLabels = ["January", 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    const months = [<option value="" key={ Math.random() * 100000 }></option>].concat(monthLabels.map((month, index) => (
-      <option value={ index } key={ Math.random() * 100000 }>{ month }</option>
-    )))
-
-    const year = new Date().getFullYear() + 1;
-    const days = [<option value="" key={ Math.random() * 100000 }></option>].concat(Array(31).fill("").map((value, index) => (<option value={ (index + 1)} key={ Math.random() * 100000 * (index + 1) }>{ (index + 1) }</option>)))
-    const years = [<option value="" key={ Math.random() * 100000 }></option>].concat(Array(100).fill("").map((val, index) => (<option value={ ((year - 100) + index) } key={ Math.random() * 100000 * (index + 1) }>{ ((year - 100) + index) }</option>)).reverse())
 
     const hasError = (this.state.validate && required && Object.values(this.state.value).filter( v => v !== '').length == 0)? " has-error " : ""
     const className = "form-group" + hasError
@@ -78,7 +72,7 @@ export default class AgeAtOnSetInput extends Component {
             <div className="form-group">
               <label className="col-md-3 control-label form-input-label">Years</label>
               <div className="col-md-9">
-                <input name="years" type="number" placeholder="Years" className={`form-control day input-sm ${hasError}` } value={ this.state.value.years } onChange={ this.handleChange } />
+                <input name="age_at_onset_years" type="number" placeholder="Years" className={`form-control day input-sm ${hasError}` } value={ this.state.value.age_at_onset_years } onChange={ this.handleChange } />
               </div>
             </div>
           </div>
@@ -86,7 +80,7 @@ export default class AgeAtOnSetInput extends Component {
             <div className="form-group">
               <label className="col-md-3 control-label form-input-label">Months</label>
               <div className="col-md-9">
-                <input name="months" type="number" placeholder="Months" className="form-control month input-sm" value={ this.state.value.months } onChange={ this.handleChange } />
+                <input name="age_at_onset_months" type="number" placeholder="Months" className="form-control month input-sm" value={ this.state.value.age_at_onset_months } onChange={ this.handleChange } />
               </div>
             </div>
           </div>
@@ -94,7 +88,7 @@ export default class AgeAtOnSetInput extends Component {
             <div className="form-group">
               <label className="col-md-3 control-label form-input-label">Days</label>
               <div className="col-md-9">
-                <input name="days" type="number" placeholder="Days" className="form-control year input-sm" value={ this.state.value.days } onChange={ this.handleChange } />
+                <input name="age_at_onset_days" type="number" placeholder="Days" className="form-control year input-sm" value={ this.state.value.age_at_onset_days } onChange={ this.handleChange } />
               </div>
             </div>
           </div>
@@ -110,9 +104,9 @@ export default class AgeAtOnSetInput extends Component {
     if(newValidate != validate) {
       this.setState({ validate: newValidate })
     }
-    const modelVal = value.day + "-" + value.month + "-" + value.year
+
     const val = this.getModelValue(model, name)
-    if(val.days != value.days || val.months != value.months || val.years != value.years) {
+    if(val.age_at_onset_days != value.age_at_onset_days || val.age_at_onset_months != value.age_at_onset_months || val.age_at_onset_years != value.age_at_onset_years) {
       this.setState({ value : val })
     }
 
