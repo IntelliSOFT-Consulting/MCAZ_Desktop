@@ -1,4 +1,4 @@
-import { REPORT_TYPE_ADR, REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV } from './Constants'
+import { REPORT_TYPE_ADR, REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV, REPORT_TYPE_AEFI_FOLLOW_UP, REPORT_TYPE_ADR_FOLLOW_UP } from './Constants'
 import { ADR_URL, SAE_URL, AEFI_URL, SAEFI_URL } from './Constants'
 /**
   Validator for Date of Birth
@@ -85,5 +85,7 @@ export const getURL = (data) => {
     return SAEFI_URL
   } else if(data.type == REPORT_TYPE_ADR_FOLLOW_UP) {
     return ADR_URL + "/followup/" + btoa(data.parent_reference)
+  } else if(data.type == REPORT_TYPE_AEFI_FOLLOW_UP) {
+    return AEFI_URL + "/followup/" + btoa(data.parent_reference)
   }
 }
