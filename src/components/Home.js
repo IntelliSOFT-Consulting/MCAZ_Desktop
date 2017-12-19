@@ -9,11 +9,13 @@ import AEFIInvForm from '../forms/AEFIInvForm'
 import ReadOnlyReportComponent from '../readonly/ReadOnlyReportComponent'
 import LoginPage from './LoginPage'
 import SignupPage from './SignupPage'
+import ADRFollowUpForm from '../forms/ADRFollowUpForm'
+
 var NotificationSystem = require('react-notification-system')
 
 import { connect } from 'react-redux'
 
-import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, REPORTS_LIST_PAGE, READ_ONLY_PAGE, LOGIN_PAGE, SIGNUP_PAGE } from '../utils/Constants'
+import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, REPORTS_LIST_PAGE, READ_ONLY_PAGE, LOGIN_PAGE, SIGNUP_PAGE, ADR_FOLLOW_UP_PAGE } from '../utils/Constants'
 
 import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification, setFollowUp, login, signUp, logout, fetchReport, fetchDeviceInfo } from '../actions'
 
@@ -61,6 +63,8 @@ class Home extends Component {
         return <SignupPage {...this.props}/>
       case MAIN_PAGE:
         return <IntroPage  {...this.props}/>
+      case ADR_FOLLOW_UP_PAGE:
+        return <ADRFollowUpForm {...this.props}/>
       default:
         return <LoginPage {...this.props} />
     }

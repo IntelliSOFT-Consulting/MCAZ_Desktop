@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, REPORTS_LIST_PAGE, REPORT_TYPE_ADR,
-  REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV, AEFI_INV_PAGE } from '../utils/Constants'
+  REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV, AEFI_INV_PAGE, REPORT_TYPE_ADR_FOLLOW_UP} from '../utils/Constants'
 
 import ReportListComponent from './ReportListComponent'
 import ReportSearchComponent from './ReportSearchComponent'
@@ -23,11 +23,11 @@ export default class IntroPage extends Component {
     const { showPage, setReport, setFollowUp } = this.props
     setReport(report)
     showPage(page)
-    setFollowUp(followUp)
+    //setFollowUp(followUp)
   }
 
-  getReport(reports, type) {
-    return reports.filter(report => report.type == type)
+  getReport(reports, type, type2) {
+    return reports.filter(report => report.type == type || (report.type != null && report.type == type2))
   }
 
   uploadData() {
@@ -75,16 +75,16 @@ export default class IntroPage extends Component {
             <p>Adverse drug reaction</p>
             <div className="btn-toolbar">
               <button type="button" className="btn btn-sm btn-default btn-primary adr-form" onClick={ () => this.showPage(ADR_FORM_PAGE) }>Report</button>
-              <button type="button" className="btn btn-sm btn-warning" onClick={ () => this.showPage(ADR_FORM_PAGE, null, true) }>Follow up</button>
+
             </div>
-            <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_ADR) } completed={ this.getReport(this.props.completed, REPORT_TYPE_ADR) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_ADR) } showPage={ this.showPage } type={ ADR_FORM_PAGE }/>
+            <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_ADR, REPORT_TYPE_ADR_FOLLOW_UP) } completed={ this.getReport(this.props.completed, REPORT_TYPE_ADR) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_ADR) } showPage={ this.showPage } type={ ADR_FORM_PAGE }/>
           </div>
           <div className="col-md-3 col-sm-4">
             <h3>AEFI</h3>
             <p>Adverse Event Following Immunization.</p>
             <div className="btn-toolbar">
               <button type="button" className="btn btn-sm btn-default btn-primary aefi-form" onClick={ () => this.showPage(AEFI_REPORT_PAGE) }>Report</button>
-              <button type="button" className="btn btn-sm btn-warning" onClick={ () => this.showPage(AEFI_REPORT_PAGE, null, true) }>Follow up</button>
+
             </div>
             <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_AEFI) } completed={  this.getReport(this.props.completed, REPORT_TYPE_AEFI) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_AEFI) } showPage={ this.showPage } type={ AEFI_REPORT_PAGE }/>
           </div>
@@ -93,7 +93,7 @@ export default class IntroPage extends Component {
             <p>Serious Adverse Event Following Immunization.</p>
             <div className="btn-toolbar">
               <button type="button" className="btn btn-sm btn-default btn-primary aefi-form" onClick={ () => this.showPage(AEFI_INV_PAGE) }>Report</button>
-              <button type="button" className="btn btn-sm btn-warning" onClick={ () => this.showPage(AEFI_INV_PAGE, null, true) }>Follow up</button>
+
             </div>
             <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_AEFI_INV) } completed={  this.getReport(this.props.completed, REPORT_TYPE_AEFI_INV) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_AEFI_INV) } showPage={ this.showPage } type={ AEFI_INV_PAGE }/>
           </div>
@@ -102,7 +102,7 @@ export default class IntroPage extends Component {
             <p>Serious Adverse Event</p>
             <div className="btn-toolbar">
               <button type="button" className="btn btn-sm btn-primary sae-form" onClick={ () => this.showPage(SAE_FORM_PAGE) }>Report</button>
-              <button type="button" className="btn btn-sm btn-warning" onClick={ () => this.showPage(SAE_FORM_PAGE, null, true) }>Follow up</button>
+
             </div>
             <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_SAE) } completed={ this.getReport(this.props.completed, REPORT_TYPE_SAE) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_SAE) } showPage={ this.showPage } type={ SAE_FORM_PAGE }/>
           </div>

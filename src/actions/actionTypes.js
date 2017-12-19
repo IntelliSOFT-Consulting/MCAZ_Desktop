@@ -11,8 +11,8 @@ export const SET_REPORT_FILTER = 'SET_REPORT_FILTER' // Sets the report type tha
 
 export const SHOW_PAGE = 'SHOW_PAGE'
 
-export const SET_REPORT = 'SET_REPORT'
-export const SET_FOLLOW_UP = 'SET_FOLLOW_UP'
+export const SET_REPORT = 'SET_REPORT' //
+export const SET_FOLLOW_UP = 'SET_FOLLOW_UP' // should open followup report
 
 export const SET_NOTIFICATION = 'SET_NOTIFICATION'
 
@@ -25,3 +25,7 @@ export const LOGOUT = 'LOGOUT'
 export const SAVE_FETCHED_REPORTS = 'SAVE_FETCHED_REPORTS'
 
 export const SET_SETTING = 'SET_SETTING'
+
+export const SAVE_UPLOADED_FOLLOW_UP_REPORT = 'SAVE_UPLOADED_FOLLOW_UP_REPORT'
+export const SAVE_FETCHED_FOLLOW_UP_REPORTS = 'SAVE_FETCHED_FOLLOW_UP_REPORTS'
+export const REMOVE_UPLOADED_FOLLOW_UP_REPORT = 'REMOVE_UPLOADED_FOLLOW_UP_REPORT'

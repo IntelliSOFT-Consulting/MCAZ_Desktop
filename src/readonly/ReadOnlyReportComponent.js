@@ -13,7 +13,7 @@ import SelectInput from '../inputs/SelectInput'
 import { MAIN_PAGE, REPORT_TYPE_ADR, REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV } from '../utils/Constants'
 
 import { connect } from 'react-redux'
-import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
+import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setReport } from '../actions'
 
 class ReadOnlyReportComponent extends Component {
 
@@ -21,11 +21,12 @@ class ReadOnlyReportComponent extends Component {
     super(props)
     var { model } = this.props
     if(model == null) {
-      model = {"rid":1510991587333,"type":"REPORT_TYPE_ADR","name_of_institution":"Nairobi Hosp","sadr_list_of_drugs":[{"brand_name":"dawa","dose_id":"3","drug_name":"c","dose":"1","route_id":"3","frequency_id":"2","start_date":[],"stop_date":[],"suspected_drug":""}],"user":{},"patient_name":"JM","date_of_birth":[],"gender":"Male","date_of_onset_of_reaction":[],"description_of_reaction":"ds","severity":"Yes","severity_reason":"Death","action_taken":"Drug withdrawn","outcome":"Recovered","":"Certain","designation_id":"1","reporter_name":"John","reporter_email":"john@h.com","date_of_end_of_reaction":[]}
+      model = {}
     }
     this.state = { model : model, validate : null }
     this.cancel = this.cancel.bind(this)
     this.goBack = this.goBack.bind(this)
+    this.showPage = this.showPage.bind(this)
 
   }
 
@@ -34,7 +35,7 @@ class ReadOnlyReportComponent extends Component {
     var page = null
     switch(model.type) {
       case REPORT_TYPE_ADR :
-        page = <ADRReadOnlyReportComponent model={ model } goBack={ this.goBack }/>
+        page = <ADRReadOnlyReportComponent model={ model } goBack={ this.goBack } showPage={ this.showPage }/>
         break
       case REPORT_TYPE_SAE:
         page = <SAEReadOnlyComponent model={ model } goBack={ this.goBack }/>
@@ -43,7 +44,7 @@ class ReadOnlyReportComponent extends Component {
         page = <AEFIReadOnlyReportComponent model={ model } goBack={ this.goBack }/>
         break
       case REPORT_TYPE_AEFI_INV :
-        page = <AEFIInvReadOnlyReportComponent model={ model } goBack={ this.goBack }/>
+        page = <AEFIInvReadOnlyReportComponent model={ model } goBack={ this.goBack } showPage={ this.showPage }/>
         break
       default:
         page = null
@@ -62,6 +63,15 @@ class ReadOnlyReportComponent extends Component {
     const { showPage } = this.props
     showPage(MAIN_PAGE)
   }
+
+  showPage(page, model) {
+    const { showPage, setReport } = this.props
+    if(model) {
+      setReport(model)
+    }
+
+    showPage(page)
+  }
 }
 
 const mapStateToProps = state => {
@@ -75,6 +85,9 @@ const mapDispatchToProps = dispatch => {
   return {
     showPage: (page) => {
       dispatch(showPage(page))
+    },
+    setReport: (model) => {
+      dispatch(setReport(model))
     },
     dispatch: dispatch
   }

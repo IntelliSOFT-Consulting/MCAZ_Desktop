@@ -12,6 +12,7 @@ import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import ConcomitantTableComponent from '../components/ConcomitantTableComponent'
 import SelectInput from '../inputs/SelectInput'
 import AutoSuggestInput from '../inputs/AutoSuggestInput'
+import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
 
 import moment from 'moment'
 
@@ -24,13 +25,19 @@ import { SEVERITY_REASON, OUTCOME, DESIGNATION, ACTION_TAKEN, RELATEDNESS_TO_ADR
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setNotification } from '../actions'
 
-class ADRForm extends FormComponent {
+class ADRFollowUpForm extends FormComponent {
 
   constructor(props) {
     super(props)
     var { model, settings } = this.props
     if(model == null) {
-      model = { "rid": Date.now(),"type":"REPORT_TYPE_ADR", data_source: "desktop", device_type : settings.device_type }
+      model = { "rid": Date.now(),"type": REPORT_TYPE_ADR_FOLLOW_UP, data_source: "desktop", device_type : settings.device_type }
+    }
+    if(model.device_type == null) {
+      model.device_type = settings.device_type
+    }
+    if(model.data_source == null) {
+      model.data_source = "desktop"
     }
     //model = {"rid":1510853208716,"type":"REPORT_TYPE_ADR","name_of_institution":"Nairobi Hosp","sadr_list_of_drugs":[{"brand_name":"dawa","dose_id":"7","route_id":"4","frequency_id":"4","drug_name":"wwqq","dose":"1","indication":"1","start_date":"1-10-2017","stop_date":"21-10-2017","suspected_drug":""}],"user":{},"patient_name":"xxsss","date_of_birth":"6-4-2015","weight":"34","height":"12","gender":"Male","date_of_onset_of_reaction":"8-2-2017","severity":"No","medical_history":"ss","lab_test_results":"ssds","action_taken":"Dose reduced","outcome":"Recovering","designation_id":"2","reporter_name":"John","reporter_email":"john@gmail.com","description_of_reaction":"hhhn"}
     this.state = { model : model, validate : null, confirmVisible : false, confirmCancel : false }
@@ -40,17 +47,13 @@ class ADRForm extends FormComponent {
     this.setAgeGroup = this.setAgeGroup.bind(this)
 
     this.mandatory = [
-      { name : "patient_name", text : "Patient Initials", page : 1 },
-      { name : "date_of_birth", text: "Date of bith", page : 1},
-      { name : "gender", text : "Sex", page : 1 },
       { name : "date_of_onset_of_reaction", text : "Date of onset", page : 2 },
       { name : 'description_of_reaction', text : "Description of ADR", page : 2},
-      { name : "severity", text : "Serious", page : 2 }, { name : "outcome", text : "Outcome", page : 3 },
+      { name : "severity", text : "Serious", page : 2 },
       { name : "sadr_list_of_drugs", fields: [{ name : "drug_name", text : "Generic name" }, { name : "dose_id", text : "Dose" },
         { name : "frequency_id", text : "Frequency" }, { name : "start_date", text : "Start date" }]}, // , { name : "suspected_drug", text : "Tick suspected medicine" }
-      { name : 'action_taken', text : "Action taken", page : 3 },
-      { name : "reporter_name", text : "Reporter name", page : 4 },
-      { name : "designation_id", text : "Designation", page : 4 }, { name : "reporter_email", text : "Email Address", page : 4 }]
+      
+    ]
   }
 
   render() {
@@ -108,50 +111,9 @@ class ADRForm extends FormComponent {
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
         <hr/>
         <form className="form-horizontal">
-          { followUpInput }
-          <h4 className="text-center">Patient Details</h4>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <AutoSuggestInput label="Clinic/Hospital Name" model={ model } name="name_of_institution"/>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Clinic/Hospital Number" model={ model } name="institution_code"/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <SelectInput label="Province" name="province_id" model={ model } options={ PROVINCES }/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Patient Initials" required={ true } validate={ this.state.validate } model={ model } name="patient_name"/>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="VCT/OI/TB Number" model={ model } name="ip_no"/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() } onChange={ this.setAgeGroup }/>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <SelectInput label="Age group" model={ model } name="age_group" options={ AGE_GROUP } disabled={ "true" }/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Weight (Kg)" model={ model } name="weight" type="number"/>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Height (centrimetres)" model={ model } name="height" type="number"/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-md-offset-6 col-sm-12">
-              <SingleMultipleInput label="Gender" name="gender" model={ model } required={ true } validate={ this.state.validate } inline={ true } options={["Male", "Female", "Unknown"]}/>
-            </div>
-          </div>
+          <div className="container"><div className="col-md-6 col-sm-12">
+            <ReadOnlyDataRenderer label="Parent MCAZ Ref #" model={ model } name="parent_reference" readOnly={ true }/>
+          </div></div>
           <hr/>
           <h4 className="text-center">Adverse Reaction</h4>
           <div className="container">
@@ -190,39 +152,11 @@ class ADRForm extends FormComponent {
           </div>
           <hr/>
           <div className="container">
-            <MedicationTableComponent label="Current Medication"  validate={ this.state.validate } name="sadr_list_of_drugs" model={ model }/>
-          </div>
-          <div className="container">
-            <div className="col-md-4 col-sm-12">
-              <SelectInput label="Action taken:" model={ model } name="action_taken" required={ true } validate={ this.state.validate } options={ ACTION_TAKEN }/>
-            </div>
-            <div className="col-md-4 col-sm-12">
-              <SelectInput label="Outcome of ADR:" model={ model } name="outcome" required={ true } validate={ this.state.validate } options={ OUTCOME }/>
-            </div>
-            <div className="col-md-4 col-sm-12">
-              <SelectInput label="Relatedness of suspected medicine(s) to ADR:" model={ model } name="relatedness" options={ RELATEDNESS_TO_ADR }/>
-            </div>
+            <MedicationTableComponent label="Add Medication"  validate={ this.state.validate } name="sadr_list_of_drugs" model={ model }/>
           </div>
           <hr/>
           <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them" validate={ this.state.validate } name="attachments" model={ model }/>
           <hr/>
-          <h4 className="text-center">Reported By</h4>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Reporter name" required={ true }  model={ model } name="reporter_name" />
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <SelectInput label="Designation" model={ model } required={ true } name="designation_id" options={ DESIGNATION }/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Email address" model={ model } required={ true }  name="reporter_email"/>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Phone number" model={ model } name="reporter_phone"/>
-            </div>
-          </div>
           <div className="container well">
             <div className="col-md-3 col-md-offset-1">
               <button className="btn btn-sm btn-primary" onClick={ this.saveAndContinue }>Save Changes</button>
@@ -337,7 +271,8 @@ class ADRForm extends FormComponent {
     const { uploadData, saveCompleted, connection, token } = this.props
     const { model } = this.state
     if(connection.isConnected) {
-      uploadData(model, ADR_URL, token)
+      const url = ADR_URL + "/followup/" + btoa(model.parent_reference)
+      uploadData(model, url, token)
     } else {
       //Alert.alert("Offline", "data has been saved to memory and will be uploaded when online.")
       saveCompleted(model)
@@ -382,6 +317,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ADRForm)
+export default connect(mapStateToProps, mapDispatchToProps)(ADRFollowUpForm)
 
 //<ConcomitantTableComponent label="Concomitant (Other) drugs taken, including herbal medicines &amp; Dates/period taken: " name="sadr_other_drugs" model={ model }/>

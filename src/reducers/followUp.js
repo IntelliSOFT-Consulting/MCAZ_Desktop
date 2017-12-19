@@ -1,13 +1,34 @@
-import { SET_FOLLOW_UP } from '../actions/actionTypes'
-const followUp = (state = null, action) => {
+import { SAVE_UPLOADED_FOLLOW_UP_REPORT, SAVE_FETCHED_FOLLOW_UP_REPORTS, REMOVE_UPLOADED_FOLLOW_UP_REPORT } from '../actions/actionTypes'
+const followup = (state = [], action) => {
   switch(action.type) {
-    case SET_FOLLOW_UP:
-      if(action.followUp)
-        return action.followUp
-      return null
+    case SAVE_UPLOADED_FOLLOW_UP_REPORT:
+      var newReport = action.data
+      if(state == null || state.length == 0) {
+        return [...state, newReport]
+      } else {
+        const index = state.findIndex((report) => report.rid == newReport.rid )
+        if(index == -1) {
+          state.push(newReport)
+        } else {
+          state[index] = newReport
+        }
+      }
+      return [...state]
+    case SAVE_FETCHED_FOLLOW_UP_REPORTS:
+      if(action.data) {
+        return state.concat(action.data)
+      }
+      return state
+    case REMOVE_UPLOADED_FOLLOW_UP_REPORT:
+      const newReport = action.data
+      if(state.length == 0){
+        return state
+      }
+      return state.filter((report) => report.rid != newReport.rid)
     default:
-      return state // The main page is the default page.
+      return state // Return the current state.
+
   }
 }
 
-export default followUp
+export default followup

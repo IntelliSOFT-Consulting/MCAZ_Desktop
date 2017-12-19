@@ -83,5 +83,7 @@ export const getURL = (data) => {
     return AEFI_URL
   } else if(data.type == REPORT_TYPE_AEFI_INV) {
     return SAEFI_URL
+  } else if(data.type == REPORT_TYPE_ADR_FOLLOW_UP) {
+    return ADR_URL + "/followup/" + btoa(data.parent_reference)
   }
 }

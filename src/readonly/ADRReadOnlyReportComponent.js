@@ -7,7 +7,7 @@ import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import ConcomitantTableComponent from '../components/ConcomitantTableComponent'
 import SelectInput from '../inputs/SelectInput'
 
-import { MAIN_PAGE, REPORT_TYPE_ADR } from '../utils/Constants'
+import { MAIN_PAGE, REPORT_TYPE_ADR, ADR_FOLLOW_UP_PAGE, REPORT_TYPE_ADR_FOLLOW_UP } from '../utils/Constants'
 
 import { SEVERITY_REASON, OUTCOME, DESIGNATION, ACTION_TAKEN, RELATEDNESS_TO_ADR} from '../utils/FieldOptions'
 
@@ -28,7 +28,8 @@ export default class ADRReadOnlyReportComponent extends Component {
   }
   render() {
     //var { model } = this.state
-    const { goBack, model } = this.props
+    const { goBack, model, showPage } = this.props
+    const newFollowUp = { rid : Date.now(), "type": REPORT_TYPE_ADR_FOLLOW_UP, parent_reference : model.reference_number, report_type : "FollowUp" }
     return (
       <div className='adr-form form'>
         <h3 className="text-center">
@@ -157,8 +158,9 @@ export default class ADRReadOnlyReportComponent extends Component {
             </div>
           </div>
           <div className="container well">
-            <div className="col-md-3 col-md-offset-1">
+            <div className="col-md-3 col-md-offset-1 btn-toolbar">
               <button className="btn btn-sm btn-primary" onClick={ (e) => { e.preventDefault(); goBack(e) } }>Close</button>
+              <button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); showPage(ADR_FOLLOW_UP_PAGE, newFollowUp) } }>Create follow-up report</button>
             </div>
           </div>
         </form>
