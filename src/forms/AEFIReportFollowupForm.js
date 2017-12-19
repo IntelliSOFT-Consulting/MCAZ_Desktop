@@ -5,60 +5,52 @@ import FormComponent from './FormComponent'
 import Confirm from '../dialogs/Confirm'
 
 import TextInput from '../inputs/TextInput'
-import DateSelectInput from '../inputs/DateSelectInput'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
-import MedicationTableComponent from '../components/MedicationTableComponent'
-import FileAttachmentComponent from '../components/FileAttachmentComponent'
-import ConcomitantTableComponent from '../components/ConcomitantTableComponent'
 import SelectInput from '../inputs/SelectInput'
-import AutoSuggestInput from '../inputs/AutoSuggestInput'
+import DatePickerInput from '../inputs/DatePickerInput'
+import DateSelectInput from '../inputs/DateSelectInput'
+import AgeAtOnSetInput from '../inputs/AgeAtOnSetInput'
+import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
+import AEFIDilutentTableComponent from '../components/AEFIDilutentTableComponent'
+import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
 
 import moment from 'moment'
 
 import messages from '../utils/messages.json'
 
-import { MAIN_PAGE, REPORT_TYPE_ADR, ADR_URL } from '../utils/Constants'
+import { MAIN_PAGE, REPORT_TYPE_AEFI, AEFI_URL } from '../utils/Constants'
 
-import { SEVERITY_REASON, OUTCOME, DESIGNATION, ACTION_TAKEN, RELATEDNESS_TO_ADR, AGE_GROUP, PROVINCES } from '../utils/FieldOptions'
+import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, AEFI_OUTCOME, AEFI_ADVERSE_EVENTS, AGE_ON_ONSET, PROVINCES } from '../utils/FieldOptions'
+import { AEFI_FOLLOW_UP_MANDATORY_FIELS } from '../utils/FormFields'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setNotification } from '../actions'
 
-class ADRFollowUpForm extends FormComponent {
+class AEFIReportFollowupForm extends FormComponent {
 
   constructor(props) {
     super(props)
+
     var { model, settings } = this.props
     if(model == null) {
-      model = { "rid": Date.now(),"type": REPORT_TYPE_ADR_FOLLOW_UP, data_source: "desktop", device_type : settings.device_type }
+      model = { rid : Date.now(), type : REPORT_TYPE_AEFI, data_source: "desktop", device_type : settings.device_type }
     }
-    if(model.device_type == null) {
-      model.device_type = settings.device_type
-    }
-    if(model.data_source == null) {
-      model.data_source = "desktop"
-    }
-    //model = {"rid":1510853208716,"type":"REPORT_TYPE_ADR","name_of_institution":"Nairobi Hosp","sadr_list_of_drugs":[{"brand_name":"dawa","dose_id":"7","route_id":"4","frequency_id":"4","drug_name":"wwqq","dose":"1","indication":"1","start_date":"1-10-2017","stop_date":"21-10-2017","suspected_drug":""}],"user":{},"patient_name":"xxsss","date_of_birth":"6-4-2015","weight":"34","height":"12","gender":"Male","date_of_onset_of_reaction":"8-2-2017","severity":"No","medical_history":"ss","lab_test_results":"ssds","action_taken":"Dose reduced","outcome":"Recovering","designation_id":"2","reporter_name":"John","reporter_email":"john@gmail.com","description_of_reaction":"hhhn"}
-    this.state = { model : model, validate : null, confirmVisible : false, confirmCancel : false }
+
+    //model = {"rid":1511898412729,"type":"REPORT_TYPE_AEFI","patient_name":"JMM","patient_next_of_kin":"s","patient_surname":"s","patient_address":"s","gender":"Male","patient_telephone":"s","date_of_birth":"4-2-2016","age_at_onset":"s","reporter_name":"s","designation_id":"3","name_of_vaccination_center":"ss","aefi_list_of_vaccines":[{"vaccine_name":"ss","vaccination_date":"14-10-2017","dosage":"s","batch_number":"ss","expiry_date":"22-10-2017"}],"aefi_list_of_diluents":[{"diluent_name":"sss","diluent_date":"9-10-2017","batch_number":"ss","expiry_date":"15-10-2017"}],"adverse_events":"ae_seizures,ae-thrombocytopenia","aefi_date":"21-10-2017","notification_date":"21-10-2017","description_of_reaction":"ss","serious":"Yes","serious_yes":"Hospitalizaion/Prolonged","outcome":"Recovering","autopsy":"No","past_medical_history":"ss","district_receive_date":"1-10-2017","investigation_needed":"Yes","investigation_date":"13-10-2017","national_receive_date":"20-10-2017","comments":"sss"}
 
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
+    this.validateDateofBirth = this.validateDateofBirth.bind(this)
+    this.validateAge = this.validateAge.bind(this)
     this.upload = this.upload.bind(this)
-    this.setAgeGroup = this.setAgeGroup.bind(this)
 
-    this.mandatory = [
-      { name : "date_of_onset_of_reaction", text : "Date of onset", page : 2 },
-      { name : 'description_of_reaction', text : "Description of ADR", page : 2},
-      { name : "severity", text : "Serious", page : 2 },
-      { name : "sadr_list_of_drugs", fields: [{ name : "drug_name", text : "Generic name" }, { name : "dose_id", text : "Dose" },
-        { name : "frequency_id", text : "Frequency" }, { name : "start_date", text : "Start date" }]}, // , { name : "suspected_drug", text : "Tick suspected medicine" }
-
-    ]
+    this.state = { model , validate : null, confirmVisible : false, confirmCancel : false }
   }
 
   render() {
-    var { model } = this.state
+    const { model } = this.state
     const { followUp } = this.props
+
     var confirmVisible = null
     if(this.state.confirmVisible) {
       confirmVisible = (
@@ -75,6 +67,7 @@ class ADRFollowUpForm extends FormComponent {
         </Confirm>
       )
     }
+
     var confirmCancel = null
     if(this.state.confirmCancel) {
       confirmCancel = (
@@ -93,23 +86,26 @@ class ADRFollowUpForm extends FormComponent {
     }
 
     const followUpInput = followUp == true? (
+      <div>
+
       <div className="container"><div className="col-md-6 col-sm-12">
         <TextInput label="Parent MCAZ Ref #" model={ model } name="parent_id"/>
-      </div></div>
+      </div></div></div>
     ) : null
 
     return (
-      <div className='adr-form form'>
+      <div className="aefi-form form">
         { confirmVisible }
         { confirmCancel }
         <h3 className="text-center">
           <span className="text-center">
             <img src="assets/images/mcaz_3.png" className="logo"></img>
           </span><br/>
-          Adverse Drug Reaction (ADR) Report Form
+          Adverse Event After Immunization (AEFI) Reporting Form
         </h3>
+
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
-        <hr/>
+
         <form className="form-horizontal">
           <div className="container">
             <div className="col-md-6 col-sm-12">
@@ -117,48 +113,44 @@ class ADRFollowUpForm extends FormComponent {
             </div>
           </div>
           <hr/>
-          <h4 className="text-center">Adverse Reaction</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of onset of reaction" model={ model } validate={ this.state.validate } required={ true } name="date_of_onset_of_reaction"/>
+              <AEFIVaccinationTableComponent name="aefi_list_of_vaccines" model={ model } validate={ this.state.validate } label="Vaccine   "/>
+            </div>
+          </div>
+
+          <h5 className="text-center">Adverse events</h5>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <SingleMultipleInput label="Adverse events" required={ true } multiple={ true } validate={ this.state.validate }  name="adverse_events" model={ model } options={ AEFI_ADVERSE_EVENTS }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of end of reaction (if it ended)" model={ model } name="date_of_end_of_reaction"/>
+              <TextInput label="If other, specify"  name="adverse_events_specify" model={ model } showTime={ true }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <DatePickerInput label="Date and time AEFI started"  name="aefi_date" model={ model } showTime={ true } maxDate={ moment() } onChange={ (value) => this.setState(value) }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <SingleMultipleInput label="Was patient hospitalized?"  name="patient_hospitalization" model={ model } inline={ true } options={ BOOLEAN_OPTIONS }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-6">
+              <DatePickerInput label="Date patient notified event to health system" name="notification_date" model={ model } maxDate={ moment() } minDate={ this.state.model['aefi_date'] }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <SingleMultipleInput label="Treatment provided"  name="treatment_provided" model={ model } options={ BOOLEAN_OPTIONS } inline={ true }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <TextInput label="Description of ADR" multiLine={ true } model={ model } name="description_of_reaction"/>
+              <TextInput label="Describe AEFI" multiLine={ true } name="description_of_reaction" model={ model }/>
             </div>
           </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Serious" model={ model } name="severity" required={ true } validate={ this.state.validate } options={ ["Yes", "No"] }/>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <SelectInput label="Reason for Seriousness" model={ model } name="severity_reason" required={ true } validate={ this.state.validate } options={ SEVERITY_REASON }/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Relevant Medical History, including any allergies" multiLine={ true } model={ model } name="medical_history"/>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Relevant Past Drug Therapy" multiLine={ true } model={ model } name="past_drug_therapy"/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <TextInput label="Laboratory tests results:" multiLine={ true } model={ model } name="lab_test_results"/>
-            </div>
-          </div>
-          <hr/>
-          <div className="container">
-            <MedicationTableComponent label="Add Medication"  validate={ this.state.validate } name="sadr_list_of_drugs" model={ model }/>
-          </div>
-          <hr/>
           <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them" validate={ this.state.validate } name="attachments" model={ model }/>
-          <hr/>
+
           <div className="container well">
             <div className="col-md-3 col-md-offset-1">
               <button className="btn btn-sm btn-primary" onClick={ this.saveAndContinue }>Save Changes</button>
@@ -175,31 +167,23 @@ class ADRFollowUpForm extends FormComponent {
     )
   }
 
-  setAgeGroup(value) {
-    const values = value.split("-")
-    if(values[2] != "") {
-      const time = moment().year(values[2]).month(values[1]).day(values[0])
-      const now = moment()
-      const age = now.diff(time, 'years', true);
-      const days = now.diff(time, 'days', true);
-      var age_group = ""
-      if(days <= 28) {
-        age_group = "neonate"
-      } else if(age >= 70) {
-        age_group = "elderly"
-      } else if(age >= 17) {
-        age_group = "adult"
-      } else if(age >= 12) {
-        age_group = "adolescent"
-      } else if(age >= 5) {
-        age_group = "child"
-      } else {
-        age_group = "infant"
-      }
-      const { model } = this.state
-      model['age_group'] = age_group
-      this.setState({ model })
+  validateDateofBirth(value) {
+    var { model } = this.state
+    if(value != '' && value != '--') {
+      model['age_at_onset_days'] = ""
+      model['age_at_onset_months'] = ""
+      model['age_at_onset_years'] = ""
+      //model['age_at_onset_specify'] = ""
     }
+    this.setState({ model })
+  }
+
+  validateAge(value) {
+    var { model } = this.state
+    if(value != '') {
+      model['date_of_birth'] = ''
+    }
+    this.setState({ model : model })
   }
 
   /**
@@ -209,17 +193,14 @@ class ADRFollowUpForm extends FormComponent {
     e.preventDefault()
     const { model } = this.state
     const { uploadData, saveCompleted, connection, setNotification } = this.props
+    var valid = true, names = "", page = 0;
 
-    var valid = true
-    var names = ""
-    var page = 0
-    this.mandatory.forEach((field) => {
+    AEFI_FOLLOW_UP_MANDATORY_FIELS.forEach((field) => {
       if(field.fields) {
         const fields = field.fields
         const values = model[field.name]
         var arrayNames = []
         if(Array.isArray(values)) {
-          var suspected_drug = 0
           for(let i = 0; i < values.length; i++) {
             const val = values[i]
             fields.forEach((f) => {
@@ -233,22 +214,24 @@ class ADRFollowUpForm extends FormComponent {
                 }
               }
             })
-            if(val['suspected_drug'] == '1') {
-              suspected_drug++
-            }
           }
-          if(suspected_drug == 0) {
-            valid = false
-          }
-        } else {
-          valid = false
         }
         if(names != "") {
           names += ",\n"
         }
         names += arrayNames.join(',\n')
       } else {
-        if(model[field.name] == null || model[field.name] === "") {
+        if(field.dependent) {
+          if((model[field.dependent] == field.value || (field.value == "" && model[field.name] == null)) && (model[field.name] == null || model[field.name] === "")) {
+            valid = false
+            if(names != "") {
+              names += ",\n "
+            } else {
+              page = field.page
+            }
+            names += field.text
+          }
+        } else if(model[field.name] == null || model[field.name] === "") {
           valid = false
           if(names != "") {
             names += ",\n "
@@ -265,7 +248,6 @@ class ADRFollowUpForm extends FormComponent {
       setNotification({ message : messages.validationErrors, level: "error", id: new Date().getTime() })
       return
     }
-
     this.setState({ confirmVisible : true })
   }
 
@@ -273,15 +255,13 @@ class ADRFollowUpForm extends FormComponent {
     const { uploadData, saveCompleted, connection, token } = this.props
     const { model } = this.state
     if(connection.isConnected) {
-      const url = ADR_URL + "/followup/" + btoa(model.parent_reference)
+      const url = AEFI_URL + "/followup/" + btoa(model.parent_reference)
       uploadData(model, url, token)
     } else {
-      //Alert.alert("Offline", "data has been saved to memory and will be uploaded when online.")
-      saveCompleted(model)
+      saveCompleted(data)
     }
     this.goBack()
   }
-
 }
 
 const mapStateToProps = state => {
@@ -319,6 +299,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ADRFollowUpForm)
-
-//<ConcomitantTableComponent label="Concomitant (Other) drugs taken, including herbal medicines &amp; Dates/period taken: " name="sadr_other_drugs" model={ model }/>
+export default connect(mapStateToProps, mapDispatchToProps)(AEFIReportFollowupForm)

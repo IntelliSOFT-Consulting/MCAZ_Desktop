@@ -11,6 +11,7 @@ export const REPORT_TYPE_AEFI = 'REPORT_TYPE_AEFI'
 
 // Follow-ups
 export const REPORT_TYPE_ADR_FOLLOW_UP = 'REPORT_TYPE_ADR_FOLLOW_UP'
+export const REPORT_TYPE_AEFI_FOLLOW_UP = 'REPORT_TYPE_AEFI_FOLLOW_UP'
 
 // Report status
 export const STATUS_DRAFT = 'STATUS_DRAFT'
@@ -30,6 +31,7 @@ export const LOGIN_PAGE = 'LOGIN_PAGE'
 export const SIGNUP_PAGE = 'SIGNUP_PAGE'
 
 export const ADR_FOLLOW_UP_PAGE = 'ADR_FOLLOW_UP_PAGE'
+export const AEFI_FOLLOW_UP_PAGE = 'AEFI_FOLLOW_UP_PAGE'
 
 export const ADR_URL = 'http://45.79.130.91/api/sadrs' // Url for ADR
 export const SAE_URL = 'http://45.79.130.91/api/adrs' // Url for SAE

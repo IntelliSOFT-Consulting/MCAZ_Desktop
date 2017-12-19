@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Pagination from "./Pagination"
 
-import { ADR_FORM_PAGE, ADR_FOLLOW_UP_PAGE } from '../utils/Constants'
+import { ADR_FORM_PAGE, ADR_FOLLOW_UP_PAGE, AEFI_REPORT_PAGE, AEFI_FOLLOW_UP_PAGE } from '../utils/Constants'
 
 export default class ReportListComponent extends Component {
 
@@ -81,6 +81,8 @@ export default class ReportListComponent extends Component {
         var page = null
         if(type == ADR_FORM_PAGE) {
           page = ADR_FOLLOW_UP_PAGE
+        } else if(type == AEFI_REPORT_PAGE) {
+          page = AEFI_FOLLOW_UP_PAGE
         }
         showPage(page, report)
       } else {

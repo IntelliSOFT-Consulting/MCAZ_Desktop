@@ -7,7 +7,7 @@ import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
 import AEFIDilutentTableComponent from '../components/AEFIDilutentTableComponent'
 
-import { MAIN_PAGE, REPORT_TYPE_AEFI } from '../utils/Constants'
+import { MAIN_PAGE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_FOLLOW_UP, AEFI_FOLLOW_UP_PAGE } from '../utils/Constants'
 
 import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, AEFI_OUTCOME, AEFI_ADVERSE_EVENTS, PROVINCES } from '../utils/FieldOptions'
 
@@ -27,7 +27,8 @@ export default class AEFIReadOnlyReportComponent extends Component {
 
   }
   render() {
-    const { model, goBack } = this.props
+    const { model, goBack, showPage } = this.props
+    const newFollowUp = { rid : Date.now(), "type": REPORT_TYPE_AEFI_FOLLOW_UP, parent_reference : model.reference_number, report_type : "FollowUp" }
     return (
       <div className="aefi-form form">
         <h3 className="text-center">
@@ -198,8 +199,9 @@ export default class AEFIReadOnlyReportComponent extends Component {
             </div>
           </div>
           <div className="container well">
-            <div className="col-md-3 col-md-offset-1">
+            <div className="col-md-3 col-md-offset-1 btn-toolbar">
               <button className="btn btn-sm btn-default" onClick={ (e) => { e.preventDefault(); goBack(e) } }>Close</button>
+              <button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); showPage(AEFI_FOLLOW_UP_PAGE, newFollowUp) } }>Create follow-up report</button>
             </div>
           </div>
         </form>

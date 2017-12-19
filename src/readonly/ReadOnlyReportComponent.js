@@ -41,7 +41,7 @@ class ReadOnlyReportComponent extends Component {
         page = <SAEReadOnlyComponent model={ model } goBack={ this.goBack }/>
         break
       case REPORT_TYPE_AEFI :
-        page = <AEFIReadOnlyReportComponent model={ model } goBack={ this.goBack }/>
+        page = <AEFIReadOnlyReportComponent model={ model } goBack={ this.goBack } showPage={ this.showPage }/>
         break
       case REPORT_TYPE_AEFI_INV :
         page = <AEFIInvReadOnlyReportComponent model={ model } goBack={ this.goBack } showPage={ this.showPage }/>

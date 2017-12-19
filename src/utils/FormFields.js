@@ -80,3 +80,8 @@ export const AEFI_MANDATORY_FIELS  = [
   { name : "serious", text : "Serious", page : 2 },
   { name : "outcome", text : "Outcome", page : 3 },
 ]
+
+export const AEFI_FOLLOW_UP_MANDATORY_FIELS  = [
+  { name : 'adverse_events', text : "Adverse event", page : 2},
+
+]

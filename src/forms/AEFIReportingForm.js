@@ -12,6 +12,7 @@ import DateSelectInput from '../inputs/DateSelectInput'
 import AgeAtOnSetInput from '../inputs/AgeAtOnSetInput'
 import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
 import AEFIDilutentTableComponent from '../components/AEFIDilutentTableComponent'
+import FileAttachmentComponent from '../components/FileAttachmentComponent'
 
 import moment from 'moment'
 
@@ -200,16 +201,21 @@ class AEFIReportingForm extends FormComponent {
             <div className="col-md-6 col-sm-12">
               <DatePickerInput label="Date and time AEFI started"  name="aefi_date" model={ model } showTime={ true } maxDate={ moment() } onChange={ (value) => this.setState(value) }/>
             </div>
-            <div className="col-md-6 col-sm-6">
-              <DatePickerInput label="Date patient notified event to health system" name="notification_date" model={ model } maxDate={ moment() } minDate={ this.state.model['aefi_date'] }/>
+            <div className="col-md-6 col-sm-12">
+              <SingleMultipleInput label="Was patient hospitalized?"  name="patient_hospitalization" model={ model } inline={ true } options={ BOOLEAN_OPTIONS }/>
             </div>
           </div>
           <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Describe AEFI" multiLine={ true } name="description_of_reaction" model={ model }/>
+            <div className="col-md-6 col-sm-6">
+              <DatePickerInput label="Date patient notified event to health system" name="notification_date" model={ model } maxDate={ moment() } minDate={ this.state.model['aefi_date'] }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <SingleMultipleInput label="Treatment provided"  name="treatment_provided" model={ model } options={ BOOLEAN_OPTIONS } inline={ true }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-12 col-sm-12">
+              <TextInput label="Describe AEFI" multiLine={ true } name="description_of_reaction" model={ model }/>
             </div>
           </div>
           <div className="container">
@@ -239,6 +245,7 @@ class AEFIReportingForm extends FormComponent {
                 multiLine={ true } name="past_medical_history" model={ model } />
             </div>
           </div>
+          <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them" validate={ this.state.validate } name="attachments" model={ model }/>
           <h5 className="text-center">First decision making level to complete (District level):</h5>
           <div className="container">
             <div className="col-md-4 col-sm-12">
