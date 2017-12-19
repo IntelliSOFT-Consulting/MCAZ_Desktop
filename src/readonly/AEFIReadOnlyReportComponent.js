@@ -29,6 +29,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
   render() {
     const { model, goBack, showPage } = this.props
     const newFollowUp = { rid : Date.now(), "type": REPORT_TYPE_AEFI_FOLLOW_UP, parent_reference : model.reference_number, report_type : "FollowUp" }
+    const followUpBtn = model.reference_number != null? (<button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); showPage(AEFI_FOLLOW_UP_PAGE, newFollowUp) } }>Create follow-up report</button>) : null
     return (
       <div className="aefi-form form">
         <h3 className="text-center">
@@ -201,7 +202,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
           <div className="container well">
             <div className="col-md-3 col-md-offset-1 btn-toolbar">
               <button className="btn btn-sm btn-default" onClick={ (e) => { e.preventDefault(); goBack(e) } }>Close</button>
-              <button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); showPage(AEFI_FOLLOW_UP_PAGE, newFollowUp) } }>Create follow-up report</button>
+              { followUpBtn }
             </div>
           </div>
         </form>

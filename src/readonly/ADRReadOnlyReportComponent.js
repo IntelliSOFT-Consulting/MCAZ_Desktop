@@ -30,6 +30,7 @@ export default class ADRReadOnlyReportComponent extends Component {
     //var { model } = this.state
     const { goBack, model, showPage } = this.props
     const newFollowUp = { rid : Date.now(), "type": REPORT_TYPE_ADR_FOLLOW_UP, parent_reference : model.reference_number, report_type : "FollowUp" }
+    const followUpBtn = model.reference_number != null? (<button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); showPage(ADR_FOLLOW_UP_PAGE, newFollowUp) } }>Create follow-up report</button>) : null
     return (
       <div className='adr-form form'>
         <h3 className="text-center">
@@ -160,7 +161,7 @@ export default class ADRReadOnlyReportComponent extends Component {
           <div className="container well">
             <div className="col-md-3 col-md-offset-1 btn-toolbar">
               <button className="btn btn-sm btn-primary" onClick={ (e) => { e.preventDefault(); goBack(e) } }>Close</button>
-              <button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); showPage(ADR_FOLLOW_UP_PAGE, newFollowUp) } }>Create follow-up report</button>
+              { followUpBtn }
             </div>
           </div>
         </form>

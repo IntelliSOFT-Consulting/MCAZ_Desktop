@@ -22,7 +22,7 @@ import messages from '../utils/messages.json'
 import { MAIN_PAGE, REPORT_TYPE_AEFI, AEFI_URL } from '../utils/Constants'
 
 import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, AEFI_OUTCOME, AEFI_ADVERSE_EVENTS, AGE_ON_ONSET, PROVINCES } from '../utils/FieldOptions'
-import { AEFI_FOLLOW_UP_MANDATORY_FIELS } from '../utils/FormFields'
+import { AEFI_FOLLOW_UP_MANDATORY_FIELDS } from '../utils/FormFields'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setNotification } from '../actions'
@@ -195,7 +195,7 @@ class AEFIReportFollowupForm extends FormComponent {
     const { uploadData, saveCompleted, connection, setNotification } = this.props
     var valid = true, names = "", page = 0;
 
-    AEFI_FOLLOW_UP_MANDATORY_FIELS.forEach((field) => {
+    AEFI_FOLLOW_UP_MANDATORY_FIELDS.forEach((field) => {
       if(field.fields) {
         const fields = field.fields
         const values = model[field.name]
