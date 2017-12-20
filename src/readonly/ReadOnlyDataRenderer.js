@@ -18,6 +18,9 @@ export default class ReadOnlyDataRenderer extends Component {
     if(model[name] == null) {
       return ""
     }
+    if(typeof model[name] == "object") {
+      return ""
+    }
     if(type == 'date') {
       return  model[name]
     } else if(type == 'option' && options) {
