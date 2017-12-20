@@ -51,7 +51,7 @@ export default class ADRReadOnlyReportComponent extends Component {
           <h4 className="text-center">Patient Details</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Clinic/Hospital Name" model={ model } name="name_of_institution"/>
+              <ReadOnlyDataRenderer label="Clinic/Hospital Name" model={ model } name="evaluator"/>
             </div>
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Clinic/Hospital Number" model={ model } name="institution_code"/>
@@ -70,12 +70,12 @@ export default class ADRReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Date of Birth:" required={ true } type="date" model={ model } name="date_of_birth"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Age group" model={ model } name="age_group"/>
+              <ReadOnlyDataRenderer label="Weight (Kg)" model={ model } name="weight"/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Weight (Kg)" model={ model } name="weight"/>
+              <ReadOnlyDataRenderer label="OR Age" model={ model } name="age" type="number" />
             </div>
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Height (meters)" model={ model } name="height"/>
@@ -158,6 +158,14 @@ export default class ADRReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Phone number" model={ model } name="reporter_phone"/>
             </div>
           </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <ReadOnlyDataRenderer label="Institution Name" model={ model }  name="institution_name"/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <ReadOnlyDataRenderer label="Institution Address" model={ model } name="institution_address"/>
+            </div>
+          </div>
           <div className="container well">
             <div className="col-md-3 col-md-offset-1 btn-toolbar">
               <button className="btn btn-sm btn-primary" onClick={ (e) => { e.preventDefault(); goBack(e) } }>Close</button>
@@ -169,3 +177,8 @@ export default class ADRReadOnlyReportComponent extends Component {
     )
   }
 }
+
+/* <div className="col-md-6 col-sm-12">
+  <ReadOnlyDataRenderer label="Age group" model={ model } name="age_group"/>
+</div>
+*/

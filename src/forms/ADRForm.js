@@ -38,10 +38,13 @@ class ADRForm extends FormComponent {
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.upload = this.upload.bind(this)
     this.setAgeGroup = this.setAgeGroup.bind(this)
+    this.calculateAgeGroup = this.calculateAgeGroup.bind(this)
+    this.onAgeChange = this.onAgeChange.bind(this)
 
     this.mandatory = [
       { name : "patient_name", text : "Patient Initials", page : 1 },
-      { name : "date_of_birth", text: "Date of bith", page : 1},
+      { name : "date_of_birth", text: "Date of bith", page : 1,  dependent: "age", value: ""},
+      { name : "age", text: "Age", page : 1,  dependent: "date_of_birth", value: ""},
       { name : "gender", text : "Sex", page : 1 },
       { name : "date_of_onset_of_reaction", text : "Date of onset", page : 2 },
       { name : 'description_of_reaction', text : "Description of ADR", page : 2},
@@ -112,7 +115,7 @@ class ADRForm extends FormComponent {
           <h4 className="text-center">Patient Details</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <AutoSuggestInput label="Clinic/Hospital Name" model={ model } name="name_of_institution"/>
+              <AutoSuggestInput label="Clinic/Hospital Name" model={ model } name="evaluator"/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Clinic/Hospital Number" model={ model } name="institution_code"/>
@@ -136,12 +139,12 @@ class ADRForm extends FormComponent {
               <DateSelectInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() } onChange={ this.setAgeGroup }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="Age group" model={ model } name="age_group" options={ AGE_GROUP } disabled={ "true" }/>
+              <TextInput label="Weight (Kg)" model={ model } name="weight" type="number"/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Weight (Kg)" model={ model } name="weight" type="number"/>
+              <TextInput label="OR Age" model={ model } name="age" type="number" onChange={ this.onAgeChange }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Height (centrimetres)" model={ model } name="height" type="number"/>
@@ -223,6 +226,14 @@ class ADRForm extends FormComponent {
               <TextInput label="Phone number" model={ model } name="reporter_phone"/>
             </div>
           </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="Institution Name" model={ model } name="institution_name"/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="Institution Address" model={ model } name="institution_address"/>
+            </div>
+          </div>
           <div className="container well">
             <div className="col-md-3 col-md-offset-1">
               <button className="btn btn-sm btn-primary" onClick={ this.saveAndContinue }>Save Changes</button>
@@ -246,24 +257,42 @@ class ADRForm extends FormComponent {
       const now = moment()
       const age = now.diff(time, 'years', true);
       const days = now.diff(time, 'days', true);
-      var age_group = ""
-      if(days <= 28) {
-        age_group = "neonate"
-      } else if(age >= 70) {
-        age_group = "elderly"
-      } else if(age >= 17) {
-        age_group = "adult"
-      } else if(age >= 12) {
-        age_group = "adolescent"
-      } else if(age >= 5) {
-        age_group = "child"
-      } else {
-        age_group = "infant"
-      }
+
+      var age_group = this.calculateAgeGroup(age, days)
+
       const { model } = this.state
       model['age_group'] = age_group
+      model['age'] = ""
       this.setState({ model })
     }
+  }
+
+  calculateAgeGroup(age, days) {
+    //const age = now.diff(time, 'years', true);
+    //const days = now.diff(time, 'days', true);
+    var age_group = ""
+    if(days <= 28) {
+      age_group = "neonate"
+    } else if(age >= 70) {
+      age_group = "elderly"
+    } else if(age >= 17) {
+      age_group = "adult"
+    } else if(age >= 12) {
+      age_group = "adolescent"
+    } else if(age >= 5) {
+      age_group = "child"
+    } else {
+      age_group = "infant"
+    }
+    return age_group
+  }
+
+  onAgeChange(age) {
+    var age_group = this.calculateAgeGroup(age)
+    const { model } = this.state
+    model['age_group'] = age_group
+    model['date_of_birth'] = ""
+    this.setState({ model })
   }
 
   /**
@@ -385,3 +414,8 @@ const mapDispatchToProps = dispatch => {
 export default connect(mapStateToProps, mapDispatchToProps)(ADRForm)
 
 //<ConcomitantTableComponent label="Concomitant (Other) drugs taken, including herbal medicines &amp; Dates/period taken: " name="sadr_other_drugs" model={ model }/>
+/*
+<div className="col-md-6 col-sm-12">
+  <SelectInput label="Age group" model={ model } name="age_group" options={ AGE_GROUP } disabled={ "true" }/>
+</div>
+*/
