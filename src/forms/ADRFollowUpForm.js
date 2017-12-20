@@ -106,7 +106,7 @@ class ADRFollowUpForm extends FormComponent {
           <span className="text-center">
             <img src="assets/images/mcaz_3.png" className="logo"></img>
           </span><br/>
-          Adverse Drug Reaction (ADR) Report Form
+        Adverse Drug Reaction (ADR) Report Form - Folow Up
         </h3>
         <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
         <hr/>

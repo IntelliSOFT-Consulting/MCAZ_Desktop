@@ -134,10 +134,16 @@ export default class AEFIReadOnlyReportComponent extends Component {
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Adverse events" required={ true }   name="adverse_events" model={ model } type="option" options={ AEFI_ADVERSE_EVENTS }/>
             </div>
+          </div>
+          <div className="container">
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Date and time AEFI started"  name="aefi_date" model={ model } showTime={ true } type="date" />
             </div>
+            <div className="col-md-6 col-sm-12">
+              <SingleMultipleInput label="Was patient hospitalized?"  name="patient_hospitalization" model={ model } inline={ true } options={ BOOLEAN_OPTIONS }/>
+            </div>
           </div>
+
           <div className="container">
             <div className="col-md-12 col-sm-12">
               <ReadOnlyDataRenderer label="Date patient notified event to health system" name="notification_date" model={ model } type="date"/>
@@ -202,7 +208,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
           <div className="container well">
             <div className="col-md-3 col-md-offset-1 btn-toolbar">
               <button className="btn btn-sm btn-default" onClick={ (e) => { e.preventDefault(); goBack(e) } }>Close</button>
-              { followUpBtn }
+            { followUpBtn }
             </div>
           </div>
         </form>

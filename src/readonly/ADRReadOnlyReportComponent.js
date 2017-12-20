@@ -103,7 +103,7 @@ export default class ADRReadOnlyReportComponent extends Component {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Serious" model={ model } name="severity" required={ true } type="option" options={ ["Yes", "No"] }/>
+              <ReadOnlyDataRenderer label="Serious" model={ model } name="severity" required={ true } type="option" options={ BOOLEAN_OPTIONS }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Reason for Seriousness" model={ model } name="severity_reason" type="option" options={ SEVERITY_REASON }/>

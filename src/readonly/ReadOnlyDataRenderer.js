@@ -25,7 +25,7 @@ export default class ReadOnlyDataRenderer extends Component {
       if(typeof model[name] == 'string') {
         values = model[name].split(",")
       } else {
-        values = [model[name]]
+        values = [model[name]] + ""
       }
 
       var renderValue = []

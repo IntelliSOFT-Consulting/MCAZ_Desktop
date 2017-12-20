@@ -3,6 +3,8 @@ import ADRReadOnlyReportComponent from './ADRReadOnlyReportComponent'
 import AEFIReadOnlyReportComponent from './AEFIReadOnlyReportComponent'
 import AEFIInvReadOnlyReportComponent from './AEFIInvReadOnlyReportComponent'
 import SAEReadOnlyComponent from './SAEReadOnlyComponent'
+import ADRFollowupReadOnlyComponent from "./ADRFollowupReadOnlyComponent"
+import AEFIFollowupReadOnlyComponent from "./AEFIFollowupReadOnlyComponent"
 import DateSelectInput from '../inputs/DateSelectInput'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import MedicationTableComponent from '../components/MedicationTableComponent'
@@ -12,6 +14,7 @@ import SelectInput from '../inputs/SelectInput'
 
 import { MAIN_PAGE, REPORT_TYPE_ADR, REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV } from '../utils/Constants'
 
+import { REPORT_TYPE_ADR_FOLLOW_UP, REPORT_TYPE_AEFI_FOLLOW_UP } from '../utils/Constants'
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setReport } from '../actions'
 
@@ -45,6 +48,12 @@ class ReadOnlyReportComponent extends Component {
         break
       case REPORT_TYPE_AEFI_INV :
         page = <AEFIInvReadOnlyReportComponent model={ model } goBack={ this.goBack } showPage={ this.showPage }/>
+        break
+      case REPORT_TYPE_ADR_FOLLOW_UP:
+        page = <ADRFollowupReadOnlyComponent model={ model } goBack={ this.goBack } showPage={ this.showPage }/>
+        break
+      case REPORT_TYPE_AEFI_FOLLOW_UP:
+        page = <AEFIFollowupReadOnlyComponent model={ model } goBack={ this.goBack }  />
         break
       default:
         page = null
