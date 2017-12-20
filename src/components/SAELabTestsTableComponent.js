@@ -96,12 +96,12 @@ export default class SAELabTestsTableComponent extends TableComponent {
         <table className="table table-condensed table-bordered">
           <thead>
             <tr>
-              <td>Lab test</td>
-              <td>Abnormal Result</td>
-              <td>Site Normal Range</td>
-              <td>Collection date</td>
-              <td>Lab value previous or subsequent to this event</td>
-              <td>Collection date</td>
+              <th>Lab test</th>
+              <th>Abnormal Result</th>
+              <th>Site Normal Range</th>
+              <th>Collection date</th>
+              <th>Lab value previous or subsequent to this event</th>
+              <th>Collection date</th>
               { lastCol }
             </tr>
           </thead>

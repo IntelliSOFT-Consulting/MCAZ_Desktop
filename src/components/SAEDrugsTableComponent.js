@@ -102,12 +102,12 @@ export default class SAEDrugsTableComponent extends TableComponent {
         <table className="table table-condensed table-bordered">
           <thead>
             <tr>
-              <td>Drug/Device/Vaccine</td>
-              <td colSpan="2">Dose<span className="required">*</span></td>
-              <td colSpan="2">Route & Frequency<span className="required">*</span></td>
-              <td>Date commenced</td>
-              <td>Taking drug at onset of SAE?<span className="required">*</span></td>
-              <td>Relationship of SAE to drug</td>
+              <th>Drug/Device/Vaccine</th>
+              <th colSpan="2">Dose<span className="required">*</span></th>
+              <th colSpan="2">Route & Frequency<span className="required">*</span></th>
+              <th>Date commenced</th>
+              <th>Taking drug at onset of SAE?<span className="required">*</span></th>
+              <th>Relationship of SAE to drug</th>
               { lastCol }
             </tr>
           </thead>

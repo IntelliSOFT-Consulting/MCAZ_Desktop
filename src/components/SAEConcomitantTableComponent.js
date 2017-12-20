@@ -9,6 +9,8 @@ import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
 
 import { FREQUENCY, ROUTE, DOSE, RELATIONSHIP_SAE } from '../utils/FieldOptions'
 
+import moment from 'moment'
+
 export default class SAEConcomitantTableComponent extends TableComponent {
 
   constructor(props) {
@@ -93,10 +95,10 @@ export default class SAEConcomitantTableComponent extends TableComponent {
         <table className="table table-condensed table-bordered">
           <thead>
             <tr>
-              <td colSpan="2">Name of drug<span className="required">*</span></td>
-              <td>Date started<span className="required">*</span></td>
-              <td>Date stopped</td>
-              <td>Relationship of SAE to medication<span className="required">*</span></td>
+              <th colSpan="2">Name of drug<span className="required">*</span></th>
+              <th>Date started<span className="required">*</span></th>
+              <th>Date stopped</th>
+              <th>Relationship of SAE to medication<span className="required">*</span></th>
               { lastCol }
             </tr>
           </thead>
