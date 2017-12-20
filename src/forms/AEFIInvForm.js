@@ -17,7 +17,7 @@ import moment from 'moment'
 import { MAIN_PAGE, REPORT_TYPE_AEFI_INV, SAEFI_URL } from '../utils/Constants'
 
 import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, STATUS_ON_DATE, DESIGNATION, INFANT_BIRTH_OPTS, MULTI_VIALS, DELIVERY_OPTS, SOURCE_INFO,
-  WHEN_VACCINATED, SYRINGES_USED, PLACE_VACCINATION, SITE_TYPE, VACCINATION_IN, BOOLEAN_UNABLE_OPTIONS } from '../utils/FieldOptions'
+  WHEN_VACCINATED, SYRINGES_USED, PLACE_VACCINATION, SITE_TYPE, VACCINATION_IN, BOOLEAN_UNABLE_OPTIONS, BOOLEAN_NA_OPTIONS } from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setNotification } from '../actions'
@@ -497,26 +497,26 @@ additional sheets if necessary)</h5>
           <div className="container">
             <h5>Reconstitution: (complete only if applicable,  NA if not applicable)</h5>
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Same reconstitution syringe used for multiple vials of same vaccine?" options={ BOOLEAN_OPTIONS } name="reconstitution_multiple" model={ model }/>
+              <SingleMultipleInput label="Same reconstitution syringe used for multiple vials of same vaccine?" options={ BOOLEAN_NA_OPTIONS } name="reconstitution_multiple" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Same reconstitution syringe used for reconstituting different vaccines?" model={ model } name="reconstitution_different" options={ BOOLEAN_OPTIONS } />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Separate reconstitution syringe for each vaccine vial?" name="reconstitution_vial" model={ model } options={ BOOLEAN_OPTIONS }/>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Separate reconstitution syringe for each vaccination?" name="reconstitution_syringe" model={ model } options={ BOOLEAN_OPTIONS }/>
+              <SingleMultipleInput label="Same reconstitution syringe used for reconstituting different vaccines?" model={ model } name="reconstitution_different" options={ BOOLEAN_NA_OPTIONS } />
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Are the vaccines and diluents used the same as those recommended by the manufacturer?" name="reconstitution_vaccines" model={ model } options={ BOOLEAN_OPTIONS }/>
+              <SingleMultipleInput label="Separate reconstitution syringe for each vaccine vial?" name="reconstitution_vial" model={ model } options={ BOOLEAN_NA_OPTIONS }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Specific key findings/additional observations and comments:" name="reconstitution_observations" model={ model }/>
+              <SingleMultipleInput label="Separate reconstitution syringe for each vaccination?" name="reconstitution_syringe" model={ model } options={ BOOLEAN_NA_OPTIONS }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <SingleMultipleInput label="Are the vaccines and diluents used the same as those recommended by the manufacturer?" name="reconstitution_vaccines" model={ model } options={ BOOLEAN_NA_OPTIONS }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <TextInput multiLine={ true } label="Specific key findings/additional observations and comments:" name="reconstitution_observations" model={ model }/>
             </div>
           </div>
           <hr />
@@ -610,7 +610,7 @@ additional sheets if necessary)</h5>
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <TextInput label="Other comments:" name="community_comments" model={ model }/>
+              <TextInput multiLine={ true } label="Other comments:" name="community_comments" model={ model }/>
             </div>
           </div>
           <hr/>
@@ -723,7 +723,7 @@ const mapStateToProps = state => {
     connection: state.appState.connection,
     model: state.appState.currentReport,
     followUp: state.appState.followUp,
-    token : state.appState.token,
+    token : state.appState.user.token,
     settings : state.appState.settings
   }
 }

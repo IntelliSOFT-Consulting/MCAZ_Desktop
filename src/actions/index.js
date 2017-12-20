@@ -95,7 +95,11 @@ export const uploadData = (data, url, token, updateProgress) => {
         dispatch(saveUploaded(json.followup))
         dispatch(removeCompleted(json.followup))
       } else {
-        console.log(JSON.stringify(json))
+        if(json.message != null) {
+          dispatch(setNotification({ message : json.message, level: "info", id: new Date().getTime() }))
+        } else {
+          dispatch(setNotification({ message : messages.erroruploading, level: "info", id: new Date().getTime() }))
+        }
         return
       }
       if(updateProgress) {
@@ -115,11 +119,11 @@ export const uploadData = (data, url, token, updateProgress) => {
   }
 }
 
-export const loggedIn = (token) => (
-  { type : LOGGED_IN, token }
+export const loggedIn = (user) => (
+  { type : LOGGED_IN, user }
 )
 
-export const logout = (token) => (
+export const logout = () => (
   { type : LOGOUT }
 )
 
@@ -132,7 +136,8 @@ export const login = (data) => {
     }).then(res => res.json()).then((json) => {
       console.log(json)
       if(json.success) {
-        dispatch(loggedIn(json.data.token))
+        const user = Object.assign({}, data, { token : json.data.token})
+        dispatch(loggedIn(user))
         dispatch(fetchAllReports(ADR_URL, json.data.token))
         dispatch(fetchAllReports(SAE_URL, json.data.token))
         dispatch(fetchAllReports(AEFI_URL, json.data.token))
@@ -155,7 +160,8 @@ export const signUp = (data) => {
       body: JSON.stringify(data)
     }).then(res => res.json()).then((json) => {
       if(json.token) {
-        dispatch(loggedIn(json.token))
+        const user = Object.assign({}, data, { token : json.token})
+        dispatch(loggedIn(user))
         //dispatch(showPage(MAIN_PAGE))
       } else {
         dispatch(setNotification({ message : messages.signup_error, level: "error", id: new Date().getTime() }))

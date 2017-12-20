@@ -132,7 +132,7 @@ const mapStateToProps = state => {
     completed: state.appState.completed,
     uploaded: state.appState.uploaded,
     notification: state.appState.notification,
-    token : state.appState.token,
+    token : state.appState.user.token,
     settings : state.appState.settings
   }
 }

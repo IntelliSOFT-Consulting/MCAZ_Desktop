@@ -140,7 +140,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
               <ReadOnlyDataRenderer label="Date and time AEFI started"  name="aefi_date" model={ model } showTime={ true } type="date" />
             </div>
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Was patient hospitalized?"  name="patient_hospitalization" model={ model } inline={ true } options={ BOOLEAN_OPTIONS }/>
+              <ReadOnlyDataRenderer label="Was patient hospitalized?"  name="patient_hospitalization" model={ model } inline={ true } type="option" options={ BOOLEAN_OPTIONS }/>
             </div>
           </div>
 

@@ -8,7 +8,7 @@ import FileInputComponent from '../inputs/FileInputComponent'
 import { MAIN_PAGE, REPORT_TYPE_AEFI_INV, SAEFI_URL } from '../utils/Constants'
 
 import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, STATUS_ON_DATE, DESIGNATION, INFANT_BIRTH_OPTS, MULTI_VIALS, DELIVERY_OPTS, SOURCE_INFO,
-  WHEN_VACCINATED, SYRINGES_USED, PLACE_VACCINATION, SITE_TYPE, VACCINATION_IN, BOOLEAN_UNABLE_OPTIONS } from '../utils/FieldOptions'
+  WHEN_VACCINATED, SYRINGES_USED, PLACE_VACCINATION, SITE_TYPE, VACCINATION_IN, BOOLEAN_UNABLE_OPTIONS, BOOLEAN_NA_OPTIONS } from '../utils/FieldOptions'
 
 export default class AEFIInvReadOnlyReportComponent extends Component {
 
@@ -439,23 +439,23 @@ additional sheets if necessary)</h5>
           <div className="container">
             <h5>Reconstitution: (complete only if applicable,  NA if not applicable)</h5>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer type="option"  label="Same reconstitution syringe used for multiple vials of same vaccine?" options={ BOOLEAN_OPTIONS } name="reconstitution_multiple" model={ model }/>
+              <ReadOnlyDataRenderer type="option"  label="Same reconstitution syringe used for multiple vials of same vaccine?" options={ BOOLEAN_NA_OPTIONS } name="reconstitution_multiple" model={ model }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Same reconstitution syringe used for reconstituting different vaccines?" model={ model } name="reconstitution_different" options={ BOOLEAN_OPTIONS } />
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Separate reconstitution syringe for each vaccine vial?" name="reconstitution_vial" model={ model } options={ BOOLEAN_OPTIONS }/>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Separate reconstitution syringe for each vaccination?" name="reconstitution_syringe" model={ model } options={ BOOLEAN_OPTIONS }/>
+              <ReadOnlyDataRenderer label="Same reconstitution syringe used for reconstituting different vaccines?" model={ model } name="reconstitution_different" options={ BOOLEAN_NA_OPTIONS } />
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Are the vaccines and diluents used the same as those recommended by the manufacturer?" name="reconstitution_vaccines" model={ model } options={ BOOLEAN_OPTIONS }/>
+              <ReadOnlyDataRenderer label="Separate reconstitution syringe for each vaccine vial?" name="reconstitution_vial" model={ model } options={ BOOLEAN_NA_OPTIONS }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <ReadOnlyDataRenderer label="Separate reconstitution syringe for each vaccination?" name="reconstitution_syringe" model={ model } options={ BOOLEAN_NA_OPTIONS }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <ReadOnlyDataRenderer label="Are the vaccines and diluents used the same as those recommended by the manufacturer?" name="reconstitution_vaccines" model={ model } options={ BOOLEAN_NA_OPTIONS }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Specific key findings/additional observations and comments:" name="reconstitution_observations" model={ model }/>

@@ -384,7 +384,7 @@ const mapStateToProps = state => {
     connection: state.appState.connection,
     model: state.appState.currentReport,
     followUp: state.appState.followUp,
-    token: state.appState.token,
+    token: state.appState.user.token,
     settings: state.appState.settings
   }
 }
