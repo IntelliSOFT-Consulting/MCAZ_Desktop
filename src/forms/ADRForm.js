@@ -268,8 +268,6 @@ class ADRForm extends FormComponent {
   }
 
   calculateAgeGroup(age, days) {
-    //const age = now.diff(time, 'years', true);
-    //const days = now.diff(time, 'days', true);
     var age_group = ""
     if(days <= 28) {
       age_group = "neonate"
@@ -341,7 +339,17 @@ class ADRForm extends FormComponent {
         }
         names += arrayNames.join(',\n')
       } else {
-        if(model[field.name] == null || model[field.name] === "") {
+        if(field.dependent) {
+          if((model[field.dependent] == field.value || (field.value == "" && model[field.name] == null)) && (model[field.name] == null || model[field.name] === "")) {
+            valid = false
+            if(names != "") {
+              names += ",\n "
+            } else {
+              page = field.page
+            }
+            names += field.text
+          }
+        } else if(model[field.name] == null || model[field.name] === "") {
           valid = false
           if(names != "") {
             names += ",\n "
