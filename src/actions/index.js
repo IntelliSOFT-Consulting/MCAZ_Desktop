@@ -1,4 +1,4 @@
-import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, SAVE_COMPLETED_REPORT, REMOVE_COMPLETED_REPORT, SET_SETTING,
+import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, SAVE_COMPLETED_REPORT, REMOVE_COMPLETED_REPORT, SET_SETTING, CLEAR_DATA,
  SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SET_REPORT_FILTER, CHANGE_CONNECTION_STATUS, SHOW_PAGE, SAVE_FETCHED_REPORTS,
  SET_REPORT, SET_NOTIFICATION, RESET_UPLOAD_STATUS, UPDATE_UPLOAD_STATUS, SET_FOLLOW_UP, LOGGED_IN, LOGOUT }  from './actionTypes'
 
@@ -128,7 +128,7 @@ export const logout = () => (
 )
 
 export const login = (data) => {
-  return dispatch => {
+  return (dispatch, getState) => {
     return fetch(LOGIN_URL, {
       method : "POST",
       headers: { "Accept" : "application/json", 'Content-Type': 'application/json' },
@@ -137,6 +137,10 @@ export const login = (data) => {
       console.log(json)
       if(json.success) {
         const user = Object.assign({}, data, { token : json.data.token})
+        const state = getState()
+        if(state.appState.user.username != null && state.appState.user.username != user.username) {
+          dispatch(clearData())
+        }
         dispatch(loggedIn(user))
         dispatch(fetchAllReports(ADR_URL, json.data.token))
         dispatch(fetchAllReports(SAE_URL, json.data.token))
@@ -152,6 +156,10 @@ export const login = (data) => {
   }
 }
 
+
+export const clearData = () => (
+  { type : CLEAR_DATA }
+)
 export const signUp = (data) => {
   return dispatch => {
     return fetch(SIGNUP_URL, {

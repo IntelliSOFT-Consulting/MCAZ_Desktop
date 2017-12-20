@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Confirm from "../dialogs/Confirm"
+
 import { MAIN_PAGE, SIGNUP_PAGE } from '../utils/Constants'
 
 
@@ -10,8 +12,10 @@ export default class LoginPage extends Component {
     this.getReport = this.getReport.bind(this)
     this.login = this.login.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.doLogin = this.doLogin.bind(this)
+    this.closeModal = this.closeModal.bind(this)
     const { completed, connection } = this.props
-    this.state = { email : "", password: '' }
+    this.state = { email : "", password: '', confirmClearData: false }
   }
 
   showPage(page, report) {
@@ -25,14 +29,24 @@ export default class LoginPage extends Component {
 
   login() {
     if(this.state.email != '' && this.state.password != '') {
-      const { login } = this.props
-      var data = {}
-      data.username = this.state.email
-      data.password = this.state.password
-      login(data)
+      if(this.props.user.username != null && this.state.email != this.props.user.username) {
+        this.setState({ confirmClearData : true })
+      } else {
+        this.doLogin()
+      }
+
     } else {
       this.setState({ validate: true })
     }
+  }
+
+  doLogin() {
+    this.setState({ confirmClearData : false })
+    const { login } = this.props
+    var data = {}
+    data.username = this.state.email
+    data.password = this.state.password
+    login(data)
   }
 
   handleChange(e) {
@@ -41,15 +55,35 @@ export default class LoginPage extends Component {
     this.setState(state)
   }
 
+  closeModal() {
+    this.setState({ confirmClearData : false })
+  }
+
   render() {
     const hasErrorEmail = this.state.validate && this.state.email == ""? " has-error " : ""
     const hasErrorPass = this.state.validate && this.state.password == ""? " has-error " : ""
+    var confirmClearData = null
+    if(this.state.confirmClearData) {
+      confirmClearData = (
+        <Confirm
+          visible={ this.state.confirmClearData }
+          title="Confirm"
+          cancel={ this.closeModal }
+          body={ "Another user has logged in using this machine, if you proceed it will wipe out all data, continue?" }
+          confirmText={ "Yes" }
+          confirmBSStyle={ "danger" }
+          onConfirm={ this.doLogin }
+          cancelText={ "No" }>
+        </Confirm>
+      )
+    }
     return(
       <div className="container-fluid">
+        { confirmClearData }
         <div className="login-signup-box">
           <div className={ `form-group ${hasErrorEmail}` }>
-            <label className="control-label form-input-label" htmlFor="exampleInputEmail1">Email address</label>
-            <input type="email" name="email" className="form-control" value={ this.state.email } id="exampleInputEmail1" placeholder="Email" onChange={ this.handleChange }/>
+            <label className="control-label form-input-label" htmlFor="exampleInputEmail1">Username</label>
+            <input type="email" name="email" className="form-control" value={ this.state.email } id="exampleInputEmail1" placeholder="Username" onChange={ this.handleChange }/>
           </div>
           <div className={ `form-group ${hasErrorPass}` }>
             <label className="control-label form-input-label" htmlFor="exampleInputPassword1">Password</label>

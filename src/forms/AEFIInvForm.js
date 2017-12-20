@@ -93,7 +93,7 @@ class AEFIInvForm extends FormComponent {
           <span className="text-center">
             <img src="assets/images/mcaz_3.png" className="logo"></img>
           </span><br/>
-        Serious Adverse Event After Immunization (AEFI) Investigation Form
+        Adverse Event After Immunization (AEFI) Investigation Form
         </h3>
         <h5 className="text-center">(Only for Serious Adverse Events Following Immunization - Death / Disability / Hospitalization / Cluster)</h5>
 

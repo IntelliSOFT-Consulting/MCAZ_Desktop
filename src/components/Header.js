@@ -58,7 +58,7 @@ export default class Header extends Component {
       <div className="jumbotron">
         { confirmLogout }
         <div className="container">
-          <h2>Medicines Control Authourity of Zimbabwe</h2>
+          <h2>Medicines Control Authority of Zimbabwe</h2>
           <p>SAE, ADR and AEFI electronic reportings.</p>
         </div>
         <nav className="navbar navbar-inverse navbar-fixed-top">
