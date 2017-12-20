@@ -9,7 +9,7 @@ import SelectInput from '../inputs/SelectInput'
 
 import { MAIN_PAGE, REPORT_TYPE_ADR, ADR_FOLLOW_UP_PAGE, REPORT_TYPE_ADR_FOLLOW_UP } from '../utils/Constants'
 
-import { SEVERITY_REASON, OUTCOME, DESIGNATION, ACTION_TAKEN, RELATEDNESS_TO_ADR} from '../utils/FieldOptions'
+import { SEVERITY_REASON, OUTCOME, DESIGNATION, ACTION_TAKEN, RELATEDNESS_TO_ADR, BOOLEAN_OPTIONS } from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
