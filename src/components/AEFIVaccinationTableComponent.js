@@ -38,7 +38,8 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
     return (
       <tr key={ Math.floor(Math.random() * 10000) }>
         <td><TextInput hideLabel={ true } name="vaccine_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><DatePickerInput hideLabel={ true } name="vaccination_date" model={ model[name][index] } validate={ this.state.validate } required={ true } showTime={ true } maxDate={ moment() }/></td>
+        <td><DatePickerInput hideLabel={ true } name="vaccination_date" model={ model[name][index] } validate={ this.state.validate } required={ true } maxDate={ moment() }/></td>
+        <td><TextInput hideLabel={ true } name="vaccination_time" model={ model[name][index] } validate={ this.state.validate } required={ true } showTime={ true } type="time" maxDate={ moment() }/></td>
         <td><TextInput hideLabel={ true } name="dosage" model={ model[name][index] } validate={ this.state.validate } required={ true } /></td>
         <td><TextInput hideLabel={ true } name="batch_number" model={ model[name][index] } /></td>
         <td><DatePickerInput hideLabel={ true } name="expiry_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
@@ -67,6 +68,7 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
       <tr key={ Math.floor(Math.random() * 10000) }>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="vaccine_name" model={ model[name][index] }/></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="vaccination_date" model={ model[name][index] } type="date"/></td>
+        <td><ReadOnlyDataRenderer hideLabel={ true } name="vaccination_time" model={ model[name][index] } type="time"/></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="dosage" model={ model[name][index] }  type="date" /></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="batch_number" model={ model[name][index] }  /></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="expiry_date" model={ model[name][index] } /></td>
@@ -106,7 +108,7 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
             <tr><th colSpan='5'>Vaccine</th><th colSpan={ diluentColSpan }>Diluent</th></tr>
             <tr>
               <th>Name<span className="required">*</span></th>
-              <th>Date and time of vaccination<span className="required">*</span></th>
+              <th colSpan="2">Date and time of vaccination<span className="required">*</span></th>
               <th>Dose</th>
               <th>Batch/Lot no<span className="required">*</span></th>
               <th>Expiry date</th>
