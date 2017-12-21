@@ -105,7 +105,7 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
         </h5>
         <table className="table table-condensed table-bordered">
           <thead>
-            <tr><th colSpan='5'>Vaccine</th><th colSpan={ diluentColSpan }>Diluent</th></tr>
+            <tr><th colSpan='6'>Vaccine</th><th colSpan={ diluentColSpan }>Diluent</th></tr>
             <tr>
               <th>Name<span className="required">*</span></th>
               <th colSpan="2">Date and time of vaccination<span className="required">*</span></th>

@@ -24,7 +24,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1200, height: 600})
+  mainWindow = new BrowserWindow({ width: 1200, height: 600 })
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -77,12 +77,8 @@ const { ipcMain } = require('electron')
 ipcMain.on('print', (event, arg) => {
   mainWindow.webContents.printToPDF({}, (error, data) => {
     if (error) throw error
-    fs.writeFile('/tmp/print.pdf', data, (error) => {
-      if (error) throw error
-      
-      event.sender.send('printed', data.toString('base64'))
-      console.log('Write PDF successfully.')
-    })
+    event.sender.send('printed', data.toString('base64'))
+    
   })
 })
 

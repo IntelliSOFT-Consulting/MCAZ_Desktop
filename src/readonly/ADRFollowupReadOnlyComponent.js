@@ -28,74 +28,78 @@ export default class ADRFollowupReadOnlyComponent extends Component {
   }
   render() {
     //var { model } = this.state
-    const { goBack, model } = this.props
+    const { goBack, model, printPDF } = this.props
 
     return (
       <div className='adr-form form'>
-        <h3 className="text-center">
-          <span className="text-center">
-            <img src="assets/images/mcaz_3.png" className="logo"></img>
-          </span><br/>
-        Adverse Drug Reaction (ADR) Report Form - Follow Up
-        </h3>
-        <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
+        <div id="form-read-only">
+          <h3 className="text-center">
+            <span className="text-center">
+              <img src="assets/images/mcaz_3.png" className="logo"></img>
+            </span><br/>
+          Adverse Drug Reaction (ADR) Report Form - Follow Up
+          </h3>
+          <h5 className="text-center">Identities of Reporter, Patient and Institute will remain confidential</h5>
 
-        <form className="form-horizontal">
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="MCAZ Ref #" model={ model } name="reference_number"/>
+          <form className="form-horizontal">
+            <div className="container">
+              <div className="col-md-6 col-sm-12">
+                <ReadOnlyDataRenderer label="MCAZ Ref #" model={ model } name="reference_number"/>
+              </div>
             </div>
-          </div>
-          <hr/>
-          <h4 className="text-center">Adverse Reaction</h4>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Date of onset of reaction" model={ model } type="date"  required={ true } name="date_of_onset_of_reaction"/>
+            <hr/>
+            <h4 className="text-center">Adverse Reaction</h4>
+            <div className="container">
+              <div className="col-md-6 col-sm-12">
+                <ReadOnlyDataRenderer label="Date of onset of reaction" model={ model } type="date"  required={ true } name="date_of_onset_of_reaction"/>
+              </div>
+              <div className="col-md-6 col-sm-12">
+                <ReadOnlyDataRenderer label="Date of end of reaction (if it ended)" type="date"  model={ model } name="date_of_end_of_reaction"/>
+              </div>
             </div>
-            <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Date of end of reaction (if it ended)" type="date"  model={ model } name="date_of_end_of_reaction"/>
+            <div className="container">
+              <div className="col-md-12 col-sm-12">
+                <ReadOnlyDataRenderer label="Description of ADR" multiLine={ true } model={ model } name="description_of_reaction"/>
+              </div>
             </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <ReadOnlyDataRenderer label="Description of ADR" multiLine={ true } model={ model } name="description_of_reaction"/>
+            <div className="container">
+              <div className="col-md-6 col-sm-12">
+                <ReadOnlyDataRenderer label="Serious" model={ model } name="severity" required={ true } type="option" options={ BOOLEAN_OPTIONS }/>
+              </div>
+              <div className="col-md-6 col-sm-12">
+                <ReadOnlyDataRenderer label="Reason for Seriousness" model={ model } name="severity_reason" type="option" options={ SEVERITY_REASON }/>
+              </div>
             </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Serious" model={ model } name="severity" required={ true } type="option" options={ BOOLEAN_OPTIONS }/>
+            <div className="container">
+              <div className="col-md-6 col-sm-12">
+                <ReadOnlyDataRenderer label="Relevant Medical History" multiLine={ true } model={ model } name="medical_history"/>
+              </div>
+              <div className="col-md-6 col-sm-12">
+                <ReadOnlyDataRenderer label="Relevant Past Drug Therapy" multiLine={ true } model={ model } name="past_drug_therapy"/>
+              </div>
             </div>
-            <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Reason for Seriousness" model={ model } name="severity_reason" type="option" options={ SEVERITY_REASON }/>
+            <div className="container">
+              <div className="col-md-12 col-sm-12">
+                <ReadOnlyDataRenderer label="Laboratory tests results:" multiLine={ true } model={ model } name="lab_test_results"/>
+              </div>
             </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Relevant Medical History" multiLine={ true } model={ model } name="medical_history"/>
+            <hr/>
+            <div className="container">
+              <MedicationTableComponent label="Current Medication (including OTC and herbals) "  readonly={ true } name="sadr_list_of_drugs" model={ model }/>
             </div>
-            <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Relevant Past Drug Therapy" multiLine={ true } model={ model } name="past_drug_therapy"/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <ReadOnlyDataRenderer label="Laboratory tests results:" multiLine={ true } model={ model } name="lab_test_results"/>
-            </div>
-          </div>
-          <hr/>
-          <div className="container">
-            <MedicationTableComponent label="Current Medication (including OTC and herbals) "  readonly={ true } name="sadr_list_of_drugs" model={ model }/>
-          </div>
 
-          <hr/>
-          <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them:" readonly={ true }  name="attachments" model={ model }/>
-          <hr/>
-          <div className="container well">
-            <div className="col-md-3 col-md-offset-1 btn-toolbar">
-              <button className="btn btn-sm btn-primary" onClick={ (e) => { e.preventDefault(); goBack(e) } }>Close</button>
-            </div>
+            <hr/>
+            <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them:" readonly={ true }  name="attachments" model={ model }/>
+            <hr/>
+
+          </form>
+        </div>
+        <div className="container well">
+          <div className="col-md-3 col-md-offset-1 btn-toolbar">
+            <button className="btn btn-sm btn-primary" onClick={ (e) => { e.preventDefault(); goBack(e) } }>Close</button>
+            <button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); printPDF() } }>Get PDF</button>
           </div>
-        </form>
+        </div>
       </div>
     )
   }
