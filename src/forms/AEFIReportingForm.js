@@ -13,7 +13,7 @@ import AgeAtOnSetInput from '../inputs/AgeAtOnSetInput'
 import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
 import AEFIDilutentTableComponent from '../components/AEFIDilutentTableComponent'
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
-import AEFIAdverseEventsInputs from "../inputs/AEFIAdverseEventsInputs"
+import AEFIAdverseEventsInput from "../inputs/AEFIAdverseEventsInput"
 
 import moment from 'moment'
 
@@ -192,7 +192,7 @@ class AEFIReportingForm extends FormComponent {
 
           <h5 className="text-center">Adverse events</h5>
           <div className="container">
-            <AEFIAdverseEventsInputs label="Adverse events" model={ model } options={ AEFI_ADVERSE_EVENTS } name="adverse_events" />
+            <AEFIAdverseEventsInput label="Adverse events" model={ model } options={ AEFI_ADVERSE_EVENTS } name="adverse_events" />
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">

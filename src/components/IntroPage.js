@@ -64,7 +64,7 @@ export default class IntroPage extends Component {
   }
 
   render() {
-    const { uploaded, showPage, fetchReport, token } = this.props
+    const { uploaded, showPage, fetchReport, token, removeDraft } = this.props
     const disabled = this.state.connection.isConnected? null : " disabled "
     return(
       <div>
@@ -77,7 +77,7 @@ export default class IntroPage extends Component {
               <button type="button" className="btn btn-sm btn-default btn-primary adr-form" onClick={ () => this.showPage(ADR_FORM_PAGE) }>Report</button>
 
             </div>
-            <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_ADR, REPORT_TYPE_ADR_FOLLOW_UP) } completed={ this.getReport(this.props.completed, REPORT_TYPE_ADR, REPORT_TYPE_ADR_FOLLOW_UP) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_ADR, REPORT_TYPE_ADR_FOLLOW_UP) } showPage={ this.showPage } type={ ADR_FORM_PAGE }/>
+            <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_ADR, REPORT_TYPE_ADR_FOLLOW_UP) } completed={ this.getReport(this.props.completed, REPORT_TYPE_ADR, REPORT_TYPE_ADR_FOLLOW_UP) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_ADR, REPORT_TYPE_ADR_FOLLOW_UP) } showPage={ this.showPage } type={ ADR_FORM_PAGE } removeDraft={ removeDraft }/>
           </div>
           <div className="col-md-3 col-sm-4">
             <h3>AEFI</h3>
@@ -86,7 +86,7 @@ export default class IntroPage extends Component {
               <button type="button" className="btn btn-sm btn-default btn-primary aefi-form" onClick={ () => this.showPage(AEFI_REPORT_PAGE) }>Report</button>
 
             </div>
-            <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_FOLLOW_UP) } completed={  this.getReport(this.props.completed, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_FOLLOW_UP) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_FOLLOW_UP) } showPage={ this.showPage } type={ AEFI_REPORT_PAGE }/>
+            <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_FOLLOW_UP) } completed={  this.getReport(this.props.completed, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_FOLLOW_UP) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_FOLLOW_UP) } showPage={ this.showPage } type={ AEFI_REPORT_PAGE } removeDraft={ removeDraft }/>
           </div>
           <div className="col-md-3 col-sm-4">
             <h3>AEFI Inv.</h3>
@@ -95,7 +95,7 @@ export default class IntroPage extends Component {
               <button type="button" className="btn btn-sm btn-default btn-primary aefi-form" onClick={ () => this.showPage(AEFI_INV_PAGE) }>Report</button>
 
             </div>
-            <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_AEFI_INV) } completed={  this.getReport(this.props.completed, REPORT_TYPE_AEFI_INV) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_AEFI_INV) } showPage={ this.showPage } type={ AEFI_INV_PAGE }/>
+            <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_AEFI_INV) } completed={  this.getReport(this.props.completed, REPORT_TYPE_AEFI_INV) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_AEFI_INV) } showPage={ this.showPage } type={ AEFI_INV_PAGE } removeDraft={ removeDraft }/>
           </div>
           <div className="col-md-3 col-sm-4">
             <h3>SAE</h3>
@@ -104,7 +104,7 @@ export default class IntroPage extends Component {
               <button type="button" className="btn btn-sm btn-primary sae-form" onClick={ () => this.showPage(SAE_FORM_PAGE) }>Report</button>
 
             </div>
-            <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_SAE) } completed={ this.getReport(this.props.completed, REPORT_TYPE_SAE) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_SAE) } showPage={ this.showPage } type={ SAE_FORM_PAGE }/>
+            <ReportListComponent drafts={ this.getReport(this.props.drafts, REPORT_TYPE_SAE) } completed={ this.getReport(this.props.completed, REPORT_TYPE_SAE) } uploaded={ this.getReport(this.props.uploaded, REPORT_TYPE_SAE) } showPage={ this.showPage } type={ SAE_FORM_PAGE } removeDraft={ removeDraft }/>
           </div>
         </div>
         <div className="container">

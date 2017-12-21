@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Pagination from "./Pagination"
+import Confirm from "../dialogs/Confirm"
 
 import { ADR_FORM_PAGE, ADR_FOLLOW_UP_PAGE, AEFI_REPORT_PAGE, AEFI_FOLLOW_UP_PAGE } from '../utils/Constants'
 
@@ -13,10 +14,13 @@ export default class ReportListComponent extends Component {
     this.getRows = this.getRows.bind(this)
     this.changeType = this.changeType.bind(this)
     this.handlePageChange = this.handlePageChange.bind(this)
+    this.confirmDeleteReport = this.confirmDeleteReport.bind(this)
+    this.closeModal = this.closeModal.bind(this)
+    this.removeDraft = this.removeDraft.bind(this)
 
     const { model, name, validate, drafts, completed, uploaded } = this.props
 
-    this.state = { current : "", total : (drafts.length + completed.length + uploaded.length), activePage : 1 }
+    this.state = { current : "", total : (drafts.length + completed.length + uploaded.length), activePage : 1, confirmDeleteReport: false }
   }
 
   changeType(e) {
@@ -63,13 +67,29 @@ export default class ReportListComponent extends Component {
       const ref = report.reference_number != null? report.reference_number : new Date(report.rid).toString()
       const followUp = report.report_type == "FollowUp"? "Follow-Up" : ""
       const modified = report.created != null? report.created : new Date(report.rid).toString()
+      var found = drafts.find((i) => i.rid == report.rid)
+      const deleteIcon = found != null? (<button type="button" onClick={ () =>  this.confirmDeleteReport(report) } className="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>) : null
       return (
         <tr key={ index }>
-          <td>{ start + index + 1 }</td><td className="pointer" onClick={ () => this.openReport(report) }>{ ref + " " + followUp }</td><td>{ modified }</td>
+          <td>{ start + index + 1 }</td><td className="pointer" onClick={ () => this.openReport(report) }>{ ref + " " + followUp }</td>
+          <td>
+            { modified }
+            { deleteIcon }
+          </td>
         </tr>
       )
     })
     return rows
+  }
+
+  confirmDeleteReport(item) {
+    this.setState({ confirmDeleteReport : true, deleteItem : item })
+  }
+
+  removeDraft() {
+    const { removeDraft } = this.props
+    const { deleteItem } = this.state
+    removeDraft(deleteItem)
   }
 
   openReport(report) {
@@ -93,10 +113,33 @@ export default class ReportListComponent extends Component {
     }
   }
 
+
+  closeModal() {
+    this.setState({ confirmDeleteReport : false })
+  }
+
   render() {
     const { drafts, completed, uploaded } = this.props
+
+    var confirmDelete = null
+    if(this.state.confirmDeleteReport) {
+      confirmDelete = (
+        <Confirm
+          visible={ this.state.confirmDeleteReport }
+          title="Confirm"
+          cancel={ this.closeModal }
+          body={ "Delete this report?" }
+          confirmText={ "Yes" }
+          confirmBSStyle={ "danger" }
+          onConfirm={ this.removeDraft }
+          cancelText={ "No" }
+          >
+        </Confirm>
+      )
+    }
+
     return (
-      <div className="saved-reports">
+      <div className="saved-reports"> { confirmDelete }
         <select className="input-sm form-control top-margins" value={ this.state.current } onChange={ this.changeType }>
           <option value="">All ({ drafts.length + completed.length + uploaded.length })</option>
           <option value="drafts">Draft ({ drafts.length })</option>
