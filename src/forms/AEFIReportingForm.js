@@ -13,6 +13,7 @@ import AgeAtOnSetInput from '../inputs/AgeAtOnSetInput'
 import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
 import AEFIDilutentTableComponent from '../components/AEFIDilutentTableComponent'
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
+import AEFIAdverseEventsInputs from "../inputs/AEFIAdverseEventsInputs"
 
 import moment from 'moment'
 
@@ -20,7 +21,8 @@ import messages from '../utils/messages.json'
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI, AEFI_URL } from '../utils/Constants'
 
-import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, DESIGNATION, AEFI_OUTCOME, AEFI_ADVERSE_EVENTS, AGE_ON_ONSET, PROVINCES } from '../utils/FieldOptions'
+import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON, SEIZURES, DESIGNATION, AEFI_OUTCOME, AEFI_ADVERSE_EVENTS, AGE_ON_ONSET, PROVINCES,
+  SEVERE_LOCAL_REACTIONS } from '../utils/FieldOptions'
 import { AEFI_MANDATORY_FIELS } from '../utils/FormFields'
 
 import { connect } from 'react-redux'
@@ -36,7 +38,7 @@ class AEFIReportingForm extends FormComponent {
       model = { rid : Date.now(), type : REPORT_TYPE_AEFI, data_source: "desktop", device_type : settings.device_type }
     }
 
-    model = {"rid":1513769472702,"type":"REPORT_TYPE_AEFI","data_source":"desktop","device_type":"darwin","patient_name":"JM","patient_surname":"M","patient_address":"Kiambu","gender":"Male","date_of_birth":"4-10-2009","age_at_onset_days":"","age_at_onset_months":"","age_at_onset_years":"","reporter_name":"Simon","name_of_vaccination_center":"Vaccination centre","aefi_list_of_vaccines":[{"vaccine_name":"ss","vaccination_date":"12-11-2017 15:37","dosage":"s","batch_number":"s","expiry_date":"19-11-2017","diluent_batch_number":"s","diluent_expiry_date":"18-11-2017","diluent_date":"3-11-2017 15:35"}],"ae_anaphylaxis":"1","adverse_events":"ae_anaphylaxis","serious":"No","outcome":"Recovered with sequelae","national_receive_date":"13-11-2017","district_receive_date":"18-11-2017"}
+    //model = {"rid":1513769472702,"type":"REPORT_TYPE_AEFI","data_source":"desktop","device_type":"darwin","patient_name":"JM","patient_surname":"M","patient_address":"Kiambu","gender":"Male","date_of_birth":"4-10-2009","age_at_onset_days":"","age_at_onset_months":"","age_at_onset_years":"","reporter_name":"Simon","name_of_vaccination_center":"Vaccination centre","aefi_list_of_vaccines":[{"vaccine_name":"ss","vaccination_date":"12-11-2017 15:37","dosage":"s","batch_number":"s","expiry_date":"19-11-2017","diluent_batch_number":"s","diluent_expiry_date":"18-11-2017","diluent_date":"3-11-2017 15:35"}],"ae_anaphylaxis":"1","adverse_events":"ae_anaphylaxis","serious":"No","outcome":"Recovered with sequelae","national_receive_date":"13-11-2017","district_receive_date":"18-11-2017"}
 
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.validateDateofBirth = this.validateDateofBirth.bind(this)
@@ -190,12 +192,7 @@ class AEFIReportingForm extends FormComponent {
 
           <h5 className="text-center">Adverse events</h5>
           <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Adverse events" required={ true } multiple={ true } validate={ this.state.validate }  name="adverse_events" model={ model } options={ AEFI_ADVERSE_EVENTS }/>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="If other, specify"  name="adverse_events_specify" model={ model } showTime={ true }/>
-            </div>
+            <AEFIAdverseEventsInputs label="Adverse events" model={ model } options={ AEFI_ADVERSE_EVENTS } name="adverse_events" />
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
@@ -415,3 +412,16 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AEFIReportingForm)
+
+/*
+<div className="container">
+  <div className="col-md-6 col-sm-12">
+    <SingleMultipleInput label="Adverse events" required={ true } multiple={ true } validate={ this.state.validate }  name="adverse_events" model={ model } options={ AEFI_ADVERSE_EVENTS }/>
+  </div>
+  <div className="col-md-6 col-sm-12">
+    <SingleMultipleInput label="Severe local reaction" required={ true } inline={ true } validate={ this.state.validate }  name="adverse_events" model={ model } options={ SEVERE_LOCAL_REACTIONS }/>
+    <SingleMultipleInput label="Seizures" required={ true } validate={ this.state.validate } inline={ true } name="adverse_events" model={ model } options={ SEIZURES }/>
+    <TextInput label="If other, specify"  name="adverse_events_specify" model={ model } showTime={ true }/>
+  </div>
+</div>
+*/

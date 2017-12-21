@@ -311,13 +311,21 @@ export const AEFI_ADVERSE_EVENTS = [
   { key : "ae_abscess", value: "Abscess"}, { key : "ae_sepsis", value: "Sepsis"},
   { key : "ae_encephalopathy", value: "Encephalopathy"}, { key : "ae_toxic_shock", value: "Toxic shock syndrome"},
   { key : "ae_thrombocytopenia", value: "Thrombocytopenia"}, { key : "ae_anaphylaxis", value: "Anaphylaxis"},
-  { key : "ae_fever", value: "Fever≥38°C"}, { key : "ae_3days", value: ">3 days"},
-  { key : "ae_febrile", value: "febrile"}, { key : "ae_beyond_joint", value: "beyond nearest joint"},
-  { key : "ae_afebrile", value: "afebrile"}, { key: "ae_other", value: "Other (specify)"}
+  { key : "ae_fever", value: "Fever≥38°C"},
+  { key: "ae_other", value: "Other (specify)"}
 ]
 
 export const AEFI_OUTCOME = [ { key : "", value: ""},
   { key : 'Recovering', value : 'Recovering'}, { key : 'Recovered', value : 'Recovered'},
   { key : 'Not recovered', value : 'Not recovered'}, { key: 'Recovered with sequelae', value: 'Recovered with sequelae'},
   { key : 'Died', value : 'Died'}, { key : 'Unknown', value : 'Unknown'}
+]
+
+export const SEVERE_LOCAL_REACTIONS = [
+  { key : "ae_3days", value: ">3 days"}, { key : "ae_beyond_joint", value: "beyond nearest joint"}
+]
+
+export const SEIZURES = [
+  { key : "ae_febrile", value: "febrile"},
+  { key : "ae_afebrile", value: "afebrile"}
 ]
