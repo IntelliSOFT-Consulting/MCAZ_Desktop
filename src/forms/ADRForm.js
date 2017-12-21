@@ -41,6 +41,7 @@ class ADRForm extends FormComponent {
     this.calculateAgeGroup = this.calculateAgeGroup.bind(this)
     this.onAgeChange = this.onAgeChange.bind(this)
     this.onSelectOfInstitution = this.onSelectOfInstitution.bind(this)
+    this.closeModal = this.closeModal.bind(this)
 
     this.mandatory = [
       { name : "patient_name", text : "Patient Initials", page : 1 },
@@ -55,6 +56,10 @@ class ADRForm extends FormComponent {
       { name : 'action_taken', text : "Action taken", page : 3 },
       { name : "reporter_name", text : "Reporter name", page : 4 },
       { name : "designation_id", text : "Designation", page : 4 }, { name : "reporter_email", text : "Email Address", page : 4 }]
+  }
+
+  closeModal() {
+    this.setState({ confirmVisible : false, confirmCancel : false })
   }
 
   render() {

@@ -7,6 +7,8 @@ const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const url = require('url')
 
+const fs = require('fs')
+
 
 //handle setupevents as quickly as possible
  const setupEvents = require('./installers/setupEvents')
@@ -71,6 +73,18 @@ app.on('activate', function () {
 
 
 const { ipcMain } = require('electron')
+
+ipcMain.on('print', (event, arg) => {
+  mainWindow.webContents.printToPDF({}, (error, data) => {
+    if (error) throw error
+    fs.writeFile('/tmp/print.pdf', data, (error) => {
+      if (error) throw error
+      
+      event.sender.send('printed', data.toString('base64'))
+      console.log('Write PDF successfully.')
+    })
+  })
+})
 
 ipcMain.on('get-info', (event, arg) => {
   const os = require('os')

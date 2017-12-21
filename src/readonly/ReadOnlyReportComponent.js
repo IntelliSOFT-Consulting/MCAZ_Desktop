@@ -35,10 +35,11 @@ class ReadOnlyReportComponent extends Component {
 
   render() {
     var { model } = this.state
+    const { printPDF } = this.props
     var page = null
     switch(model.type) {
       case REPORT_TYPE_ADR :
-        page = <ADRReadOnlyReportComponent model={ model } goBack={ this.goBack } showPage={ this.showPage }/>
+        page = <ADRReadOnlyReportComponent model={ model } goBack={ this.goBack } showPage={ this.showPage } printPDF={ printPDF }/>
         break
       case REPORT_TYPE_SAE:
         page = <SAEReadOnlyComponent model={ model } goBack={ this.goBack }/>

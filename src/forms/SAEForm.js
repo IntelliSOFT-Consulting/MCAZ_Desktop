@@ -41,6 +41,11 @@ class SAEForm extends FormComponent {
 
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.upload = this.upload.bind(this)
+    this.closeModal = this.closeModal.bind(this)
+  }
+
+  closeModal() {
+    this.setState({ confirmVisible : false, confirmCancel : false })
   }
 
   render() {

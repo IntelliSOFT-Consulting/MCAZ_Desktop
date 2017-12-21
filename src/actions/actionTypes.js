@@ -31,3 +31,5 @@ export const SAVE_FETCHED_FOLLOW_UP_REPORTS = 'SAVE_FETCHED_FOLLOW_UP_REPORTS'
 export const REMOVE_UPLOADED_FOLLOW_UP_REPORT = 'REMOVE_UPLOADED_FOLLOW_UP_REPORT'
 
 export const CLEAR_DATA = 'CLEAR_DATA' // alert to clear data.
+
+export const PRINT = 'PRINT' // print data

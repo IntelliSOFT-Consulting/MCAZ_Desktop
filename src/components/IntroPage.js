@@ -5,6 +5,7 @@ import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, REPORTS_LIST
 import ReportListComponent from './ReportListComponent'
 import ReportSearchComponent from './ReportSearchComponent'
 
+import { saveAs } from 'file-saver'
 
 export default class IntroPage extends Component {
 
@@ -51,16 +52,11 @@ export default class IntroPage extends Component {
     reports.aefi = completed.filter(report => report.type == REPORT_TYPE_AEFI)
     reports.saefi = completed.filter(report => report.type == REPORT_TYPE_AEFI_INV)
 
-    const string = JSON.stringify(reports)
     const name = new Date().toString().split(/ /).join('_') + '.json'
-    const url = window.URL.createObjectURL(new Blob([string], { type : "text/plain" }));
-    const anchor = document.createElement('a');
 
-    document.body.appendChild(anchor);
-    anchor.href = url;
-    anchor.download = name ;
-    anchor.style = 'display: none';
-    anchor.click();
+    const string = JSON.stringify(reports)
+    saveAs(new Blob([string], { type : "text/plain" }), name)
+
   }
 
   render() {

@@ -14,12 +14,16 @@ import AEFIReportFollowupForm from '../forms/AEFIReportFollowupForm'
 
 var NotificationSystem = require('react-notification-system')
 
+import b64toBlob from 'b64-to-blob'
+import { saveAs } from 'file-saver'
+
 import { connect } from 'react-redux'
 
 import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, REPORTS_LIST_PAGE, READ_ONLY_PAGE, LOGIN_PAGE, SIGNUP_PAGE, ADR_FOLLOW_UP_PAGE,
   AEFI_FOLLOW_UP_PAGE } from '../utils/Constants'
 
-import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification, setFollowUp, login, signUp, logout, fetchReport, fetchDeviceInfo, removeDraft } from '../actions'
+import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification, setFollowUp, login, signUp, logout, fetchReport,
+  fetchDeviceInfo, removeDraft, printPDF, downloadPDF } from '../actions'
 
 class Home extends Component {
   _notificationSystem: null
@@ -58,7 +62,7 @@ class Home extends Component {
       case AEFI_INV_PAGE:
         return <AEFIInvForm />
       case READ_ONLY_PAGE:
-        return <ReadOnlyReportComponent />
+        return <ReadOnlyReportComponent {...this.props}/>
       case LOGIN_PAGE:
         return <LoginPage {...this.props}/>
       case SIGNUP_PAGE:
@@ -108,8 +112,27 @@ class Home extends Component {
     fetchDeviceInfo()
   }
 
+  downloadData(data, report) {
+    var contentType = 'application/pdf';
+
+    //var blob = b64toBlob(data, contentType)
+
+    var binary_string =  window.atob(data);
+    var len = binary_string.length;
+    var bytes = new Uint8Array( len );
+    for (var i = 0; i < len; i++)        {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    const name = report != null ? report.reference_number : "report"
+    var blob = new Blob([bytes.buffer], { type : "application/pdf" })
+    saveAs(blob, name + ".pdf")
+
+    const { downloadPDF } = this.props
+    downloadPDF()
+  }
+
   componentWillReceiveProps(nextProps) {
-    const { notification, showPage } = this.props
+    const { notification, showPage, print, downloadPDF } = this.props
     const nextNotification = nextProps.notification
     if(nextNotification && ((notification && notification.id != nextNotification.id) || notification == null)) {
       this._addNotification(nextNotification)
@@ -120,6 +143,11 @@ class Home extends Component {
       showPage(LOGIN_PAGE)
     } else if(token == null && nextProps.token != null) {
       showPage(MAIN_PAGE)
+    }
+    if(print == null && nextProps.print != null) {
+      this.downloadData(nextProps.print, nextProps.currentReport)
+    } else if(nextProps.print != null) {
+      downloadPDF()
     }
   }
 }
@@ -134,7 +162,9 @@ const mapStateToProps = state => {
     notification: state.appState.notification,
     token : state.appState.user.token,
     settings : state.appState.settings,
-    user: state.appState.user
+    user: state.appState.user,
+    print: state.appState.print,
+    currentReport: state.appState.currentReport
   }
 }
 
@@ -175,6 +205,12 @@ const mapDispatchToProps = dispatch => {
     },
     removeDraft: (draft) => {
       dispatch(removeDraft(draft))
+    },
+    printPDF: () => {
+      dispatch(printPDF())
+    },
+    downloadPDF: () => {
+      dispatch(downloadPDF(null))
     },
     dispatch: dispatch
   }

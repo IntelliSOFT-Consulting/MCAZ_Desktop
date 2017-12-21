@@ -45,6 +45,7 @@ class ADRFollowUpForm extends FormComponent {
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.upload = this.upload.bind(this)
     this.setAgeGroup = this.setAgeGroup.bind(this)
+    this.closeModal = this.closeModal.bind(this)
 
     this.mandatory = [
       { name : "date_of_onset_of_reaction", text : "Date of onset", page : 2 },
@@ -54,6 +55,10 @@ class ADRFollowUpForm extends FormComponent {
         { name : "frequency_id", text : "Frequency" }, { name : "start_date", text : "Start date" }]}, // , { name : "suspected_drug", text : "Tick suspected medicine" }
 
     ]
+  }
+
+  closeModal() {
+    this.setState({ confirmVisible : false, confirmCancel : false })
   }
 
   render() {

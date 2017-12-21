@@ -7,6 +7,8 @@ import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import ConcomitantTableComponent from '../components/ConcomitantTableComponent'
 import SelectInput from '../inputs/SelectInput'
 
+import b64toBlob from 'b64-to-blob'
+
 import { MAIN_PAGE, REPORT_TYPE_ADR, ADR_FOLLOW_UP_PAGE, REPORT_TYPE_ADR_FOLLOW_UP } from '../utils/Constants'
 
 import { SEVERITY_REASON, OUTCOME, DESIGNATION, ACTION_TAKEN, RELATEDNESS_TO_ADR, BOOLEAN_OPTIONS } from '../utils/FieldOptions'
@@ -23,16 +25,25 @@ export default class ADRReadOnlyReportComponent extends Component {
       model = {}
     }
     this.state = { model : model, validate : null }
+    this.print = this.print.bind(this)
+
     //this.saveAndContinue = this.saveAndContinue.bind(this)
 
   }
+
+  print() {
+
+
+
+  }
+
   render() {
     //var { model } = this.state
-    const { goBack, model, showPage } = this.props
+    const { goBack, model, showPage, printPDF } = this.props
     const newFollowUp = { rid : Date.now(), "type": REPORT_TYPE_ADR_FOLLOW_UP, parent_reference : model.reference_number, report_type : "FollowUp" }
     const followUpBtn = model.reference_number != null? (<button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); showPage(ADR_FOLLOW_UP_PAGE, newFollowUp) } }>Create follow-up report</button>) : null
     return (
-      <div className='adr-form form'>
+      <div className='adr-form form' id='adr-form-readonly'>
         <h3 className="text-center">
           <span className="text-center">
             <img src="assets/images/mcaz_3.png" className="logo"></img>
@@ -167,9 +178,10 @@ export default class ADRReadOnlyReportComponent extends Component {
             </div>
           </div>
           <div className="container well">
-            <div className="col-md-3 col-md-offset-1 btn-toolbar">
+            <div className="col-md-6 col-md-offset-1 btn-toolbar">
               <button className="btn btn-sm btn-primary" onClick={ (e) => { e.preventDefault(); goBack(e) } }>Close</button>
               { followUpBtn }
+              <button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); printPDF() } }>Get PDF</button>
             </div>
           </div>
         </form>

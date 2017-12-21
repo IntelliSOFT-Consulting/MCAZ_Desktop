@@ -44,8 +44,13 @@ class AEFIReportingForm extends FormComponent {
     this.validateDateofBirth = this.validateDateofBirth.bind(this)
     this.validateAge = this.validateAge.bind(this)
     this.upload = this.upload.bind(this)
+    this.closeModal = this.closeModal.bind(this)
 
     this.state = { model , validate : null, confirmVisible : false, confirmCancel : false }
+  }
+
+  closeModal() {
+    this.setState({ confirmVisible : false, confirmCancel : false })
   }
 
   render() {
