@@ -87,7 +87,7 @@ export default class SelectInput extends Component {
     if(dependent) {
       valid = subQuestionsValidator(name, dependent, model)
     } else {
-      valid = this.state.value == ''? false : true
+      valid = (this.state.value == '' || this.state.value == null)? false : true
     }
     if(valid) {
       return ""

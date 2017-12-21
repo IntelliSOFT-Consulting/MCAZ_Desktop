@@ -156,10 +156,10 @@ export const login = (data) => {
   }
 }
 
-
 export const clearData = () => (
   { type : CLEAR_DATA }
 )
+
 export const signUp = (data) => {
   return dispatch => {
     return fetch(SIGNUP_URL, {

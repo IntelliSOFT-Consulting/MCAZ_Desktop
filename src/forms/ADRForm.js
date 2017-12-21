@@ -19,7 +19,7 @@ import messages from '../utils/messages.json'
 
 import { MAIN_PAGE, REPORT_TYPE_ADR, ADR_URL } from '../utils/Constants'
 
-import { SEVERITY_REASON, OUTCOME, DESIGNATION, ACTION_TAKEN, RELATEDNESS_TO_ADR, AGE_GROUP, PROVINCES } from '../utils/FieldOptions'
+import { SEVERITY_REASON, OUTCOME, DESIGNATION, ACTION_TAKEN, RELATEDNESS_TO_ADR, AGE_GROUP, PROVINCES, BOOLEAN_OPTIONS } from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setNotification } from '../actions'
@@ -40,6 +40,7 @@ class ADRForm extends FormComponent {
     this.setAgeGroup = this.setAgeGroup.bind(this)
     this.calculateAgeGroup = this.calculateAgeGroup.bind(this)
     this.onAgeChange = this.onAgeChange.bind(this)
+    this.onSelectOfInstitution = this.onSelectOfInstitution.bind(this)
 
     this.mandatory = [
       { name : "patient_name", text : "Patient Initials", page : 1 },
@@ -115,10 +116,10 @@ class ADRForm extends FormComponent {
           <h4 className="text-center">Patient Details</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <AutoSuggestInput label="Clinic/Hospital Name" model={ model } name="evaluator"/>
+              <AutoSuggestInput label="Clinic/Hospital Name" model={ model } name="evaluator" onChange={ this.onSelectOfInstitution }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Clinic/Hospital Number" model={ model } name="institution_code"/>
+              <TextInput label="Clinic/Hospital Number" model={ model } name="institution_code" value={ this.state.institution_code }/>
             </div>
           </div>
           <div className="container">
@@ -167,15 +168,15 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <TextInput label="Description of ADR" multiLine={ true } model={ model } name="description_of_reaction"/>
+              <TextInput label="Description of ADR" multiLine={ true } model={ model } name="description_of_reaction" validate={ this.state.validate } required={ true }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Serious" model={ model } name="severity" required={ true } validate={ this.state.validate } options={ ["Yes", "No"] }/>
+              <SingleMultipleInput label="Serious" model={ model } name="severity" required={ true } validate={ this.state.validate } options={ BOOLEAN_OPTIONS }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="Reason for Seriousness" model={ model } name="severity_reason" required={ true } validate={ this.state.validate } options={ SEVERITY_REASON }/>
+              <SelectInput label="Reason for Seriousness" model={ model } name="severity_reason" required={ true } validate={ this.state.validate } options={ SEVERITY_REASON } dependent={ { name : "severity", value: "Yes" }}/>
             </div>
           </div>
           <div className="container">
@@ -220,10 +221,10 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Email address" model={ model } required={ true }  name="reporter_email"/>
+              <TextInput label="Reporter email" model={ model } required={ true }  name="reporter_email"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Phone number" model={ model } name="reporter_phone"/>
+              <TextInput label="Reporter phone" model={ model } name="reporter_phone"/>
             </div>
           </div>
           <div className="container">
@@ -283,6 +284,17 @@ class ADRForm extends FormComponent {
       age_group = "infant"
     }
     return age_group
+  }
+
+  onSelectOfInstitution(value) {
+    const { model } = this.state
+    if(typeof value == "object") {
+      this.setState({ institution_code : value.code })
+      model['institution_code'] = value.code
+    } else {
+      this.setState({ institution_code : "" })
+      model['institution_code'] = ""
+    }
   }
 
   onAgeChange(age) {

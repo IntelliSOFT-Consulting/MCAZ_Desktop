@@ -144,7 +144,7 @@ export default class ADRReadOnlyReportComponent extends Component {
           <h4 className="text-center">Reported By</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Reporter Name" required={ true }  model={ model } name="reporter_name" />
+              <ReadOnlyDataRenderer label="Reporter name" required={ true }  model={ model } name="reporter_name" />
             </div>
             <div className="col-md-6 col-sm-12">
               <ReadOnlyDataRenderer label="Designation" model={ model } type="option" required={ true } name="designation_id" options={ DESIGNATION }/>
@@ -152,10 +152,10 @@ export default class ADRReadOnlyReportComponent extends Component {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Email address" model={ model } required={ true }  name="reporter_email"/>
+              <ReadOnlyDataRenderer label="Reporter email" model={ model } required={ true }  name="reporter_email"/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <ReadOnlyDataRenderer label="Phone number" model={ model } name="reporter_phone"/>
+              <ReadOnlyDataRenderer label="Reporter phone" model={ model } name="reporter_phone"/>
             </div>
           </div>
           <div className="container">

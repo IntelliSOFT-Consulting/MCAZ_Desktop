@@ -40,6 +40,10 @@ export default class AutoSuggestInput extends Component {
       value = newValue
     }
     this.setState({ value : value })
+    const { onChange } = this.props
+    if(onChange) {
+      onChange(newValue)
+    }
   }
 
   render() {
