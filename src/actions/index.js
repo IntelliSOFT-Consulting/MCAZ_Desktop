@@ -1,13 +1,13 @@
 import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, SAVE_COMPLETED_REPORT, REMOVE_COMPLETED_REPORT, SET_SETTING, CLEAR_DATA,
  SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SET_REPORT_FILTER, CHANGE_CONNECTION_STATUS, SHOW_PAGE, SAVE_FETCHED_REPORTS,
- SET_REPORT, SET_NOTIFICATION, RESET_UPLOAD_STATUS, UPDATE_UPLOAD_STATUS, SET_FOLLOW_UP, LOGGED_IN, LOGOUT, PRINT }  from './actionTypes'
+ SET_REPORT, SET_NOTIFICATION, RESET_UPLOAD_STATUS, UPDATE_UPLOAD_STATUS, SET_FOLLOW_UP, LOGGED_IN, LOGOUT, PRINT, CONTACT_US }  from './actionTypes'
 
 import { getRequestPayload, getURL } from '../utils/utils'
 import messages from '../utils/messages.json'
 
 import { MAIN_URL, LOGIN_URL, SIGNUP_URL, MAIN_PAGE } from '../utils/Constants'
 
-import { ADR_URL, SAE_URL, AEFI_URL, SAEFI_URL } from '../utils/Constants'
+import { ADR_URL, SAE_URL, AEFI_URL, SAEFI_URL, CONTACT_US_URL } from '../utils/Constants'
 import { REPORT_TYPE_ADR, REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV } from '../utils/Constants'
 
 const { ipcRenderer } = require('electron')
@@ -364,5 +364,19 @@ export const printPDF = () => {
       ipcRenderer.removeAllListeners("printed")
     })
 
+  }
+}
+
+export const contactUs = (data) => {
+  return dispatch => {
+    return fetch(CONTACT_US_URL, {
+      method : "POST",
+      headers: { "Accept" : "application/json", 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(res => res.json()).then((json) => {
+      
+    }).catch((error) => {
+      dispatch(setNotification({ message : messages.error_sending_message, level: "error", id: new Date().getTime() }))
+    })
   }
 }

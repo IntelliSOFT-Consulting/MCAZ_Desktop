@@ -33,3 +33,5 @@ export const REMOVE_UPLOADED_FOLLOW_UP_REPORT = 'REMOVE_UPLOADED_FOLLOW_UP_REPOR
 export const CLEAR_DATA = 'CLEAR_DATA' // alert to clear data.
 
 export const PRINT = 'PRINT' // print data
+
+export const CONTACT_US = 'CONTACT_US' // When a message is submitted

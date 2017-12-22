@@ -23,7 +23,7 @@ import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAG
   AEFI_FOLLOW_UP_PAGE } from '../utils/Constants'
 
 import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification, setFollowUp, login, signUp, logout, fetchReport,
-  fetchDeviceInfo, removeDraft, printPDF, downloadPDF } from '../actions'
+  fetchDeviceInfo, removeDraft, printPDF, downloadPDF, contactUs } from '../actions'
 
 class Home extends Component {
   _notificationSystem: null
@@ -79,10 +79,10 @@ class Home extends Component {
   }
 
   render() {
-    const { showPage, logout, token } = this.props
+    const { showPage, logout, token, contactUs } = this.props
     return (
       <div>
-        <Header showPage={ showPage } logout={ logout } token={ token }/>
+        <Header showPage={ showPage } logout={ logout } token={ token } contactUs={ contactUs }/>
         { this.getPage() }
         <Footer connection={ this.props.connection }/>
         <NotificationSystem ref="notificationSystem" />
@@ -211,6 +211,9 @@ const mapDispatchToProps = dispatch => {
     },
     downloadPDF: () => {
       dispatch(downloadPDF(null))
+    },
+    contactUs: (data) => {
+      dispatch(contactUs(data))
     },
     dispatch: dispatch
   }

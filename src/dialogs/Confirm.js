@@ -23,6 +23,8 @@ export default class Confirm extends React.Component {
       this.setState({ isOpened : nextProps.visible })
     } else if(!nextProps.visible){
       this.setState({ isOpened : nextProps.visible })
+    } else if(nextProps.visible == true && this.state.isOpened) {
+      this.setState({ isOpened : nextProps.visible })
     }
   }
 

@@ -11,7 +11,10 @@ export default class Header extends Component {
     this.logout = this.logout.bind(this)
     this.logoutConfirmed = this.logoutConfirmed.bind(this)
     this.closeModal = this.closeModal.bind(this)
-    this.state = { confirmLogout : false }
+    this.onContactDataChange = this.onContactDataChange.bind(this)
+    this.getContactForm = this.getContactForm.bind(this)
+    this.sendMessage = this.sendMessage.bind(this)
+    this.state = { confirmLogout : false, contactData : { email : "", message : "" }, contactUs : false }
   }
 
   showPage(page, report) {
@@ -28,7 +31,7 @@ export default class Header extends Component {
   }
 
   closeModal() {
-    this.setState({ confirmLogout : false })
+    this.setState({ confirmLogout : false, contactUs: false, validate : false })
   }
 
   logoutConfirmed() {
@@ -54,9 +57,25 @@ export default class Header extends Component {
         </Confirm>
       )
     }
+    var contactUs = null
+    if(this.state.contactUs) {
+      contactUs = (
+        <Confirm
+          visible={ this.state.contactUs }
+          title="Contact us"
+          cancel={ this.closeModal }
+          body={ this.getContactForm() }
+          confirmText={ "Send" }
+          confirmBSStyle={ "success" }
+          onConfirm={ this.sendMessage }
+          cancelText={ "Cancel" }
+          >
+        </Confirm>
+      )
+    }
     return(
       <div className="jumbotron">
-        { confirmLogout }
+        { confirmLogout } { contactUs }
         <div className="container">
           <h2>Medicines Control Authority of Zimbabwe</h2>
           <p>SAE, ADR and AEFI electronic reportings.</p>
@@ -71,6 +90,7 @@ export default class Header extends Component {
               <li><a href="#" onClick={ () => this.showPage(SAE_FORM_PAGE) }>SAE</a></li>
               <li><a href="#" onClick={ () => this.showPage(AEFI_REPORT_PAGE) }>AEFI</a></li>
               <li><a href="#" onClick={ () => this.showPage(AEFI_INV_PAGE) }>Serious AEFI</a></li>
+              <li><a href="#" onClick={ () => this.contactUs() }>Contact us</a></li>
               <li><a href="#" onClick={ () => this.logout() }>Logout</a></li>
 
             </ul>
@@ -78,6 +98,46 @@ export default class Header extends Component {
         </nav>
       </div>
     )
+  }
+
+  contactUs() {
+    this.setState({ contactUs : true, contactData : { email : "", message : "" } })
+  }
+
+  onContactDataChange(e) {
+    var { contactData } = this.state
+    contactData[e.target.name] = e.target.value
+    this.setState({ contactData })
+  }
+
+  getContactForm() {
+    const hasErrorEmail = this.state.validate && this.state.contactData.email == ""? "has-error" : ""
+    const hasErrorMsg = this.state.validate && this.state.contactData.message == ""? "has-error" : ""
+    const form = (
+      <form className="form">
+        <div className={ `form-group ${hasErrorEmail}` }>
+          <label>Email</label>
+          <input type="text" className="form-control input-sm" placeholder="Email" name="email" value={ this.state.contactData.email } onChange={ this.onContactDataChange }/>
+        </div>
+        <div className={ `form-group ${hasErrorMsg}` }>
+          <label>Message</label>
+          <textarea type="text" className="form-control input-sm" placeholder="Write your message" name="message" value={ this.state.contactData.message } onChange={ this.onContactDataChange }/>
+        </div>
+      </form>
+    )
+    return form
+  }
+
+  sendMessage() {
+    if(this.state.contactData.email == "" || this.state.contactData.message == "") {
+      this.setState({ validate : true })
+      return
+    } else {
+      const { contactUs } = this.props
+      contactUs(data)
+      this.closeModal()
+    }
+    //console.log(this.state.contactData)
   }
 
 }
