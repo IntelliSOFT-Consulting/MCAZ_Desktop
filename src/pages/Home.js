@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from './Header'
-import Footer from './Footer'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 import IntroPage from './IntroPage'
 import ADRForm from '../forms/ADRForm'
 import SAEForm from '../forms/SAEForm'
@@ -9,6 +9,7 @@ import AEFIInvForm from '../forms/AEFIInvForm'
 import ReadOnlyReportComponent from '../readonly/ReadOnlyReportComponent'
 import LoginPage from './LoginPage'
 import SignupPage from './SignupPage'
+import NewsPage from './NewsPage'
 import ADRFollowUpForm from '../forms/ADRFollowUpForm'
 import AEFIReportFollowupForm from '../forms/AEFIReportFollowupForm'
 
@@ -20,7 +21,7 @@ import { saveAs } from 'file-saver'
 import { connect } from 'react-redux'
 
 import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, REPORTS_LIST_PAGE, READ_ONLY_PAGE, LOGIN_PAGE, SIGNUP_PAGE, ADR_FOLLOW_UP_PAGE,
-  AEFI_FOLLOW_UP_PAGE } from '../utils/Constants'
+  AEFI_FOLLOW_UP_PAGE, NEWS_PAGE } from '../utils/Constants'
 
 import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification, setFollowUp, login, signUp, logout, fetchReport,
   fetchDeviceInfo, removeDraft, printPDF, downloadPDF, contactUs } from '../actions'
@@ -73,6 +74,8 @@ class Home extends Component {
         return <ADRFollowUpForm {...this.props}/>
       case AEFI_FOLLOW_UP_PAGE:
         return <AEFIReportFollowupForm {...this.props}/>
+      case NEWS_PAGE:
+        return <NewsPage {...this.props}/>
       default:
         return <LoginPage {...this.props} />
     }

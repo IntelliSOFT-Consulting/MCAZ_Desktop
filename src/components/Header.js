@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Confirm from '../dialogs/Confirm'
 
-import { ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, LOGIN_PAGE, SIGNUP_PAGE, MAIN_PAGE } from '../utils/Constants'
+import { ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, LOGIN_PAGE, SIGNUP_PAGE, MAIN_PAGE, NEWS_PAGE } from '../utils/Constants'
 
 export default class Header extends Component {
    constructor(props) {
@@ -91,6 +91,7 @@ export default class Header extends Component {
               <li><a href="#" onClick={ () => this.showPage(AEFI_REPORT_PAGE) }>AEFI</a></li>
               <li><a href="#" onClick={ () => this.showPage(AEFI_INV_PAGE) }>Serious AEFI</a></li>
               <li><a href="#" onClick={ () => this.contactUs() }>Contact us</a></li>
+              <li><a href="#" onClick={ () => this.showPage(NEWS_PAGE) }>News</a></li>
               <li><a href="#" onClick={ () => this.logout() }>Logout</a></li>
 
             </ul>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Home from './components/Home'
+import Home from './pages/Home'
 
 import { Provider } from 'react-redux'
 import pvStore from './store'

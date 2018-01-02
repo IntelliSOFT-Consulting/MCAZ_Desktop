@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, REPORTS_LIST_PAGE, REPORT_TYPE_ADR,
   REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV, AEFI_INV_PAGE, REPORT_TYPE_ADR_FOLLOW_UP, REPORT_TYPE_AEFI_FOLLOW_UP } from '../utils/Constants'
 
-import ReportListComponent from './ReportListComponent'
-import ReportSearchComponent from './ReportSearchComponent'
+import ReportListComponent from '../components/ReportListComponent'
+import ReportSearchComponent from '../components/ReportSearchComponent'
 
 import { saveAs } from 'file-saver'
 
