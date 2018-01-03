@@ -1,6 +1,8 @@
-import { SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SAVE_FETCHED_REPORTS } from '../actions/actionTypes'
+import { SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SAVE_FETCHED_REPORTS,CLEAR_DATA } from '../actions/actionTypes'
 const uploaded = (state = [], action) => {
   switch(action.type) {
+    case CLEAR_DATA:
+      return []
     case SAVE_UPLOADED_REPORT:
       var newReport = action.data
       if(state == null || state.length == 0) {
@@ -15,7 +17,10 @@ const uploaded = (state = [], action) => {
       }
       return [...state]
     case SAVE_FETCHED_REPORTS:
-      if(action.data) {
+
+      if(action.data && action.data.length > 0) {
+        const type = action.data[0].type
+        state = state.filter((report) => report.type != type)
         return state.concat(action.data)
       }
       return state

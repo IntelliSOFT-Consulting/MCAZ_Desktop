@@ -24,7 +24,7 @@ import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAG
   AEFI_FOLLOW_UP_PAGE, NEWS_PAGE } from '../utils/Constants'
 
 import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification, setFollowUp, login, signUp, logout, fetchReport,
-  fetchDeviceInfo, removeDraft, printPDF, downloadPDF, contactUs } from '../actions'
+  fetchDeviceInfo, removeDraft, printPDF, downloadPDF, contactUs, fetchNews } from '../actions'
 
 class Home extends Component {
   _notificationSystem: null
@@ -82,10 +82,10 @@ class Home extends Component {
   }
 
   render() {
-    const { showPage, logout, token, contactUs } = this.props
+    const { showPage, logout, token, contactUs, page } = this.props
     return (
       <div>
-        <Header showPage={ showPage } logout={ logout } token={ token } contactUs={ contactUs }/>
+        <Header showPage={ showPage } logout={ logout } token={ token } contactUs={ contactUs } page={ page }/>
         { this.getPage() }
         <Footer connection={ this.props.connection }/>
         <NotificationSystem ref="notificationSystem" />
@@ -111,13 +111,13 @@ class Home extends Component {
     window.addEventListener('offline',  this.updateConnectionStatus)
     this.updateConnectionStatus()
     this._notificationSystem = this.refs.notificationSystem
-    const { fetchDeviceInfo } = this.props
+    const { fetchDeviceInfo, fetchNews } = this.props
     fetchDeviceInfo()
+    fetchNews()
   }
 
   downloadData(data, report) {
     var contentType = 'application/pdf';
-
     //var blob = b64toBlob(data, contentType)
 
     var binary_string =  window.atob(data);
@@ -167,7 +167,8 @@ const mapStateToProps = state => {
     settings : state.appState.settings,
     user: state.appState.user,
     print: state.appState.print,
-    currentReport: state.appState.currentReport
+    currentReport: state.appState.currentReport,
+    news: state.appState.news
   }
 }
 
@@ -217,6 +218,9 @@ const mapDispatchToProps = dispatch => {
     },
     contactUs: (data) => {
       dispatch(contactUs(data))
+    },
+    fetchNews: () => {
+      dispatch(fetchNews())
     },
     dispatch: dispatch
   }

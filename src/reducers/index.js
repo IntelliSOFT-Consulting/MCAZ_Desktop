@@ -13,7 +13,8 @@ import followUp from './followUp'
 import user from './user'
 import settings from './settings'
 import print from './print'
+import news from './news'
 
-const pvApp = combineReducers({ drafts, completed, uploaded, reportFilter, connection, page, currentReport, notification, uploadStatus, followUp, user, settings, print })
+const pvApp = combineReducers({ drafts, completed, uploaded, reportFilter, connection, page, currentReport, notification, uploadStatus, followUp, user, settings, print, news })
 
 export default pvApp

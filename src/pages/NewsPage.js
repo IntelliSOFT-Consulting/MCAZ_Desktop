@@ -10,9 +10,10 @@ export default class NewsPage extends Component {
   }
 
   render() {
-
+    const { news } = this.props
+    const newsContent = news != null ? news.content : " No news yet. "
     return (
-      <div>News</div>
+      <div className="container">{ newsContent }</div>
     )
   }
 }

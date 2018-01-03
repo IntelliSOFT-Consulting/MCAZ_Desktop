@@ -35,3 +35,5 @@ export const CLEAR_DATA = 'CLEAR_DATA' // alert to clear data.
 export const PRINT = 'PRINT' // print data
 
 export const CONTACT_US = 'CONTACT_US' // When a message is submitted
+
+export const SET_NEWS = 'SET_NEWS' // set news to state when fetched.

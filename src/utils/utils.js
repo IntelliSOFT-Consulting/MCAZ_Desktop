@@ -89,3 +89,8 @@ export const getURL = (data) => {
     return AEFI_URL + "/followup/" + btoa(data.parent_reference)
   }
 }
+
+
+export const getXML = data => {
+  
+}

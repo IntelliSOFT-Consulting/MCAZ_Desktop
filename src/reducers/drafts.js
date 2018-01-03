@@ -1,6 +1,8 @@
-import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT } from '../actions/actionTypes'
+import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, CLEAR_DATA } from '../actions/actionTypes'
 const drafts = (state = [], action) => {
   switch(action.type) {
+    case CLEAR_DATA:
+      return []
     case SAVE_DRAFT_REPORT:
       var newReport = action.data
       if(state == null || state.length == 0) {

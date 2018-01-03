@@ -1,6 +1,8 @@
-import { SAVE_COMPLETED_REPORT, REMOVE_COMPLETED_REPORT } from '../actions/actionTypes'
+import { SAVE_COMPLETED_REPORT, REMOVE_COMPLETED_REPORT, CLEAR_DATA } from '../actions/actionTypes'
 const completed = (state = [], action) => {
   switch(action.type) {
+    case CLEAR_DATA:
+      return []
     case SAVE_COMPLETED_REPORT:
       var newReport = action.data
       if(state == null || state.length == 0) {
