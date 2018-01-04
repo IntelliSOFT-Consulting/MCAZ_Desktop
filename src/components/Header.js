@@ -19,7 +19,7 @@ export default class Header extends Component {
 
   showPage(page, report) {
     const { showPage, setReport } = this.props
-    //setReport(report)
+    setReport(null)
     showPage(page)
   }
 
