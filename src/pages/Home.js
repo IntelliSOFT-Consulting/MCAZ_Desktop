@@ -47,7 +47,7 @@ class Home extends Component {
   }
 
   getPage() {
-    const { page, token } = this.props
+    const { page, token, setReport } = this.props
     if(token == null && page != LOGIN_PAGE && page != SIGNUP_PAGE) {
       return <LoginPage {...this.props} />
     } else if(token != null && (page == LOGIN_PAGE || page == SIGNUP_PAGE)) {
@@ -69,6 +69,7 @@ class Home extends Component {
       case SIGNUP_PAGE:
         return <SignupPage {...this.props}/>
       case MAIN_PAGE:
+        setReport(null)
         return <IntroPage  {...this.props}/>
       case ADR_FOLLOW_UP_PAGE:
         return <ADRFollowUpForm {...this.props}/>
