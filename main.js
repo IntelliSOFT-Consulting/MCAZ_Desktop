@@ -74,46 +74,21 @@ app.on('activate', function () {
 
 const { ipcMain } = require('electron')
 
+/**
+  Listen to print messages and print the page to pdf.
+*/
 ipcMain.on('print', (event, arg) => {
   mainWindow.webContents.printToPDF({}, (error, data) => {
     if (error) throw error
     event.sender.send('printed', data.toString('base64'))
-    
+
   })
 })
 
+/**
+  Listen to get-info messages and retrieve the device information - OS.
+*/
 ipcMain.on('get-info', (event, arg) => {
   const os = require('os')
   event.sender.send('get-info-reply', JSON.stringify({ device_type : os.platform() }))
-})
-
-ipcMain.on('upload-data', (event, arg) => {
-  const { net } = require('electron')
-
-  const reqObj = JSON.parse(arg)
-  const options = {
-    url: reqObj.url,
-    method: "POST",
-  }
-  const request = net.request(options)
-  request.setHeader('Content-Type', 'application/json')
-  request.setHeader('Accept', 'application/json')
-  console.log(JSON.stringify(reqObj.body))
-  request.write(JSON.stringify(reqObj.body))
-  request.on('response', (response) => {
-    console.log(`STATUS: ${response.statusCode}`)
-    //console.log(`HEADERS: ${JSON.stringify(response.headers)}`)
-    var data = ""
-    response.on('data', (chunk) => {
-      data += `${chunk}`
-    })
-    response.on('end', () => {
-      event.sender.send('upload-reply', data)
-      console.log('No more data in response.')
-    })
-  })
-  request.end()
-  //console.log(arg)  // prints "ping"
-
-  //event.sender.send('asynchronous-reply', 'pong')
 })

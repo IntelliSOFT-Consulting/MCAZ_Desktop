@@ -55,6 +55,9 @@ export const setReport = (model) => (
   { type : SET_REPORT, model }
 )
 
+/**
+  Sends the request to upload a report to the server.
+*/
 export const uploadData = (data, url, token, updateProgress) => {
   return dispatch => {
     dispatch(saveCompleted(data))
@@ -86,7 +89,6 @@ export const uploadData = (data, url, token, updateProgress) => {
         dispatch(saveUploaded(json.aefi))
         dispatch(removeCompleted(json.aefi))
       } else if(json.saefi) {
-        //json.saefi.id = json.id
         json.saefi.rid = rid
         json.saefi.type = REPORT_TYPE_AEFI_INV
         dispatch(saveUploaded(json.saefi))
@@ -127,6 +129,9 @@ export const logout = () => (
   { type : LOGOUT }
 )
 
+/**
+  Sends the request to login a new user and get authentication token to be used in subsequent requests.
+*/
 export const login = (data) => {
   return (dispatch, getState) => {
     return fetch(LOGIN_URL, {
@@ -134,7 +139,6 @@ export const login = (data) => {
       headers: { "Accept" : "application/json", 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }).then(res => res.json()).then((json) => {
-      console.log(json)
       if(json.success) {
         const user = Object.assign({}, data, { token : json.data.token})
         const state = getState()
@@ -146,7 +150,6 @@ export const login = (data) => {
         dispatch(fetchAllReports(SAE_URL, json.data.token))
         dispatch(fetchAllReports(AEFI_URL, json.data.token))
         dispatch(fetchAllReports(SAEFI_URL, json.data.token))
-        //dispatch(showPage(MAIN_PAGE))
       } else {
         dispatch(setNotification({ message : messages.login_error, level: "error", id: new Date().getTime() }))
       }
@@ -160,6 +163,9 @@ export const clearData = () => (
   { type : CLEAR_DATA }
 )
 
+/**
+  Sends the request to sign up a new user.
+*/
 export const signUp = (data) => {
   return dispatch => {
     return fetch(SIGNUP_URL, {
@@ -170,7 +176,6 @@ export const signUp = (data) => {
       if(json.token) {
         const user = Object.assign({}, data, { token : json.token})
         dispatch(loggedIn(user))
-        //dispatch(showPage(MAIN_PAGE))
       } else {
         dispatch(setNotification({ message : messages.signup_error, level: "error", id: new Date().getTime() }))
       }
@@ -179,65 +184,6 @@ export const signUp = (data) => {
     })
   }
 }
-
-/**
-  The upload action.
-  Here we send a message to the main process and wait for the response.
-*
-export const uploadData = (data, url, updateProgress) => {
-
-  return dispatch => {
-    var req = {}
-    req.body = getRequestPayload(data)
-    req.url = url
-    dispatch(saveCompleted(data))
-    dispatch(removeDraft(data))
-    ipcRenderer.send('upload-data', JSON.stringify(req))
-
-    ipcRenderer.on('upload-reply', (event, arg, updateProgress) => {
-      //dispatch(showPage('MAIN_PAGE'))
-      //dispatch(saveUploaded(data))
-      //dispatch(removeDraft(data))
-      //dispatch(removeCompleted(data))
-      console.log(arg) // prints "pong"
-      try {
-        const response = JSON.parse(arg)
-        if(response.sadr) {
-          //response.sadr.id = response.sadr.id
-          dispatch(saveUploaded(response.sadr))
-          dispatch(removeCompleted(response.sadr))
-        } else if(response.adr) {
-          //response.adr.id = response.adr.id
-          dispatch(saveUploaded(response.adr))
-          dispatch(removeCompleted(response.adr))
-
-        } else if(response.aefi) {
-          //response.aefi.aefi.id = response.aefi.id
-          dispatch(saveUploaded(response.aefi))
-          dispatch(removeCompleted(response.aefi))
-
-        } else if(response.saefi) {
-          //response.saefi.id = response.saefi.id
-          dispatch(saveUploaded(response.saefi))
-          dispatch(removeCompleted(response.saefi))
-
-        } else {
-          console.log(JSON.stringify(json))
-          return
-        }
-        dispatch(updateUploadStatus())
-        if(updateProgress) {
-          dispatch(updateUploadStatus())
-        } else {
-          dispatch(setNotification({ message : messages.datauploaded, level: "info", id: new Date().getTime() }))
-        }
-      } catch(e) {
-        dispatch(setNotification({ message : messages.uploaderror, level: "error", id: new Date().getTime() }))
-      }
-      ipcRenderer.removeAllListeners("upload-reply")
-    })
-  }
-}*/
 
 export const showPage = (page) => (
   { type : SHOW_PAGE, page }
@@ -259,6 +205,9 @@ export const updateUploadStatus = () => (
   { type : UPDATE_UPLOAD_STATUS }
 )
 
+/**
+  This function goes through all the completed reports, dispatching an action to upload them.
+*/
 export const uploadCompletedReports = (completed, token) => {
   return dispatch => {
     dispatch(resetUploadStatus(completed.length))
@@ -268,6 +217,9 @@ export const uploadCompletedReports = (completed, token) => {
   }
 }
 
+/**
+  Fetches one report given the id.
+*/
 export const fetchReport = (id, url, token) => {
   return dispatch => {
     return fetch(url + "/" + id, {
@@ -278,7 +230,6 @@ export const fetchReport = (id, url, token) => {
         'Authorization' : 'Bearer ' + token
       }
     }).then(response => response.json()).then((json) => {
-      console.log(json)
       if(json.sadr) {
         json.sadr.type = REPORT_TYPE_ADR
         dispatch(showPage('READ_ONLY_PAGE', json.sadr))
@@ -301,6 +252,10 @@ export const fetchReport = (id, url, token) => {
   }
 }
 
+/**
+  fetches all the reports from the server and saves them.
+  Done after login.
+*/
 export const fetchAllReports = (url, token) => {
   return dispatch => {
     return fetch(url, {
@@ -311,8 +266,6 @@ export const fetchAllReports = (url, token) => {
         'Authorization' : 'Bearer ' + token
       }
     }).then(response => response.json()).then((json) => {
-      console.log(json)
-
       const getReports = (reports, type) => {
         return reports.map((r) => {
           r.type = type
@@ -328,7 +281,6 @@ export const fetchAllReports = (url, token) => {
       } else if(json.saefis) {
         dispatch(saveFetchedReports(getReports(json.saefis, REPORT_TYPE_AEFI_INV)))
       } else {
-        console.log(JSON.stringify(json))
         return
       }
     }).catch((error) => {
@@ -337,12 +289,16 @@ export const fetchAllReports = (url, token) => {
   }
 }
 
+/**
+  Sends an asynchronous message to the main process to get the device informatino.
+*/
 export const fetchDeviceInfo = () => {
   return dispatch => {
     ipcRenderer.send('get-info')
 
     ipcRenderer.on('get-info-reply', (event, arg, updateProgress) => {
       dispatch(setSetting(JSON.parse(arg)))
+      ipcRenderer.removeAllListeners("get-info-reply")
     })
   }
 }
@@ -355,6 +311,9 @@ export const downloadPDF = (data) => (
   { type : PRINT, data }
 )
 
+/**
+  Sends an asynchronous message to the main process to print to pdf the current visible page.
+*/
 export const printPDF = () => {
   return dispatch => {
     ipcRenderer.send('print')
@@ -367,6 +326,9 @@ export const printPDF = () => {
   }
 }
 
+/**
+  Action to send contact us information.
+*/
 export const contactUs = (data) => {
   return dispatch => {
     return fetch(CONTACT_US_URL, {
@@ -381,6 +343,9 @@ export const contactUs = (data) => {
   }
 }
 
+/**
+  Action to fetch the news
+*/
 export const fetchNews = () => {
   return dispatch => {
     return fetch(NEWS_URL, {
