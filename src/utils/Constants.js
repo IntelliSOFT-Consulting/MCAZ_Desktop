@@ -18,7 +18,7 @@ export const STATUS_DRAFT = 'STATUS_DRAFT'
 export const STATUS_COMPLETED = 'STATUS_COMPLETED'
 export const STATUS_UPLOADED = 'STATUS_UPLOADED'
 
-export const MAIN_URL = 'http://45.79.130.91/api/sadrs'
+export const MAIN_URL = 'http://45.79.130.91/api'
 
 export const MAIN_PAGE = 'MAIN_PAGE' // The main page
 export const ADR_FORM_PAGE = 'ADR_FORM_PAGE'
@@ -34,11 +34,11 @@ export const NEWS_PAGE = 'NEWS_PAGE'
 export const ADR_FOLLOW_UP_PAGE = 'ADR_FOLLOW_UP_PAGE'
 export const AEFI_FOLLOW_UP_PAGE = 'AEFI_FOLLOW_UP_PAGE'
 
-export const ADR_URL = 'http://45.79.130.91/api/sadrs' // Url for ADR
-export const SAE_URL = 'http://45.79.130.91/api/adrs' // Url for SAE
-export const AEFI_URL = 'http://45.79.130.91/api/aefis' // Url for AEFI
-export const SAEFI_URL = 'http://45.79.130.91/api/saefis' // Url for SAEFI
-export const LOGIN_URL = 'http://45.79.130.91/api/users/token' // Url for login
-export const SIGNUP_URL = 'http://45.79.130.91/api/users/register' // Url for signup
-export const CONTACT_US_URL = 'http://45.79.130.91/api/users/register' // Url for contact us
-export const NEWS_URL = 'http://45.79.130.91/api/news' // Url to fetch news
+export const ADR_URL = MAIN_URL + '/sadrs' // Url for ADR
+export const SAE_URL = MAIN_URL + '/adrs' // Url for SAE
+export const AEFI_URL = MAIN_URL + '/aefis' // Url for AEFI
+export const SAEFI_URL = MAIN_URL + '/saefis' // Url for SAEFI
+export const LOGIN_URL = MAIN_URL + '/users/token' // Url for login
+export const SIGNUP_URL = MAIN_URL + '/users/register' // Url for signup
+export const CONTACT_US_URL = MAIN_URL + '/users/register' // Url for contact us
+export const NEWS_URL = MAIN_URL + '/sites/news' // Url to fetch news
