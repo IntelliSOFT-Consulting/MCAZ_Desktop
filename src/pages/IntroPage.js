@@ -5,6 +5,7 @@ import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, REPORTS_LIST
 import ReportListComponent from '../components/ReportListComponent'
 import ReportSearchComponent from '../components/ReportSearchComponent'
 
+import X2JS from 'x2js'
 import { saveAs } from 'file-saver'
 
 export default class IntroPage extends Component {
@@ -52,8 +53,41 @@ export default class IntroPage extends Component {
     reports.aefi = completed.filter(report => report.type == REPORT_TYPE_AEFI)
     reports.saefi = completed.filter(report => report.type == REPORT_TYPE_AEFI_INV)
 
-    const name = new Date().toString().split(/ /).join('_') + '.json'
+    var x2js = new X2JS()
 
+    var sadr = {}
+    sadr.response = completed.filter(report => report.type == REPORT_TYPE_ADR).map((report) => {
+      var r = {}
+      r.sadrs = report
+      return r
+    })
+    console.log(x2js.json2xml_str(sadr))
+
+    var adr = {}
+    adr.response = completed.filter(report => report.type == REPORT_TYPE_SAE).map((report) => {
+      var r = {}
+      r.adrs = report
+      return r
+    })
+    console.log(x2js.json2xml_str(adr))
+
+    var aefi = {}
+    aefi.response = completed.filter(report => report.type == REPORT_TYPE_AEFI).map((report) => {
+      var r = {}
+      r.aefis = report
+      return r
+    })
+    console.log(x2js.json2xml_str(aefi))
+
+    var saefi = {}
+    saefi.response = completed.filter(report => report.type == REPORT_TYPE_AEFI_INV).map((report) => {
+      var r = {}
+      r.saefis = report
+      return r
+    })
+    console.log(x2js.json2xml_str(saefi))
+
+    const name = new Date().toString().split(/ /).join('_') + '.json'
     const string = JSON.stringify(reports)
     saveAs(new Blob([string], { type : "text/plain" }), name)
 
@@ -65,7 +99,6 @@ export default class IntroPage extends Component {
     return(
       <div>
         <div className="container-fluid">
-
           <div className="col-md-3 col-sm-4">
             <h3>ADR</h3>
             <p>Adverse drug reaction</p>

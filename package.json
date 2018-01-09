@@ -60,7 +60,8 @@
     "redux": "^3.7.2",
     "redux-persist": "^5.3.5",
     "redux-persist-electron-storage": "^1.1.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "x2js": "github:abdmob/x2js"
   },
   "build": {
     "appId": "com.intellisoft.mcaz",

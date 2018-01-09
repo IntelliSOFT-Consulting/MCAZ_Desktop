@@ -11,7 +11,7 @@ export default class NewsPage extends Component {
 
   render() {
     const { news } = this.props
-    const newsContent = news != null ? news.content : " No news yet. "
+    const newsContent = news != null ? <div dangerouslySetInnerHTML={{ __html: news.content }} />  : " No news yet. "
     return (
       <div className="container">{ newsContent }</div>
     )
