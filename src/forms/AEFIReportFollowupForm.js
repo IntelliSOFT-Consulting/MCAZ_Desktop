@@ -51,7 +51,7 @@ class AEFIReportFollowupForm extends FormComponent {
   closeModal() {
     this.setState({ confirmVisible : false, confirmCancel : false })
   }
-  
+
   render() {
     const { model } = this.state
     const { followUp } = this.props
@@ -90,6 +90,23 @@ class AEFIReportFollowupForm extends FormComponent {
       )
     }
 
+    var confirmDelete = null
+    if(this.state.confirmDelete) {
+      confirmDelete = (
+        <Confirm
+          visible={ this.state.confirmDelete }
+          title="Confirm"
+          cancel={ this.closeModal }
+          body={ "Delete this report?" }
+          confirmText={ "Yes" }
+          confirmBSStyle={ "danger" }
+          onConfirm={ this.deleteConfirmed }
+          cancelText={ "No" }
+          >
+        </Confirm>
+      )
+    }
+
     const followUpInput = followUp == true? (
       <div>
 
@@ -102,6 +119,7 @@ class AEFIReportFollowupForm extends FormComponent {
       <div className="aefi-form form">
         { confirmVisible }
         { confirmCancel }
+        { confirmDelete }
         <h3 className="text-center">
           <span className="text-center">
             <img src="assets/images/mcaz_3.png" className="logo"></img>
@@ -157,14 +175,17 @@ class AEFIReportFollowupForm extends FormComponent {
           <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them" validate={ this.state.validate } name="attachments" model={ model }/>
 
           <div className="container well">
-            <div className="col-md-3 col-md-offset-1">
+            <div className="col-md-2 col-md-offset-1">
               <button className="btn btn-sm btn-primary" onClick={ this.saveAndContinue }>Save Changes</button>
             </div>
-            <div className="col-md-3 col-md-offset-1">
+            <div className="col-md-2 col-md-offset-1">
               <button className="btn btn-sm btn-primary" onClick={ this.saveAndSubmit }>Save and submit</button>
             </div>
-            <div className="col-md-3 col-md-offset-1">
+            <div className="col-md-2 col-md-offset-1">
               <button className="btn btn-sm btn-default" onClick={ this.cancel }>Cancel</button>
+            </div>
+            <div className="col-md-2 col-md-offset-1">
+              <button className="btn btn-sm btn-danger" onClick={ this.confirmDelete }>Delete</button>
             </div>
           </div>
         </form>
@@ -299,6 +320,9 @@ const mapDispatchToProps = dispatch => {
     },
     setNotification: (notification) => {
       dispatch(setNotification(notification))
+    },
+    removeDraft: (report) => {
+      dispatch(removeDraft(report))
     },
     dispatch: dispatch
   }

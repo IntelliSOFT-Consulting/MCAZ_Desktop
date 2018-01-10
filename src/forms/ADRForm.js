@@ -42,6 +42,8 @@ class ADRForm extends FormComponent {
     this.onAgeChange = this.onAgeChange.bind(this)
     this.onSelectOfInstitution = this.onSelectOfInstitution.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.confirmDelete = this.confirmDelete.bind(this)
+    this.deleteConfirmed = this.deleteConfirmed.bind(this)
 
     this.mandatory = [
       { name : "patient_name", text : "Patient Initials", page : 1 },
@@ -98,6 +100,23 @@ class ADRForm extends FormComponent {
       )
     }
 
+    var confirmDelete = null
+    if(this.state.confirmDelete) {
+      confirmDelete = (
+        <Confirm
+          visible={ this.state.confirmDelete }
+          title="Confirm"
+          cancel={ this.closeModal }
+          body={ "Delete this report?" }
+          confirmText={ "Yes" }
+          confirmBSStyle={ "danger" }
+          onConfirm={ this.deleteConfirmed }
+          cancelText={ "No" }
+          >
+        </Confirm>
+      )
+    }
+
     const followUpInput = followUp == true? (
       <div className="container"><div className="col-md-6 col-sm-12">
         <TextInput label="Parent MCAZ Ref #" model={ model } name="parent_id"/>
@@ -108,6 +127,7 @@ class ADRForm extends FormComponent {
       <div className='adr-form form'>
         { confirmVisible }
         { confirmCancel }
+        { confirmDelete }
         <h3 className="text-center">
           <span className="text-center">
             <img src="assets/images/mcaz_3.png" className="logo"></img>
@@ -241,14 +261,17 @@ class ADRForm extends FormComponent {
             </div>
           </div>
           <div className="container well">
-            <div className="col-md-3 col-md-offset-1">
+            <div className="col-md-2 col-md-offset-1">
               <button className="btn btn-sm btn-primary" onClick={ this.saveAndContinue }>Save Changes</button>
             </div>
-            <div className="col-md-3 col-md-offset-1">
+            <div className="col-md-2 col-md-offset-1">
               <button className="btn btn-sm btn-primary" onClick={ this.saveAndSubmit }>Save and submit</button>
             </div>
-            <div className="col-md-3 col-md-offset-1">
+            <div className="col-md-2 col-md-offset-1">
               <button className="btn btn-sm btn-default" onClick={ this.cancel }>Cancel</button>
+            </div>
+            <div className="col-md-2 col-md-offset-1">
+              <button className="btn btn-sm btn-danger" onClick={ this.confirmDelete }>Delete</button>
             </div>
           </div>
         </form>
@@ -308,6 +331,17 @@ class ADRForm extends FormComponent {
     model['age_group'] = age_group
     model['date_of_birth'] = ""
     this.setState({ model })
+  }
+
+  confirmDelete(e) {
+    e.preventDefault()
+    this.setState({ confirmDelete : true })
+  }
+
+  deleteConfirmed() {
+    const { removeDraft } = this.props
+    removeDraft(this.state.model)
+    this.goBack()
   }
 
   /**
@@ -431,6 +465,9 @@ const mapDispatchToProps = dispatch => {
     },
     setNotification: (notification) => {
       dispatch(setNotification(notification))
+    },
+    removeDraft: (report) => {
+      dispatch(removeDraft(report))
     },
     dispatch: dispatch
   }

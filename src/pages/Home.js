@@ -69,7 +69,7 @@ class Home extends Component {
       case SIGNUP_PAGE:
         return <SignupPage {...this.props}/>
       case MAIN_PAGE:
-        setReport(null)
+        //setReport(null)
         return <IntroPage  {...this.props}/>
       case ADR_FOLLOW_UP_PAGE:
         return <ADRFollowUpForm {...this.props}/>

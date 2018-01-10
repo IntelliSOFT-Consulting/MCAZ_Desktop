@@ -12,6 +12,8 @@ export default class FormComponent extends Component {
     this.goBack = this.goBack.bind(this)
     this.closeModal = this.closeModal.bind(this)
     this.cancelConfirmed = this.cancelConfirmed.bind(this)
+    this.confirmDelete = this.confirmDelete.bind(this)
+    this.deleteConfirmed = this.deleteConfirmed.bind(this)
   }
 
   saveAndContinue(e) {
@@ -34,6 +36,17 @@ export default class FormComponent extends Component {
   cancelConfirmed() {
     const { showPage } = this.props
     showPage(MAIN_PAGE)
+  }
+
+  confirmDelete(e) {
+    e.preventDefault()
+    this.setState({ confirmDelete : true })
+  }
+
+  deleteConfirmed() {
+    const { removeDraft } = this.props
+    removeDraft(this.state.model)
+    this.goBack()
   }
 
   goBack() {

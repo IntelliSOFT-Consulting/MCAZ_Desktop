@@ -152,6 +152,11 @@ export default class IntroPage extends Component {
     )
   }
 
+  componentWillMount() {
+    const { setReport } = this.props
+    setReport(null)
+  }
+
   componentWillReceiveProps(nextProps) {
     const currentConnection = this.props.connection
     const connection = nextProps.connection

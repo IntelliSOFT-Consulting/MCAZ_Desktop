@@ -162,7 +162,6 @@ export const DESIGNATION = [ { key : "", value: ""},
   if (nameA > nameB) {
     return 1;
   }
-  // names must be equal
   return 0;
 })
 
@@ -315,10 +314,10 @@ export const AEFI_ADVERSE_EVENTS = [
   { key: "ae_other", value: "Other (specify)"}
 ]
 
-export const AEFI_OUTCOME = [ { key : "", value: ""},
+export const AEFI_OUTCOME = [ { key : "", value: "" },
   { key : 'Recovering', value : 'Recovering'}, { key : 'Recovered', value : 'Recovered'},
   { key : 'Not recovered', value : 'Not recovered'}, { key: 'Recovered with sequelae', value: 'Recovered with sequelae'},
-  { key : 'Died', value : 'Died'}, { key : 'Unknown', value : 'Unknown'}
+  { key : 'Died', value : 'Died'}, { key : 'Unknown', value : 'Unknown' }
 ]
 
 export const SEVERE_LOCAL_REACTIONS = [

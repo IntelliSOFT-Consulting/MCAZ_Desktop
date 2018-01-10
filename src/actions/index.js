@@ -362,3 +362,20 @@ export const fetchNews = () => {
 export const setNews = (news) => (
   { type : SET_NEWS, news }
 )
+
+/**
+  Action to fetch static data.
+*/
+export const fetchStaticData = (data) => {
+  return dispatch => {
+    return fetch(CONTACT_US_URL, {
+      method : "POST",
+      headers: { "Accept" : "application/json", 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(res => res.json()).then((json) => {
+
+    }).catch((error) => {
+      dispatch(setNotification({ message : messages.error_sending_message, level: "error", id: new Date().getTime() }))
+    })
+  }
+}
