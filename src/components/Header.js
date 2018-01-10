@@ -103,7 +103,7 @@ export default class Header extends Component {
   }
 
   contactUs() {
-    this.setState({ contactUs : true, contactData : { email : "", message : "" } })
+    this.setState({ contactUs : true, contactData : { email : "", feedback : "", subject: "" } })
   }
 
   onContactDataChange(e) {
@@ -121,9 +121,13 @@ export default class Header extends Component {
           <label>Email</label>
           <input type="text" className="form-control input-sm" placeholder="Email" name="email" value={ this.state.contactData.email } onChange={ this.onContactDataChange }/>
         </div>
+        <div className={ `form-group ${hasErrorEmail}` }>
+          <label>Subject</label>
+          <input type="text" className="form-control input-sm" placeholder="Subject" name="subject" value={ this.state.contactData.subject } onChange={ this.onContactDataChange }/>
+        </div>
         <div className={ `form-group ${hasErrorMsg}` }>
-          <label>Message</label>
-          <textarea type="text" className="form-control input-sm" placeholder="Write your message" name="message" value={ this.state.contactData.message } onChange={ this.onContactDataChange }/>
+          <label>Feedback</label>
+          <textarea type="text" className="form-control input-sm" rows="4" placeholder="Write your message" name="feedback" value={ this.state.contactData.feedback } onChange={ this.onContactDataChange }/>
         </div>
       </form>
     )
@@ -136,7 +140,7 @@ export default class Header extends Component {
       return
     } else {
       const { contactUs } = this.props
-      contactUs(data)
+      contactUs(this.state.contactData)
       this.closeModal()
     }
     //console.log(this.state.contactData)
