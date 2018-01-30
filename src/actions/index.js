@@ -1,5 +1,5 @@
-import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, SAVE_COMPLETED_REPORT, REMOVE_COMPLETED_REPORT, SET_SETTING, CLEAR_DATA, SET_NEWS,
- SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SET_REPORT_FILTER, CHANGE_CONNECTION_STATUS, SHOW_PAGE, SAVE_FETCHED_REPORTS,
+import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, SAVE_COMPLETED_REPORT, REMOVE_COMPLETED_REPORT, SET_SETTING, CLEAR_DATA, SET_NEWS, REMOVE_COMPLETED_REPORTS,
+ SAVE_UPLOADED_REPORT, REMOVE_UPLOADED_REPORT, SET_REPORT_FILTER, CHANGE_CONNECTION_STATUS, SHOW_PAGE, SAVE_FETCHED_REPORTS, ARCHIVE_DATA,
  SET_REPORT, SET_NOTIFICATION, RESET_UPLOAD_STATUS, UPDATE_UPLOAD_STATUS, SET_FOLLOW_UP, LOGGED_IN, LOGOUT, PRINT, CONTACT_US }  from './actionTypes'
 
 import { getRequestPayload, getURL } from '../utils/utils'
@@ -29,6 +29,10 @@ export const saveCompleted = (data) => (
 
 export const removeCompleted = (data) => (
   { type : REMOVE_COMPLETED_REPORT, data }
+)
+
+export const removeCompletedReports = () => (
+  { type : REMOVE_COMPLETED_REPORTS }
 )
 
 export const saveUploaded = (data) => (
@@ -203,6 +207,10 @@ export const resetUploadStatus = (uploaded) => (
 
 export const updateUploadStatus = () => (
   { type : UPDATE_UPLOAD_STATUS }
+)
+
+export const archiveData = (data) => (
+  { type : ARCHIVE_DATA, data }
 )
 
 /**

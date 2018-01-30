@@ -14,7 +14,8 @@ import user from './user'
 import settings from './settings'
 import print from './print'
 import news from './news'
+import archived from './archived'
 
-const pvApp = combineReducers({ drafts, completed, uploaded, reportFilter, connection, page, currentReport, notification, uploadStatus, followUp, user, settings, print, news })
+const pvApp = combineReducers({ drafts, completed, uploaded, reportFilter, connection, page, currentReport, notification, uploadStatus, followUp, user, settings, print, news, archived })
 
 export default pvApp

@@ -42,10 +42,10 @@ export default class IntroPage extends Component {
   }
 
   downloadReports() {
-    const { uploadCompletedReports, completed, connection, token } = this.props
+    const { uploadCompletedReports, completed, connection, token, removeCompletedReports, archiveData } = this.props
     if(completed.length == 0) {
-      //Alert.alert("Info", "No reports to download.")
-      //return
+      Alert.alert("Info", "No reports to download.")
+      return
     }
     var reports = {}
     reports.sadr = completed.filter(report => report.type == REPORT_TYPE_ADR)
@@ -90,11 +90,13 @@ export default class IntroPage extends Component {
     const name = new Date().toString().split(/ /).join('_') + '.json'
     const string = JSON.stringify(reports)
     saveAs(new Blob([string], { type : "text/plain" }), name)
+    archiveData(completed)
+    removeCompletedReports()
 
   }
 
   render() {
-    const { uploaded, showPage, fetchReport, token, removeDraft } = this.props
+    const { uploaded, showPage, fetchReport, token, removeDraft, completed } = this.props
     const disabled = this.state.connection.isConnected? null : " disabled "
     return(
       <div>
@@ -139,10 +141,10 @@ export default class IntroPage extends Component {
         <div className="container">
           <div className=" btn-toolbar pull-left">
             <button className="btn btn-sm btn-primary" disabled={ disabled } onClick={ this.uploadData }>
-              <span className="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload data ({ this.state.completed.length })
+              <span className="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload data ({ completed.length })
             </button>
             <button className="btn btn-sm btn-primary" onClick={ this.downloadReports }>
-              <span className="glyphicon glyphicon-download" aria-hidden="true"></span> Download data ({ this.state.completed.length })
+              <span className="glyphicon glyphicon-download" aria-hidden="true"></span> Download data ({ completed.length })
             </button>
 
           </div>
