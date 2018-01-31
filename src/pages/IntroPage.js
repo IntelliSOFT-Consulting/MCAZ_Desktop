@@ -8,6 +8,8 @@ import ReportSearchComponent from '../components/ReportSearchComponent'
 import X2JS from 'x2js'
 import { saveAs } from 'file-saver'
 
+import messages from '../utils/messages.json'
+
 export default class IntroPage extends Component {
 
   constructor(props) {
@@ -42,9 +44,10 @@ export default class IntroPage extends Component {
   }
 
   downloadReports() {
-    const { uploadCompletedReports, completed, connection, token, removeCompletedReports, archiveData } = this.props
+    const { uploadCompletedReports, completed, connection, token, removeCompletedReports, archiveData, setNotification } = this.props
     if(completed.length == 0) {
-      Alert.alert("Info", "No reports to download.")
+
+      setNotification({ message : messages.noDataToDownload, level: "error", id: new Date().getTime() })
       return
     }
     var reports = {}
@@ -54,14 +57,14 @@ export default class IntroPage extends Component {
     reports.saefi = completed.filter(report => report.type == REPORT_TYPE_AEFI_INV)
 
     var x2js = new X2JS()
-
+    var xmls = []
     var sadr = {}
     sadr.response = completed.filter(report => report.type == REPORT_TYPE_ADR).map((report) => {
       var r = {}
       r.sadrs = report
       return r
     })
-    console.log(x2js.json2xml_str(sadr))
+    xmls.push(x2js.json2xml_str(sadr))
 
     var adr = {}
     adr.response = completed.filter(report => report.type == REPORT_TYPE_SAE).map((report) => {
@@ -69,7 +72,7 @@ export default class IntroPage extends Component {
       r.adrs = report
       return r
     })
-    console.log(x2js.json2xml_str(adr))
+    xmls.push(x2js.json2xml_str(adr))
 
     var aefi = {}
     aefi.response = completed.filter(report => report.type == REPORT_TYPE_AEFI).map((report) => {
@@ -77,7 +80,7 @@ export default class IntroPage extends Component {
       r.aefis = report
       return r
     })
-    console.log(x2js.json2xml_str(aefi))
+    xmls.push(x2js.json2xml_str(aefi))
 
     var saefi = {}
     saefi.response = completed.filter(report => report.type == REPORT_TYPE_AEFI_INV).map((report) => {
@@ -85,19 +88,22 @@ export default class IntroPage extends Component {
       r.saefis = report
       return r
     })
-    console.log(x2js.json2xml_str(saefi))
+    xmls.push(x2js.json2xml_str(saefi))
 
-    const name = new Date().toString().split(/ /).join('_') + '.json'
-    const string = JSON.stringify(reports)
+    const name = new Date().toString().split(/ /).join('_') + '.xml'
+    const string = xmls.join("") // JSON.stringify(reports)
     saveAs(new Blob([string], { type : "text/plain" }), name)
     archiveData(completed)
     removeCompletedReports()
-
   }
+
+
 
   render() {
     const { uploaded, showPage, fetchReport, token, removeDraft, completed } = this.props
     const disabled = this.state.connection.isConnected? null : " disabled "
+
+
     return(
       <div>
         <div className="container-fluid">

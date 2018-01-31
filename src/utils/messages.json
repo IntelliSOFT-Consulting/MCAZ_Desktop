@@ -9,5 +9,6 @@
   "request_error" : "Error sending request.",
   "report_not_found" : "Report not found",
   "error_sending_message" : "Error sending contact message",
-  "error_fetching_news" : "Error fetching news"
+  "error_fetching_news" : "Error fetching news",
+  "noDataToDownload" : "No data to download."
 }
