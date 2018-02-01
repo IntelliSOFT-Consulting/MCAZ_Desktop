@@ -58,43 +58,42 @@ export default class IntroPage extends Component {
 
     var x2js = new X2JS()
     var xmls = []
-    var sadr = {}
-    sadr.response = completed.filter(report => report.type == REPORT_TYPE_ADR).map((report) => {
+    var output = {}
+    output.response = completed.filter(report => report.type == REPORT_TYPE_ADR).map((report) => {
       var r = {}
       r.sadrs = report
       return r
     })
-    xmls.push(x2js.json2xml_str(sadr))
+    //xmls.push(x2js.json2xml_str(sadr))
 
-    var adr = {}
-    adr.response = completed.filter(report => report.type == REPORT_TYPE_SAE).map((report) => {
+    output.response = output.response.concat(completed.filter(report => report.type == REPORT_TYPE_SAE).map((report) => {
       var r = {}
       r.adrs = report
       return r
-    })
-    xmls.push(x2js.json2xml_str(adr))
+    }))
+    //xmls.push(x2js.json2xml_str(adr))
 
-    var aefi = {}
-    aefi.response = completed.filter(report => report.type == REPORT_TYPE_AEFI).map((report) => {
+    output.response = output.response.concat(completed.filter(report => report.type == REPORT_TYPE_AEFI).map((report) => {
       var r = {}
       r.aefis = report
       return r
-    })
-    xmls.push(x2js.json2xml_str(aefi))
+    }))
+    //xmls.push(x2js.json2xml_str(aefi))
 
-    var saefi = {}
-    saefi.response = completed.filter(report => report.type == REPORT_TYPE_AEFI_INV).map((report) => {
+    output.response = output.response.concat(completed.filter(report => report.type == REPORT_TYPE_AEFI_INV).map((report) => {
       var r = {}
       r.saefis = report
       return r
-    })
-    xmls.push(x2js.json2xml_str(saefi))
+    }))
+    //xmls.push(x2js.json2xml_str(saefi))
+    //const string = JSON.stringify(reports)
+    const string = x2js.json2xml_str(output) //xmls.join("")
 
     const name = new Date().toString().split(/ /).join('_') + '.xml'
-    const string = xmls.join("") // JSON.stringify(reports)
+    //const string = xmls.join("") // JSON.stringify(reports)
     saveAs(new Blob([string], { type : "text/plain" }), name)
-    archiveData(completed)
-    removeCompletedReports()
+    //archiveData(completed)
+    //removeCompletedReports()
   }
 
 
