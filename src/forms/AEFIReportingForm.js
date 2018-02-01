@@ -37,9 +37,7 @@ class AEFIReportingForm extends FormComponent {
     if(model == null) {
       model = { rid : Date.now(), type : REPORT_TYPE_AEFI, data_source: "desktop", device_type : settings.device_type }
     }
-
-    //model = {"rid":1513769472702,"type":"REPORT_TYPE_AEFI","data_source":"desktop","device_type":"darwin","patient_name":"JM","patient_surname":"M","patient_address":"Kiambu","gender":"Male","date_of_birth":"4-10-2009","age_at_onset_days":"","age_at_onset_months":"","age_at_onset_years":"","reporter_name":"Simon","name_of_vaccination_center":"Vaccination centre","aefi_list_of_vaccines":[{"vaccine_name":"ss","vaccination_date":"12-11-2017 15:37","dosage":"s","batch_number":"s","expiry_date":"19-11-2017","diluent_batch_number":"s","diluent_expiry_date":"18-11-2017","diluent_date":"3-11-2017 15:35"}],"ae_anaphylaxis":"1","adverse_events":"ae_anaphylaxis","serious":"No","outcome":"Recovered with sequelae","national_receive_date":"13-11-2017","district_receive_date":"18-11-2017"}
-
+    
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.validateDateofBirth = this.validateDateofBirth.bind(this)
     this.validateAge = this.validateAge.bind(this)
@@ -409,7 +407,7 @@ class AEFIReportingForm extends FormComponent {
     if(connection.isConnected) {
       uploadData(model, AEFI_URL, token)
     } else {
-      saveCompleted(data)
+      saveCompleted(model)
     }
     this.goBack()
   }

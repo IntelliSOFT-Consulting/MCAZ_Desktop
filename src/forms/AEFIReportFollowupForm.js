@@ -284,7 +284,7 @@ class AEFIReportFollowupForm extends FormComponent {
       const url = AEFI_URL + "/followup/" + btoa(model.parent_reference)
       uploadData(model, url, token)
     } else {
-      saveCompleted(data)
+      saveCompleted(model)
     }
     this.goBack()
   }

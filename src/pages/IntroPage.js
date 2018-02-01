@@ -92,8 +92,8 @@ export default class IntroPage extends Component {
     const name = new Date().toString().split(/ /).join('_') + '.xml'
     //const string = xmls.join("") // JSON.stringify(reports)
     saveAs(new Blob([string], { type : "text/plain" }), name)
-    //archiveData(completed)
-    //removeCompletedReports()
+    archiveData(completed)
+    removeCompletedReports()
   }
 
 
