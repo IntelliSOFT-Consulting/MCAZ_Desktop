@@ -24,6 +24,8 @@ To build and run the application
   git clone https://github.com/IntelliSOFT-Consulting/MCAZ_Desktop
 # Install dependencies
   npm install
+# Build the js files
+  npm run build
 #Build packages
   #Windows
   npm run package-win
