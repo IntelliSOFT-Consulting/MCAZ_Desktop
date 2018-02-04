@@ -16,6 +16,16 @@ export const dateOfBirthValidator = (value) => {
   return false
 }
 
+export const pad = (value) => {
+  if(isNaN(value) || value === '') {
+    return value
+  }
+  if(value && value < 10) {
+    return '0' + value
+  }
+  return value
+}
+
 /**
   Validator for End of onset date
 */
@@ -92,5 +102,5 @@ export const getURL = (data) => {
 
 
 export const getXML = data => {
-  
+
 }

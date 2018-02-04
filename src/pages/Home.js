@@ -24,7 +24,7 @@ import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAG
   AEFI_FOLLOW_UP_PAGE, NEWS_PAGE } from '../utils/Constants'
 
 import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification, setFollowUp, login, signUp, logout, fetchReport,
-  fetchDeviceInfo, removeDraft, printPDF, downloadPDF, contactUs, fetchNews, removeCompletedReports, archiveData } from '../actions'
+  fetchDeviceInfo, removeDraft, printPDF, downloadPDF, contactUs, fetchNews, removeCompletedReports, archiveData, saveFile } from '../actions'
 
 class Home extends Component {
   _notificationSystem: null
@@ -96,9 +96,21 @@ class Home extends Component {
 
   _addNotification(message) {
     const level = message.level? message.level : "info"
-    this._notificationSystem.addNotification({
-      message: message.message,
-      level: level, position: 'tr'
+    var dismissible = false
+    var action = null
+    var position = 'tr'
+    var autoDismiss = 5
+    var title = message.title != null? message.title : null
+    if(message.dismissible) {
+      dismissible = true
+      action = { label : "Okay" }
+      position = 'tc'
+      autoDismiss = 0
+
+    }
+    this._notificationSystem.addNotification({ uid: message.id,
+      message: message.message, title: message.title,
+      level: level, position: position, dismissible : dismissible, action : action, autoDismiss : autoDismiss
     });
   }
 
@@ -228,6 +240,9 @@ const mapDispatchToProps = dispatch => {
     },
     archiveData: (data) => {
       dispatch(archiveData(data))
+    },
+    saveFile: (data) => {
+      dispatch(saveFile(data))
     },
     dispatch: dispatch
   }

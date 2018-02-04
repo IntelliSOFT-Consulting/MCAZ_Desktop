@@ -8,7 +8,7 @@ const path = require('path')
 const url = require('url')
 
 const fs = require('fs')
-
+const jetpack = require('fs-jetpack')
 
 //handle setupevents as quickly as possible
 const setupEvents = require('./installers/setupEvents')
@@ -35,6 +35,7 @@ function createWindow () {
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
+  console.log(app.getPath("home"))
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -91,4 +92,19 @@ ipcMain.on('print', (event, arg) => {
 ipcMain.on('get-info', (event, arg) => {
   const os = require('os')
   event.sender.send('get-info-reply', JSON.stringify({ device_type : os.platform() }))
+})
+
+ipcMain.on('save-file', (event, arg) => {
+  const documents = app.getPath("documents")
+  jetpack.dir(documents + '/mcaz-desktop')
+
+  const json = JSON.parse(arg)
+  var savedFiles = []
+  for(var i = 0; i < json.length; i++) {
+    const file = json[i]
+    jetpack.write(documents + '/mcaz-desktop/' + file.name, JSON.stringify(file.data))
+    savedFiles.push(documents + '/mcaz-desktop/' + file.name)
+
+  }
+  event.sender.send('saved-file', JSON.stringify({ status : "OK", saved : savedFiles }))
 })

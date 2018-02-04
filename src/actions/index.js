@@ -387,3 +387,19 @@ export const fetchStaticData = (data) => {
     })
   }
 }
+
+export const saveFile = (data) => {
+  return dispatch => {
+    ipcRenderer.send('save-file', JSON.stringify(data))
+
+    ipcRenderer.on('saved-file', (event, arg) => {
+      const resp = JSON.parse(arg)
+      if(resp.status == "OK") {
+        const saved = resp.saved.join("\n")
+        dispatch(setNotification({ title: "File saved ", message : saved, level: "info", id: new Date().getTime(), dismissible: true }))
+      }
+      ipcRenderer.removeAllListeners("saved-file")
+    })
+
+  }
+}
