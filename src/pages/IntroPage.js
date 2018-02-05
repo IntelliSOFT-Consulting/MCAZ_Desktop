@@ -187,7 +187,7 @@ export default class IntroPage extends Component {
             </button>
 
           </div>
-          <ReportSearchComponent uploaded={ uploaded } showPage={ showPage } fetchReport={ fetchReport } token={ token }/>
+          <ReportSearchComponent uploaded={ uploaded } showPage={ this.showPage } fetchReport={ fetchReport } token={ token }/>
         </div>
       </div>
     )
