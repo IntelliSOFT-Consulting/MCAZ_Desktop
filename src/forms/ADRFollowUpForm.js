@@ -297,7 +297,8 @@ class ADRFollowUpForm extends FormComponent {
 
   upload() {
     const { uploadData, saveCompleted, connection, token } = this.props
-    const { model } = this.state
+    var { model } = this.state
+    model.submitted = 2
     if(connection.isConnected) {
       const url = ADR_URL + "/followup/" + btoa(model.parent_reference)
       uploadData(model, url, token)

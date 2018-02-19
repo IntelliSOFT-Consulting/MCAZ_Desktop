@@ -33,11 +33,11 @@ class AEFIReportingForm extends FormComponent {
   constructor(props) {
     super(props)
 
-    var { model, settings } = this.props
+    var { model, settings, user } = this.props
     if(model == null) {
-      model = { rid : Date.now(), type : REPORT_TYPE_AEFI, data_source: "desktop", device_type : settings.device_type }
+      model = { rid : Date.now(), type : REPORT_TYPE_AEFI, data_source: "desktop", device_type : settings.device_type, reporter_email: user.username }
     }
-    
+
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.validateDateofBirth = this.validateDateofBirth.bind(this)
     this.validateAge = this.validateAge.bind(this)
@@ -403,7 +403,8 @@ class AEFIReportingForm extends FormComponent {
 
   upload() {
     const { uploadData, saveCompleted, connection, token } = this.props
-    const { model } = this.state
+    var { model } = this.state
+    model.submitted = 2
     if(connection.isConnected) {
       uploadData(model, AEFI_URL, token)
     } else {
@@ -419,7 +420,8 @@ const mapStateToProps = state => {
     model: state.appState.currentReport,
     followUp: state.appState.followUp,
     token: state.appState.user.token,
-    settings: state.appState.settings
+    settings: state.appState.settings,
+    user: state.appState.user
   }
 }
 

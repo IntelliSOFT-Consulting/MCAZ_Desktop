@@ -28,9 +28,9 @@ class ADRForm extends FormComponent {
 
   constructor(props) {
     super(props)
-    var { model, settings } = this.props
+    var { model, settings, user } = this.props
     if(model == null) {
-      model = { "rid": Date.now(),"type":"REPORT_TYPE_ADR", data_source: "desktop", device_type : settings.device_type }
+      model = { "rid": Date.now(),"type":"REPORT_TYPE_ADR", data_source: "desktop", device_type : settings.device_type, reporter_email: user.username }
     }
     //model = {"rid":1510853208716,"type":"REPORT_TYPE_ADR","name_of_institution":"Nairobi Hosp","sadr_list_of_drugs":[{"brand_name":"dawa","dose_id":"7","route_id":"4","frequency_id":"4","drug_name":"wwqq","dose":"1","indication":"1","start_date":"1-10-2017","stop_date":"21-10-2017","suspected_drug":""}],"user":{},"patient_name":"xxsss","date_of_birth":"6-4-2015","weight":"34","height":"12","gender":"Male","date_of_onset_of_reaction":"8-2-2017","severity":"No","medical_history":"ss","lab_test_results":"ssds","action_taken":"Dose reduced","outcome":"Recovering","designation_id":"2","reporter_name":"John","reporter_email":"john@gmail.com","description_of_reaction":"hhhn"}
     this.state = { model : model, validate : null, confirmVisible : false, confirmCancel : false }
@@ -41,6 +41,7 @@ class ADRForm extends FormComponent {
     this.calculateAgeGroup = this.calculateAgeGroup.bind(this)
     this.onAgeChange = this.onAgeChange.bind(this)
     this.onSelectOfInstitution = this.onSelectOfInstitution.bind(this)
+    this.onSeverityChange = this.onSeverityChange.bind(this)
     this.closeModal = this.closeModal.bind(this)
     this.confirmDelete = this.confirmDelete.bind(this)
     this.deleteConfirmed = this.deleteConfirmed.bind(this)
@@ -123,6 +124,9 @@ class ADRForm extends FormComponent {
       </div></div>
     ) : null
 
+    const severityReason = this.state.model['severity'] == "Yes"? (<div className="col-md-6 col-sm-12">
+      <SelectInput label="Reason for Seriousness" model={ model } name="severity_reason" required={ true } validate={ this.state.validate } options={ SEVERITY_REASON } dependent={ { name : "severity", value: "Yes" }}/>
+    </div>) : null
     return (
       <div className='adr-form form'>
         { confirmVisible }
@@ -198,11 +202,9 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Serious" model={ model } name="severity" required={ true } validate={ this.state.validate } options={ BOOLEAN_OPTIONS }/>
+              <SingleMultipleInput label="Serious" model={ model } name="severity" required={ true } validate={ this.state.validate } options={ BOOLEAN_OPTIONS } onChange={ this.onSeverityChange }/>
             </div>
-            <div className="col-md-6 col-sm-12">
-              <SelectInput label="Reason for Seriousness" model={ model } name="severity_reason" required={ true } validate={ this.state.validate } options={ SEVERITY_REASON } dependent={ { name : "severity", value: "Yes" }}/>
-            </div>
+            { severityReason }
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
@@ -325,6 +327,14 @@ class ADRForm extends FormComponent {
     }
   }
 
+  onSeverityChange(value) {
+    const { model } = this.state
+    if(value == "Yes") {
+
+    }
+    this.setState({ model })
+  }
+
   onAgeChange(age) {
     var age_group = this.calculateAgeGroup(age)
     const { model } = this.state
@@ -423,7 +433,8 @@ class ADRForm extends FormComponent {
 
   upload() {
     const { uploadData, saveCompleted, connection, token } = this.props
-    const { model } = this.state
+    var { model } = this.state
+    model.submitted = 2
     if(connection.isConnected) {
       uploadData(model, ADR_URL, token)
     } else {
@@ -441,7 +452,8 @@ const mapStateToProps = state => {
     model: state.appState.currentReport,
     followUp: state.appState.followUp,
     token: state.appState.user.token,
-    settings: state.appState.settings
+    settings: state.appState.settings,
+    user: state.appState.user
   }
 }
 

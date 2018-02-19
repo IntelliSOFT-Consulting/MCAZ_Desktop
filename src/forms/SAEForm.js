@@ -31,9 +31,9 @@ class SAEForm extends FormComponent {
   constructor(props) {
     super(props)
 
-    var { model, settings } = this.props
+    var { model, settings, user } = this.props
     if(model == null) {
-      model = { rid : Date.now(), type : REPORT_TYPE_SAE, data_source: "desktop", device_type : settings.device_type }
+      model = { rid : Date.now(), type : REPORT_TYPE_SAE, data_source: "desktop", device_type : settings.device_type, reporter_email: user.username }
     }
     //model = {"rid":1511180361456,"type":"REPORT_TYPE_SAE","mrcz_protocol_number":"nn","mcaz_protocol_number":"sds","name_of_institution":"sdsd","reporter_phone":"09023","principal_investigator":"x","reporter_name":"s","designation_id":"1","study_title":"s","date_of_adverse_event":"4-10-2017","institution_code":"s","reporter_email":"s","study_sponsor":"d","participant_number":"d","report_type":"Initial","date_of_birth":"3-10-2017","gender":"Male","date_of_site_awareness":"3-10-2017","study_week":"1","adverse_event_type":"AE","visit_number":"2","toxicity_grade":"Grade 1","previous_events":"No","total_saes":"2","location_event":"Home","research_involves":"Drug","name_of_drug":"s","drug_investigational":"Yes","adr_list_of_drugs":[{"drug_name":"s","dosage":"s","dose_id":"4","route_id":"2","frequency_id":"3","start_date":"3-10-2017","taking_drug":"No","relationship_to_sae":"Definitely related"}],"adr_other_drugs":[],"report_to_mcaz":"No","report_to_mrcz":"No","report_to_sponsor":"No","report_to_irb":"No","medical_history":"s","diagnosis":"s","immediate_cause":"s","symptoms":"s","investigations":"s","results":"s","management":"s","outcome":"s","d1_consent_form":"Unknown","d3_changes_sae":"Unknown","d2_brochure":"Unknown","d4_consent_sae":"Unknown","changes_explain":"s","assess_risk":"No","patient_other_drug":"No","mraz_protocol_number":"Vbbb"}
 
@@ -479,7 +479,8 @@ this research." name="assess_risk" model={ model } validate={ this.state.validat
 
   upload() {
     const { uploadData, saveCompleted, connection, token } = this.props
-    const { model } = this.state
+    var { model } = this.state
+    model.submitted = 2
     if(connection.isConnected) {
       uploadData(model, SAE_URL, token)
     } else {
@@ -496,7 +497,8 @@ const mapStateToProps = state => {
     model: state.appState.currentReport,
     followUp: state.appState.followUp,
     token: state.appState.user.token,
-    settings: state.appState.settings
+    settings: state.appState.settings,
+    user: state.appState.user
   }
 }
 
