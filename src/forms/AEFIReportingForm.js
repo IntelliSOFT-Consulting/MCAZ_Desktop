@@ -35,7 +35,7 @@ class AEFIReportingForm extends FormComponent {
 
     var { model, settings, user } = this.props
     if(model == null) {
-      model = { rid : Date.now(), type : REPORT_TYPE_AEFI, data_source: "desktop", device_type : settings.device_type, reporter_email: user.username }
+      model = { rid : Date.now(), type : REPORT_TYPE_AEFI, data_source: "desktop", device_type : settings.device_type, reporter_email: user.email, reporter_name: user.name }
     }
 
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
