@@ -1,5 +1,7 @@
 import { REPORT_TYPE_ADR, REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV, REPORT_TYPE_AEFI_FOLLOW_UP, REPORT_TYPE_ADR_FOLLOW_UP } from './Constants'
 import { ADR_URL, SAE_URL, AEFI_URL, SAEFI_URL } from './Constants'
+
+import X2JS from 'x2js'
 /**
   Validator for Date of Birth
   If the year only is selected, return true.
@@ -103,4 +105,75 @@ export const getURL = (data) => {
 
 export const getXML = data => {
 
+}
+
+export const generateXML = (data) => {
+  var reports = {}
+  reports.sadr = data.filter(report => report.type == REPORT_TYPE_ADR)
+  reports.adr = data.filter(report => report.type == REPORT_TYPE_SAE)
+  reports.aefi = data.filter(report => report.type == REPORT_TYPE_AEFI)
+  reports.saefi = data.filter(report => report.type == REPORT_TYPE_AEFI_INV)
+
+  var x2js = new X2JS()
+  var xmls = []
+  var output = { response : {}}
+
+  var sadrs = data.filter(report => report.type == REPORT_TYPE_ADR);
+  if(sadrs.length > 0) {
+    output.response.sadrs = sadrs
+  }
+  var adrs = data.filter(report => report.type == REPORT_TYPE_SAE)
+  if(adrs.length > 0) {
+    output.response.adrs = adrs
+  }
+
+  var aefis = data.filter(report => report.type == REPORT_TYPE_AEFI)
+  if(aefis.length > 0) {
+    output.response.aefis = aefis
+  }
+
+  var saefis = data.filter(report => report.type == REPORT_TYPE_AEFI_INV)
+  if(saefis.length > 0) {
+    output.response.saefis = saefis
+  }
+
+  const date = new Date()
+  const name = date.getFullYear() + pad(date.getMonth() + 1) + pad(date.getDate()) + pad(date.getHours()) + pad(date.getMinutes()) + pad(date.getSeconds()) + ".xml"// new Date().toString().split(/ /).join('_') + '.xml'
+
+  var sadrs = data.filter(report => report.type == REPORT_TYPE_ADR);
+  var files = []
+  if(sadrs.length > 0) {
+    var output = { response : {}}
+    output.response.sadrs = sadrs
+    const string = x2js.json2xml_str(output) //xmls.join("")
+    const fileData = { name : 'sadrs_' + name, data : string }
+    files.push(fileData)
+  }
+  var adrs = data.filter(report => report.type == REPORT_TYPE_SAE)
+  if(adrs.length > 0) {
+    var output = { response : {}}
+    output.response.adrs = adrs
+    const string = x2js.json2xml_str(output) //xmls.join("")
+    const fileData = { name : 'adrs_' + name, data : string }
+    files.push(fileData)
+  }
+
+  var aefis = data.filter(report => report.type == REPORT_TYPE_AEFI)
+  if(aefis.length > 0) {
+    var output = { response : {}}
+    output.response.aefis = aefis
+    const string = x2js.json2xml_str(output) //xmls.join("")
+    const fileData = { name : 'aefis_' + name, data : string }
+    files.push(fileData)
+  }
+
+  var saefis = data.filter(report => report.type == REPORT_TYPE_AEFI_INV)
+  if(saefis.length > 0) {
+    var output = { response : {}}
+    output.response.saefis = saefis
+    const string = x2js.json2xml_str(output) //xmls.join("")
+    const fileData = { name : 'saefis_' + name, data : string }
+    files.push(fileData)
+  }
+  return files
 }

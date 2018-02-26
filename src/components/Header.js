@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Confirm from '../dialogs/Confirm'
 
-import { ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, LOGIN_PAGE, SIGNUP_PAGE, MAIN_PAGE, NEWS_PAGE } from '../utils/Constants'
+import { ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, LOGIN_PAGE, SIGNUP_PAGE, MAIN_PAGE, NEWS_PAGE, ARCHIVED_PAGE } from '../utils/Constants'
 
 export default class Header extends Component {
    constructor(props) {
@@ -93,6 +93,7 @@ export default class Header extends Component {
               <li className={ page == AEFI_INV_PAGE ? "active" : "" }><a href="#" onClick={ () => this.showPage(AEFI_INV_PAGE) }>Serious AEFI</a></li>
               <li><a href="#" onClick={ () => this.contactUs() }>Contact us</a></li>
               <li className={ page == NEWS_PAGE ? "active" : "" }><a href="#" onClick={ () => this.showPage(NEWS_PAGE) }>News</a></li>
+              <li className={ page == ARCHIVED_PAGE ? "active" : "" }><a href="#" onClick={ () => this.showPage(ARCHIVED_PAGE) }>Archived data</a></li>
               <li><a href="#" onClick={ () => this.logout() }>Logout</a></li>
 
             </ul>

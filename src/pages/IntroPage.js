@@ -9,7 +9,7 @@ import X2JS from 'x2js'
 import { saveAs } from 'file-saver'
 
 import messages from '../utils/messages.json'
-import { pad } from '../utils/utils'
+import { pad, generateXML } from '../utils/utils'
 
 export default class IntroPage extends Component {
 
@@ -47,77 +47,11 @@ export default class IntroPage extends Component {
   downloadReports() {
     const { uploadCompletedReports, completed, connection, token, removeCompletedReports, archiveData, setNotification } = this.props
     if(completed.length == 0) {
-
       setNotification({ message : messages.noDataToDownload, level: "error", id: new Date().getTime() })
       return
     }
-    var reports = {}
-    reports.sadr = completed.filter(report => report.type == REPORT_TYPE_ADR)
-    reports.adr = completed.filter(report => report.type == REPORT_TYPE_SAE)
-    reports.aefi = completed.filter(report => report.type == REPORT_TYPE_AEFI)
-    reports.saefi = completed.filter(report => report.type == REPORT_TYPE_AEFI_INV)
 
-    var x2js = new X2JS()
-    var xmls = []
-    var output = { response : {}}
-
-    var sadrs = completed.filter(report => report.type == REPORT_TYPE_ADR);
-    if(sadrs.length > 0) {
-      output.response.sadrs = sadrs
-    }
-    var adrs = completed.filter(report => report.type == REPORT_TYPE_SAE)
-    if(adrs.length > 0) {
-      output.response.adrs = adrs
-    }
-
-    var aefis = completed.filter(report => report.type == REPORT_TYPE_AEFI)
-    if(aefis.length > 0) {
-      output.response.aefis = aefis
-    }
-
-    var saefis = completed.filter(report => report.type == REPORT_TYPE_AEFI_INV)
-    if(saefis.length > 0) {
-      output.response.saefis = saefis
-    }
-
-    const date = new Date()
-    const name = date.getFullYear() + pad(date.getMonth() + 1) + pad(date.getDate()) + pad(date.getHours()) + pad(date.getMinutes()) + pad(date.getSeconds()) + ".xml"// new Date().toString().split(/ /).join('_') + '.xml'
-
-    var sadrs = completed.filter(report => report.type == REPORT_TYPE_ADR);
-    var files = []
-    if(sadrs.length > 0) {
-      var output = { response : {}}
-      output.response.sadrs = sadrs
-      const string = x2js.json2xml_str(output) //xmls.join("")
-      const fileData = { name : 'sadrs_' + name, data : string }
-      files.push(fileData)
-    }
-    var adrs = completed.filter(report => report.type == REPORT_TYPE_SAE)
-    if(adrs.length > 0) {
-      var output = { response : {}}
-      output.response.adrs = adrs
-      const string = x2js.json2xml_str(output) //xmls.join("")
-      const fileData = { name : 'adrs_' + name, data : string }
-      files.push(fileData)
-    }
-
-    var aefis = completed.filter(report => report.type == REPORT_TYPE_AEFI)
-    if(aefis.length > 0) {
-      var output = { response : {}}
-      output.response.aefis = aefis
-      const string = x2js.json2xml_str(output) //xmls.join("")
-      const fileData = { name : 'aefis_' + name, data : string }
-      files.push(fileData)
-    }
-
-    var saefis = completed.filter(report => report.type == REPORT_TYPE_AEFI_INV)
-    if(saefis.length > 0) {
-      var output = { response : {}}
-      output.response.saefis = saefis
-      const string = x2js.json2xml_str(output) //xmls.join("")
-      const fileData = { name : 'saefis_' + name, data : string }
-      files.push(fileData)
-    }
+    const files = generateXML(completed)
 
     if(files.length > 0) {
       const { saveFile } = this.props

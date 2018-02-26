@@ -30,6 +30,7 @@ export const READ_ONLY_PAGE = 'READ_ONLY_PAGE'
 export const LOGIN_PAGE = 'LOGIN_PAGE'
 export const SIGNUP_PAGE = 'SIGNUP_PAGE'
 export const NEWS_PAGE = 'NEWS_PAGE'
+export const ARCHIVED_PAGE = 'ARCHIVED_PAGE'
 
 export const ADR_FOLLOW_UP_PAGE = 'ADR_FOLLOW_UP_PAGE'
 export const AEFI_FOLLOW_UP_PAGE = 'AEFI_FOLLOW_UP_PAGE'

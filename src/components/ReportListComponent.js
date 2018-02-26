@@ -167,6 +167,5 @@ export default class ReportListComponent extends Component {
 
   handlePageChange(pageNumber) {
     this.setState({ activePage : pageNumber })
-    console.log(pageNumber)
   }
 }

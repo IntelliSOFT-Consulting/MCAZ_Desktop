@@ -12,6 +12,7 @@ import SignupPage from './SignupPage'
 import NewsPage from './NewsPage'
 import ADRFollowUpForm from '../forms/ADRFollowUpForm'
 import AEFIReportFollowupForm from '../forms/AEFIReportFollowupForm'
+import ArchivedData from './ArchivedData'
 
 var NotificationSystem = require('react-notification-system')
 
@@ -21,7 +22,7 @@ import { saveAs } from 'file-saver'
 import { connect } from 'react-redux'
 
 import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, REPORTS_LIST_PAGE, READ_ONLY_PAGE, LOGIN_PAGE, SIGNUP_PAGE, ADR_FOLLOW_UP_PAGE,
-  AEFI_FOLLOW_UP_PAGE, NEWS_PAGE } from '../utils/Constants'
+  AEFI_FOLLOW_UP_PAGE, NEWS_PAGE, ARCHIVED_PAGE } from '../utils/Constants'
 
 import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification, setFollowUp, login, signUp, logout, fetchReport,
   fetchDeviceInfo, removeDraft, printPDF, downloadPDF, contactUs, fetchNews, removeCompletedReports, archiveData, saveFile } from '../actions'
@@ -77,6 +78,8 @@ class Home extends Component {
         return <AEFIReportFollowupForm {...this.props}/>
       case NEWS_PAGE:
         return <NewsPage {...this.props}/>
+      case ARCHIVED_PAGE:
+        return <ArchivedData {...this.props}/>
       default:
         return <LoginPage {...this.props} />
     }
@@ -181,7 +184,8 @@ const mapStateToProps = state => {
     user: state.appState.user,
     print: state.appState.print,
     currentReport: state.appState.currentReport,
-    news: state.appState.news
+    news: state.appState.news,
+    archived: state.appState.archived
   }
 }
 
