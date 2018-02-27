@@ -363,7 +363,7 @@ export const fetchNews = () => {
     }).then(res => res.json()).then((json) => {
       dispatch(setNews(json))
     }).catch((error) => {
-      dispatch(setNotification({ message : messages.error_fetching_news, level: "error", id: new Date().getTime() }))
+      dispatch(setNotification({ title: "error", message : messages.error_fetching_news, level: "error", id: new Date().getTime() }))
     })
   }
 }

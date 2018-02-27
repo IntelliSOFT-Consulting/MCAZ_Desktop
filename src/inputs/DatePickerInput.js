@@ -126,10 +126,16 @@ export default class DatePickerInput extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { validate } = this.state
+    const { validate, value } = this.state
     const newValidate = nextProps.validate
     if(newValidate != validate) {
       this.setState({ validate: newValidate })
+    }
+
+    const { model, name } = nextProps
+    if(model[name] != value && value != null) {
+      var val = model[name] == ''? null : model[name]
+      this.setState({ value : val })
     }
   }
 }

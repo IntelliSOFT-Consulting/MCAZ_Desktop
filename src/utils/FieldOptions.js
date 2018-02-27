@@ -189,6 +189,8 @@ export const AGE_GROUP = [ { key : "", value : ""}, { key : "neonate", value : "
   { key : "adolescent", value : "adolescent"}, { key : "adult", value : "adult"}, { key : "elderly", value : "elderly"}
 ]
 
+export const AGE_GROUP_YEARS = [ { key : "< 1 year", value : "< 1 year"}, { key : "1-5 years", value : "1-5 years"}, { key : "> 5 years", value : "> 5 years"}]
+
 export const SAE_EVENT_TYPE = [
   { key : "", value : "select one"}, { key : "Fatal", value : "Fatal"}, { key : "Life-threatening (an actual risk of death at the time of the event).", value : "Life-threatening (an actual risk of death at the time of the event)."},
   { key : "Caused or prolonged hospitalization (non-elective).", value : "Caused or prolonged hospitalization (non-elective)."},

@@ -109,7 +109,7 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
             <tr>
               <th>Name<span className="required">*</span></th>
               <th colSpan="2">Date and time of vaccination<span className="required">*</span></th>
-              <th>Dose</th>
+              <th>Dose (1st, 2nd...)</th>
               <th>Batch/Lot no<span className="required">*</span></th>
               <th>Expiry date</th>
               <th>Batch/ Lot Number</th>

@@ -45,7 +45,7 @@ export default class AgeAtOnSetInput extends Component {
 
     const { onChange } = this.props
     if(onChange) {
-      onChange(model[name])
+      onChange(model[e.target.name])
     }
 
   }
@@ -66,8 +66,8 @@ export default class AgeAtOnSetInput extends Component {
 
     return (
       <div className={ className }>
-        <label className="col-md-4 control-label form-input-label">{ label  } { reqSpan }</label>
-        <div className="col-md-6 row">
+        <label className="col-md-3 control-label form-input-label">{ label  } { reqSpan }</label>
+        <div className="col-md-9 row">
           <div className="col-md-4">
             <div className="form-group">
               <label className="col-md-3 control-label form-input-label">Years</label>

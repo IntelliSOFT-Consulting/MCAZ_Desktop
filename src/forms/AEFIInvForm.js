@@ -11,13 +11,17 @@ import SelectInput from "../inputs/SelectInput"
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import AEFIInvVaccinationTableComponent from '../components/AEFIInvVaccinationTableComponent'
 import FileInputComponent from '../inputs/FileInputComponent'
+import DateSelectInput from "../inputs/DateSelectInput"
+import AgeAtOnSetInput from '../inputs/AgeAtOnSetInput'
+import CheckboxInput from '../inputs/CheckboxInput'
+import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
 
 import moment from 'moment'
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI_INV, SAEFI_URL } from '../utils/Constants'
 
 import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, STATUS_ON_DATE, DESIGNATION, INFANT_BIRTH_OPTS, MULTI_VIALS, DELIVERY_OPTS, SOURCE_INFO,
-  WHEN_VACCINATED, SYRINGES_USED, PLACE_VACCINATION, SITE_TYPE, VACCINATION_IN, BOOLEAN_UNABLE_OPTIONS, BOOLEAN_NA_OPTIONS } from '../utils/FieldOptions'
+  WHEN_VACCINATED, SYRINGES_USED, PLACE_VACCINATION, SITE_TYPE, VACCINATION_IN, BOOLEAN_UNABLE_OPTIONS, BOOLEAN_NA_OPTIONS, PROVINCES, AGE_GROUP_YEARS } from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setNotification } from '../actions'
@@ -31,10 +35,12 @@ class AEFIInvForm extends FormComponent {
       model = { rid : Date.now(), type : REPORT_TYPE_AEFI_INV, data_source: "desktop", device_type : settings.device_type, reporter_email: user.email, reporter_name: user.name }
     }
 
-    //model = {"rid":1511846288224,"type":"REPORT_TYPE_AEFI_INV","designation_id":"1","vaccination_in_other":"s","site_type_other":"s","place_vaccination_other":"s","reporter_name":"s","telephone":"s","reporter_email":"s","report_date":"8-10-2017","start_date":"14-10-2017","complete_date":"27-10-2017","patient_name":"sss","gender":"Male","hospitalization_date":"7-10-2017","status_on_date":"Died","died_date":"7-10-2017","autopsy_done":"No","autopsy_planned":"No","past_history":"Unknown","adverse_event":"Unknown","past_history_remarks":"s","adverse_event_remarks":"s","allergy_history_remarks":"s","allergy_history":"Unknown","existing_illness":"Unknown","existing_illness_remarks":"s","hospitalization_history":"No","hospitalization_history_remarks":"s","medication_vaccination":"Unknown","medication_vaccination_remarks":"s","faith_healers":"No","faith_healers_remarks":"s","family_history":"No","family_history_remarks":"ss","pregnant":"No","breastfeeding":"No","infant":"full-term","birth_weight":"12","delivery_procedure":"Caesarean","source_examination":"source_examination","verbal_source":"x","examiner_name":"x","signs_symptoms":"x","person_details":"x","person_date":"22-10-2017","person_designation":"x","medical_care":"x","not_medical_care":"x","final_diagnosis":"x","saefi_list_of_vaccines":[{"vaccine_name":"xx","vaccination_doses":"2"}],"when_vaccinated":"Within the last vaccinations of the session","when_vaccinated_specify":"xxx","prescribing_error":"No","vaccine_unsterile":"Unable to assess","vaccine_condition":"Unable to assess","vaccine_reconstitution":"Unable to assess","vaccine_handling":"Unable to assess","vaccine_administered":"Unable to assess","vaccinated_vial":"2","vaccinated_session":"3","vaccinated_locations":"1","vaccinated_locations_specify":"dsd","vaccinated_cluster":"Unknown","vaccinated_cluster_vial":"Unknown","vaccinated_cluster_number":"4","vaccinated_cluster_vial_number":"d","syringes_used":"Unknown","syringes_used_specify":"Recycled disposable","syringes_used_findings":"d","reconstitution_multiple":"Yes","reconstitution_different":"d","reconstitution_syringe":"d","reconstitution_observations":"d","reconstitution_vial":"d","reconstitution_vaccines":"d","cold_temperature":"No","cold_temperature_deviation":"No","cold_temperature_specify":"d","procedure_followed":"No","partial_vaccines":"No","other_items":"No","unusable_vaccines":"No","unusable_diluents":"No","cold_transportation":"No","additional_observations":"d","vaccine_carrier":"No","transport_findings":"d","similar_events":"No","coolant_packs":"d","similar_events_describe":"d","similar_events_episodes":"dd","affected_vaccinated":"d","affected_unknown":"d","community_comments":"d","affected_not_vaccinated":"dd","relevant_findings":"ddf"}
     if(model.reports == null) {
       model.reports = [{}]
     }
+    this.validateDateofBirth = this.validateDateofBirth.bind(this)
+    this.validateAge = this.validateAge.bind(this)
+    this.validateAgeGroup = this.validateAgeGroup.bind(this)
     this.saveAndSubmit = this.saveAndSubmit.bind(this)
     this.upload = this.upload.bind(this)
     this.closeModal = this.closeModal.bind(this)
@@ -127,8 +133,19 @@ class AEFIInvForm extends FormComponent {
           <hr/>
           <h5 className="text-center">Basic Details</h5>
           <div className="container">
+            <div className="col-md-4 col-sm-12">
+              <SelectInput label="Province" name="province_id" model={ model } required={ true } options={ PROVINCES }/>
+            </div>
+            <div className="col-md-4 col-sm-12">
+              <SelectInput label="District" name="district" model={ model } required={ true } options={ PROVINCES }/>
+            </div>
+            <div className="col-md-4 col-sm-12">
+              <TextInput label="AEFI Report ID" name="aefi_report_ref" model={ model } required={ true } />
+            </div>
+          </div>
+          <div className="container">
             <div className="col-md-offset-2 col-md-8 col-sm-12 top-margins">
-              <TextInput label="" hideLabel={ true } name="basic_details" model={ model } multiLine={ true}/>
+              <TextInput label="Name of vaccination site" name="name_of_vaccination_site" model={ model } required={ true } validate={ this.state.validate} />
             </div>
           </div>
           <div className="container">
@@ -198,10 +215,38 @@ class AEFIInvForm extends FormComponent {
             </div>
           </div>
           <div className="container">
+            <div className="col-md-offset-2 col-md-8 col-sm-12 top-margins">
+              <TextInput label="Patient's physical address" name="basic_details" model={ model } multiLine={ true }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <DatePickerInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() } onChange={ (value) => this.validateDateofBirth(value) }/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <AgeAtOnSetInput label="OR Age at onset" inline={ true } name="age_at_onset" model={ model } onChange={ (value) => this.validateAge(value) }/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <SingleMultipleInput label="OR Age Group" required={ true } name="age_group" model={ model } inline={ true } options={ AGE_GROUP_YEARS } onChange={ (value) => this.validateAgeGroup(value) }/>
+            </div>
+          </div>
+          <div className="container">
+            <p>*Complete below table if vaccination information missing on the AEFI reporting form</p>
+            <div className="col-md-6 col-sm-12">
+              <AEFIVaccinationTableComponent name="aefi_list_of_vaccines" model={ model } validate={ this.state.validate } label="Vaccine   "/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <DatePickerInput label="Date of first/key symptom (DD/MM/YYYY)" required={ true } name="symptom_date" model={ model } maxDate={ moment() } showTime={ true }/>
+            </div>
+          </div>
+          <div className="container">
             <div className="col-md-6 col-sm-12">
               <DatePickerInput label="Date of hospitalization (DD/MM/YYYY):" required={ true } name="hospitalization_date" model={ model } maxDate={ moment() }/>
             </div>
-
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
@@ -213,7 +258,6 @@ class AEFIInvForm extends FormComponent {
             <div className="col-md-6 col-sm-12">
               <DatePickerInput label="If died, date and time of death (DD/MM/YYYY):" name="died_date" model={ model } showTime={ true } required={ true } onChange={ (value) => this.setState(value) } maxDate={ moment() }/>
             </div>
-
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
@@ -374,8 +418,11 @@ class AEFIInvForm extends FormComponent {
               <DatePickerInput label="Date/time" model={ model } name="person_date"/>
             </div>
           </div>
+          <div className="container"><h4>**Instructions – Attach copies of ALL available documents (including case sheet, discharge summary, case notes,
+              laboratory reports and autopsy reports) and then complete additional information NOT AVAILABLE in existing
+          documents, i.e.</h4></div>
           <div className="container">
-            <h5>If patient has received medical care  attach copies of all available documents (including case sheet, discharge
+            <h5>If patient has received medical care attach copies of all available documents (including case sheet, discharge
 summary, laboratory reports and autopsy reports, if available) and write only the information that is not available in the
 attached documents below</h5>
             <TextInput multiLine={ true } hideLabel={ true } name="medical_care" model={ model }/>
@@ -665,6 +712,37 @@ additional sheets if necessary)</h5>
         </form>
       </div>
     )
+  }
+
+  validateDateofBirth(value) {
+    var { model } = this.state
+    if(value != '') {
+      model['age_at_onset_days'] = ""
+      model['age_at_onset_months'] = ""
+      model['age_at_onset_years'] = ""
+      model['age_group'] = ""
+    }
+    this.setState({ model })
+  }
+
+  validateAge(value) {
+    var { model } = this.state
+    if(value != '') {
+      model['date_of_birth'] = ''
+      model['age_group'] = ""
+    }
+    this.setState({ model : model })
+  }
+
+  validateAgeGroup(value) {
+    var { model } = this.state
+    if(value != '') {
+      model['date_of_birth'] = ''
+      model['age_at_onset_days'] = ""
+      model['age_at_onset_months'] = ""
+      model['age_at_onset_years'] = ""
+    }
+    this.setState({ model : model })
   }
 
   confirmDelete(e) {
