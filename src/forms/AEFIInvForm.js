@@ -216,7 +216,7 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-offset-2 col-md-8 col-sm-12 top-margins">
-              <TextInput label="Patient's physical address" name="basic_details" model={ model } multiLine={ true }/>
+              <TextInput label="Patient's physical address" name="patient_address" model={ model } multiLine={ true }/>
             </div>
           </div>
           <div className="container">
