@@ -8,7 +8,7 @@ import FileInputComponent from '../inputs/FileInputComponent'
 import { MAIN_PAGE, REPORT_TYPE_AEFI_INV, SAEFI_URL } from '../utils/Constants'
 
 import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, STATUS_ON_DATE, DESIGNATION, INFANT_BIRTH_OPTS, MULTI_VIALS, DELIVERY_OPTS, SOURCE_INFO,
-  WHEN_VACCINATED, SYRINGES_USED, PLACE_VACCINATION, SITE_TYPE, VACCINATION_IN, BOOLEAN_UNABLE_OPTIONS, BOOLEAN_NA_OPTIONS } from '../utils/FieldOptions'
+  WHEN_VACCINATED, SYRINGES_USED, PLACE_VACCINATION, SITE_TYPE, VACCINATION_IN, BOOLEAN_UNABLE_OPTIONS, BOOLEAN_NA_OPTIONS, PROVINCES } from '../utils/FieldOptions'
 
 export default class AEFIInvReadOnlyReportComponent extends Component {
 
@@ -45,8 +45,19 @@ export default class AEFIInvReadOnlyReportComponent extends Component {
             <hr/>
             <h5 className="text-center">Basic Details</h5>
             <div className="container">
-              <div className="col-md-offset-2 col-md-8  top-margins">
-                <ReadOnlyDataRenderer label="" hideLabel={ true } name="basic_details" model={ model } multiLine={ true}/>
+              <div className="col-md-4 col-sm-12">
+                <ReadOnlyDataRenderer type="option" label="Province" name="province_id" model={ model } required={ true } options={ PROVINCES }/>
+              </div>
+              <div className="col-md-4 col-sm-12">
+                <ReadOnlyDataRenderer label="District" name="district" model={ model } required={ true } />
+              </div>
+              <div className="col-md-4 col-sm-12">
+                <ReadOnlyDataRenderer label="AEFI Report ID" name="aefi_report_ref" model={ model } required={ true } />
+              </div>
+            </div>
+            <div className="container">
+              <div className="col-md-offset-2 col-md-8 col-sm-12 top-margins">
+                <ReadOnlyDataRenderer label="Name of vaccination site" name="name_of_vaccination_site" model={ model } required={ true } validate={ this.state.validate} />
               </div>
             </div>
             <div className="container">
@@ -113,6 +124,35 @@ export default class AEFIInvReadOnlyReportComponent extends Component {
               </div>
               <div className="col-md-6 ">
                 <ReadOnlyDataRenderer type="option"  inline={ true } label="Gender" model={ model } name="gender" options={ GENDER }/>
+              </div>
+            </div>
+            <div className="container">
+              <div className="col-md-offset-2 col-md-8 col-sm-12 top-margins">
+                <ReadOnlyDataRenderer label="Patient's physical address" name="patient_address" model={ model } multiLine={ true }/>
+              </div>
+            </div>
+            <div className="container">
+              <div className="col-md-6 col-sm-12">
+                <ReadOnlyDataRenderer type="date" label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() } onChange={ (value) => this.validateDateofBirth(value) }/>
+              </div>
+              <div className="col-md-6 col-sm-12">
+                <ReadOnlyDataRenderer label="OR Age at onset" inline={ true } name="age_at_onset" model={ model } onChange={ (value) => this.validateAge(value) }/>
+              </div>
+            </div>
+            <div className="container">
+              <div className="col-md-6 col-sm-12">
+                <ReadOnlyDataRenderer type="option" label="OR Age Group" required={ true } name="age_group" model={ model } inline={ true } options={ AGE_GROUP_YEARS } onChange={ (value) => this.validateAgeGroup(value) }/>
+              </div>
+            </div>
+            <div className="container">
+              <p>*Complete below table if vaccination information missing on the AEFI reporting form</p>
+              <div className="col-md-6 col-sm-12">
+                <AEFIVaccinationTableComponent readonly={ true } name="aefi_list_of_vaccines" model={ model } validate={ this.state.validate } label="Vaccine   "/>
+              </div>
+            </div>
+            <div className="container">
+              <div className="col-md-6 col-sm-12">
+                <DatePickerInput label="Date of first/key symptom (DD/MM/YYYY)" required={ true } name="symptom_date" model={ model } maxDate={ moment() } showTime={ true }/>
               </div>
             </div>
             <div className="container">
