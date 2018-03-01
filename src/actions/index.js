@@ -179,7 +179,7 @@ export const signUp = (data) => {
     }).then(res => res.json()).then((json) => {
       if(json.token) {
         //const user = Object.assign({}, data, { token : json.token})
-        const user = Object.assign({}, json.user, { token : json.data.token})
+        const user = Object.assign({}, json.user, { token : json.token})
         dispatch(loggedIn(user))
       } else {
         dispatch(setNotification({ message : messages.signup_error, level: "error", id: new Date().getTime() }))
