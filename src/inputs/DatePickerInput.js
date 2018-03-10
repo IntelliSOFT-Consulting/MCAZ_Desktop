@@ -88,7 +88,7 @@ export default class DatePickerInput extends Component {
           selected={ this.state.value }
           onChange={this.handleChange}
           showTimeSelect={ showTime }
-          timeFormat="HH:mm"
+          timeFormat="HH:mm" showYearDropdown showMonthDropdown
           timeIntervals={ 1 } maxDate={ maxDate } minDate={ minDateValue }
           className="form-control input-sm"
           dateFormat={ dateFormat }
@@ -102,7 +102,7 @@ export default class DatePickerInput extends Component {
           <DatePicker className="form-control input-sm"
               selected={ this.state.value }
               onChange={ this.handleChange } showTimeSelect={ showTime }
-              timeFormat="HH:mm"
+              timeFormat="HH:mm" showYearDropdown showMonthDropdown
               timeIntervals={ 1 } maxDate={ maxDate } minDate={ minDateValue }
               dateFormat={ dateFormat }
           />
