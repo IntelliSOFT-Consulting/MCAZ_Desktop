@@ -34,7 +34,7 @@ To build and run the application
   #Linux
   npm run package-linux
 #Create Installer (*Windows) 
-  create-installer-win
+  npm run create-installer-win
 ```
 
 The packages can be found in the release-builds folder, the installer app for windows can be found in the installer folder.
