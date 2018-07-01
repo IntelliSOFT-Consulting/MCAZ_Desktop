@@ -82,7 +82,7 @@ export default class LoginPage extends Component {
         { confirmClearData }
         <div className="login-signup-box">
           <div className={ `form-group ${hasErrorEmail}` }>
-            <label className="control-label form-input-label" htmlFor="exampleInputEmail1">Username</label>
+            <label className="control-label form-input-label" htmlFor="exampleInputEmail1">Email address</label>
             <input type="email" name="email" className="form-control" value={ this.state.email } id="exampleInputEmail1" placeholder="Username" onChange={ this.handleChange }/>
           </div>
           <div className={ `form-group ${hasErrorPass}` }>
