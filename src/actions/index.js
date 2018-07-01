@@ -163,6 +163,20 @@ export const login = (data) => {
   }
 }
 
+export const resetPassword = (email) => {
+  return (dispatch, getState) => {
+    return fetch(LOGIN_URL, {
+      method : "POST",
+      headers: { "Accept" : "application/json", 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(res => res.json()).then((json) => {
+      
+    }).catch((error) => {
+      dispatch(setNotification({ message : messages.request_error, level: "error", id: new Date().getTime() }))
+    })
+  }
+}
+
 export const clearData = () => (
   { type : CLEAR_DATA }
 )

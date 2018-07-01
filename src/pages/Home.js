@@ -25,7 +25,7 @@ import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAG
   AEFI_FOLLOW_UP_PAGE, NEWS_PAGE, ARCHIVED_PAGE } from '../utils/Constants'
 
 import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification, setFollowUp, login, signUp, logout, fetchReport,
-  fetchDeviceInfo, removeDraft, printPDF, downloadPDF, contactUs, fetchNews, removeCompletedReports, archiveData, saveFile } from '../actions'
+  fetchDeviceInfo, removeDraft, printPDF, downloadPDF, contactUs, fetchNews, removeCompletedReports, archiveData, saveFile, resetPassword } from '../actions'
 
 class Home extends Component {
   _notificationSystem: null
@@ -247,6 +247,9 @@ const mapDispatchToProps = dispatch => {
     },
     saveFile: (data) => {
       dispatch(saveFile(data))
+    },
+    resetPassword: (email) => {
+      dispatch(resetPassword(email))
     },
     dispatch: dispatch
   }

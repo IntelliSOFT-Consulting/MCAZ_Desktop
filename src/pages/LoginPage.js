@@ -14,6 +14,7 @@ export default class LoginPage extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.doLogin = this.doLogin.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.resetPassword = this.resetPassword.bind(this)
     const { completed, connection } = this.props
     this.state = { email : "", password: '', confirmClearData: false }
   }
@@ -59,6 +60,24 @@ export default class LoginPage extends Component {
     this.setState({ confirmClearData : false })
   }
 
+  resetPassword() {
+    const { resetEmail } = this.state
+    const { resetPassword } = this.props
+    if(resetEmail != "") {
+      this.setState({ resetPassword : false })
+      resetPassword(resetEmail)
+    }
+  }
+
+  getResetPasswordBody() {
+    return (
+      <div class="form-group">
+        <label className="control-label form-input-label" htmlFor="exampleInputEmail1">Email address</label>
+        <input type="email" name="resetEmail" className="form-control" value={ this.state.resetEmail } id="exampleInputEmail1" placeholder="Email address" onChange={ this.handleChange }/>
+      </div>
+    )
+  }
+
   render() {
     const hasErrorEmail = this.state.validate && this.state.email == ""? " has-error " : ""
     const hasErrorPass = this.state.validate && this.state.password == ""? " has-error " : ""
@@ -77,19 +96,36 @@ export default class LoginPage extends Component {
         </Confirm>
       )
     }
+    var resetPassword = null
+    if(this.state.resetPassword) {
+      resetPassword = (
+        <Confirm
+          visible={ this.state.resetPassword }
+          title="Reset Password"
+          cancel={ this.closeModal }
+          body={ this.getResetPasswordBody() }
+          confirmText={ "Reset password" }
+          confirmBSStyle={ "default" }
+          onConfirm={ this.resetPassword }
+          cancelText={ "Cancel" }>
+        </Confirm>
+      )
+    } // <div><a href="#" onClick={ () => this.setState({ resetPassword : true }) }>Forgot password</a></div>
     return(
       <div className="container-fluid">
         { confirmClearData }
+        { resetPassword }
         <div className="login-signup-box">
           <div className={ `form-group ${hasErrorEmail}` }>
             <label className="control-label form-input-label" htmlFor="exampleInputEmail1">Email address</label>
-            <input type="email" name="email" className="form-control" value={ this.state.email } id="exampleInputEmail1" placeholder="Username" onChange={ this.handleChange }/>
+            <input type="email" name="email" className="form-control" value={ this.state.email } id="exampleInputEmail1" placeholder="Email address" onChange={ this.handleChange }/>
           </div>
           <div className={ `form-group ${hasErrorPass}` }>
             <label className="control-label form-input-label" htmlFor="exampleInputPassword1">Password</label>
             <input type="password" className="form-control" name="password" value={ this.state.password } id="exampleInputPassword1" placeholder="Password" onChange={ this.handleChange }/>
           </div>
           <button type="submit" className="btn btn-default btn-sm" onClick={ this.login }>Login</button> | <a href="#" onClick={ () => this.showPage(SIGNUP_PAGE) }>Signup</a>
+
         </div>
       </div>
     )
