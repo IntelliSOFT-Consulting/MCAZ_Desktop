@@ -22,6 +22,10 @@ export default class ReadOnlyDataRenderer extends Component {
       return ""
     }
     if(type == 'date') {
+      if(model[name] != null && model[name] != '') {
+        let val = moment(model[name]).format("DD-MM-YYYY");
+        return val;
+      }
       return  model[name]
     } else if(type == 'option' && options) {
       var values = ""
@@ -33,7 +37,7 @@ export default class ReadOnlyDataRenderer extends Component {
 
       var renderValue = []
       options.forEach((option) => {
-        if(values.indexOf(option.key) != -1) {
+        if(values.indexOf(option.key) != -1 || (!isNaN(option.key) && values.indexOf(Number(option.key)) != -1)) {
           renderValue.push(option.value)
         }
       })
