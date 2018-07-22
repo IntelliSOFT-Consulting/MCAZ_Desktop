@@ -10,5 +10,6 @@
   "report_not_found" : "Report not found",
   "error_sending_message" : "Error sending contact message",
   "error_fetching_news" : "Error fetching news",
-  "noDataToDownload" : "No data to download."
+  "noDataToDownload" : "No data to download.",
+  "passwordReset" : "Your password has been reset, check your email."
 }

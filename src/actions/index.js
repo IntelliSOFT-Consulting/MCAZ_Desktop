@@ -5,7 +5,7 @@ import { SAVE_DRAFT_REPORT, REMOVE_DRAFT_REPORT, SAVE_COMPLETED_REPORT, REMOVE_C
 import { getRequestPayload, getURL } from '../utils/utils'
 import messages from '../utils/messages.json'
 
-import { MAIN_URL, LOGIN_URL, SIGNUP_URL, MAIN_PAGE } from '../utils/Constants'
+import { MAIN_URL, LOGIN_URL, SIGNUP_URL, MAIN_PAGE, RESET_PASSWORD_URL } from '../utils/Constants'
 
 import { ADR_URL, SAE_URL, AEFI_URL, SAEFI_URL, CONTACT_US_URL, NEWS_URL } from '../utils/Constants'
 import { REPORT_TYPE_ADR, REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV } from '../utils/Constants'
@@ -165,12 +165,12 @@ export const login = (data) => {
 
 export const resetPassword = (email) => {
   return (dispatch, getState) => {
-    return fetch(LOGIN_URL, {
+    return fetch(RESET_PASSWORD_URL, {
       method : "POST",
       headers: { "Accept" : "application/json", 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).then(res => res.json()).then((json) => {
-      
+      body: JSON.stringify({ email : email })
+    }).then((res) => {
+      dispatch(setNotification({ message : messages.passwordReset, level: "info", id: new Date().getTime() }))
     }).catch((error) => {
       dispatch(setNotification({ message : messages.request_error, level: "error", id: new Date().getTime() }))
     })

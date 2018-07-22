@@ -57,7 +57,7 @@ export default class LoginPage extends Component {
   }
 
   closeModal() {
-    this.setState({ confirmClearData : false })
+    this.setState({ confirmClearData : false, resetPassword : false })
   }
 
   resetPassword() {
@@ -71,7 +71,7 @@ export default class LoginPage extends Component {
 
   getResetPasswordBody() {
     return (
-      <div class="form-group">
+      <div className="form-group">
         <label className="control-label form-input-label" htmlFor="exampleInputEmail1">Email address</label>
         <input type="email" name="resetEmail" className="form-control" value={ this.state.resetEmail } id="exampleInputEmail1" placeholder="Email address" onChange={ this.handleChange }/>
       </div>
@@ -125,7 +125,7 @@ export default class LoginPage extends Component {
             <input type="password" className="form-control" name="password" value={ this.state.password } id="exampleInputPassword1" placeholder="Password" onChange={ this.handleChange }/>
           </div>
           <button type="submit" className="btn btn-default btn-sm" onClick={ this.login }>Login</button> | <a href="#" onClick={ () => this.showPage(SIGNUP_PAGE) }>Signup</a>
-
+          <div><a href="#" onClick={ () => this.setState({ resetPassword : true, resetEmail : "" }) }>Forgot password</a></div>
         </div>
       </div>
     )
