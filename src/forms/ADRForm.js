@@ -200,7 +200,7 @@ class ADRForm extends FormComponent {
             <div className="col-md-6 col-sm-12">
               <TextInput label="Description of ADR" multiLine={ true } model={ model } name="description_of_reaction" validate={ this.state.validate } required={ true }/>
             </div>
-            <ReactionsComponent model={ model } name="reactions" readonly={ true }/>
+            <ReactionsComponent model={ model } name="reactions" />
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
