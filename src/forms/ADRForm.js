@@ -10,6 +10,7 @@ import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import MedicationTableComponent from '../components/MedicationTableComponent'
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import ConcomitantTableComponent from '../components/ConcomitantTableComponent'
+import ReactionsComponent from '../components/ReactionsComponent'
 import SelectInput from '../inputs/SelectInput'
 import AutoSuggestInput from '../inputs/AutoSuggestInput'
 
@@ -196,9 +197,10 @@ class ADRForm extends FormComponent {
             </div>
           </div>
           <div className="container">
-            <div className="col-md-12 col-sm-12">
+            <div className="col-md-6 col-sm-12">
               <TextInput label="Description of ADR" multiLine={ true } model={ model } name="description_of_reaction" validate={ this.state.validate } required={ true }/>
             </div>
+            <ReactionsComponent model={ model } name="reactions" readonly={ true }/>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">

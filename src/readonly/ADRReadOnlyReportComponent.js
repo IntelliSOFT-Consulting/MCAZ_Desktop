@@ -109,8 +109,11 @@ export default class ADRReadOnlyReportComponent extends Component {
               </div>
             </div>
             <div className="container">
-              <div className="col-md-12 ">
+              <div className="col-md-6 ">
                 <ReadOnlyDataRenderer label="Description of ADR" multiLine={ true } model={ model } name="description_of_reaction"/>
+              </div>
+              <div className="col-md-6 ">
+                <ReactionsComponent label="Other reactions" multiLine={ true } model={ model } name="reactions" readonly={ true }/>
               </div>
             </div>
             <div className="container">
