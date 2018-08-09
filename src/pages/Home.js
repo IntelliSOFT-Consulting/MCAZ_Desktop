@@ -86,12 +86,12 @@ class Home extends Component {
   }
 
   render() {
-    const { showPage, logout, token, contactUs, page, setReport } = this.props
+    const { showPage, logout, token, contactUs, page, setReport, settings } = this.props
     return (
       <div>
         <Header showPage={ showPage } logout={ logout } token={ token } contactUs={ contactUs } page={ page } setReport={ setReport }/>
         { this.getPage() }
-        <Footer connection={ this.props.connection }/>
+        <Footer connection={ this.props.connection } settings={ settings }/>
         <NotificationSystem ref="notificationSystem" />
       </div>
     )

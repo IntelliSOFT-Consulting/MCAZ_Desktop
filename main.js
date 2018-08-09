@@ -35,7 +35,6 @@ function createWindow () {
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
-  console.log(app.getPath("home"))
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -91,7 +90,7 @@ ipcMain.on('print', (event, arg) => {
 */
 ipcMain.on('get-info', (event, arg) => {
   const os = require('os')
-  event.sender.send('get-info-reply', JSON.stringify({ device_type : os.platform() }))
+  event.sender.send('get-info-reply', JSON.stringify({ device_type : os.platform(), version : app.getVersion() }))
 })
 
 ipcMain.on('save-file', (event, arg) => {

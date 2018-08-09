@@ -9,7 +9,7 @@ export default class Footer extends Component {
   }
 
   render() {
-    
+
     var status = (
       <span>Status : <img src="assets/images/off.png"></img> Offline </span>
     )
@@ -18,10 +18,11 @@ export default class Footer extends Component {
         <span>Status : <img src="assets/images/online.png"></img>  Online </span>
       )
     }
+    const { settings } = this.props
     return(
       <div className="container footer">
         <hr/>
-        <p className="text-center"> &copy; MCAZ { status }</p>
+        <p className="text-center"> &copy; MCAZ { status } (Version { settings.version })</p>
       </div>
     )
   }

@@ -1,6 +1,6 @@
 {
   "name": "MCAZ-Desktop",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCAZ Desktop application",
   "main": "main.js",
   "scripts": {
