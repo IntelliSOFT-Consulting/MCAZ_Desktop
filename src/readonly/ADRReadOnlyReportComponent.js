@@ -6,6 +6,7 @@ import MedicationTableComponent from '../components/MedicationTableComponent'
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import ConcomitantTableComponent from '../components/ConcomitantTableComponent'
 import SelectInput from '../inputs/SelectInput'
+import ReactionsComponent from '../components/ReactionsComponent'
 
 import b64toBlob from 'b64-to-blob'
 
