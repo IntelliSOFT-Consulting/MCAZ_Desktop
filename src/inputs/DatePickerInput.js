@@ -11,25 +11,27 @@ export default class DatePickerInput extends Component {
     super(props)
     const { model, name, validate, showTime } = this.props
     var value = null
-    if(model && model[name]) {
-      if(typeof model[name] == "string") {
-        const dateTime = model[name].split(" ")
-        const v = dateTime[0].split("-")
 
-        const date = moment().year(v[2]).month(v[1]).date(v[0]) //new Date(model[name]['month'] + '/' + model[name]['day'] + '/' + model[name]['year'])
-        value = date
-        if(showTime && dateTime.length == 2) {
-          const t = dateTime[1].split(":")
-          value.hour(t[0]).minute(v[1])
-        }
-      }
+    this.handleChange = this.handleChange.bind(this);
+    this.validate = this.validate.bind(this)
+    this.getDateTimeFromString = this.getDateTimeFromString.bind(this)
+    this.getValueFromString = this.getValueFromString.bind(this)
+
+    if(model && model[name]) {
+      value = this.getValueFromString(model[name])
     }
     this.state = {
       value: value, validate: validate
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.validate = this.validate.bind(this)
-    this.getDateTimeFromString = this.getDateTimeFromString.bind(this)
+
+  }
+
+  getValueFromString(value) {
+    var newValue = null
+    if(typeof value == "string") {
+      return this.getDateTimeFromString(value)
+    }
+    return value
   }
 
   handleChange(date) {
@@ -134,7 +136,7 @@ export default class DatePickerInput extends Component {
 
     const { model, name } = nextProps
     if(model[name] != value && value != null) {
-      var val = model[name] == ''? null : model[name]
+      var val = model[name] == ''? null : this.getValueFromString(model[name])
       this.setState({ value : val })
     }
   }
