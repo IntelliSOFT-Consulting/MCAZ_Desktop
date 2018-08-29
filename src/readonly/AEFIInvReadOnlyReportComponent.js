@@ -3,6 +3,7 @@ import ReadOnlyDataRenderer from './ReadOnlyDataRenderer'
 
 import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import AEFIInvVaccinationTableComponent from '../components/AEFIInvVaccinationTableComponent'
+import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
 import FileInputComponent from '../inputs/FileInputComponent'
 
 import moment from 'moment'
