@@ -13,6 +13,7 @@ import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, AEFI_SEVERITY_REASON,
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
+import moment from 'moment'
 
 export default class AEFIReadOnlyReportComponent extends Component {
 

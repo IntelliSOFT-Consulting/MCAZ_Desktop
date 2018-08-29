@@ -5,6 +5,8 @@ import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import AEFIInvVaccinationTableComponent from '../components/AEFIInvVaccinationTableComponent'
 import FileInputComponent from '../inputs/FileInputComponent'
 
+import moment from 'moment'
+
 import { MAIN_PAGE, REPORT_TYPE_AEFI_INV, SAEFI_URL } from '../utils/Constants'
 
 import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, STATUS_ON_DATE, DESIGNATION, INFANT_BIRTH_OPTS, MULTI_VIALS, DELIVERY_OPTS, SOURCE_INFO,
