@@ -7,8 +7,10 @@ export default class CheckboxInput extends Component {
     const { model, name, options, validate } = this.props
 
     var value = ""
-    if(model && model[name]) {
+    if(model && model[name] && typeof model[name] == 'string') {
       value = model[name].split(',')
+    } else {
+      value = model[name]
     }
     var state = { value : value, validate }
 
