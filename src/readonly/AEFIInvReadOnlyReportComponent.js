@@ -6,6 +6,9 @@ import AEFIInvVaccinationTableComponent from '../components/AEFIInvVaccinationTa
 import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
 import FileInputComponent from '../inputs/FileInputComponent'
 
+import DatePickerInput from "../inputs/DatePickerInput"
+import CheckboxInput from '../inputs/CheckboxInput'
+
 import moment from 'moment'
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI_INV, SAEFI_URL } from '../utils/Constants'
@@ -155,7 +158,7 @@ export default class AEFIInvReadOnlyReportComponent extends Component {
             </div>
             <div className="container">
               <div className="col-md-6 col-sm-12">
-                <DatePickerInput label="Date of first/key symptom (DD/MM/YYYY)" required={ true } name="symptom_date" model={ model } maxDate={ moment() } showTime={ true }/>
+                <ReadOnlyDataRenderer label="Date of first/key symptom (DD/MM/YYYY)" required={ true } name="symptom_date" model={ model } maxDate={ moment() } showTime={ true } type="date"/>
               </div>
             </div>
             <div className="container">
