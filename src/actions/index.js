@@ -255,18 +255,22 @@ export const fetchReport = (id, url, token) => {
     }).then(response => response.json()).then((json) => {
       if(json.sadr) {
         json.sadr.type = REPORT_TYPE_ADR
-        dispatch(showPage('READ_ONLY_PAGE', json.sadr))
+        dispatch(setReport(json.sadr))
+        dispatch(showPage('READ_ONLY_PAGE'))
       } else if(json.adr) {
         json.adr.type = REPORT_TYPE_SAE
-        dispatch(showPage('READ_ONLY_PAGE', json.adr))
+        dispatch(setReport(json.adr))
+        dispatch(showPage('READ_ONLY_PAGE'))
       } else if(json.aefi) {
         json.aefi.type = REPORT_TYPE_AEFI
-        dispatch(showPage('READ_ONLY_PAGE',json.aefi))
+        dispatch(setReport(json.aefi))
+        dispatch(showPage('READ_ONLY_PAGE'))
       } else if(json.saefi) {
         json.saefi.type = REPORT_TYPE_AEFI_INV
-        dispatch(showPage('READ_ONLY_PAGE', json.saefi))
+        dispatch(setReport(json.saefi))
+        dispatch(showPage('READ_ONLY_PAGE'))
       } else {
-        dispatch(setNotification({ message : messages.report_not_found, level: "warn", id: new Date().getTime() }))
+        dispatch(setNotification({ message : messages.report_not_found, level: "error", id: new Date().getTime() }))
         return
       }
     }).catch((error) => {
