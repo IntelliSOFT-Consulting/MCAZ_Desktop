@@ -14,6 +14,7 @@ export default class SingleMultipleInput extends Component {
 
     this.state = state
     this.handleCheck = this.handleCheck.bind(this)
+    this.namePrefix = Math.floor(Math.random() * Math.floor(1000000000))
   }
 
   handleCheck(e) {
@@ -66,14 +67,14 @@ export default class SingleMultipleInput extends Component {
         if(inline) {
           return (
             <label className={ inlineClass } key={ index }>
-              <input type={ type } value={ value } name={ name } checked={ model[value] == "1" || this.state.values.indexOf(value) != -1 } onChange={ this.handleCheck }/> { label }
+              <input type={ type } value={ value } name={ this.namePrefix + "-" + name } checked={ model[value] == "1" || this.state.values.indexOf(value) != -1 } onChange={ this.handleCheck }/> { label }
             </label>
           )
         }
         return (
           <div className={ type } key={ index }>
             <label className={ inlineClass }>
-              <input type={ type } value={ value } name={ name } checked={ this.state.values.indexOf(value) != -1 } onChange={ this.handleCheck }/> { label }
+              <input type={ type } value={ value } name={ this.namePrefix + "-" + name } checked={ this.state.values.indexOf(value) != -1 } onChange={ this.handleCheck }/> { label }
             </label>
           </div>
         )

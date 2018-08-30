@@ -86,6 +86,7 @@ export default class DatePickerInput extends Component {
     const minDateValue = (minDate && typeof minDate == 'string')? this.getDateTimeFromString(minDate) : minDate
 
     if(hideLabel) {
+      const help = hasError? (<span className="help-block">required.</span>) : null
       return <div className={ hasError }><DatePicker
           selected={ this.state.value }
           onChange={this.handleChange}
@@ -94,7 +95,9 @@ export default class DatePickerInput extends Component {
           timeIntervals={ 1 } maxDate={ maxDate } minDate={ minDateValue }
           className="form-control input-sm"
           dateFormat={ dateFormat }
-      /></div>
+      />
+        { help }
+      </div>
     }
 
     return (

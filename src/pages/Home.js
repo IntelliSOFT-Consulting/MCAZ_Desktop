@@ -103,7 +103,7 @@ class Home extends Component {
     var action = null
     var position = 'tr'
     var autoDismiss = 5
-    var title = message.title != null? message.title : null
+    var title = message.title != null? message.title : "info"
     if(message.dismissible) {
       dismissible = true
       action = { label : "Okay" }

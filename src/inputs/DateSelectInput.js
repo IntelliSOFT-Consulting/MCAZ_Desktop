@@ -17,7 +17,6 @@ export default class DateSelectInput extends Component {
   }
 
   getModelValue(model, name) {
-
     var value = { day : "", month: "", year : "" }
     if(model && model[name]) {
       if(typeof model[name] == "string") {
@@ -52,7 +51,7 @@ export default class DateSelectInput extends Component {
   }
 
   render() {
-    const { label, name, required } = this.props
+    const { label, name, required, dependent, model } = this.props
     var input = null
 
     var reqSpan = null
@@ -70,7 +69,7 @@ export default class DateSelectInput extends Component {
     const days = [<option value="" key={ Math.random() * 100000 }></option>].concat(Array(31).fill("").map((value, index) => (<option value={ (index + 1)} key={ Math.random() * 100000 * (index + 1) }>{ (index + 1) }</option>)))
     const years = [<option value="" key={ Math.random() * 100000 }></option>].concat(Array(100).fill("").map((val, index) => (<option value={ ((year - 100) + index) } key={ Math.random() * 100000 * (index + 1) }>{ ((year - 100) + index) }</option>)).reverse())
 
-    const hasError = (this.state.validate && required && Object.values(this.state.value).filter( v => v !== '').length == 0)? " has-error " : ""
+    const hasError = (this.state.validate && required && Object.values(this.state.value).filter( v => v !== '').length == 0 && (dependent == null || (dependent != null && (model[dependent] == null || model[dependent] == ""))))? " has-error " : ""
     const className = "form-group" + hasError
 
     return (

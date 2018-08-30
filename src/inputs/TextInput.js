@@ -47,10 +47,11 @@ export default class TextInput extends Component {
     }
     const hasError = (this.state.validate && required)? this.validate()  : ""
     const className = "form-group" + hasError
+    const help = hasError? (<span className="help-block">required.</span>) : null
     if(hideLabel) {
       return (
         <div className={ hasError }>
-          { input }
+          { input } { help }
         </div>
       )
     }

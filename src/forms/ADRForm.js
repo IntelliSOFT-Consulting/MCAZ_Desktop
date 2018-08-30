@@ -167,7 +167,7 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() } onChange={ this.setAgeGroup }/>
+              <DateSelectInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() } onChange={ this.setAgeGroup } dependent={ "age" }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Weight (Kg)" model={ model } name="weight" type="number"/>

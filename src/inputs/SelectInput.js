@@ -43,11 +43,13 @@ export default class SelectInput extends Component {
     const className = "form-group" + hasError
 
     if(hideLabel) {
+      const help = hasError? (<span className="help-block">required.</span>) : null
       return (
         <div className={ hasError }>
           <select name={ name } disabled={ disabled } className="form-control input-sm" value={ this.state.value } onChange={ this.handleChange }>
             { optionList }
           </select>
+          { help }
         </div>
       )
     }
