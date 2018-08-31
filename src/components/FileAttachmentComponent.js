@@ -83,7 +83,7 @@ export default class FileAttachmentComponent extends TableComponent {
           <thead>
             <tr>
               <th>#</th>
-              <th>File<span className="required">*</span></th>
+              <th>File</th>
               <th>Description of contents</th>
               { lastCol }
             </tr>
