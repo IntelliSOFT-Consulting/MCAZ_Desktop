@@ -88,7 +88,7 @@ export default class LoginPage extends Component {
           visible={ this.state.confirmClearData }
           title="Confirm"
           cancel={ this.closeModal }
-          body={ "Another user has logged in using this machine, if you proceed it will wipe out all data, continue?" }
+          body={ "Another user has logged in using this machine, if you proceed it will wipe out all data, continue? Ignore if account is the same." }
           confirmText={ "Yes" }
           confirmBSStyle={ "danger" }
           onConfirm={ this.doLogin }
