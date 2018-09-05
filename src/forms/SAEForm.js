@@ -21,7 +21,7 @@ import messages from '../utils/messages.json'
 import { MAIN_PAGE, REPORT_TYPE_SAE, SAE_URL } from '../utils/Constants'
 import { SAE_MANDATORY_FIELS } from '../utils/FormFields'
 
-import { DESIGNATION, SAE_REPORT_TYPE, EVENT_TYPE, SAE_EVENT_TYPE, SAE_TOXICITY_GRADE, RESEARCH_INVOLVES, LOCATION_ADVERSE_EVENT, BOOLEAN_OPTIONS, BOOLEAN_NA_OPTIONS } from '../utils/FieldOptions'
+import { DESIGNATION, SAE_REPORT_TYPE, EVENT_TYPE, SAE_EVENT_TYPE, SAE_TOXICITY_GRADE, RESEARCH_INVOLVES, LOCATION_ADVERSE_EVENT, BOOLEAN_OPTIONS, BOOLEAN_NA_OPTIONS, OUTCOME } from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setNotification } from '../actions'
@@ -336,7 +336,7 @@ their relationship to the SAE: "/>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="(g) Outcome:" required={ true } name="outcome" model={ model } validate={ this.state.validate } required={ true } multiLine={ true }/>
+              <SelectInput label="(g) Outcome:" required={ true } name="outcome" model={ model } validate={ this.state.validate } required={ true } multiLine={ true } options={ OUTCOME }/>
             </div>
           </div>
           <div className="container">

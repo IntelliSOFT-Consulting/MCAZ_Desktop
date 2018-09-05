@@ -11,7 +11,7 @@ import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableCom
 
 import { MAIN_PAGE, REPORT_TYPE_AEFI } from '../utils/Constants'
 
-import { DESIGNATION, SAE_REPORT_TYPE, EVENT_TYPE, SAE_EVENT_TYPE, SAE_TOXICITY_GRADE, RESEARCH_INVOLVES, LOCATION_ADVERSE_EVENT, BOOLEAN_NA_OPTIONS, BOOLEAN_OPTIONS } from '../utils/FieldOptions'
+import { DESIGNATION, SAE_REPORT_TYPE, EVENT_TYPE, SAE_EVENT_TYPE, SAE_TOXICITY_GRADE, RESEARCH_INVOLVES, LOCATION_ADVERSE_EVENT, BOOLEAN_NA_OPTIONS, BOOLEAN_OPTIONS, OUTCOME } from '../utils/FieldOptions'
 
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage } from '../actions'
@@ -258,7 +258,7 @@ export default class SAEReadOnlyComponent extends Component {
             </div>
             <div className="container">
               <div className="col-md-6 ">
-                <ReadOnlyDataRenderer label="(g) Outcome:" required={ true } name="outcome" model={ model } validate={ this.state.validate } required={ true } multiLine={ true }/>
+                <ReadOnlyDataRenderer label="(g) Outcome:" required={ true } name="outcome" model={ model } validate={ this.state.validate } required={ true } multiLine={ true } options={ OUTCOME } type="option" />
               </div>
             </div>
             <div className="container">
