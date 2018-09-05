@@ -24,6 +24,10 @@ export default class ReadOnlyDataRenderer extends Component {
     }
     if(type == 'date') {
       if(model[name] != null && model[name] != '') {
+        let dateParts = model[name].split('-').filter( v => v != null && v != '');
+        if(dateParts.length != 3) {
+          return ""
+        }
         let val = moment(model[name]).format("DD-MM-YYYY");
         return val;
       }

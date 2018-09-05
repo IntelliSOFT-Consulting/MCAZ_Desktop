@@ -160,7 +160,7 @@ class AEFIReportingForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of Birth" required={ true } validate={ this.state.validate }  name="date_of_birth" model={ model } onChange={ (value) => this.validateDateofBirth(value) }/>
+              <DatePickerInput label="Date of Birth" required={ true } validate={ this.state.validate }  name="date_of_birth" model={ model } onChange={ (value) => this.validateDateofBirth(value) } maxDate={ moment() }/>
             </div>
 
           </div>

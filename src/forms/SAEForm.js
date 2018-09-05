@@ -189,7 +189,7 @@ class SAEForm extends FormComponent {
               <TextInput label="Participant ID:" name="participant_number" model={ model } validate={ this.state.validate } required={ true }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of Birth:" name="date_of_birth" model={ model } validate={ this.state.validate } required={ true }/>
+              <DatePickerInput label="Date of Birth:" name="date_of_birth" model={ model } validate={ this.state.validate } required={ true } maxDate={ moment() }/>
             </div>
           </div>
           <div className="container">

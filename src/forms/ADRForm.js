@@ -12,6 +12,7 @@ import FileAttachmentComponent from '../components/FileAttachmentComponent'
 import ConcomitantTableComponent from '../components/ConcomitantTableComponent'
 import ReactionsComponent from '../components/ReactionsComponent'
 import SelectInput from '../inputs/SelectInput'
+import DatePickerInput from '../inputs/DatePickerInput'
 import AutoSuggestInput from '../inputs/AutoSuggestInput'
 
 import moment from 'moment'
@@ -167,7 +168,7 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() } onChange={ this.setAgeGroup } dependent={ "age" }/>
+              <DatePickerInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() } onChange={ this.setAgeGroup } dependent={ "age" }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Weight (Kg)" model={ model } name="weight" type="number"/>
@@ -190,10 +191,10 @@ class ADRForm extends FormComponent {
           <h4 className="text-center">Adverse Reaction</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of onset of reaction" model={ model } validate={ this.state.validate } required={ true } name="date_of_onset_of_reaction"/>
+              <DatePickerInput label="Date of onset of reaction" model={ model } validate={ this.state.validate } required={ true } name="date_of_onset_of_reaction" maxDate={ moment() }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <DateSelectInput label="Date of end of reaction (if it ended)" model={ model } name="date_of_end_of_reaction"/>
+              <DatePickerInput label="Date of end of reaction (if it ended)" model={ model } name="date_of_end_of_reaction" maxDate={ moment() }/>
             </div>
           </div>
           <div className="container">
