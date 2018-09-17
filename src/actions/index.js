@@ -155,7 +155,8 @@ export const login = (data) => {
         dispatch(fetchAllReports(AEFI_URL, json.data.token))
         dispatch(fetchAllReports(SAEFI_URL, json.data.token))
       } else {
-        dispatch(setNotification({ message : messages.login_error, level: "error", id: new Date().getTime() }))
+        let message = json.message != null? json.message : messages.login_error
+        dispatch(setNotification({ message : message, level: "error", id: new Date().getTime() }))
       }
     }).catch((error) => {
       dispatch(setNotification({ message : messages.request_error, level: "error", id: new Date().getTime() }))
@@ -196,7 +197,8 @@ export const signUp = (data) => {
         const user = Object.assign({}, json.user, { token : json.token})
         dispatch(loggedIn(user))
       } else {
-        dispatch(setNotification({ message : messages.signup_error, level: "error", id: new Date().getTime() }))
+        let message = json.message != null? json.message : messages.signup_error
+        dispatch(setNotification({ message : message, level: "error", id: new Date().getTime() }))
       }
     }).catch((error) => {
       dispatch(setNotification({ message : messages.request_error, level: "error", id: new Date().getTime() }))

@@ -47,7 +47,7 @@ export default class SignupPage extends Component {
       data.email = this.state.email
       data.password = this.state.password
       data.confirm_password = this.state.confirmPassword
-      data.is_active = true
+      data.is_active = false
       signUp(data)
     } else {
       this.setState({ validate: true })
