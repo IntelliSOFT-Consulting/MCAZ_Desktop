@@ -48,8 +48,7 @@ class Home extends Component {
   }
 
   getPage() {
-    const { page, setReport } = this.props
-    let token = ""
+    const { page, setReport, token } = this.props
     if(token == null && page != LOGIN_PAGE && page != SIGNUP_PAGE) {
       return <LoginPage {...this.props} />
     } else if(token != null && (page == LOGIN_PAGE || page == SIGNUP_PAGE)) {
