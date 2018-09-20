@@ -168,7 +168,7 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() } onChange={ this.setAgeGroup } dependent={ "age" }/>
+              <DatePickerInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() }  dependent={ "age" }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Weight (Kg)" model={ model } name="weight" type="number"/>
@@ -404,7 +404,7 @@ class ADRForm extends FormComponent {
         names += arrayNames.join(',\n')
       } else {
         if(field.dependent) {
-          if((model[field.dependent] == field.value || (field.value == "" && model[field.name] == null)) && (model[field.name] == null || model[field.name] === "")) {
+          if((model[field.dependent] == field.value) && (model[field.name] == null || model[field.name] === "")) {
             valid = false
             if(names != "") {
               names += ",\n "

@@ -48,7 +48,8 @@ class Home extends Component {
   }
 
   getPage() {
-    const { page, token, setReport } = this.props
+    const { page, setReport } = this.props
+    let token = ""
     if(token == null && page != LOGIN_PAGE && page != SIGNUP_PAGE) {
       return <LoginPage {...this.props} />
     } else if(token != null && (page == LOGIN_PAGE || page == SIGNUP_PAGE)) {
@@ -112,7 +113,7 @@ class Home extends Component {
 
     }
     this._notificationSystem.addNotification({ uid: message.id,
-      message: message.message, title: message.title,
+      message: message.message, title: "Message",
       level: level, position: position, dismissible : dismissible, action : action, autoDismiss : autoDismiss
     });
   }
