@@ -13,7 +13,8 @@
     "package-mac": "webpack --config webpack.config.prod.js && electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=release-builds --icon=assets/icons/mac/icon.icns",
     "package-win": "webpack --config webpack.config.prod.js && electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"MCAZ Desktop App\"",
     "package-linux": "webpack --config webpack.config.prod.js && electron-packager . --overwrite --asar=true --icon=assets/icons/png/128x128.png --platform=linux --arch=x64 --prune=true --out=release-builds",
-    "create-installer-win": "node installers/windows/createinstaller.js"
+    "create-installer-win": "node installers/windows/createinstaller.js",    
+	  "create-installer-debian": "electron-installer-debian --src release-builds/electron-tutorial-app-linux-x64/ --arch amd64 --config debian.json"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
