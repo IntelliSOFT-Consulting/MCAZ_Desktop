@@ -171,7 +171,7 @@ class ADRForm extends FormComponent {
               <DatePickerInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() }  dependent={ "age" }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Weight (Kg)" model={ model } name="weight" type="number"/>
+              <TextInput label="Weight (Kg)" model={ model } required={ true } name="weight" type="number" validate={ this.state.validate }/>
             </div>
           </div>
           <div className="container">
@@ -368,6 +368,10 @@ class ADRForm extends FormComponent {
     var valid = true
     var names = ""
     var page = 0
+    // Validate the weight should not be less than 0
+    if(Number(model['weight']) < 0) {
+      valid = false;
+    }
     this.mandatory.forEach((field) => {
       if(field.fields) {
         const fields = field.fields

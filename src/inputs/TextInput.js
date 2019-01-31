@@ -81,10 +81,14 @@ export default class TextInput extends Component {
   validate() {
     const { required, dependent, model, name } = this.props
     var valid = true
-    if(dependent) {
-      valid = subQuestionsValidator(name, dependent, model)
+    if(name == 'weight' && Number(this.state.value) < 0) {
+      valid = false;
     } else {
-      valid = this.state.value == ''? false : true
+      if(dependent) {
+        valid = subQuestionsValidator(name, dependent, model)
+      } else {
+        valid = this.state.value == ''? false : true
+      }
     }
     if(valid) {
       return ""
