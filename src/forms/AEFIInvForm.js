@@ -22,7 +22,7 @@ import { MAIN_PAGE, REPORT_TYPE_AEFI_INV, SAEFI_URL } from '../utils/Constants'
 
 import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, STATUS_ON_DATE, DESIGNATION, INFANT_BIRTH_OPTS, MULTI_VIALS, DELIVERY_OPTS, SOURCE_INFO,
   WHEN_VACCINATED, SYRINGES_USED, PLACE_VACCINATION, SITE_TYPE, VACCINATION_IN, BOOLEAN_UNABLE_OPTIONS, BOOLEAN_NA_OPTIONS, PROVINCES, AGE_GROUP_YEARS } from '../utils/FieldOptions'
-
+import { getDateTimeFromString } from '../utils/utils'
 import { connect } from 'react-redux'
 import { saveDraft, uploadData, saveCompleted, removeDraft, validate, showPage, setNotification } from '../actions'
 
@@ -203,7 +203,7 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date investigation completed:" required={ true } name="complete_date" model={ model } maxDate={ moment() } minDate={ this.state.model['start_date'] }/>
+              <DatePickerInput label="Date investigation completed:" required={ true } name="complete_date" model={ model } maxDate={ moment() } minDate={ this.state.model['start_date'] } onChange={ (value) => this.setState(value) }/>
             </div>
           </div>
           <div className="container">
@@ -240,7 +240,7 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date of first/key symptom (DD/MM/YYYY)" required={ true } name="symptom_date" model={ model } maxDate={ moment() } showTime={ true }/>
+              <DatePickerInput label="Date of first/key symptom (DD/MM/YYYY)" required={ true } name="symptom_date" model={ model } maxDate={ this.state.model['complete_date'] ?  getDateTimeFromString(this.state.model['complete_date']) : moment() } showTime={ true }/>
             </div>
           </div>
           <div className="container">

@@ -226,7 +226,7 @@ export const BOOLEAN_UNKNOWN_OPTIONS = [
 ]
 
 export const GENDER = [
-  { key : "Male", value : "Male"}, { key : "Female", value : "Female"} //, { key : "Unknown", value : "Unknown"}
+  { key : "Male", value : "Male"}, { key : "Female", value : "Female"} , { key : "Unknown", value : "Unknown"}
 ]
 
 export const AEFI_SEVERITY_REASON = [ { key: "", value: "select one" },

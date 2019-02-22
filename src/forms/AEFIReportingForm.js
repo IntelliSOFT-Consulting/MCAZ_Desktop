@@ -45,12 +45,16 @@ class AEFIReportingForm extends FormComponent {
     this.closeModal = this.closeModal.bind(this)
     this.confirmDelete = this.confirmDelete.bind(this)
     this.deleteConfirmed = this.deleteConfirmed.bind(this)
-
+    this.updateAnswer = this.updateAnswer.bind(this);
     this.state = { model , validate : null, confirmVisible : false, confirmCancel : false }
   }
 
   closeModal() {
     this.setState({ confirmVisible : false, confirmCancel : false })
+  }
+
+  updateAnswer(model) {
+    this.setState({ model })
   }
 
   render() {
@@ -248,17 +252,21 @@ class AEFIReportingForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="Outcome"  name="outcome" required={ true } validate={ this.state.validate } model={ model } options={ AEFI_OUTCOME }/>
+              <SelectInput label="Outcome"  name="outcome" required={ true } validate={ this.state.validate } model={ model } options={ AEFI_OUTCOME } onChange={this.updateAnswer}/>
             </div>
-            <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="If died, date of death" name="died_date" model={ model } maxDate={ moment() } />
-            </div>
+
           </div>
-          <div className="container">
-            <div className="col-md-12 col-sm-12">
-              <SingleMultipleInput label="Autopsy done" name="autopsy" model={ model } options={ BOOLEAN_UNKNOWN_OPTIONS } inline={ true }/>
+          { model.outcome == 'Died' ? (
+            <div className="container">
+              <div className="col-md-6 col-sm-12">
+                <DatePickerInput label="If died, date of death" name="died_date" model={ model } maxDate={ moment() } />
+              </div>
+              <div className="col-md-6 col-sm-12">
+                <SingleMultipleInput label="Autopsy done" name="autopsy" model={ model } options={ BOOLEAN_UNKNOWN_OPTIONS } inline={ true }/>
+              </div>
             </div>
-          </div>
+          ) : null
+          }
           <div className="container">
             <div className="col-md-12 col-sm-12">
               <TextInput label="Past medical history (including history of similar reaction or other allergies), concomitant medication and other relevant information (e.g. other cases). Use additional sheet if needed :"

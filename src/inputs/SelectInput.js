@@ -16,11 +16,14 @@ export default class SelectInput extends Component {
   }
 
   handleChange(e) {
-    const { model, name } = this.props
+    const { model, name, onChange } = this.props
     if(model) {
       model[name] = e.target.value
     }
     this.setState({ value : e.target.value })
+    if (onChange) {
+      onChange(model)
+    }
   }
 
   render() {

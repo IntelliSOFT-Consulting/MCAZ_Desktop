@@ -222,6 +222,11 @@ class ADRForm extends FormComponent {
               <TextInput label="Laboratory tests results:" multiLine={ true } model={ model } name="lab_test_results"/>
             </div>
           </div>
+          <div className="container">
+            <div className="col-md-12 col-sm-12">
+              <TextInput label="Any other informatio:" multiLine={ true } model={ model } name="any_other_information"/>
+            </div>
+          </div>
           <hr/>
           <div className="container">
             <MedicationTableComponent label="Current Medication"  validate={ this.state.validate } name="sadr_list_of_drugs" model={ model }/>
