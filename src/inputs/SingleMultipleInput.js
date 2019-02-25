@@ -35,12 +35,13 @@ export default class SingleMultipleInput extends Component {
       }
     }
 
-    this.setState({ values })
+    this.setState({ values });
+    const newValue = {}
     if(model) {
-      model[name] = values.join(',')
+      newValue[name] = values.join(',');
     }
     if(onChange) {
-      onChange(model[name])
+      onChange(newValue);
     }
   }
 

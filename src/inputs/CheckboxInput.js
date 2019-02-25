@@ -19,7 +19,7 @@ export default class CheckboxInput extends Component {
   }
 
   handleCheck(e) {
-    const { options, name, model } = this.props
+    const { options, name, model, onChange } = this.props
     var { value } = this.state
 
     if(e.target.checked) {
@@ -30,7 +30,11 @@ export default class CheckboxInput extends Component {
 
     this.setState({ value })
     if(model) {
-      model[name] = value
+      const newValue = {};
+      newValue[name] = e.target.value;
+      if (onChange) {
+        onChange(newValue);
+      }
     }
   }
 

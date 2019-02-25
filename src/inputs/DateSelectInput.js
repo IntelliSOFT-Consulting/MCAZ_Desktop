@@ -37,15 +37,16 @@ export default class DateSelectInput extends Component {
   handleChange(e) {
     var { value } = this.state
     const { model, name } = this.props
-    value[e.target.name] = e.target.value
-    model[name] = value.day + "-" + value.month + "-" + value.year
-    this.setState({
-      value: value
-    });
+    const newState = Object.assign({}, value); //{...value}
+    newState[e.target.name] = e.target.value
+
+    this.setState(newState);
 
     const { onChange } = this.props
     if(onChange) {
-      onChange(model[name])
+      const newValue = {};
+      newValue[name] = newState.day + "-" + newState.month + "-" + newState.year
+      onChange(newValue[name])
     }
 
   }

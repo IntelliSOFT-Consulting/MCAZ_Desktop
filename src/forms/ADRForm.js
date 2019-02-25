@@ -47,6 +47,7 @@ class ADRForm extends FormComponent {
     this.closeModal = this.closeModal.bind(this)
     this.confirmDelete = this.confirmDelete.bind(this)
     this.deleteConfirmed = this.deleteConfirmed.bind(this)
+    this.onChange = this.onChange.bind(this)
 
     this.mandatory = [
       { name : "patient_name", text : "Patient Initials", page : 1 },
@@ -127,7 +128,7 @@ class ADRForm extends FormComponent {
     ) : null
 
     const severityReason = this.state.model['severity'] == "Yes"? (<div className="col-md-6 col-sm-12">
-      <SelectInput label="Reason for Seriousness" model={ model } name="severity_reason" required={ true } validate={ this.state.validate } options={ SEVERITY_REASON } dependent={ { name : "severity", value: "Yes" }}/>
+      <SelectInput label="Reason for Seriousness" model={ model } name="severity_reason" required={ true } validate={ this.state.validate } options={ SEVERITY_REASON } dependent={ { name : "severity", value: "Yes" }} onChange={this.onChange}/>
     </div>) : null
     return (
       <div className='adr-form form'>
@@ -155,23 +156,23 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="Province" name="province_id" model={ model } options={ PROVINCES }/>
+              <SelectInput label="Province" name="province_id" model={ model } options={ PROVINCES } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Patient Initials" required={ true } validate={ this.state.validate } model={ model } name="patient_name"/>
+              <TextInput label="Patient Initials" required={ true } validate={ this.state.validate } model={ model } name="patient_name" onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="VCT/OI/TB Number" model={ model } name="ip_no"/>
+              <TextInput label="VCT/OI/TB Number" model={ model } name="ip_no" onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() }  dependent={ "age" }/>
+              <DatePickerInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() }  dependent={ "age" } onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Weight (Kg)" model={ model } required={ true } name="weight" type="number" validate={ this.state.validate }/>
+              <TextInput label="Weight (Kg)" model={ model } required={ true } name="weight" type="number" validate={ this.state.validate } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
@@ -179,29 +180,29 @@ class ADRForm extends FormComponent {
               <TextInput label="OR Age" model={ model } name="age" type="number" onChange={ this.onAgeChange }/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Height (centrimetres)" model={ model } name="height" type="number"/>
+              <TextInput label="Height (centrimetres)" model={ model } name="height" type="number" onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-md-offset-6 col-sm-12">
-              <SingleMultipleInput label="Gender" name="gender" model={ model } required={ true } validate={ this.state.validate } inline={ true } options={["Male", "Female", "Unknown"]}/>
+              <SingleMultipleInput label="Gender" name="gender" model={ model } required={ true } validate={ this.state.validate } inline={ true } options={["Male", "Female", "Unknown"]} onChange={this.onChange}/>
             </div>
           </div>
           <hr/>
           <h4 className="text-center">Adverse Reaction</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date of onset of reaction" model={ model } validate={ this.state.validate } required={ true } name="date_of_onset_of_reaction" maxDate={ moment() }/>
+              <DatePickerInput label="Date of onset of reaction" model={ model } validate={ this.state.validate } required={ true } name="date_of_onset_of_reaction" maxDate={ moment() } onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date of end of reaction (if it ended)" model={ model } name="date_of_end_of_reaction" maxDate={ moment() }/>
+              <DatePickerInput label="Date of end of reaction (if it ended)" model={ model } name="date_of_end_of_reaction" maxDate={ moment() } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Description of ADR" multiLine={ true } model={ model } name="description_of_reaction" validate={ this.state.validate } required={ true }/>
+              <TextInput label="Description of ADR" multiLine={ true } model={ model } name="description_of_reaction" validate={ this.state.validate } required={ true } onChange={this.onChange}/>
             </div>
-            <ReactionsComponent model={ model } name="reactions" />
+            <ReactionsComponent model={ model } name="reactions" onChange={this.onChange}/>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
@@ -211,63 +212,63 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Relevant Medical History, including any allergies" multiLine={ true } model={ model } name="medical_history"/>
+              <TextInput label="Relevant Medical History, including any allergies" multiLine={ true } model={ model } name="medical_history" onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Relevant Past Drug Therapy" multiLine={ true } model={ model } name="past_drug_therapy"/>
+              <TextInput label="Relevant Past Drug Therapy" multiLine={ true } model={ model } name="past_drug_therapy" onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <TextInput label="Laboratory tests results:" multiLine={ true } model={ model } name="lab_test_results"/>
+              <TextInput label="Laboratory tests results:" multiLine={ true } model={ model } name="lab_test_results" onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <TextInput label="Any other information:" multiLine={ true } model={ model } name="any_other_information"/>
+              <TextInput label="Any other information:" multiLine={ true } model={ model } name="any_other_information" onChange={this.onChange}/>
             </div>
           </div>
           <hr/>
           <div className="container">
-            <MedicationTableComponent label="Current Medication"  validate={ this.state.validate } name="sadr_list_of_drugs" model={ model }/>
+            <MedicationTableComponent label="Current Medication"  validate={ this.state.validate } name="sadr_list_of_drugs" model={ model } onChange={this.onChange}/>
           </div>
           <div className="container">
             <div className="col-md-4 col-sm-12">
-              <SelectInput label="Action taken:" model={ model } name="action_taken" required={ true } validate={ this.state.validate } options={ ACTION_TAKEN }/>
+              <SelectInput label="Action taken:" model={ model } name="action_taken" required={ true } validate={ this.state.validate } options={ ACTION_TAKEN } onChange={this.onChange}/>
             </div>
             <div className="col-md-4 col-sm-12">
-              <SelectInput label="Outcome of ADR:" model={ model } name="outcome" required={ true } validate={ this.state.validate } options={ OUTCOME }/>
+              <SelectInput label="Outcome of ADR:" model={ model } name="outcome" required={ true } validate={ this.state.validate } options={ OUTCOME } onChange={this.onChange}/>
             </div>
             <div className="col-md-4 col-sm-12">
-              <SelectInput label="Relatedness of suspected medicine(s) to ADR:" model={ model } name="relatedness" options={ RELATEDNESS_TO_ADR }/>
+              <SelectInput label="Relatedness of suspected medicine(s) to ADR:" model={ model } name="relatedness" options={ RELATEDNESS_TO_ADR } onChange={this.onChange}/>
             </div>
           </div>
           <hr/>
-          <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them" validate={ this.state.validate } name="attachments" model={ model }/>
+          <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them" validate={ this.state.validate } name="attachments" model={ model } onChange={this.onChange}/>
           <hr/>
           <h4 className="text-center">Reported By</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Reporter name" required={ true }  model={ model } name="reporter_name" />
+              <TextInput label="Reporter name" required={ true }  model={ model } name="reporter_name" onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="Designation" model={ model } required={ true } name="designation_id" options={ DESIGNATION }/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Reporter email" model={ model } required={ true }  name="reporter_email"/>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <TextInput label="Reporter phone" model={ model } name="reporter_phone"/>
+              <SelectInput label="Designation" model={ model } required={ true } name="designation_id" options={ DESIGNATION } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Institution Name" model={ model } name="institution_name"/>
+              <TextInput label="Reporter email" model={ model } required={ true }  name="reporter_email" onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Institution Address" model={ model } name="institution_address"/>
+              <TextInput label="Reporter phone" model={ model } name="reporter_phone" onChange={this.onChange}/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="Institution Name" model={ model } name="institution_name" onChange={this.onChange}/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="Institution Address" model={ model } name="institution_address" onChange={this.onChange}/>
             </div>
           </div>
           <div className="container well">
@@ -287,6 +288,12 @@ class ADRForm extends FormComponent {
         </form>
       </div>
     )
+  }
+
+  onChange(newValue) {
+    const { model } = this.state;
+    const newModel = Object.assign({}, model, newValue);
+    this.setState({ model: newModel });
   }
 
   setAgeGroup(value) {
@@ -328,10 +335,10 @@ class ADRForm extends FormComponent {
     const { model } = this.state
     if(typeof value == "object") {
       this.setState({ institution_code : value.code })
-      model['institution_code'] = value.code
+      this.onChange({ institution_code: value.code });
     } else {
-      this.setState({ institution_code : "" })
-      model['institution_code'] = ""
+      this.setState({ institution_code : "" });
+      this.onChange({ institution_code: '' });
     }
   }
 
@@ -340,15 +347,14 @@ class ADRForm extends FormComponent {
     if(value == "Yes") {
 
     }
-    this.setState({ model })
+    this.onChange(value);
   }
 
-  onAgeChange(age) {
-    var age_group = this.calculateAgeGroup(age)
+  onAgeChange(value) {
+    var age_group = this.calculateAgeGroup(value.age)
     const { model } = this.state
-    model['age_group'] = age_group
-    model['date_of_birth'] = ""
-    this.setState({ model })
+    const newValue = Object.assign({}, value, { age_group: age_group, date_of_birth: '' });
+    this.onChange(newValue);
   }
 
   confirmDelete(e) {

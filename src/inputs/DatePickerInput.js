@@ -40,21 +40,23 @@ export default class DatePickerInput extends Component {
     });
     const { model, name, showTime } = this.props
     if(model) {
+      const newValue = {}
       if(date == null) {
-        model[name] = null
+        newValue[name] = null
         return
       }
-      model[name] = date.date() + "-" + date.month() + "-" + date.year()
+      newValue[name] = date.date() + "-" + date.month() + "-" + date.year()
       if(showTime) {
-        model[name] += " " + date.hour() + ":" + date.minute()
+        newValue[name] += " " + date.hour() + ":" + date.minute()
+      }
+      const { onChange } = this.props
+      if(onChange) {
+        var value = {}
+        value[name] = date
+        onChange(newValue)
       }
     }
-    const { onChange } = this.props
-    if(onChange) {
-      var value = {}
-      value[name] = date
-      onChange(value)
-    }
+
   }
 
   getDateTimeFromString(dateTime) {
