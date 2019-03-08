@@ -7,6 +7,8 @@ For a quick start run
 ```bash
 # Clone this repository
 git clone https://github.com/IntelliSOFT-Consulting/MCAZ_Desktop
+# Change directory to the application directory
+  cd MCAZ_Desktop
 # Install dependencies
   npm install
 # Build the js files
@@ -22,6 +24,8 @@ To build and run the application
 ```bash
 # Clone this repository
   git clone https://github.com/IntelliSOFT-Consulting/MCAZ_Desktop
+# Change directory to the application directory
+  cd MCAZ_Desktop
 # Install dependencies
   npm install
 # Build the js files
