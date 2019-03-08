@@ -224,7 +224,7 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <TextInput label="Any other informatio:" multiLine={ true } model={ model } name="any_other_information"/>
+              <TextInput label="Any other information:" multiLine={ true } model={ model } name="any_other_information"/>
             </div>
           </div>
           <hr/>
