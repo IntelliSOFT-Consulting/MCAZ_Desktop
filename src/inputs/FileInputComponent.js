@@ -16,24 +16,30 @@ export default class FileInputComponent extends Component {
   }
 
   handleChange(e) {
-    const { model, name } = this.props
-    if(model && model[name]) {
-      model[name] = e.target.value
-    }
+    const { model, name, onChange } = this.props
+
     this.setState({ value : e.target.value })
+    if (onChange) {
+      const newValue = {}
+      newValue[name] = e.target.value
+      onChange(newValue);
+    }
   }
 
   onFileSelect(e) {
     const files = e.target.files;
     var i = 0
     var f = null
-    const { model } = this.props
+    const { model } = this.state
+    const { onChange, index }= this.props
     while (f = files[i]) {
       var reader = new FileReader();
       reader.onload = ((theFile) => {
         return (e) => {
-          model['file'] = e.target.result
-          model['filename'] = theFile.name
+          const newValue = {}
+          newValue['file'] = e.target.result
+          newValue['filename'] = theFile.name
+          onChange(newValue, index)
           this.setState({ filename : theFile.name })
         };
       })(f);

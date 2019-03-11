@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import TextInput from '../inputs/TextInput'
 import DatePickerInput from '../inputs/DatePickerInput'
 import TableComponent from './TableComponent'
+import MedicationRow from './MedicationRow'
 import CheckboxInput from '../inputs/CheckboxInput'
 import SelectInput from '../inputs/SelectInput'
 
@@ -18,6 +19,7 @@ export default class MedicationTableComponent extends TableComponent {
     const { model, name, validate } = this.props
 
     this.getRow = this.getRow.bind(this)
+    this.onChange = this.onChange.bind(this)
     this.getReadOnlyRow = this.getReadOnlyRow.bind(this)
     var rows = []
     if(model && model[name]) {
@@ -38,26 +40,17 @@ export default class MedicationTableComponent extends TableComponent {
     if(!model[name][index]) {
       model[name][index] = rowData
     }
-    return (
-      <tr key={ Math.floor(Math.random() * 10000) }>
-        <td><TextInput hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><TextInput hideLabel={ true } name="brand_name" model={ model[name][index] }/></td>
-        <td><TextInput hideLabel={ true } name="batch_number" model={ model[name][index] }/></td>
-        <td><TextInput hideLabel={ true } name="dose" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><SelectInput hideLabel={ true } name="dose_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ DOSE }/></td>
-        <td><SelectInput hideLabel={ true } name="route_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ ROUTE }/></td>
-        <td><SelectInput hideLabel={ true } name="frequency_id" model={ model[name][index] } validate={ this.state.validate } required={ true } options={ FREQUENCY }/></td>
-        <td><TextInput hideLabel={ true } name="indication" model={ model[name][index] }/></td>
-        <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true } maxDate={ moment() } onChange={ this.onChange }/></td>
-        <td><DatePickerInput hideLabel={ true } name="stop_date" model={ model[name][index] } maxDate={ moment() } minDate={ model[name][index]['start_date'] }/></td>
-        <td><CheckboxInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ ['1'] }/></td>
-        <td>
-          <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
-            <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
-          </button>
-        </td>
-      </tr>
-    )
+    return <MedicationRow key={index} index={index} model={model[name][index]} onRemove={this.removeRow} validate={this.state.validate}/>
+  }
+
+  onChange(model, index) {
+    const newData = Object.assign([], this.state.rows)
+    newData[index] = model;
+    const { onChange, name } = this.props;
+    const newModel = {}
+    newModel[name] = newData;
+    this.setState({ rows: newData })
+    onChange(newModel)
   }
 
   getReadOnlyRow(index) {

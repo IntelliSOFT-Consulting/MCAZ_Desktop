@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TextInput from '../inputs/TextInput'
-import FileInputComponent from '../inputs/FileInputComponent'
+import FileAttachmentRow from './FileAttachmentRow'
 import TableComponent from './TableComponent'
 
 import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
@@ -11,12 +11,11 @@ export default class FileAttachmentComponent extends TableComponent {
     super(props)
 
     this.getRow = this.getRow.bind(this)
-    //this.addFile = this.addFile.bind(this)
+    this.onChange = this.onChange.bind(this)
     this.getReadOnlyRow = this.getReadOnlyRow.bind(this)
     this.initializeRows = this.initializeRows.bind(this)
 
     const { model } = this.props
-
   }
 
   getRow(index) {
@@ -29,17 +28,18 @@ export default class FileAttachmentComponent extends TableComponent {
       model[name][index] = rowData
     }
     return (
-      <tr key={ Math.floor(Math.random() * 10000) }>
-        <td>{ index + 1 }</td>
-        <td><FileInputComponent hideLabel={ true } name="file" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><TextInput hideLabel={ true } multiLine={ true } name="description" model={ model[name][index] }/></td>
-        <td>
-          <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
-            <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
-          </button>
-        </td>
-      </tr>
+      <FileAttachmentRow key={index} index={index} model={rows[index]} validate={this.state.validate} onRemove={this.removeRow} onChange={this.onChange}/>
     )
+  }
+
+  onChange(model, index) {
+    const newData = Object.assign([], this.state.rows)
+    newData[index] = model;
+    const { onChange, name } = this.props;
+    const newModel = {}
+    newModel[name] = newData;
+    this.setState({ rows: newData })
+    onChange(newModel)
   }
 
   getReadOnlyRow(index) {
