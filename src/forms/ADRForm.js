@@ -306,10 +306,8 @@ class ADRForm extends FormComponent {
 
       var age_group = this.calculateAgeGroup(age, days)
 
-      const { model } = this.state
-      model['age_group'] = age_group
-      model['age'] = ""
-      this.setState({ model })
+
+      this.onChange({ age_group: age_group, age: '' })
     }
   }
 

@@ -28,7 +28,7 @@ export default class FileAttachmentComponent extends TableComponent {
       model[name][index] = rowData
     }
     return (
-      <FileAttachmentRow key={index} index={index} model={rows[index]} validate={this.state.validate} onRemove={this.removeRow} onChange={this.onChange}/>
+      <FileAttachmentRow key={`${index}_files`} index={index} model={rows[index]} validate={this.state.validate} onRemove={this.removeRow} onChange={this.onChange}/>
     )
   }
 

@@ -4,6 +4,7 @@ import DatePickerInput from '../inputs/DatePickerInput'
 import TableComponent from './TableComponent'
 import CheckboxInput from '../inputs/CheckboxInput'
 import SelectInput from '../inputs/SelectInput'
+import SAEConcomitantRow from './SAEConcomitantRow'
 
 import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
 
@@ -18,7 +19,6 @@ export default class SAEConcomitantTableComponent extends TableComponent {
     const { model, name, validate } = this.props
 
     this.getRow = this.getRow.bind(this)
-    this.initializeRows = this.initializeRows.bind(this)
     this.getReadOnlyRow = this.getReadOnlyRow.bind(this)
     var rows = []
     if(model && model[name]) {
@@ -28,27 +28,10 @@ export default class SAEConcomitantTableComponent extends TableComponent {
   }
 
   getRow(index) {
-    const rowData = {}
-    const { model, name } = this.props
-    if(!model[name]) {
-      model[name] = []
-    }
-    if(!model[name][index]) {
-      model[name][index] = rowData
-    }
+    const { rows } = this.state
+    const key = `${index}_SAEConcomitantTableComponent`
     return (
-      <tr key={ Math.floor(Math.random() * 10000) }>
-        <td>{ index + 1 }</td>
-        <td><TextInput hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><DatePickerInput hideLabel={ true } name="start_date" model={ model[name][index] } validate={ this.state.validate } required={ true } maxDate={ moment() } onChange={ this.onChange } /></td>
-        <td><DatePickerInput hideLabel={ true } name="stop_date" model={ model[name][index] } validate={ this.state.validate } required={ true } maxDate={ moment() } minDate={ model[name][index]['start_date'] }/></td>
-        <td><SelectInput hideLabel={ true } name="relationship_to_sae" model={ model[name][index] } options={ RELATIONSHIP_SAE } validate={ this.state.validate } required={ true }/></td>
-        <td>
-          <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
-            <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
-          </button>
-        </td>
-      </tr>
+      <SAEConcomitantRow key={key} index={index} model={rows[index]} validate={this.state.validate} onRemove={this.removeRow} onChange={this.onChange}/>
     )
   }
 
@@ -116,6 +99,10 @@ export default class SAEConcomitantTableComponent extends TableComponent {
     if(newValidate != validate) {
       this.setState({ validate: newValidate })
       //this.initializeData()
+    }
+    const { model, name } = nextProps
+    if (model[name]) {
+      this.setState({ rows: model[name] })
     }
   }
 

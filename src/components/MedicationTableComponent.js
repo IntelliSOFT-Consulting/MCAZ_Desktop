@@ -32,25 +32,9 @@ export default class MedicationTableComponent extends TableComponent {
   }
 
   getRow(index) {
-    const rowData = {}
-    const { model, name } = this.props
-    if(!model[name]) {
-      model[name] = []
-    }
-    if(!model[name][index]) {
-      model[name][index] = rowData
-    }
-    return <MedicationRow key={index} index={index} model={model[name][index]} onRemove={this.removeRow} validate={this.state.validate}/>
-  }
-
-  onChange(model, index) {
-    const newData = Object.assign([], this.state.rows)
-    newData[index] = model;
-    const { onChange, name } = this.props;
-    const newModel = {}
-    newModel[name] = newData;
-    this.setState({ rows: newData })
-    onChange(newModel)
+    const {row} = this.state
+    const key = `${index}_SAELabTests`
+    return <MedicationRow key={key} index={index} model={row} onRemove={this.removeRow} validate={this.state.validate} onChange={this.onChange}/>
   }
 
   getReadOnlyRow(index) {
