@@ -17,6 +17,7 @@ export default class SelectInput extends Component {
 
   handleChange(e) {
     const { model, name, onChange } = this.props
+    // this.setState({ value : e.target.value })
     if(model) {
       const newValue = {};
       newValue[name] = e.target.value;
@@ -24,7 +25,6 @@ export default class SelectInput extends Component {
         onChange(newValue);
       }
     }
-    this.setState({ value : e.target.value })
 
   }
 
@@ -78,7 +78,7 @@ export default class SelectInput extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { validate, value } = this.state
-    const { model, name } = this.props
+    const { model, name } = nextProps
     const newValidate = nextProps.validate
     if(newValidate != validate) {
       this.setState({ validate: newValidate })

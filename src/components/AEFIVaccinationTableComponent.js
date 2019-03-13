@@ -4,6 +4,7 @@ import DatePickerInput from '../inputs/DatePickerInput'
 import TableComponent from './TableComponent'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import SelectInput from '../inputs/SelectInput'
+import AEFIVaccinationRow from './AEFIVaccinationRow'
 
 import moment from 'moment'
 
@@ -27,31 +28,10 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
   }
 
   getRow(index) {
-    const rowData = {}
-    const { model, name } = this.props
-    if(!model[name]) {
-      model[name] = []
-    }
-    if(!model[name][index]) {
-      model[name][index] = rowData
-    }
+    const { rows } = this.state
+    const key = `${index}_AEFIVaccination`
     return (
-      <tr key={ Math.floor(Math.random() * 10000) }>
-        <td><TextInput hideLabel={ true } name="vaccine_name" validate={ this.props.validate } required={ true } model={ model[name][index] }/></td>
-        <td><DatePickerInput hideLabel={ true } name="vaccination_date" model={ model[name][index] } validate={ this.state.validate } required={ true } maxDate={ moment() }/></td>
-        <td><TextInput hideLabel={ true } name="vaccination_time" model={ model[name][index] } validate={ this.state.validate } required={ true } showTime={ true } type="time" maxDate={ moment() }/></td>
-        <td><TextInput hideLabel={ true } name="dosage" model={ model[name][index] } validate={ this.state.validate } required={ true } /></td>
-        <td><TextInput hideLabel={ true } name="batch_number" model={ model[name][index] } /></td>
-        <td><DatePickerInput hideLabel={ true } name="expiry_date" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><TextInput hideLabel={ true } name="diluent_batch_number" model={ model[name][index] } /></td>
-        <td><DatePickerInput hideLabel={ true } name="diluent_expiry_date" model={ model[name][index] }  /></td>
-        <td><DatePickerInput hideLabel={ true } name="diluent_date" model={ model[name][index] }  maxDate={ moment() } showTime={ true }/></td>
-        <td>
-          <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
-            <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
-          </button>
-        </td>
-      </tr>
+      <AEFIVaccinationRow key={ key } index={index} model={rows[index]} validate={this.state.validate} onRemove={this.removeRow} onChange={this.onChange} />
     )
   }
 

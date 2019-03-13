@@ -20,10 +20,14 @@ export default class TableComponent extends Component {
 
   addRow(e) {
     e.preventDefault()
-    const { model, name } = this.props
+    const { name, onChange } = this.props
     const rows = [...this.state.rows]
     rows.push({})
+    const model = {}
     model[name] = rows
+    if (onChange) {
+      onChange(model)
+    }
     this.setState({ rows : rows })
   }
 

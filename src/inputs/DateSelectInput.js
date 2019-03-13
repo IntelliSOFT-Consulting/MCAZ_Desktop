@@ -93,7 +93,7 @@ export default class DateSelectInput extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { validate, value } = this.state
-    const { model, name } = this.props
+    const { model, name } = nextProps
     const newValidate = nextProps.validate
     if(newValidate != validate) {
       this.setState({ validate: newValidate })

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import TextInput from '../inputs/TextInput'
 import DatePickerInput from '../inputs/DatePickerInput'
-import CheckboxInput from '../inputs/CheckboxInput'
+import SelectInput from '../inputs/SelectInput'
 import { FREQUENCY, ROUTE, DOSE, RELATIONSHIP_SAE } from '../utils/FieldOptions'
 
 export default class SAEConcomitantRow extends Component {
@@ -37,10 +37,13 @@ export default class SAEConcomitantRow extends Component {
     if(newValidate != validate) {
       this.setState({ validate: newValidate })
     }
+    const { model } = nextProps
+    this.setState({ model })
   }
 
   render() {
     const { model } = this.state;
+    const { index } = this.props;
     return (
       <tr>
         <td>{ index + 1 }</td>

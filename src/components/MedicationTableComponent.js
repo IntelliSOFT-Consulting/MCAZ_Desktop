@@ -109,11 +109,17 @@ export default class MedicationTableComponent extends TableComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { validate } = this.state
+    const { validate, rows } = this.state
     const newValidate = nextProps.validate
     if(newValidate != validate) {
       this.setState({ validate: newValidate })
       //this.initializeData()
+    }
+    const { model, name } = nextProps
+    if (model[name]) {
+      if (rows.length != model[name].length) {
+        this.setState({ rows: model[name] })
+      }
     }
   }
 

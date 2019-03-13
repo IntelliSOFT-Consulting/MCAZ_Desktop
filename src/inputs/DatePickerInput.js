@@ -140,7 +140,7 @@ export default class DatePickerInput extends Component {
     }
 
     const { model, name } = nextProps
-    if(model[name] != value && value != null) {
+    if(model[name] != value) {
       var val = model[name] == ''? null : this.getValueFromString(model[name])
       this.setState({ value : val })
     }

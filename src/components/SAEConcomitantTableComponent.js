@@ -94,7 +94,7 @@ export default class SAEConcomitantTableComponent extends TableComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { validate } = this.state
+    const { validate, rows } = this.state
     const newValidate = nextProps.validate
     if(newValidate != validate) {
       this.setState({ validate: newValidate })
@@ -102,7 +102,9 @@ export default class SAEConcomitantTableComponent extends TableComponent {
     }
     const { model, name } = nextProps
     if (model[name]) {
-      this.setState({ rows: model[name] })
+      if (rows.length != model[name].length) {
+        this.setState({ rows: model[name] })
+      }
     }
   }
 

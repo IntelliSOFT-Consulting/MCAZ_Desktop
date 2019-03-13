@@ -151,7 +151,7 @@ export default class AEFIAdverseEventsInput extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { validate, values } = this.state
-    const { model, name } = this.props
+    const { model, name } = nextProps
     const newValidate = nextProps.validate
     if(newValidate != validate) {
       this.setState({ validate: newValidate })

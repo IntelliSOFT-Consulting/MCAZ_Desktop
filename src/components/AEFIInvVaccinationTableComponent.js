@@ -4,6 +4,7 @@ import DatePickerInput from '../inputs/DatePickerInput'
 import TableComponent from './TableComponent'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import SelectInput from '../inputs/SelectInput'
+import AEFIInvVaccinationRow from './AEFIInvVaccinationRow'
 
 import ReadOnlyDataRenderer from '../readonly/ReadOnlyDataRenderer'
 
@@ -25,24 +26,10 @@ export default class AEFIInvVaccinationTableComponent extends TableComponent {
   }
 
   getRow(index) {
-    const rowData = {}
-    const { model, name } = this.props
-    if(!model[name]) {
-      model[name] = []
-    }
-    if(!model[name][index]) {
-      model[name][index] = rowData
-    }
+    const { rows } = this.state
+    const key = `${index}_AEFIInvVaccination`
     return (
-      <tr key={ Math.floor(Math.random() * 10000) }>
-        <td><TextInput inline={ true } hideLabel={ true } name="vaccine_name" model={ model[name][index] } validate={ this.state.validate } required={ true }/></td>
-        <td><TextInput hideLabel={ true } name="vaccination_doses" model={ model[name][index] } /></td>
-        <td>
-          <button className="btn btn-sm btn-danger" onClick={ (e) => this.removeRow(index, e) }>
-            <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
-          </button>
-        </td>
-      </tr>
+      <AEFIInvVaccinationRow key={ key } index={index} model={rows[index]} validate={this.state.validate} onRemove={this.removeRow} onChange={this.onChange} />
     )
   }
 

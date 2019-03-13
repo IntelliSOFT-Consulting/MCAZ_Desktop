@@ -70,13 +70,13 @@ export default class TextInput extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { validate, value } = this.state
-    const { model, name } = this.props
+    const { model, name } = nextProps
     const newValidate = nextProps.validate
     if(newValidate != validate) {
       this.setState({ validate: newValidate })
     }
-    if(value != model[name] && model[name] != null) {
-      this.setState({ value : model[name]})
+    if(value != model[name]) {
+      this.setState({ value : model[name] == null ? '' : model[name]})
     }
   }
 

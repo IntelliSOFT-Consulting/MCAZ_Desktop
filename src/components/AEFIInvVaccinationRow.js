@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import TextInput from '../inputs/TextInput'
-import FileInputComponent from '../inputs/FileInputComponent'
-import { FREQUENCY, ROUTE, DOSE } from '../utils/FieldOptions'
+import DatePickerInput from '../inputs/DatePickerInput'
+import CheckboxInput from '../inputs/CheckboxInput'
+import { FREQUENCY, ROUTE, DOSE, RELATIONSHIP_SAE } from '../utils/FieldOptions'
 
-export default class FileAttachmentRow extends Component {
+export default class AEFIInvVaccinationRow extends Component {
 
   constructor(props) {
     super(props);
@@ -41,13 +42,11 @@ export default class FileAttachmentRow extends Component {
   }
 
   render() {
-    const { index } = this.props
     const { model } = this.state;
     return (
-      <tr >
-        <td>{ index + 1 }</td>
-        <td><FileInputComponent hideLabel={ true } name="file" validate={ this.state.validate } required={ true } model={ model } onChange={this.onChange}/></td>
-        <td><TextInput hideLabel={ true } multiLine={ true } name="description" model={ model } onChange={this.onChange}/></td>
+      <tr>
+        <td><TextInput inline={ true } hideLabel={ true } name="vaccine_name" model={ model } validate={ this.state.validate } required={ true } onChange={ this.onChange }/></td>
+        <td><TextInput hideLabel={ true } name="vaccination_doses" model={ model } onChange={ this.onChange }/></td>
         <td>
           <button className="btn btn-sm btn-danger" onClick={ this.onRemove }>
             <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>

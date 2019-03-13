@@ -37,6 +37,8 @@ export default class SAELabTestsRow extends Component {
     if(newValidate != validate) {
       this.setState({ validate: newValidate })
     }
+    const { model } = nextProps
+    this.setState({ model })
   }
 
   render() {
