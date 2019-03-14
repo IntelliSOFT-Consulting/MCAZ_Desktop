@@ -83,12 +83,13 @@ export default class AutoSuggestInput extends Component {
     )
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { validate } = this.state
-    const newValidate = nextProps.validate
+  static getDerivedStateFromProps(props, state) {
+    const { validate } = state
+    const newValidate = props.validate
     if(newValidate != validate) {
-      this.setState({ validate: newValidate })
+      return { validate: newValidate }
     }
+    return null
   }
 
   onSuggestionsFetchRequested({value} ){

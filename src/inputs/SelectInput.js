@@ -28,6 +28,36 @@ export default class SelectInput extends Component {
 
   }
 
+  validate() {
+    const { required, dependent, model, name } = this.props
+    var valid = true
+    if(dependent) {
+      valid = subQuestionsValidator(name, dependent, model)
+    } else {
+      valid = (this.state.value == '' || this.state.value == null)? false : true
+    }
+    if(valid) {
+      return ""
+    }
+    return " has-error "
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const { validate, value } = state
+    const { model, name } = props
+    const newValidate = props.validate
+    let newState = null
+    if(newValidate != validate) {
+      newState = newState || {}
+      newState.validate = newValidate
+    }
+    if(value != model[name]) {
+      newState = newState || {}
+      newState.value = model[name]
+    }
+    return newState
+  }
+  
   render() {
     const { label, name, options, hideLabel, required, disabled } = this.props
     const optionList = options.map((option) => {
@@ -76,29 +106,4 @@ export default class SelectInput extends Component {
     )
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { validate, value } = this.state
-    const { model, name } = nextProps
-    const newValidate = nextProps.validate
-    if(newValidate != validate) {
-      this.setState({ validate: newValidate })
-    }
-    if(value != model[name]) {
-      this.setState({ value : model[name] })
-    }
-  }
-
-  validate() {
-    const { required, dependent, model, name } = this.props
-    var valid = true
-    if(dependent) {
-      valid = subQuestionsValidator(name, dependent, model)
-    } else {
-      valid = (this.state.value == '' || this.state.value == null)? false : true
-    }
-    if(valid) {
-      return ""
-    }
-    return " has-error "
-  }
 }

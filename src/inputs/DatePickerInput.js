@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
-import { subQuestionsValidator } from '../utils/utils'
+import { subQuestionsValidator, getDateTimeFromString, getValueFromString } from '../utils/utils'
 
 import 'react-datepicker/dist/react-datepicker.css'
 
@@ -14,24 +14,16 @@ export default class DatePickerInput extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.validate = this.validate.bind(this)
-    this.getDateTimeFromString = this.getDateTimeFromString.bind(this)
-    this.getValueFromString = this.getValueFromString.bind(this)
+    // this.getDateTimeFromString = this.getDateTimeFromString.bind(this)
+    // this.getValueFromString = this.getValueFromString.bind(this)
 
     if(model && model[name]) {
-      value = this.getValueFromString(model[name])
+      value = getValueFromString(model[name])
     }
     this.state = {
       value: value, validate: validate
     };
 
-  }
-
-  getValueFromString(value) {
-    var newValue = null
-    if(typeof value == "string") {
-      return this.getDateTimeFromString(value)
-    }
-    return value
   }
 
   handleChange(date) {
@@ -59,19 +51,6 @@ export default class DatePickerInput extends Component {
 
   }
 
-  getDateTimeFromString(dateTime) {
-    const split = dateTime.split(" ")
-    const v = split[0].split("-")
-
-    var date = moment().year(v[2]).month(v[1]).date(v[0]) //new Date(model[name]['month'] + '/' + model[name]['day'] + '/' + model[name]['year'])
-
-    if(split.length == 2) {
-      const t = split[1].split(":")
-      date.hour(t[0]).minute(v[1])
-    }
-    return date
-  }
-
   render() {
     const { label, name, required, hideLabel, showTime, maxDate, minDate } = this.props
     var input = null
@@ -85,7 +64,7 @@ export default class DatePickerInput extends Component {
     const dateFormat = showTime? "DD-MM-YYYY HH:mm" : "DD-MM-YYYY"
     const hasError = (this.state.validate && required)? this.validate()  : ""
     const className = "form-group" + hasError
-    const minDateValue = (minDate && typeof minDate == 'string')? this.getDateTimeFromString(minDate) : minDate
+    const minDateValue = (minDate && typeof minDate == 'string')? getDateTimeFromString(minDate) : minDate
 
     if(hideLabel) {
       const help = hasError? (<span className="help-block">required.</span>) : null
@@ -132,17 +111,21 @@ export default class DatePickerInput extends Component {
     return " has-error "
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { validate, value } = this.state
-    const newValidate = nextProps.validate
+  static getDerivedStateFromProps(props, state) {
+    const { validate, value } = state
+    const newValidate = props.validate
+    let newState = null
     if(newValidate != validate) {
-      this.setState({ validate: newValidate })
+      newState = newState || {}
+      newState.validate = newValidate
     }
 
-    const { model, name } = nextProps
+    const { model, name } = props
     if(model[name] != value) {
-      var val = model[name] == ''? null : this.getValueFromString(model[name])
-      this.setState({ value : val })
+      newState = newState || {}
+      var val = model[name] == ''? null : getValueFromString(model[name])
+      newState.value = val
     }
+    return newState;
   }
 }

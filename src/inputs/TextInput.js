@@ -28,6 +28,40 @@ export default class TextInput extends Component {
 
   }
 
+  validate() {
+    const { required, dependent, model, name } = this.props
+    var valid = true
+    if(name == 'weight' && Number(this.state.value) < 0) {
+      valid = false;
+    } else {
+      if(dependent) {
+        valid = subQuestionsValidator(name, dependent, model)
+      } else {
+        valid = this.state.value == ''? false : true
+      }
+    }
+    if(valid) {
+      return ""
+    }
+    return " has-error "
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const { validate, value } = state
+    const { model, name } = props
+    const newValidate = props.validate
+    let newState = null
+    if(newValidate != validate) {
+      newState = newState || {}
+      newState.validate =  newValidate
+    }
+    if(value != model[name]) {
+      newState = newState || {}
+      newState.value =  model[name] == null ? '' : model[name]
+    }
+    return newState;
+  }
+  
   render() {
     const { label, name, multiLine, required, hideLabel, type } = this.props
     var input = null
@@ -66,35 +100,5 @@ export default class TextInput extends Component {
         </div>
       </div>
     )
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { validate, value } = this.state
-    const { model, name } = nextProps
-    const newValidate = nextProps.validate
-    if(newValidate != validate) {
-      this.setState({ validate: newValidate })
-    }
-    if(value != model[name]) {
-      this.setState({ value : model[name] == null ? '' : model[name]})
-    }
-  }
-
-  validate() {
-    const { required, dependent, model, name } = this.props
-    var valid = true
-    if(name == 'weight' && Number(this.state.value) < 0) {
-      valid = false;
-    } else {
-      if(dependent) {
-        valid = subQuestionsValidator(name, dependent, model)
-      } else {
-        valid = this.state.value == ''? false : true
-      }
-    }
-    if(valid) {
-      return ""
-    }
-    return " has-error "
   }
 }

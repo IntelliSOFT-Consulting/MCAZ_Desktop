@@ -191,3 +191,29 @@ export const getDateTimeFromString = (dateTime) => {
   }
   return date
 }
+
+export const getModelValue = (model, name)  => {
+  var value = { day : "", month: "", year : "" }
+  if(model && model[name]) {
+    if(typeof model[name] == "string") {
+      const v = model[name].split("-")
+    //if(model[name][day]) {
+      value['day'] = v[0] == null? "" : v[0] //model[name]['day']
+
+    //if(model[name][month]) {
+      value['month'] = v[1] == null? "" : v[1] //model[name]['month']
+
+    //if(model[name][year]) {
+      value['year'] = v[2] == null? "" : v[2] //model[name]['year']
+    }
+  }
+  return value
+}
+
+export const getValueFromString = (value) => {
+  var newValue = null
+  if(typeof value == "string") {
+    return getDateTimeFromString(value)
+  }
+  return value
+}

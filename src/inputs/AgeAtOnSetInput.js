@@ -50,6 +50,24 @@ export default class AgeAtOnSetInput extends Component {
 
   }
 
+  static getDerivedStateFromProps(props, state) {
+    const { validate, value } = this.state
+    const { model, name } = nextProps
+    const newValidate = nextProps.validate
+    let newState = null
+    if(newValidate != validate) {
+      newState = newState || {}
+      newState.validate = newValidate
+    }
+
+    const val = this.getModelValue(model, name)
+    if(val.age_at_onset_days != value.age_at_onset_days || val.age_at_onset_months != value.age_at_onset_months || val.age_at_onset_years != value.age_at_onset_years) {
+      newState = newState || {}
+      newState.value = val
+    }
+    return newState
+  }
+
   render() {
     const { label, name, required } = this.props
     var input = null
@@ -95,20 +113,5 @@ export default class AgeAtOnSetInput extends Component {
         </div>
       </div>
     )
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { validate, value } = this.state
-    const { model, name } = nextProps
-    const newValidate = nextProps.validate
-    if(newValidate != validate) {
-      this.setState({ validate: newValidate })
-    }
-
-    const val = this.getModelValue(model, name)
-    if(val.age_at_onset_days != value.age_at_onset_days || val.age_at_onset_months != value.age_at_onset_months || val.age_at_onset_years != value.age_at_onset_years) {
-      this.setState({ value : val })
-    }
-
   }
 }

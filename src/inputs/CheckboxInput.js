@@ -38,6 +38,14 @@ export default class CheckboxInput extends Component {
     }
   }
 
+  static getDerivedStateFromProps(props, state) {
+    const { validate } = state
+    const newValidate = props.validate
+    if(newValidate != validate) {
+      return { validate: newValidate }
+    }
+    return null
+  }
 
   render() {
     const { label, name, options, required, hideLabel, readonly } = this.props
@@ -79,13 +87,5 @@ export default class CheckboxInput extends Component {
         </div>
       </div>
     )
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { validate } = this.state
-    const newValidate = nextProps.validate
-    if(newValidate != validate) {
-      this.setState({ validate: newValidate })
-    }
   }
 }

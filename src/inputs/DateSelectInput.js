@@ -1,37 +1,18 @@
 import React, { Component } from 'react'
+import { getModelValue } from '../utils/utils'
 
 export default class DateSelectInput extends Component {
   constructor(props) {
     super(props)
 
-    this.getModelValue = this.getModelValue.bind(this)
     this.handleChange = this.handleChange.bind(this)
     const { model, name, validate } = this.props
 
-    var value = this.getModelValue(model, name)
+    var value = getModelValue(model, name)
 
     this.state = {
       value, validate
     }
-
-  }
-
-  getModelValue(model, name) {
-    var value = { day : "", month: "", year : "" }
-    if(model && model[name]) {
-      if(typeof model[name] == "string") {
-        const v = model[name].split("-")
-      //if(model[name][day]) {
-        value['day'] = v[0] == null? "" : v[0] //model[name]['day']
-
-      //if(model[name][month]) {
-        value['month'] = v[1] == null? "" : v[1] //model[name]['month']
-
-      //if(model[name][year]) {
-        value['year'] = v[2] == null? "" : v[2] //model[name]['year']
-      }
-    }
-    return value
   }
 
   handleChange(e) {
@@ -49,6 +30,24 @@ export default class DateSelectInput extends Component {
       onChange(newValue[name])
     }
 
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const { validate, value } = state
+    const { model, name } = props
+    const newValidate = props.validate
+    let newState = null
+    if(newValidate != validate) {
+      newState = newState || {}
+      newState.validate =  newValidate
+    }
+    const modelVal = value.day + "-" + value.month + "-" + value.year
+    if(modelVal != model[name]) {
+      newState = newState || {}
+      var val = getModelValue(model, name)
+      newState.value = value;
+    }
+    return newState;
   }
 
   render() {
@@ -89,19 +88,5 @@ export default class DateSelectInput extends Component {
         </div>
       </div>
     )
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { validate, value } = this.state
-    const { model, name } = nextProps
-    const newValidate = nextProps.validate
-    if(newValidate != validate) {
-      this.setState({ validate: newValidate })
-    }
-    const modelVal = value.day + "-" + value.month + "-" + value.year
-    if(modelVal != model[name]) {
-      var val = this.getModelValue(model, name)
-      this.setState({ value : val })
-    }
   }
 }

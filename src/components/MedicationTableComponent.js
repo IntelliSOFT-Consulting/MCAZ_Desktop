@@ -32,9 +32,9 @@ export default class MedicationTableComponent extends TableComponent {
   }
 
   getRow(index) {
-    const {row} = this.state
+    const { rows } = this.state
     const key = `${index}_SAELabTests`
-    return <MedicationRow key={key} index={index} model={row} onRemove={this.removeRow} validate={this.state.validate} onChange={this.onChange}/>
+    return <MedicationRow key={key} index={index} model={rows[index]} onRemove={this.removeRow} validate={this.state.validate} onChange={this.onChange}/>
   }
 
   getReadOnlyRow(index) {

@@ -63,6 +63,25 @@ export default class AEFIAdverseEventsInput extends Component {
     }
   }
 
+  static getDerivedStateFromProps(props, state) {
+    const { validate, values } = state
+    const { model, name } = props
+    const newValidate = props.validate
+    let newState = null
+    if(newValidate != validate) {
+      newState = newState || null
+      newState.validate = newValidate
+    }
+    if(model && model[name] != null) {
+      var vals = model[name].split(",")
+      const difference = values.filter( val => vals.indexOf(val) === -1 )
+      if(difference.length > 0){
+        newState = newState || null
+        newState.values = vals
+      }
+    }
+    return newState
+  }
 
   render() {
     const { label, name, options, multiple, required, inline, hideLabel, model } = this.props
@@ -147,21 +166,5 @@ export default class AEFIAdverseEventsInput extends Component {
         </div>
       </div>
     )
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { validate, values } = this.state
-    const { model, name } = nextProps
-    const newValidate = nextProps.validate
-    if(newValidate != validate) {
-      this.setState({ validate: newValidate })
-    }
-    if(model && model[name] != null) {
-      var vals = model[name].split(",")
-      const difference = values.filter( val => vals.indexOf(val) === -1 )
-      if(difference.length > 0){
-        this.setState({ values : vals })
-      }
-    }
   }
 }
