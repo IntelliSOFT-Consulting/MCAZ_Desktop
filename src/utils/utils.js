@@ -217,3 +217,14 @@ export const getValueFromString = (value) => {
   }
   return value
 }
+
+export const getAgeonONset = (model) => {
+  var value = { age_at_onset_days : "", age_at_onset_months: "", age_at_onset_years : "" }
+    //if(model[name][day]) {
+  value['age_at_onset_days'] = model["age_at_onset_days"] == null? "" : model["age_at_onset_days"] //model[name]['day']
+    //if(model[name][month]) {
+  value['age_at_onset_months'] = model["age_at_onset_months"] == null? "" : model["age_at_onset_months"] //model[name]['month']
+    //if(model[name][year]) {
+  value['age_at_onset_years'] = model["age_at_onset_years"] == null? "" : model["age_at_onset_years"] //model[name]['year']
+  return value
+}

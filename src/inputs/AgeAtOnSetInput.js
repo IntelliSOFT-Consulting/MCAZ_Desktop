@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { getAgeonONset } from '../utils/utils'
 
 export default class AgeAtOnSetInput extends Component {
   constructor(props) {
@@ -51,16 +52,16 @@ export default class AgeAtOnSetInput extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { validate, value } = this.state
-    const { model, name } = nextProps
-    const newValidate = nextProps.validate
+    const { validate, value } = state
+    const { model, name } = props
+    const newValidate = props.validate
     let newState = null
     if(newValidate != validate) {
       newState = newState || {}
       newState.validate = newValidate
     }
 
-    const val = this.getModelValue(model, name)
+    const val = getAgeonONset(model)
     if(val.age_at_onset_days != value.age_at_onset_days || val.age_at_onset_months != value.age_at_onset_months || val.age_at_onset_years != value.age_at_onset_years) {
       newState = newState || {}
       newState.value = val

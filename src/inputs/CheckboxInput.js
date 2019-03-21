@@ -28,7 +28,7 @@ export default class CheckboxInput extends Component {
       value = ""
     }
 
-    this.setState({ value })
+    // this.setState({ value })
     if(model) {
       const newValue = {};
       newValue[name] = e.target.value;
@@ -39,12 +39,19 @@ export default class CheckboxInput extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const { validate } = state
+    const { validate, value } = state
+    const { model, name } = props
     const newValidate = props.validate
+    let newState = null
     if(newValidate != validate) {
-      return { validate: newValidate }
+      newState = {}
+      newState =  { validate: newValidate }
     }
-    return null
+    if(value != model[name]) {
+      newState = newState || {}
+      newState.value =  model[name] == null ? '' : model[name]
+    }
+    return newState
   }
 
   render() {
