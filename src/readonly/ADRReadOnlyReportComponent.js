@@ -41,7 +41,7 @@ export default class ADRReadOnlyReportComponent extends Component {
   render() {
     //var { model } = this.state
     const { goBack, model, showPage, printPDF } = this.props
-    const newFollowUp = { rid : Date.now(), "type": REPORT_TYPE_ADR_FOLLOW_UP, parent_reference : model.reference_number, report_type : "FollowUp" }
+    const newFollowUp = {...model, rid : Date.now(), "type": REPORT_TYPE_ADR_FOLLOW_UP, parent_reference : model.reference_number, report_type : "FollowUp" }
     const followUpBtn = model.reference_number != null? (<button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); showPage(ADR_FOLLOW_UP_PAGE, newFollowUp) } }>Create follow-up report</button>) : null
     return (
       <div className='adr-form form'>
@@ -64,7 +64,7 @@ export default class ADRReadOnlyReportComponent extends Component {
             <h4 className="text-center">Patient Details</h4>
             <div className="container">
               <div className="col-md-6 ">
-                <ReadOnlyDataRenderer label="Clinic/Hospital Name" model={ model } name="evaluator"/>
+                <ReadOnlyDataRenderer label="Clinic/Hospital Name" model={ model } name="name_of_institution"/>
               </div>
               <div className="col-md-6 ">
                 <ReadOnlyDataRenderer label="Clinic/Hospital Number" model={ model } name="institution_code"/>

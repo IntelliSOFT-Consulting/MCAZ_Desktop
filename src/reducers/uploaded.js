@@ -4,10 +4,10 @@ const uploaded = (state = [], action) => {
     case CLEAR_DATA:
       return []
     case SAVE_UPLOADED_REPORT:
-      var newReport = action.data
       if(state == null || state.length == 0) {
-        return [...state, newReport]
+        return [...state, action.data]
       } else {
+        const newReport = action.data
         const index = state.findIndex((report) => report.rid == newReport.rid )
         if(index == -1) {
           state.push(newReport)
@@ -17,7 +17,6 @@ const uploaded = (state = [], action) => {
       }
       return [...state]
     case SAVE_FETCHED_REPORTS:
-
       if(action.data && action.data.length > 0) {
         const type = action.data[0].type
         state = state.filter((report) => report.type != type)

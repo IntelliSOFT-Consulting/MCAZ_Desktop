@@ -4,15 +4,15 @@ const drafts = (state = [], action) => {
     case CLEAR_DATA:
       return []
     case SAVE_DRAFT_REPORT:
-      var newReport = action.data
       if(state == null || state.length == 0) {
-        return [...state, newReport]
+        return [...state, action.data]
       } else {
-        const index = state.findIndex((report) => report.rid == newReport.rid )
+        const rep = action.data;
+        const index = state.findIndex((report) => report.rid == rep.rid )
         if(index == -1) {
-          state.push(newReport)
+          state.push(rep)
         } else {
-          state[index] = newReport
+          state[index] = rep
         }
       }
       return [...state]

@@ -29,7 +29,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
   }
   render() {
     const { model, goBack, showPage, printPDF } = this.props
-    const newFollowUp = { rid : Date.now(), "type": REPORT_TYPE_AEFI_FOLLOW_UP, parent_reference : model.reference_number, report_type : "FollowUp" }
+    const newFollowUp = {...model, rid : Date.now(), "type": REPORT_TYPE_AEFI_FOLLOW_UP, parent_reference : model.reference_number, report_type : "FollowUp" }
     const followUpBtn = model.reference_number != null? (<button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); showPage(AEFI_FOLLOW_UP_PAGE, newFollowUp) } }>Create follow-up report</button>) : null
     return (
       <div className="aefi-form form">
@@ -126,7 +126,7 @@ export default class AEFIReadOnlyReportComponent extends Component {
             <hr/>
             <div className="container">
               <div className="col-md-6 ">
-                <AEFIVaccinationTableComponent readonly={ true } name="vaccination" model={ model }  label="Vaccine   "/>
+                <AEFIVaccinationTableComponent readonly={ true } name="aefi_list_of_vaccines" model={ model }  label="Vaccine   "/>
               </div>
             </div>
 

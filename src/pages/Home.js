@@ -13,6 +13,7 @@ import NewsPage from './NewsPage'
 import ADRFollowUpForm from '../forms/ADRFollowUpForm'
 import AEFIReportFollowupForm from '../forms/AEFIReportFollowupForm'
 import ArchivedData from './ArchivedData'
+import { ToastContainer } from 'react-toastify';
 
 var NotificationSystem = require('react-notification-system')
 
@@ -22,13 +23,14 @@ import { saveAs } from 'file-saver'
 import { connect } from 'react-redux'
 
 import { MAIN_PAGE, ADR_FORM_PAGE, SAE_FORM_PAGE, AEFI_REPORT_PAGE, AEFI_INV_PAGE, REPORTS_LIST_PAGE, READ_ONLY_PAGE, LOGIN_PAGE, SIGNUP_PAGE, ADR_FOLLOW_UP_PAGE,
-  AEFI_FOLLOW_UP_PAGE, NEWS_PAGE, ARCHIVED_PAGE } from '../utils/Constants'
+  AEFI_FOLLOW_UP_PAGE, NEWS_PAGE, ARCHIVED_PAGE, SAE_FOLLOW_UP_PAGE, AEFI_INV_FOLLOW_UP_PAGE } from '../utils/Constants'
 
 import { showPage, setReport, changeConnection, uploadCompletedReports, setNotification, setFollowUp, login, signUp, logout, fetchReport,
   fetchDeviceInfo, removeDraft, printPDF, downloadPDF, contactUs, fetchNews, removeCompletedReports, archiveData, saveFile, resetPassword } from '../actions'
 
 class Home extends Component {
-  _notificationSystem: null
+  _notificationSystem = null;
+
   constructor(props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)
@@ -58,10 +60,12 @@ class Home extends Component {
       case ADR_FORM_PAGE:
         return <ADRForm {...this.props} />
       case SAE_FORM_PAGE:
+      case SAE_FOLLOW_UP_PAGE:
         return <SAEForm />
       case AEFI_REPORT_PAGE:
         return <AEFIReportingForm />
       case AEFI_INV_PAGE:
+      case AEFI_INV_FOLLOW_UP_PAGE:
         return <AEFIInvForm />
       case READ_ONLY_PAGE:
         return <ReadOnlyReportComponent {...this.props}/>
@@ -73,9 +77,9 @@ class Home extends Component {
         //setReport(null)
         return <IntroPage  {...this.props}/>
       case ADR_FOLLOW_UP_PAGE:
-        return <ADRFollowUpForm {...this.props}/>
+        return <ADRForm {...this.props}/>
       case AEFI_FOLLOW_UP_PAGE:
-        return <AEFIReportFollowupForm {...this.props}/>
+        return <AEFIReportingForm {...this.props}/>
       case NEWS_PAGE:
         return <NewsPage {...this.props}/>
       case ARCHIVED_PAGE:
@@ -93,6 +97,7 @@ class Home extends Component {
         { this.getPage() }
         <Footer connection={ this.props.connection } settings={ settings }/>
         <NotificationSystem ref="notificationSystem" />
+        <ToastContainer />
       </div>
     )
   }

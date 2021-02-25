@@ -78,10 +78,10 @@ export default class SAEConcomitantTableComponent extends TableComponent {
         <table className="table table-condensed table-bordered">
           <thead>
             <tr>
-              <th colSpan="2">Name of drug<span className="required">*</span></th>
-              <th>Date started<span className="required">*</span></th>
+              <th colSpan="2">Name of drug</th>
+              <th>Date started</th>
               <th>Date stopped</th>
-              <th>Relationship of SAE to medication<span className="required">*</span></th>
+              <th>Relationship of SAE to medication</th>
               { lastCol }
             </tr>
           </thead>

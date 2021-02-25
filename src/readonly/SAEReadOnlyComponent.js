@@ -9,7 +9,7 @@ import SAELabTestsTableComponent from '../components/SAELabTestsTableComponent'
 
 import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableComponent'
 
-import { MAIN_PAGE, REPORT_TYPE_AEFI } from '../utils/Constants'
+import { SAE_FOLLOW_UP_PAGE, REPORT_TYPE_SAE_FOLLOW_UP } from '../utils/Constants'
 
 import { DESIGNATION, SAE_REPORT_TYPE, EVENT_TYPE, SAE_EVENT_TYPE, SAE_TOXICITY_GRADE, RESEARCH_INVOLVES, LOCATION_ADVERSE_EVENT, BOOLEAN_NA_OPTIONS, BOOLEAN_OPTIONS, OUTCOME } from '../utils/FieldOptions'
 
@@ -30,7 +30,9 @@ export default class SAEReadOnlyComponent extends Component {
   }
 
   render() {
-    const { model, goBack, printPDF } = this.props
+    const { model, goBack, printPDF, showPage } = this.props
+    const newFollowUp = {...model, rid : Date.now(), "type": REPORT_TYPE_SAE_FOLLOW_UP, parent_reference : model.reference_number, report_type : "FollowUp" }
+    const followUpBtn = model.reference_number != null? (<button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); showPage(SAE_FOLLOW_UP_PAGE, newFollowUp) } }>Create follow-up report</button>) : null
     return (
       <div className='sae-form form'>
         <div id='form-read-only'>
@@ -307,6 +309,7 @@ export default class SAEReadOnlyComponent extends Component {
         <div className="container well">
           <div className="col-md-6 col-md-offset-1 btn-toolbar">
             <button className="btn btn-sm btn-default" onClick={ (e) => { e.preventDefault(); goBack(e) } }>Close</button>
+            { followUpBtn }
             <button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); printPDF() } }>Get PDF</button>
           </div>
         </div>

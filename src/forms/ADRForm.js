@@ -14,6 +14,7 @@ import ReactionsComponent from '../components/ReactionsComponent'
 import SelectInput from '../inputs/SelectInput'
 import DatePickerInput from '../inputs/DatePickerInput'
 import AutoSuggestInput from '../inputs/AutoSuggestInput'
+import CheckboxInput from '../inputs/CheckboxInput'
 
 import moment from 'moment'
 
@@ -32,7 +33,7 @@ class ADRForm extends FormComponent {
     super(props)
     var { model, settings, user } = this.props
     if(model == null) {
-      model = { "rid": Date.now(),"type":"REPORT_TYPE_ADR", data_source: "desktop", device_type : settings.device_type, reporter_email: user.email, reporter_name: user.name }
+      model = { "rid": Date.now(),"type":"REPORT_TYPE_ADR", data_source: "desktop", device_type : settings.device_type, reporter_email: user.email, reporter_name: user.name, in_utero: "" }
     }
     //model = {"rid":1510853208716,"type":"REPORT_TYPE_ADR","name_of_institution":"Nairobi Hosp","sadr_list_of_drugs":[{"brand_name":"dawa","dose_id":"7","route_id":"4","frequency_id":"4","drug_name":"wwqq","dose":"1","indication":"1","start_date":"1-10-2017","stop_date":"21-10-2017","suspected_drug":""}],"user":{},"patient_name":"xxsss","date_of_birth":"6-4-2015","weight":"34","height":"12","gender":"Male","date_of_onset_of_reaction":"8-2-2017","severity":"No","medical_history":"ss","lab_test_results":"ssds","action_taken":"Dose reduced","outcome":"Recovering","designation_id":"2","reporter_name":"John","reporter_email":"john@gmail.com","description_of_reaction":"hhhn"}
     this.state = { model : model, validate : null, confirmVisible : false, confirmCancel : false }
@@ -50,18 +51,27 @@ class ADRForm extends FormComponent {
     this.onChange = this.onChange.bind(this)
 
     this.mandatory = [
-      { name : "patient_name", text : "Patient Initials", page : 1 },
-      { name : "date_of_birth", text: "Date of bith", page : 1,  dependent: "age", value: ""},
-      { name : "age", text: "Age", page : 1,  dependent: "date_of_birth", value: ""},
-      { name : "gender", text : "Sex", page : 1 },
-      { name : "date_of_onset_of_reaction", text : "Date of onset", page : 2 },
-      { name : 'description_of_reaction', text : "Description of ADR", page : 2},
-      { name : "severity", text : "Serious", page : 2 }, { name : "outcome", text : "Outcome", page : 3 },
-      { name : "sadr_list_of_drugs", fields: [{ name : "drug_name", text : "Generic name" }, { name : "dose_id", text : "Dose" },
-        { name : "frequency_id", text : "Frequency" }, { name : "start_date", text : "Start date" }]}, // , { name : "suspected_drug", text : "Tick suspected medicine" }
-      { name : 'action_taken', text : "Action taken", page : 3 },
-      { name : "reporter_name", text : "Reporter name", page : 4 },
-      { name : "designation_id", text : "Designation", page : 4 }, { name : "reporter_email", text : "Email Address", page : 4 }]
+      //{ name: "name_of_institution", text: "Clinic/Hospital name"},
+      //{ name: "institution_code", text: "Clinic/Hospital Number" },
+      //{ name : "patient_name", text : "Patient Initials", page : 1 },
+      //{ name : "date_of_birth", text: "Date of bith", page : 1,  dependent: "age", value: ""},
+      //{ name : "age", text: "Age", page : 1,  dependent: "date_of_birth", value: ""},
+      //{ name : "gender", text : "Sex", page : 1 },
+      //{ name : "date_of_onset_of_reaction", text : "Date of onset", page : 2 },
+      //{ name : 'description_of_reaction', text : "Description of ADR", page : 2},
+      //{ name : "severity", text : "Serious", page : 2 },
+      //{ name : "outcome", text : "Outcome", page : 3 },
+      { name : "sadr_list_of_drugs", fields: [
+        //{ name : "drug_name", text : "Generic name" },
+        //{ name : "dose_id", text : "Dose" },
+        //{ name : "frequency_id", text : "Frequency" },
+        //{ name : "start_date", text : "Start date" }
+      ]}, // , { name : "suspected_drug", text : "Tick suspected medicine" }
+      //{ name : 'action_taken', text : "Action taken", page : 3 },
+      //{ name : "reporter_name", text : "Reporter name", page : 4 },
+      { name : "designation_id", text : "Designation", page : 4 },
+      { name : "reporter_email", text : "Email Address", page : 4 }
+    ]
   }
 
   closeModal() {
@@ -127,8 +137,8 @@ class ADRForm extends FormComponent {
       </div></div>
     ) : null
 
-    const severityReason = this.state.model['severity'] == "Yes"? (<div className="col-md-6 col-sm-12">
-      <SelectInput label="Reason for Seriousness" model={ model } name="severity_reason" required={ true } validate={ this.state.validate } options={ SEVERITY_REASON } dependent={ { name : "severity", value: "Yes" }} onChange={this.onChange}/>
+    const severityReason = this.state.model['severity'] == "Yes" ? (<div className="col-md-6 col-sm-12">
+      <SelectInput label="Reason for Seriousness" model={ model } name="severity_reason" validate={ this.state.validate } options={ SEVERITY_REASON } dependent={ { name : "severity", value: "Yes" }} onChange={this.onChange}/>
     </div>) : null
     return (
       <div className='adr-form form'>
@@ -148,10 +158,10 @@ class ADRForm extends FormComponent {
           <h4 className="text-center">Patient Details</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <AutoSuggestInput label="Clinic/Hospital Name" model={ model } name="evaluator" onChange={ this.onSelectOfInstitution }/>
+              <AutoSuggestInput label="Clinic/Hospital Name" model={ model } name="name_of_institution" onChange={ this.onSelectOfInstitution } />
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Clinic/Hospital Number" model={ model } name="institution_code" value={ this.state.institution_code }/>
+              <TextInput label="Clinic/Hospital Number" model={ model } name="institution_code" value={ this.state.institution_code } />
             </div>
           </div>
           <div className="container">
@@ -161,7 +171,7 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Patient Initials" required={ true } validate={ this.state.validate } model={ model } name="patient_name" onChange={this.onChange}/>
+              <TextInput label="Patient Initials" validate={ this.state.validate } model={ model } name="patient_name" onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="VCT/OI/TB Number" model={ model } name="ip_no" onChange={this.onChange}/>
@@ -169,10 +179,10 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() }  dependent={ "age" } onChange={this.onChange}/>
+              <DatePickerInput label="Date of Birth:" validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() }  dependent={ "age" } onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Weight (Kg)" model={ model } required={ true } name="weight" type="number" validate={ this.state.validate } onChange={this.onChange}/>
+              <TextInput label="Weight (Kg)" model={ model } name="weight" type="number" validate={ this.state.validate } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
@@ -185,14 +195,14 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-md-offset-6 col-sm-12">
-              <SingleMultipleInput label="Gender" name="gender" model={ model } required={ true } validate={ this.state.validate } inline={ true } options={["Male", "Female", "Unknown"]} onChange={this.onChange}/>
+              <SingleMultipleInput label="Gender" name="gender" model={ model } validate={ this.state.validate } inline={ true } options={["Male", "Female", "Unknown"]} onChange={this.onChange}/>
             </div>
           </div>
           <hr/>
           <h4 className="text-center">Adverse Reaction</h4>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date of onset of reaction" model={ model } validate={ this.state.validate } required={ true } name="date_of_onset_of_reaction" maxDate={ moment() } onChange={this.onChange}/>
+              <DatePickerInput label="Date of onset of reaction" model={ model } validate={ this.state.validate } name="date_of_onset_of_reaction" maxDate={ moment() } onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
               <DatePickerInput label="Date of end of reaction (if it ended)" model={ model } name="date_of_end_of_reaction" maxDate={ moment() } onChange={this.onChange}/>
@@ -200,13 +210,18 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Description of ADR" multiLine={ true } model={ model } name="description_of_reaction" validate={ this.state.validate } required={ true } onChange={this.onChange}/>
+              <CheckboxInput label="Did reaction occur in utero?" name="in_utero" model={ model } options={ ['1'] } validate={ this.state.validate }  onChange={this.onChange}/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <TextInput label="Description of ADR" multiLine={ true } model={ model } name="description_of_reaction" validate={ this.state.validate } onChange={this.onChange}/>
             </div>
             <ReactionsComponent model={ model } name="reactions" onChange={this.onChange}/>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Serious" model={ model } name="severity" required={ true } validate={ this.state.validate } options={ BOOLEAN_OPTIONS } onChange={ this.onSeverityChange }/>
+              <SingleMultipleInput label="Serious" model={ model } name="severity" validate={ this.state.validate } options={ BOOLEAN_OPTIONS } onChange={ this.onSeverityChange }/>
             </div>
             { severityReason }
           </div>
@@ -234,10 +249,10 @@ class ADRForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-4 col-sm-12">
-              <SelectInput label="Action taken:" model={ model } name="action_taken" required={ true } validate={ this.state.validate } options={ ACTION_TAKEN } onChange={this.onChange}/>
+              <SelectInput label="Action taken:" model={ model } name="action_taken" validate={ this.state.validate } options={ ACTION_TAKEN } onChange={this.onChange}/>
             </div>
             <div className="col-md-4 col-sm-12">
-              <SelectInput label="Outcome of ADR:" model={ model } name="outcome" required={ true } validate={ this.state.validate } options={ OUTCOME } onChange={this.onChange}/>
+              <SelectInput label="Outcome of ADR:" model={ model } name="outcome" validate={ this.state.validate } options={ OUTCOME } onChange={this.onChange}/>
             </div>
             <div className="col-md-4 col-sm-12">
               <SelectInput label="Relatedness of suspected medicine(s) to ADR:" model={ model } name="relatedness" options={ RELATEDNESS_TO_ADR } onChange={this.onChange}/>
@@ -342,8 +357,8 @@ class ADRForm extends FormComponent {
 
   onSeverityChange(value) {
     const { model } = this.state
-    if(value == "Yes") {
-
+    if (value['severity'] === 'No') {
+      value['severity_reason'] = '';
     }
     this.onChange(value);
   }
@@ -405,11 +420,11 @@ class ADRForm extends FormComponent {
               suspected_drug++
             }
           }
-          if(suspected_drug == 0) {
+          /*if(suspected_drug == 0) {
             valid = false
-          }
+          }*/
         } else {
-          valid = false
+          //valid = false
         }
         if(names != "") {
           names += ",\n"
@@ -440,7 +455,7 @@ class ADRForm extends FormComponent {
 
     if(!valid) {
       this.setState({ validate : true })
-      setNotification({ message : messages.validationErrors, level: "error", id: new Date().getTime() })
+      setNotification({ message :  `${messages.validationErrors}\r${names}`, level: "error", id: new Date().getTime() })
       return
     }
 

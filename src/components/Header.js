@@ -93,7 +93,7 @@ export default class Header extends Component {
               <li className={ page == ADR_FORM_PAGE ? "active" : "" }><a href="#" onClick={ () => this.showPage(ADR_FORM_PAGE) }>ADR</a></li>
               <li className={ page == SAE_FORM_PAGE ? "active" : "" }><a href="#" onClick={ () => this.showPage(SAE_FORM_PAGE) }>SAE</a></li>
               <li className={ page == AEFI_REPORT_PAGE ? "active" : "" }><a href="#" onClick={ () => this.showPage(AEFI_REPORT_PAGE) }>AEFI</a></li>
-              <li className={ page == AEFI_INV_PAGE ? "active" : "" }><a href="#" onClick={ () => this.showPage(AEFI_INV_PAGE) }>Serious AEFI</a></li>
+              <li className={ page == AEFI_INV_PAGE ? "active" : "" }><a href="#" onClick={ () => this.showPage(AEFI_INV_PAGE) }>AEFI Inv</a></li>
               <li><a href="#" onClick={ () => this.contactUs() }>Contact us</a></li>
               <li className={ page == NEWS_PAGE ? "active" : "" }><a href="#" onClick={ () => this.showPage(NEWS_PAGE) }>News</a></li>
               <li className={ page == ARCHIVED_PAGE ? "active" : "" }><a href="#" onClick={ () => this.showPage(ARCHIVED_PAGE) }>Archived data</a></li>

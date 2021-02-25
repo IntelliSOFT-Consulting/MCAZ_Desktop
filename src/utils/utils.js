@@ -183,13 +183,13 @@ export const getDateTimeFromString = (dateTime) => {
   const split = dateTime.split(" ")
   const v = split[0].split("-")
 
-  var date = moment().year(v[2]).month(v[1]).date(v[0]) //new Date(model[name]['month'] + '/' + model[name]['day'] + '/' + model[name]['year'])
+  var date = moment().year(v[2]).month(v[1] - 1).date(v[0]) //new Date(model[name]['month'] + '/' + model[name]['day'] + '/' + model[name]['year'])
 
   if(split.length == 2) {
     const t = split[1].split(":")
     date.hour(t[0]).minute(v[1])
   }
-  return date
+  return new Date(date.format())
 }
 
 export const getModelValue = (model, name)  => {

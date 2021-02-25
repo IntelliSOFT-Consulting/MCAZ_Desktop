@@ -88,15 +88,15 @@ export default class MedicationTableComponent extends TableComponent {
         <table className="table table-condensed table-bordered">
           <thead>
             <tr>
-              <td>Generic name<span className="required">*</span></td>
+              <td>Generic name</td>
               <td>Brand name</td>
               <td>Batch Number</td>
-              <td colSpan="2">Dose<span className="required">*</span></td>
-              <td colSpan="2">Route & Frequency<span className="required">*</span></td>
+              <td colSpan="2">Dose</td>
+              <td colSpan="2">Route & Frequency</td>
               <td>Indication</td>
-              <td>Date started<span className="required">*</span></td>
+              <td>Date started</td>
               <td>Date stopped</td>
-              <td>Tick suspected medicine(s)<span className="required">*</span></td>
+              <td>Tick suspected medicine(s)</td>
               { lastCol }
             </tr>
           </thead>

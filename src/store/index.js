@@ -3,7 +3,6 @@ import {
   persistStore,
   persistCombineReducers, autoRehydrate
 } from 'redux-persist'
-import storage from 'redux-persist/es/storage'
 import appState from '../reducers'
 import thunk from 'redux-thunk'
 import createElectronStorage from "redux-persist-electron-storage"

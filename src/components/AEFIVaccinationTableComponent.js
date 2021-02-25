@@ -4,6 +4,7 @@ import DatePickerInput from '../inputs/DatePickerInput'
 import TableComponent from './TableComponent'
 import SingleMultipleInput from '../inputs/SingleMultipleInput'
 import SelectInput from '../inputs/SelectInput'
+import CheckboxInput from '../inputs/CheckboxInput'
 import AEFIVaccinationRow from './AEFIVaccinationRow'
 
 import moment from 'moment'
@@ -29,9 +30,18 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
 
   getRow(index) {
     const { rows } = this.state
+    const { model } = this.props;
     const key = `${index}_AEFIVaccination`
     return (
-      <AEFIVaccinationRow key={ key } index={index} model={rows[index]} validate={this.state.validate} onRemove={this.removeRow} onChange={this.onChange} />
+      <AEFIVaccinationRow
+        key={ key }
+        index={index}
+        model={rows[index]}
+        validate={this.state.validate}
+        onRemove={this.removeRow}
+        onChange={this.onChange}
+        type={model.type}
+      />
     )
   }
 
@@ -55,6 +65,7 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
         <td><ReadOnlyDataRenderer hideLabel={ true } name="diluent_batch_number" model={ model[name][index] } /></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="diluent_expiry_date" model={ model[name][index] } type="date" /></td>
         <td><ReadOnlyDataRenderer hideLabel={ true } name="diluent_date" model={ model[name][index] } type="date" showTime={ true }/></td>
+        <td><CheckboxInput hideLabel={ true } name="suspected_drug" model={ model[name][index] } options={ ['1'] }/></td>
       </tr>
     )
   }
@@ -66,7 +77,7 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
     const rows = this.initializeRows(readonly) //.rows
     var lastCol = null
     var addRowBtn = null
-    var diluentColSpan = 3
+    var diluentColSpan = 4
     if(!readonly) {
       lastCol = ( <th></th>)
       addRowBtn = (
@@ -74,7 +85,7 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
           Add <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
       )
-      diluentColSpan = 4
+      diluentColSpan = 5
     }
 
 
@@ -87,14 +98,15 @@ export default class AEFIVaccinationTableComponent extends TableComponent {
           <thead>
             <tr><th colSpan='6'>Vaccine</th><th colSpan={ diluentColSpan }>Diluent</th></tr>
             <tr>
-              <th>Name<span className="required">*</span></th>
-              <th colSpan="2">Date and time of vaccination<span className="required">*</span></th>
+              <th>Name</th>
+              <th colSpan="2">Date and time of vaccination</th>
               <th>Dose (1st, 2nd...)</th>
-              <th>Batch/Lot no<span className="required">*</span></th>
+              <th>Batch/Lot no</th>
               <th>Expiry date</th>
               <th>Batch/ Lot Number</th>
               <th>Expiry date</th>
               <th>Time of reconstitution</th>
+              <th>Tick suspected medicine(s)</th>
               { lastCol }
             </tr>
           </thead>

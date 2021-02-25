@@ -11,7 +11,7 @@ import CheckboxInput from '../inputs/CheckboxInput'
 
 import moment from 'moment'
 
-import { MAIN_PAGE, REPORT_TYPE_AEFI_INV, SAEFI_URL } from '../utils/Constants'
+import { AEFI_INV_FOLLOW_UP_PAGE, REPORT_TYPE_AEFI_INV_FOLLOW_UP } from '../utils/Constants'
 
 import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, STATUS_ON_DATE, DESIGNATION, INFANT_BIRTH_OPTS, MULTI_VIALS, DELIVERY_OPTS, SOURCE_INFO,
   WHEN_VACCINATED, SYRINGES_USED, PLACE_VACCINATION, SITE_TYPE, VACCINATION_IN, BOOLEAN_UNABLE_OPTIONS, BOOLEAN_NA_OPTIONS, PROVINCES, AGE_GROUP_YEARS } from '../utils/FieldOptions'
@@ -30,7 +30,9 @@ export default class AEFIInvReadOnlyReportComponent extends Component {
 
   render() {
 
-    const { goBack, model, printPDF } = this.props
+    const { goBack, model, printPDF, showPage } = this.props
+    const newFollowUp = {...model, rid : Date.now(), "type": REPORT_TYPE_AEFI_INV_FOLLOW_UP, parent_reference : model.reference_number, report_type : "FollowUp" }
+    const followUpBtn = model.reference_number != null? (<button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); showPage(AEFI_INV_FOLLOW_UP_PAGE, newFollowUp) } }>Create follow-up report</button>) : null
     return (
       <div className="saefi-form">
         <div id='form-read-only'>
@@ -367,7 +369,7 @@ export default class AEFIInvReadOnlyReportComponent extends Component {
                 <ReadOnlyDataRenderer type="option"  label="a. When was the patient vaccinated?" model={ model } name="when_vaccinated" options={ WHEN_VACCINATED }/>
               </div>
               <div className="col-md-6 ">
-                <ReadOnlyDataRenderer type="option"  label="In case of multidose vials, was the vaccine given" model={ model } name="when_vaccinated" options={ MULTI_VIALS }/>
+                <ReadOnlyDataRenderer type="option"  label="In case of multidose vials, was the vaccine given" model={ model } name="vaccine_given" options={ MULTI_VIALS }/>
               </div>
             </div>
             <div className="container">
@@ -616,8 +618,9 @@ export default class AEFIInvReadOnlyReportComponent extends Component {
           </form>
         </div>
         <div className="container well">
-          <div className="col-md-3 col-md-offset-1 btn-toolbar">
+          <div className="col-md-11 col-md-offset-1 btn-toolbar">
             <button className="btn btn-sm btn-default" onClick={ (e) => { e.preventDefault(); goBack(e) } }>Close</button>
+            {followUpBtn}
             <button className="btn btn-sm btn-success" onClick={ (e) => { e.preventDefault(); printPDF() } }>Get PDF</button>
           </div>
         </div>

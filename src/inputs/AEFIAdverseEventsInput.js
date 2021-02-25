@@ -19,7 +19,8 @@ export default class AEFIAdverseEventsInput extends Component {
   }
 
   handleCheck(e) {
-    const { options, name, model, multiple, onChange } = this.props
+    const { options, model, multiple, onChange } = this.props
+    const name = e.target.name;
     var { values } = this.state
     if(values == null) {
       values = []
@@ -52,14 +53,24 @@ export default class AEFIAdverseEventsInput extends Component {
       state.values = values
     }
 
-
+    if (e.target.value === 'ae_seizures' && !e.target.checked) {
+      model['seizures'] = '';
+      state['seizures'] = [];
+    }
+    if (e.target.value === 'ae_severe_local_reaction' && !e.target.checked) {
+      model['reactions'] = '';
+      state['reactions'] = [];
+    }
+    if (e.target.value === 'ae_other' && !e.target.checked) {
+      model['adverse_events_specify'] = '';
+    } 
 
     this.setState(state)
     if(model) {
       model[name] = values.join(',')
     }
     if(onChange) {
-      onChange(model[name])
+      onChange(model)
     }
   }
 
@@ -76,7 +87,7 @@ export default class AEFIAdverseEventsInput extends Component {
       var vals = model[name].split(",")
       const difference = values.filter( val => vals.indexOf(val) === -1 )
       if(difference.length > 0){
-        newState = newState || null
+        newState = newState || {}
         newState.values = vals
       }
     }
@@ -153,15 +164,28 @@ export default class AEFIAdverseEventsInput extends Component {
         </div>
         <div className="col-md-6">
           <div className="form-group">
-            <label className="col-md-4 control-label form-input-label">Severe local reactions</label>
-            { reactions }
+            {model['ae_severe_local_reaction'] == '1' && (
+              <React.Fragment>
+                <label className="col-md-4 control-label form-input-label">Severe local reactions</label>
+                { reactions }
+              </React.Fragment>
+            )}
+            
           </div>
           <div className="form-group">
-            <label className="col-md-4 control-label form-input-label">Seizures</label>
-            { seizures }
+            {model['ae_seizures'] == '1' && (
+              <React.Fragment>
+                <label className="col-md-4 control-label form-input-label">Seizures</label>
+               { seizures }
+              </React.Fragment>
+            )}
           </div>
           <div className="col-md-12">
-            <TextInput label="If other, specify"  name="adverse_events_specify" model={ model } />
+            {model['ae_other'] == '1' && (
+              <React.Fragment>
+                <TextInput label="If other, specify"  name="adverse_events_specify" model={ model } onChange={this.props.onChange}/>
+              </React.Fragment>
+            )}
           </div>
         </div>
       </div>

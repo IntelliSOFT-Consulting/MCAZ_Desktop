@@ -6,7 +6,7 @@ const completed = (state = [], action) => {
     case SAVE_COMPLETED_REPORT:
       var newReport = action.data
       if(state == null || state.length == 0) {
-        return [...state, newReport]
+        return [...state, action.data]
       } else {
         const index = state.findIndex((report) => report.rid == newReport.rid )
         if(index == -1) {
@@ -17,11 +17,11 @@ const completed = (state = [], action) => {
       }
       return [...state]
     case REMOVE_COMPLETED_REPORT:
-      const newReport = action.data
+      const completedReport = action.data
       if(state.length == 0){
         return state
       }
-      return state.filter((report) => report.rid != newReport.rid)
+      return state.filter((report) => report.rid != completedReport.rid)
     case REMOVE_COMPLETED_REPORTS:
       return []
     default:

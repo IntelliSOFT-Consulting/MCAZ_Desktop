@@ -84,10 +84,10 @@ export default class SAEDrugsTableComponent extends TableComponent {
           <thead>
             <tr>
               <th>Drug/Device/Vaccine</th>
-              <th colSpan="2">Dose<span className="required">*</span></th>
-              <th colSpan="2">Route & Frequency<span className="required">*</span></th>
+              <th colSpan="2">Dose</th>
+              <th colSpan="2">Route & Frequency</th>
               <th>Date commenced</th>
-              <th>Taking drug at onset of SAE?<span className="required">*</span></th>
+              <th>Taking drug at onset of SAE?</th>
               <th>Relationship of SAE to drug</th>
               { lastCol }
             </tr>

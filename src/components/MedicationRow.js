@@ -46,15 +46,15 @@ export default class MedicationRow extends Component {
     const { model } = this.state;
     return (
       <tr>
-        <td><TextInput hideLabel={ true } name="drug_name" validate={ this.props.validate } required={ true } model={ model } onChange={ this.onChange }/></td>
+        <td><TextInput hideLabel={ true } name="drug_name" validate={ this.props.validate }  model={ model } onChange={ this.onChange }/></td>
         <td><TextInput hideLabel={ true } name="brand_name" model={ model } onChange={ this.onChange }/></td>
         <td><TextInput hideLabel={ true } name="batch_number" model={ model } onChange={ this.onChange }/></td>
-        <td><TextInput hideLabel={ true } name="dose" model={ model } validate={ this.state.validate } required={ true } onChange={ this.onChange }/></td>
-        <td><SelectInput hideLabel={ true } name="dose_id" model={ model } validate={ this.state.validate } required={ true } options={ DOSE } onChange={ this.onChange }/></td>
-        <td><SelectInput hideLabel={ true } name="route_id" model={ model } validate={ this.state.validate } required={ true } options={ ROUTE } onChange={ this.onChange }/></td>
-        <td><SelectInput hideLabel={ true } name="frequency_id" model={ model } validate={ this.state.validate } required={ true } options={ FREQUENCY } onChange={ this.onChange }/></td>
+        <td><TextInput hideLabel={ true } name="dose" model={ model } validate={ this.state.validate } onChange={ this.onChange }/></td>
+        <td><SelectInput hideLabel={ true } name="dose_id" model={ model } validate={ this.state.validate }  options={ DOSE } onChange={ this.onChange }/></td>
+        <td><SelectInput hideLabel={ true } name="route_id" model={ model } validate={ this.state.validate } options={ ROUTE } onChange={ this.onChange }/></td>
+        <td><SelectInput hideLabel={ true } name="frequency_id" model={ model } validate={ this.state.validate } options={ FREQUENCY } onChange={ this.onChange }/></td>
         <td><TextInput hideLabel={ true } name="indication" model={ model } onChange={ this.onChange }/></td>
-        <td><DatePickerInput hideLabel={ true } name="start_date" model={ model } validate={ this.state.validate } required={ true } maxDate={ moment() } onChange={ this.onChange }/></td>
+        <td><DatePickerInput hideLabel={ true } name="start_date" model={ model } validate={ this.state.validate } maxDate={ model['stop_date'] || moment() } onChange={ this.onChange }/></td>
         <td><DatePickerInput hideLabel={ true } name="stop_date" model={ model } maxDate={ moment() } minDate={ model['start_date'] } onChange={ this.onChange }/></td>
         <td><CheckboxInput hideLabel={ true } name="suspected_drug" model={ model } options={ ['1'] } onChange={ this.onChange }/></td>
         <td>

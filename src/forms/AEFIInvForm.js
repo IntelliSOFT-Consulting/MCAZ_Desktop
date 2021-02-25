@@ -18,6 +18,8 @@ import AEFIVaccinationTableComponent from '../components/AEFIVaccinationTableCom
 
 import moment from 'moment'
 
+import messages from '../utils/messages.json'
+
 import { MAIN_PAGE, REPORT_TYPE_AEFI_INV, SAEFI_URL } from '../utils/Constants'
 
 import { BOOLEAN_OPTIONS, BOOLEAN_UNKNOWN_OPTIONS, GENDER, STATUS_ON_DATE, DESIGNATION, INFANT_BIRTH_OPTS, MULTI_VIALS, DELIVERY_OPTS, SOURCE_INFO,
@@ -49,6 +51,20 @@ class AEFIInvForm extends FormComponent {
     this.onChange = this.onChange.bind(this)
 
     this.state = { model : model, validate : null, confirmVisible : false, confirmCancel : false }
+    this.mandatory = [
+      //{ name : "name_of_vaccination_site", text : "Name of vaccination site", page : 1 },
+      //{ name : "designation_id", text: "Designation id", page : 1},
+      //{ name : "gender", text : "Sex", page : 1 },
+      //{ name : "patient_name", text : "Patient name", page : 1 },
+      //{ name : 'signs_symptoms', text : "Signs and symptoms", page : 3},
+      { name : "aefi_list_of_vaccines", fields: [
+        //{ name : "vaccine_name", text : "Vaccine name" },
+        //{ name : "vaccination_date", text : "Date of vaccination" },
+        //{ name : "vaccination_time", text : "Time of vaccination" },
+        //{ name : "dosage", text : "Dose (1st, 2nd...)" },
+        //{ name : "batch_number", text : "Batch/Lot no" }
+      ]},
+    ];
   }
 
   closeModal() {
@@ -135,10 +151,10 @@ class AEFIInvForm extends FormComponent {
           <h5 className="text-center">Basic Details</h5>
           <div className="container">
             <div className="col-md-4 col-sm-12">
-              <SelectInput label="Province" name="province_id" model={ model } required={ true } options={ PROVINCES } onChange={this.onChange}/>
+              <SelectInput label="Province" name="province_id" model={ model } options={ PROVINCES } onChange={this.onChange}/>
             </div>
             <div className="col-md-4 col-sm-12">
-              <SelectInput label="District" name="district" model={ model } required={ true } options={ PROVINCES } onChange={this.onChange}/>
+              <SelectInput label="District" name="district" model={ model } options={ PROVINCES } onChange={this.onChange}/>
             </div>
             <div className="col-md-4 col-sm-12">
               <TextInput label="AEFI Report ID" name="aefi_report_ref" model={ model } required={ true } onChange={this.onChange}/>
@@ -146,12 +162,12 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-offset-2 col-md-8 col-sm-12 top-margins">
-              <TextInput label="Name of vaccination site" name="name_of_vaccination_site" model={ model } required={ true } validate={ this.state.validate} onChange={this.onChange}/>
+              <TextInput label="Name of vaccination site" name="name_of_vaccination_site" model={ model }  validate={ this.state.validate} onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="Place of vaccination" name="place_vaccination" model={ model } required={ true } options={ PLACE_VACCINATION } onChange={this.onChange}/>
+              <SelectInput label="Place of vaccination" name="place_vaccination" model={ model } options={ PLACE_VACCINATION } onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="If other, specify:" name="place_vaccination_other" model={ model } onChange={this.onChange}/>
@@ -175,7 +191,7 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Name of Investigating Health Worker:" name="reporter_name" model={ model } required={ true } onChange={this.onChange}/>
+              <TextInput label="Name of Investigating Health Worker:" name="reporter_name" model={ model } onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
               <SelectInput name="designation_id" label="Designation / Position:" model={ model } options={ DESIGNATION } onChange={this.onChange}/>
@@ -183,7 +199,7 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Telephone # landline (with code):" name="telephone" model={ model } required={ true } onChange={this.onChange}/>
+              <TextInput label="Telephone # landline (with code):" name="telephone" model={ model } onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
               <TextInput label="Mobile" name="mobile" model={ model } onChange={this.onChange}/>
@@ -191,20 +207,20 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Email" required={ true } name="reporter_email" model={ model } onChange={this.onChange}/>
+              <TextInput label="Email"  name="reporter_email" model={ model } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date AEFI reported:" required={ true } name="report_date" model={ model } maxDate={ moment() } onChange={this.onChange}/>
+              <DatePickerInput label="Date AEFI reported:" name="report_date" model={ model } maxDate={ moment() } onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date investigation started:" required={ true } name="start_date" model={ model } maxDate={ moment() } minDate={ this.state.model['report_date'] } onChange={this.onChange} />
+              <DatePickerInput label="Date investigation started:" name="start_date" model={ model } maxDate={ moment() } minDate={ this.state.model['report_date'] } onChange={this.onChange} />
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date investigation completed:" required={ true } name="complete_date" model={ model } maxDate={ moment() } minDate={ this.state.model['start_date'] } onChange={this.onChange}/>
+              <DatePickerInput label="Date investigation completed:" name="complete_date" model={ model } maxDate={ moment() } minDate={ this.state.model['start_date'] } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
@@ -222,7 +238,7 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date of Birth:" required={ true } validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() } onChange={ (value) => this.validateDateofBirth(value) }/>
+              <DatePickerInput label="Date of Birth:" validate={ this.state.validate } model={ model } name="date_of_birth" maxDate={ moment() } onChange={ (value) => this.validateDateofBirth(value) }/>
             </div>
             <div className="col-md-6 col-sm-12">
               <AgeAtOnSetInput label="OR Age at onset" inline={ true } name="age_at_onset" model={ model } onChange={ (value) => this.validateAge(value) }/>
@@ -230,7 +246,7 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="OR Age Group" required={ true } name="age_group" model={ model } inline={ true } options={ AGE_GROUP_YEARS } onChange={ (value) => this.validateAgeGroup(value) }/>
+              <SingleMultipleInput label="OR Age Group" name="age_group" model={ model } inline={ true } options={ AGE_GROUP_YEARS } onChange={ (value) => this.validateAgeGroup(value) }/>
             </div>
           </div>
           <div className="container">
@@ -241,44 +257,44 @@ class AEFIInvForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date of first/key symptom (DD/MM/YYYY)" required={ true } name="symptom_date" model={ model } onChange={this.onChange} maxDate={ this.state.model['complete_date'] ?  getDateTimeFromString(this.state.model['complete_date']) : moment() } showTime={ true }/>
+              <DatePickerInput label="Date of first/key symptom (DD/MM/YYYY)" name="symptom_date" model={ model } onChange={this.onChange} maxDate={ this.state.model['complete_date'] ?  getDateTimeFromString(this.state.model['complete_date']) : moment() } showTime={ true }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date of hospitalization (DD/MM/YYYY):" required={ true } name="hospitalization_date" model={ model } maxDate={ moment() } onChange={this.onChange}/>
+              <DatePickerInput label="Date of hospitalization (DD/MM/YYYY):" name="hospitalization_date" model={ model } maxDate={ moment() } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <SingleMultipleInput inline={ true } label="Status on the date of investigation" required={ true } name="status_on_date" model={ model }
+              <SingleMultipleInput inline={ true } label="Status on the date of investigation" name="status_on_date" model={ model }
                 options={ STATUS_ON_DATE } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="If died, date and time of death (DD/MM/YYYY):" name="died_date" model={ model } showTime={ true } required={ true } onChange={this.onChange} maxDate={ moment() }/>
+              <DatePickerInput label="If died, date and time of death (DD/MM/YYYY):" name="died_date" model={ model } showTime={ true } onChange={this.onChange} maxDate={ moment() }/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput inline={ true } model={ model } label="Autopsy done?" required={ true } options={ BOOLEAN_OPTIONS } name="autopsy_done" onChange={this.onChange}/>
+              <SingleMultipleInput inline={ true } model={ model } label="Autopsy done?" options={ BOOLEAN_OPTIONS } name="autopsy_done" onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="If yes, date " name="autopsy_done_date" model={ model } required={ true } maxDate={ moment() } minDate={ this.state.model['died_date'] } onChange={this.onChange}/>
-            </div>
-          </div>
-          <div className="container">
-            <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput inline={ true } model={ model } label="Autopsy planned?" required={ true } options={ BOOLEAN_OPTIONS } name="autopsy_planned" onChange={this.onChange}/>
-            </div>
-            <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="If yes, date " name="autopsy_planned_date" model={ model } required={ true } minDate={ this.state.model['died_date'] } onChange={this.onChange}/>
+              <DatePickerInput label="If yes, date " name="autopsy_done_date" model={ model } maxDate={ moment() } minDate={ this.state.model['died_date'] } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <FileInputComponent name="reports" label="Attach report (if available)" required={ true } model={ model.reports[0] } onChange={this.onChange}/>
+              <SingleMultipleInput inline={ true } model={ model } label="Autopsy planned?" options={ BOOLEAN_OPTIONS } name="autopsy_planned" onChange={this.onChange}/>
+            </div>
+            <div className="col-md-6 col-sm-12">
+              <DatePickerInput label="If yes, date " name="autopsy_planned_date" model={ model } minDate={ this.state.model['died_date'] } onChange={this.onChange}/>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-6 col-sm-12">
+              <FileInputComponent name="reports" label="Attach report (if available)" model={ model.reports[0] } onChange={this.onChange}/>
             </div>
           </div>
           <hr/>
@@ -451,7 +467,7 @@ additional sheets if necessary)</h5>
               <SingleMultipleInput label="a. When was the patient vaccinated?" model={ model } name="when_vaccinated" options={ WHEN_VACCINATED } onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="In case of multidose vials, was the vaccine given" model={ model } name="when_vaccinated" options={ MULTI_VIALS } onChange={this.onChange}/>
+              <SingleMultipleInput label="In case of multidose vials, was the vaccine given" model={ model } name="vaccine_given" options={ MULTI_VIALS } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
@@ -722,7 +738,7 @@ additional sheets if necessary)</h5>
   }
 
   validateDateofBirth(value) {
-    const model = Object.assign({}, this.state.model)
+    const model = Object.assign({}, this.state.model, value)
     if(value != '') {
       model['age_at_onset_days'] = ""
       model['age_at_onset_months'] = ""
@@ -733,7 +749,7 @@ additional sheets if necessary)</h5>
   }
 
   validateAge(value) {
-    const model = Object.assign({}, this.state.model)
+    const model = Object.assign({}, this.state.model, value)
     if(value != '') {
       model['date_of_birth'] = ''
       model['age_group'] = ""
@@ -742,7 +758,7 @@ additional sheets if necessary)</h5>
   }
 
   validateAgeGroup(value) {
-    const model = Object.assign({}, this.state.model)
+    const model = Object.assign({}, this.state.model, value)
     if(value != '') {
       model['date_of_birth'] = ''
       model['age_at_onset_days'] = ""
@@ -772,7 +788,55 @@ additional sheets if necessary)</h5>
     const { uploadData, saveCompleted, connection, setNotification } = this.props
     var valid = true;
     var names = "";
-    var page = 0
+    var page = 0;
+    this.mandatory.forEach((field) => {
+      if(field.fields) {
+        const fields = field.fields
+        const values = model[field.name]
+        var arrayNames = []
+        if(Array.isArray(values)) {
+          var suspected_drug = -1;
+          if (field.name === 'aefi_list_of_vaccines') {
+            suspected_drug = 0;
+          }
+          for(let i = 0; i < values.length; i++) {
+            const val = values[i]
+            fields.forEach((f) => {
+              if(val[f.name] == null || val[f.name] === "") {
+                valid = false
+                if(page == 0) {
+                  page = field.page
+                }
+                if(arrayNames.indexOf(f.text) == -1) {
+                  arrayNames.push(f.text)
+                }
+              }
+            })
+            if(val['suspected_drug'] == '1') {
+              suspected_drug++
+            }
+          }
+          /*if(suspected_drug == 0) {
+            valid = false
+            arrayNames.push("Select at least one suspected drug");
+          }*/
+        }
+        if(names != "") {
+          names += ",\n"
+        }
+        names += arrayNames.join(',\n')
+      } else {
+        if(model[field.name] == null || model[field.name] === "") {
+          valid = false
+          if(names != "") {
+            names += ",\n "
+          } else {
+            page = field.page
+          }
+          names += field.text
+        }
+      }
+    })
     /*SAE_MANDATORY_FIELS.forEach((field) => {
       if(field.fields) {
         const fields = field.fields
@@ -823,7 +887,7 @@ additional sheets if necessary)</h5>
 
     if(!valid) {
       this.setState({ validate : true })
-      setNotification({ message : messages.validationErrors, level: "error", id: new Date().getTime() })
+      setNotification({ message : `${messages.validationErrors}\r${names}`, level: "error", id: new Date().getTime() })
       return
     }
     this.setState({ confirmVisible : true })

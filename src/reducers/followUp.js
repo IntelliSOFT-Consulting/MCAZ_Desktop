@@ -2,9 +2,8 @@ import { SAVE_UPLOADED_FOLLOW_UP_REPORT, SAVE_FETCHED_FOLLOW_UP_REPORTS, REMOVE_
 const followup = (state = [], action) => {
   switch(action.type) {
     case SAVE_UPLOADED_FOLLOW_UP_REPORT:
-      var newReport = action.data
       if(state == null || state.length == 0) {
-        return [...state, newReport]
+        return [...state, action.data]
       } else {
         const index = state.findIndex((report) => report.rid == newReport.rid )
         if(index == -1) {

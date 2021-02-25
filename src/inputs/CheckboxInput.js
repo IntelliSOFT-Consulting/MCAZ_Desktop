@@ -31,7 +31,7 @@ export default class CheckboxInput extends Component {
     // this.setState({ value })
     if(model) {
       const newValue = {};
-      newValue[name] = e.target.value;
+      newValue[name] = value;
       if (onChange) {
         onChange(newValue);
       }
@@ -56,6 +56,7 @@ export default class CheckboxInput extends Component {
 
   render() {
     const { label, name, options, required, hideLabel, readonly } = this.props
+    const { value } = this.state;
     var optionList = null
     const disabled = readonly? " disabled " : ""
     if(options != null) {
@@ -63,7 +64,14 @@ export default class CheckboxInput extends Component {
         return (
           <div className="checkbox" key={ Math.floor(Math.random() * 100000 )}>
             <label>
-              <input name={ name } disabled={ disabled } type="checkbox" onChange={ this.handleCheck } checked={ this.state.value.indexOf(option) != -1 } value={ option } aria-label="..." />
+              <input
+                name={ name }
+                disabled={ disabled }
+                type="checkbox"
+                onChange={ this.handleCheck }
+                checked={ value && `${value}`.indexOf(option) != -1 }
+                value={ option } aria-label="..."
+              />
             </label>
           </div>
         )

@@ -12,13 +12,15 @@ export const REPORT_TYPE_AEFI = 'REPORT_TYPE_AEFI'
 // Follow-ups
 export const REPORT_TYPE_ADR_FOLLOW_UP = 'REPORT_TYPE_ADR_FOLLOW_UP'
 export const REPORT_TYPE_AEFI_FOLLOW_UP = 'REPORT_TYPE_AEFI_FOLLOW_UP'
+export const REPORT_TYPE_SAE_FOLLOW_UP = 'REPORT_TYPE_SAE_FOLLOW_UP'
+export const REPORT_TYPE_AEFI_INV_FOLLOW_UP = 'REPORT_TYPE_AEFI_INV_FOLLOW_UP'
 
 // Report status
 export const STATUS_DRAFT = 'STATUS_DRAFT'
 export const STATUS_COMPLETED = 'STATUS_COMPLETED'
 export const STATUS_UPLOADED = 'STATUS_UPLOADED'
 
-export const MAIN_URL = 'https://e-pv.mcaz.co.zw/api'
+export const MAIN_URL = 'https://e-pv.mcaz.co.zw/api' // 'http://104.237.146.235/api'; //
 
 export const MAIN_PAGE = 'MAIN_PAGE' // The main page
 export const ADR_FORM_PAGE = 'ADR_FORM_PAGE'
@@ -33,7 +35,9 @@ export const NEWS_PAGE = 'NEWS_PAGE'
 export const ARCHIVED_PAGE = 'ARCHIVED_PAGE'
 
 export const ADR_FOLLOW_UP_PAGE = 'ADR_FOLLOW_UP_PAGE'
+export const SAE_FOLLOW_UP_PAGE = 'SAE_FOLLOW_UP_PAGE'
 export const AEFI_FOLLOW_UP_PAGE = 'AEFI_FOLLOW_UP_PAGE'
+export const AEFI_INV_FOLLOW_UP_PAGE = 'AEFI_INV_FOLLOW_UP_PAGE'
 
 export const ADR_URL = MAIN_URL + '/sadrs' // Url for ADR
 export const SAE_URL = MAIN_URL + '/adrs' // Url for SAE

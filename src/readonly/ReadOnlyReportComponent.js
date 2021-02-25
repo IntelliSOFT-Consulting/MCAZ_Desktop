@@ -42,7 +42,7 @@ class ReadOnlyReportComponent extends Component {
         page = <ADRReadOnlyReportComponent model={ model } goBack={ this.goBack } showPage={ this.showPage } printPDF={ printPDF }/>
         break
       case REPORT_TYPE_SAE:
-        page = <SAEReadOnlyComponent model={ model } goBack={ this.goBack } printPDF={ printPDF }/>
+        page = <SAEReadOnlyComponent model={ model } goBack={ this.goBack } printPDF={ printPDF } showPage={ this.showPage }/>
         break
       case REPORT_TYPE_AEFI :
         page = <AEFIReadOnlyReportComponent model={ model } goBack={ this.goBack } showPage={ this.showPage } printPDF={ printPDF }/>
@@ -55,6 +55,9 @@ class ReadOnlyReportComponent extends Component {
         break
       case REPORT_TYPE_AEFI_FOLLOW_UP:
         page = <AEFIFollowupReadOnlyComponent model={ model } goBack={ this.goBack }  printPDF={ printPDF }/>
+        break
+      case REPORT_TYPE_AEFI_INV_FOLLOW_UP:
+        page = <AEFIInvReadOnlyReportComponent model={ model } goBack={ this.goBack }  printPDF={ printPDF }/>
         break
       default:
         page = null
@@ -79,7 +82,6 @@ class ReadOnlyReportComponent extends Component {
     if(model) {
       setReport(model)
     }
-
     showPage(page)
   }
 }

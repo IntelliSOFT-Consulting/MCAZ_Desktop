@@ -141,10 +141,10 @@ class AEFIReportingForm extends FormComponent {
           <hr/>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Patient first name" required={ true } validate={ this.state.validate } name="patient_name" model={ model } onChange={this.onChange}/>
+              <TextInput label="Patient first name" validate={ this.state.validate } name="patient_name" model={ model } onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Surname"  required={ true } name="patient_surname" model={ model } onChange={this.onChange}/>
+              <TextInput label="Surname" name="patient_surname" model={ model } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
@@ -152,20 +152,20 @@ class AEFIReportingForm extends FormComponent {
               <TextInput label="Patient Next of Kin"  name="patient_next_of_kin" model={ model } onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Patient's physical address" required={ true } validate={ this.state.validate } name="patient_address" model={ model } onChange={this.onChange}/>
+              <TextInput label="Patient's physical address" validate={ this.state.validate } name="patient_address" model={ model } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Patient Telephone" name="patient_telephone" model={ model }/>
+              <TextInput label="Patient Telephone" name="patient_telephone" model={ model } onChange={this.onChange} type="tel" />
             </div>
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Gender" name="gender" model={ model } required={ true } options={ GENDER } inline={ true } validate={ this.state.validate } onChange={this.onChange}/>
+              <SingleMultipleInput label="Gender" name="gender" model={ model } options={ GENDER } inline={ true } validate={ this.state.validate } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <DatePickerInput label="Date of Birth" required={ true } validate={ this.state.validate }  name="date_of_birth" model={ model } onChange={ (value) => this.validateDateofBirth(value) } maxDate={ moment() } onChange={this.onChange}/>
+              <DatePickerInput label="Date of Birth" validate={ this.state.validate }  name="date_of_birth" model={ model } onChange={ (value) => this.validateDateofBirth(value) } maxDate={ moment() } onChange={this.onChange}/>
             </div>
 
           </div>
@@ -176,10 +176,10 @@ class AEFIReportingForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Reporter's name" required={ true } validate={ this.state.validate }  name="reporter_name" model={ model } onChange={this.onChange}/>
+              <TextInput label="Reporter's name" validate={ this.state.validate }  name="reporter_name" model={ model } onChange={this.onChange}/>
             </div>
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="Designation" name="designation_id" model={ model } options={ DESIGNATION } onChange={this.onChange}/>
+              <SelectInput label="Designation" name="designation_id" model={ model } options={ DESIGNATION } onChange={this.onChange} required={true} />
             </div>
           </div>
           <div className="container">
@@ -209,7 +209,7 @@ class AEFIReportingForm extends FormComponent {
 
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <TextInput label="Name of vaccination center" required={ true } validate={ this.state.validate } name="name_of_vaccination_center" model={ model } onChange={this.onChange}/>
+              <TextInput label="Name of vaccination center" validate={ this.state.validate } name="name_of_vaccination_center" model={ model } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
@@ -220,7 +220,7 @@ class AEFIReportingForm extends FormComponent {
 
           <h5 className="text-center">Adverse events</h5>
           <div className="container">
-            <AEFIAdverseEventsInput label="Adverse events" model={ model } options={ AEFI_ADVERSE_EVENTS } name="adverse_events" onChange={this.onChange}/>
+            <AEFIAdverseEventsInput label="Adverse events" model={ model } options={ AEFI_ADVERSE_EVENTS } name="adverse_events" onChange={this.onChange} />
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
@@ -240,20 +240,22 @@ class AEFIReportingForm extends FormComponent {
           </div>
           <div className="container">
             <div className="col-md-12 col-sm-12">
-              <TextInput label="Describe AEFI" multiLine={ true } name="description_of_reaction" model={ model } onChange={this.onChange}/>
+              <TextInput label="Describe AEFI" multiLine={ true } required={true} name="description_of_reaction" model={ model } onChange={this.onChange}/>
             </div>
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SingleMultipleInput label="Serious" required={ true } validate={ this.state.validate } name="serious" model={ model } inline={ true } options={ BOOLEAN_OPTIONS } onChange={this.onChange}/>
+              <SingleMultipleInput label="Serious" validate={ this.state.validate } name="serious" model={ model } inline={ true } options={ BOOLEAN_OPTIONS } onChange={this.onChange}/>
             </div>
-            <div className="col-md-6 col-sm-12">
-              <SelectInput label="If yes"  name="serious_yes" model={ model } options={ AEFI_SEVERITY_REASON } onChange={this.onChange}/>
-            </div>
+            {model['serious'] === 'Yes' && (
+              <div className="col-md-6 col-sm-12">
+                <SelectInput label="If yes"  name="serious_yes" model={ model } options={ AEFI_SEVERITY_REASON } onChange={this.onChange}/>
+              </div>
+            )}
           </div>
           <div className="container">
             <div className="col-md-6 col-sm-12">
-              <SelectInput label="Outcome"  name="outcome" required={ true } validate={ this.state.validate } model={ model } options={ AEFI_OUTCOME } onChange={this.updateAnswer} onChange={this.onChange}/>
+              <SelectInput label="Outcome"  name="outcome"  validate={ this.state.validate } model={ model } options={ AEFI_OUTCOME } onChange={this.updateAnswer} onChange={this.onChange}/>
             </div>
 
           </div>
@@ -271,7 +273,7 @@ class AEFIReportingForm extends FormComponent {
           <div className="container">
             <div className="col-md-12 col-sm-12">
               <TextInput label="Past medical history (including history of similar reaction or other allergies), concomitant medication and other relevant information (e.g. other cases). Use additional sheet if needed :"
-                multiLine={ true } name="past_medical_history" model={ model } />
+                multiLine={ true } name="past_medical_history" model={ model } onChange={this.onChange}/>
             </div>
           </div>
           <FileAttachmentComponent label="Do you have files that you would like to attach? click on the button to add them" validate={ this.state.validate } name="attachments" model={ model } onChange={this.onChange}/>
@@ -317,6 +319,10 @@ class AEFIReportingForm extends FormComponent {
 
   onChange(newValue) {
     const { model } = this.state;
+    
+    if (newValue['serious'] === 'No') {
+      newValue['serious_yes'] = '';
+    }
     const newModel = Object.assign({}, model, newValue);
     this.setState({ model: newModel });
   }
@@ -366,6 +372,10 @@ class AEFIReportingForm extends FormComponent {
         const values = model[field.name]
         var arrayNames = []
         if(Array.isArray(values)) {
+          var suspected_drug = -1;
+          if (field.name === 'aefi_list_of_vaccines') {
+            suspected_drug = 0;
+          }
           for(let i = 0; i < values.length; i++) {
             const val = values[i]
             fields.forEach((f) => {
@@ -379,18 +389,25 @@ class AEFIReportingForm extends FormComponent {
                 }
               }
             })
+            if(val['suspected_drug'] == '1') {
+              suspected_drug++
+            }
           }
+          /*if(suspected_drug == 0) {
+            valid = false
+            arrayNames.push("Select at least one suspected drug");
+          }*/
         }
         if(names != "") {
-          names += ",\n"
+          names += ",\r"
         }
-        names += arrayNames.join(',\n')
+        names += arrayNames.join(',\r')
       } else {
         if(field.dependent) {
-          if((model[field.dependent] == field.value || (field.value == "" && model[field.name] == null)) && (model[field.name] == null || model[field.name] === "")) {
+          if((model[field.dependent] == field.value || (field.value == "" && model[field.dependent] == null)) && (model[field.name] == null || model[field.name] === "")) {
             valid = false
             if(names != "") {
-              names += ",\n "
+              names += ",\r "
             } else {
               page = field.page
             }
@@ -399,7 +416,7 @@ class AEFIReportingForm extends FormComponent {
         } else if(model[field.name] == null || model[field.name] === "") {
           valid = false
           if(names != "") {
-            names += ",\n "
+            names += ",\r "
           } else {
             page = field.page
           }
@@ -410,7 +427,7 @@ class AEFIReportingForm extends FormComponent {
 
     if(!valid) {
       this.setState({ validate : true })
-      setNotification({ message : messages.validationErrors, level: "error", id: new Date().getTime() })
+      setNotification({ message : `${messages.validationErrors}\r${names}`, level: "error", id: new Date().getTime() })
       return
     }
     this.setState({ confirmVisible : true })

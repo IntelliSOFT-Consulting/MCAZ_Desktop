@@ -9,15 +9,26 @@ import { MAIN_URL, LOGIN_URL, SIGNUP_URL, MAIN_PAGE, RESET_PASSWORD_URL } from '
 
 import { ADR_URL, SAE_URL, AEFI_URL, SAEFI_URL, CONTACT_US_URL, NEWS_URL } from '../utils/Constants'
 import { REPORT_TYPE_ADR, REPORT_TYPE_SAE, REPORT_TYPE_AEFI, REPORT_TYPE_AEFI_INV } from '../utils/Constants'
+import { toast } from 'react-toastify';
 
 const { ipcRenderer } = require('electron')
-import fetch from 'isomorphic-fetch'
+// import fetch from 'isomorphic-fetch'
 /**
   Saves a draft report
 */
-export const saveDraft = (data) => (
+export const saveDraft = (data) => {
+  return dispatch => {
+    dispatch(saveDraftAcion(data));
+    /*toast('Changes saveds', {
+      type: toast.TYPE.INFO, autoClose: true, closeButton: false, hideProgressBar: true,
+    });*/
+  }
+}
+
+export const saveDraftAcion = (data) => (
   { type : SAVE_DRAFT_REPORT, data }
 )
+
 
 export const removeDraft = (data) => (
   { type : REMOVE_DRAFT_REPORT, data }
@@ -66,6 +77,13 @@ export const uploadData = (data, url, token, updateProgress) => {
   return dispatch => {
     dispatch(saveCompleted(data))
     dispatch(removeDraft(data))
+    const saveToastId = Date.now() + Math.floor(Math.random() * 100);
+    if (!updateProgress) {
+      toast('Saving data', {
+        toastId: saveToastId, type: toast.TYPE.INFO, autoClose: false, closeButton: false, hideProgressBar: true,
+        closeOnClick: false
+      });
+    }
     const rid = data.rid
     const type = data.type
     return fetch(url, {
@@ -102,25 +120,43 @@ export const uploadData = (data, url, token, updateProgress) => {
         dispatch(removeCompleted(json.followup))
       } else {
         if(json.message != null) {
+          toast.update(saveToastId, {
+            type: toast.TYPE.ERROR,
+            render: json.message
+          });
           dispatch(setNotification({ message : json.message, level: "info", id: new Date().getTime() }))
         } else {
-          dispatch(setNotification({ message : messages.erroruploading, level: "info", id: new Date().getTime() }))
+          toast.update(saveToastId, {
+            type: toast.TYPE.ERROR,
+            render: messages.erroruploading
+          });
         }
+        setTimeout(() => toast.dismiss(saveToastId), 3000);
         return
       }
       if(updateProgress) {
         dispatch(updateUploadStatus())
       } else {
-        dispatch(setNotification({ message : messages.datauploaded, level: "info", id: new Date().getTime() }))
+        toast.update(saveToastId, {
+          type: toast.TYPE.SUCCESS,
+          render: messages.datauploaded
+        });
+        setTimeout(() => toast.dismiss(saveToastId), 3000);
+        // dispatch(setNotification({ message : messages.datauploaded, level: "info", id: new Date().getTime() }))
       }
 
     }).catch((error) => {
+      console.log(error)
       if(updateProgress) {
         dispatch(updateUploadStatus())
       } else {
-        dispatch(setNotification({ message : messages.erroruploading, level: "info", id: new Date().getTime() }))
+        toast.update(saveToastId, {
+          type: toast.TYPE.ERROR,
+          render: messages.erroruploading
+        });
+        setTimeout(() => toast.dismiss(saveToastId), 3000);
       }
-      dispatch(setNotification({ message : messages.request_error, level: "error", id: new Date().getTime() }))
+      // dispatch(setNotification({ message : messages.request_error, level: "error", id: new Date().getTime() }))
     })
   }
 }
@@ -197,8 +233,19 @@ export const signUp = (data) => {
         const user = Object.assign({}, json.user, { token : json.token})
         dispatch(loggedIn(user))
       } else {
-        let message = json.message != null? json.message : messages.signup_error
-        dispatch(setNotification({ message : message, level: "error", id: new Date().getTime() }))
+        let message = json.message != null? json.message : messages.signup_error;
+        const errors = json.errors;
+        const keys = Object.keys(errors);
+        const msgs = [];
+        keys.forEach((key) => {
+          const msg = errors[key];
+          let m = [];
+          Object.keys(msg).forEach((k) => {
+            m.push(msg[k]);
+          });
+          msgs.push(key + ' : ' + m.join('\n'));
+        })
+        dispatch(setNotification({ message : message + '<br/>' + msgs.join('<br/>'), level: "error", id: new Date().getTime() }))
       }
     }).catch((error) => {
       dispatch(setNotification({ message : messages.request_error, level: "error", id: new Date().getTime() }))
@@ -365,7 +412,9 @@ export const contactUs = (data) => {
       headers: { "Accept" : "application/json", 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }).then(res => res.json()).then((json) => {
-
+        console.log(json);
+        const message = json.errors ? getErrors(json.errors) : 'Feedback submitted.'
+        dispatch(setNotification({ message : message, level: "info", id: new Date().getTime() }))
     }).catch((error) => {
       dispatch(setNotification({ message : messages.error_sending_message, level: "error", id: new Date().getTime() }))
     })
@@ -423,4 +472,18 @@ export const saveFile = (data) => {
     })
 
   }
+}
+
+const getErrors = (errors) => {
+  const keys = Object.keys(errors);
+  const msgs = [];
+  keys.forEach((key) => {
+    const msg = errors[key];
+    let m = [];
+    Object.keys(msg).forEach((k) => {
+      m.push(msg[k]);
+    });
+    msgs.push(key + ' : ' + m.join('\r'));
+  });
+  return msgs.join('\n');
 }

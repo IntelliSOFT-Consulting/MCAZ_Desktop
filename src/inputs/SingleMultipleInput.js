@@ -8,7 +8,7 @@ export default class SingleMultipleInput extends Component {
 
     var values = []
     if(model && model[name]) {
-      values = model[name].split(',')
+      values = `${model[name]}`.split(',')
     }
     var state = { values : values, validate }
 
@@ -55,7 +55,7 @@ export default class SingleMultipleInput extends Component {
       newState.validate =  newValidate
     }
     if(model && model[name] != null) {
-      var vals = model[name].split(",")
+      var vals = `${model[name]}`.split(",")
       const difference = values.filter( val => vals.indexOf(val) === -1 )
       if(difference.length > 0){
         newState = newState || {}

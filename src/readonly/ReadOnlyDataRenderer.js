@@ -22,14 +22,28 @@ export default class ReadOnlyDataRenderer extends Component {
     if(typeof model[name] == "object") {
       return ""
     }
+    const pad = (v) => {
+      if (v < 10) {
+        return `0${v}`;
+      }
+      return v;
+    }
     if(type == 'date') {
       if(model[name] != null && model[name] != '') {
-        let dateParts = model[name].split('-').filter( v => v != null && v != '');
+        let date = new Date(model[name]);
+        if (!(date instanceof Date && !isNaN(date))) {
+          const parts = model[name].split('-');
+          return `${pad(parts[0])}-${pad(parts[1])}-${parts[2]}`;
+        }
+        let val = moment(date).format("DD-MM-YYYY");
+        return val;
+
+        /*let dateParts = model[name].split('-').filter( v => v != null && v != '');
         if(dateParts.length != 3) {
           return ""
         }
         let val = moment(model[name]).format("DD-MM-YYYY");
-        return val;
+        return val;*/
       }
       return  model[name]
     } else if(type == 'option' && options) {
@@ -37,7 +51,7 @@ export default class ReadOnlyDataRenderer extends Component {
       if(typeof model[name] == 'string') {
         values = model[name].split(",")
       } else {
-        values = [model[name]] + ""
+        values = [`${model[name]}`]
       }
 
       var renderValue = []
@@ -47,7 +61,7 @@ export default class ReadOnlyDataRenderer extends Component {
         }
       })
       if(renderValue.length > 0) {
-        return renderValue.join(",")
+        return renderValue.filter(v => v !== '').join(",")
       }
       return model[name]
     } else if(type == 'file') {
