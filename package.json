@@ -59,7 +59,7 @@
     "redux-persist": "^6.0.0",
     "redux-persist-electron-storage": "^2.1.0",
     "redux-thunk": "^2.3.0",
-    "x2js": "^3.4.0"
+    "x2js": "^3.4.3"
   },
   "build": {
     "appId": "com.intellisoft.mcaz",
